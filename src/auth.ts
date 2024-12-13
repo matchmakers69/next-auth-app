@@ -1,6 +1,76 @@
-import NextAuth from "next-auth";
+import NextAuth, { DefaultSession } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import GitHub from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
+import { db } from "./libs/db";
+import { UserRole } from "@prisma/client";
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
-  providers: [GitHub],
+export type ExtendedUser = DefaultSession["user"] & {
+  role: UserRole;
+  isTwoFactorEnabled: boolean;
+  is0Auth: boolean;
+};
+
+declare module "next-auth" {
+  interface Session {
+    user: ExtendedUser;
+  }
+}
+const AUTH_GOOGLE_ID = process.env.AUTH_GOOGLE_ID;
+const AUTH_GOOGLE_SECRET = process.env.AUTH_GOOGLE_SECRET;
+
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
+
+if (
+  !GITHUB_CLIENT_ID ||
+  !GITHUB_CLIENT_SECRET ||
+  !AUTH_GOOGLE_ID ||
+  !AUTH_GOOGLE_SECRET
+) {
+  throw new Error("Missing GitHub OAuth credentials");
+}
+
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+  signOut,
+} = NextAuth({
+  adapter: PrismaAdapter(db),
+  session: { strategy: "jwt" },
+  providers: [
+    GitHub({
+      clientId: GITHUB_CLIENT_ID,
+      clientSecret: GITHUB_CLIENT_SECRET,
+    }),
+    Google({
+      clientId: GITHUB_CLIENT_ID,
+      clientSecret: AUTH_GOOGLE_SECRET,
+    }),
+  ],
+  callbacks: {
+    // Usually not needed, here we are fixing a bug in nextauth
+    async session({ token, session }) {
+      if (token.sub && session.user) {
+        session.user.id = token.sub;
+      }
+
+      if (token.role && session.user) {
+        session.user.role = token.role as UserRole;
+      }
+
+      if (session.user) {
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
+      }
+
+      if (session.user) {
+        session.user.name = token.name ?? "";
+        session.user.email = token.email ?? "";
+        session.user.is0Auth = token.is0Auth as boolean;
+      }
+
+      return session;
+    },
+  },
 });

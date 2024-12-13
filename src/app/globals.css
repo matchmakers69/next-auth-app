@@ -2,20 +2,243 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  box-sizing: border-box;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body,
+:root {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  line-height: 1.8;
+  font-size: 1.6rem;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+@layer base {
+  :root {
+    --foreground: 248, 249, 250;
+    --background: 56, 59, 80;
+    --text-light: 233, 233, 230;
+    --body: 0, 6, 18;
+    --border-bottom-light: 176, 196, 177;
+    --button-brown-bg: 188, 138, 95;
+    --navy: 1, 42, 74;
+    --black: 2, 2, 2;
+    --white: 255, 255, 255;
+    --dark-green: 42, 49, 50;
+    --foreground-green: 27, 67, 50;
+    --foreground-blue: 33, 158, 188;
+    --light-blue: 142, 202, 230;
+    --foreground-dark-violet: 70, 70, 104;
+    --foreground-lighter-violet: 161, 136, 166;
+    --light-green: 216, 243, 220;
+    --light-grey: 251, 250, 247;
+    --dark-purple: 20, 33, 61;
+    --bg-purple: 36, 0, 70;
+    --wave-purple: 60, 9, 108;
+    --spacer-x3: clamp(4rem, 2vw + 1.6px, 8rem);
+    --spacer-x2: clamp(22.71px, 4.8vw + 17.99px, 4rem);
+
+    --primary: 233, 233, 230;
+    --primary-foreground: 233, 233, 230;
+
+    --secondary: 233, 233, 230;
+    --secondary-foreground: 56, 59, 80;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --success-foreground: 148 210 189;
+    --success: 0 56 35;
+    --error: 255 57 57;
+    --destructive-foreground: 230 180 180;
+    --destructive: 174 14 14;
+
+    --border: 233, 233, 230;
+    --border-input-dark: 71 75 101;
+    --border-input-light: 60 60 59;
+    --p-input: clamp(1rem, 1rem + 0.5vw, 1rem);
+    --ring: 248, 249, 250;
+    --ring-dark: 42, 49, 50;
+    --radius: 0.5rem;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-light;
+  }
+}
+
+.shadow-header {
+  box-shadow: 0px 1px 0px 0px rgba(242, 240, 232, 0.2);
+}
+
+.shadow-drop-down {
+  box-shadow: 0 1.5rem 5rem 0 rgba(3, 10, 20, 0.3);
+}
+
+.border-r-gray-15 {
+  border-right: 1px solid rgba(242, 240, 232, 0.2);
+}
+
+.border-bottom-nav {
+  border-bottom: 1px solid rgba(var(--border-bottom-light), 0.6);
+}
+
+.border-footer-nav {
+  border-top: 1px solid rgba(var(--border-bottom-light), 0.6);
+}
+
+.border-spacer {
+  border-right: 1px solid rgba(var(--border-bottom-light), 1);
+}
+
+.sidebar-menu-toggle-button-icon::after,
+.sidebar-menu-toggle-button-icon::before,
+.site-menu-toggle-icon-dark::after,
+.site-menu-toggle-icon-dark::before {
+  content: "";
+  height: 1px;
+}
+
+.sidebar-menu-toggle-button-icon::after,
+.site-menu-toggle-icon-dark::after {
+  width: 0.8rem;
+  margin: 3px 0;
+}
+
+.site-menu-toggle-icon-dark::before,
+.sidebar-menu-toggle-button-icon::before {
+  width: 1.4rem;
+  margin: 3px 0;
+}
+
+.sidebar-menu-toggle-button-icon::after {
+  background: rgb(var(--text-light));
+}
+
+.site-menu-toggle-icon-dark::after {
+  background: rgb(var(--dark-green));
+}
+
+.sidebar-menu-toggle-button-icon::before {
+  background: rgb(var(--text-light));
+}
+
+.site-menu-toggle-icon-dark::before {
+  background: rgb(var(--dark-green));
+}
+
+.nth-child-1 {
+  transform: rotate(-45deg);
+  position: absolute;
+  display: block;
+  width: 67%;
+  height: 1px;
+}
+
+.nth-child-2 {
+  transform: rotate(45deg);
+  position: absolute;
+  display: block;
+  width: 67%;
+  height: 1px;
+}
+
+.border-footer {
+  border-top: 1px solid rgba(242, 240, 232, 0.2);
+}
+
+.pt-res {
+  padding-top: clamp(1.1rem, 0.7153rem + 1.6368vw, 1.5rem);
+}
+
+.active-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 30%;
+  height: 1px;
+  background-color: rgb(var(--text-light));
 }
