@@ -1,21 +1,42 @@
 import { auth } from "@/auth";
-import { NextResponse } from "next/server";
+import {
+  apiAuthPrefix,
+  publicRoutes,
+  authRoutes,
+  DEFAULT_LOGIN_REDIRECT,
+} from "../routes";
+import { routes } from "./libs/routes";
 
-// List of routes that require authentication
-const protectedRoutes = ["/dashboard", "/suggestions"];
-
-console.log(protectedRoutes);
-
-export default auth(req => {
+export default auth((req) => {
+  const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
-  const isProtectedRoute = protectedRoutes.some(route => req.nextUrl.pathname.startsWith(route));
 
-  if (isProtectedRoute && !isLoggedIn) {
-    return NextResponse.redirect(new URL("/", req.url));
+  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+  if (isApiAuthRoute) {
+    return;
   }
 
-  // Allow the request to proceed
-  return NextResponse.next();
+  if (isAuthRoute) {
+    if (isLoggedIn) {
+      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+    }
+    return;
+  }
+
+  if (!isLoggedIn && !isPublicRoute) {
+    let callbackUrl = nextUrl.pathname;
+    if (nextUrl.search) {
+      callbackUrl += nextUrl.search;
+    }
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+    return Response.redirect(
+      new URL(`${routes.LOGIN}?callbackUrl=${encodedCallbackUrl}`, nextUrl),
+    );
+  }
+
+  return;
 });
 
 // This line configures which routes the middleware should run on

@@ -2,6 +2,7 @@ import NextAuth, { DefaultSession } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
+import Facebook from "next-auth/providers/facebook";
 import { db } from "./libs/db";
 import { UserRole } from "@prisma/client";
 
@@ -22,13 +23,19 @@ const AUTH_GOOGLE_SECRET = process.env.AUTH_GOOGLE_SECRET;
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
-if (
-  !GITHUB_CLIENT_ID ||
-  !GITHUB_CLIENT_SECRET ||
-  !AUTH_GOOGLE_ID ||
-  !AUTH_GOOGLE_SECRET
-) {
+const FACEBOOK_CLIENT_ID = process.env.FACEBOOK_CLIENT_ID;
+const FACEBOOK_CLIENT_SECRET = process.env.FACEBOOK_CLIENT_SECRET;
+
+if (!GITHUB_CLIENT_ID || !GITHUB_CLIENT_SECRET) {
   throw new Error("Missing GitHub OAuth credentials");
+}
+
+if (!AUTH_GOOGLE_ID || !AUTH_GOOGLE_SECRET) {
+  throw new Error("Missing Google OAuth credentials");
+}
+
+if (!FACEBOOK_CLIENT_ID || !FACEBOOK_CLIENT_SECRET) {
+  throw new Error("Missing Facebook OAuth credentials");
 }
 
 export const {
@@ -45,8 +52,12 @@ export const {
       clientSecret: GITHUB_CLIENT_SECRET,
     }),
     Google({
-      clientId: GITHUB_CLIENT_ID,
+      clientId: AUTH_GOOGLE_ID,
       clientSecret: AUTH_GOOGLE_SECRET,
+    }),
+    Facebook({
+      clientId: FACEBOOK_CLIENT_ID,
+      clientSecret: FACEBOOK_CLIENT_SECRET,
     }),
   ],
   callbacks: {

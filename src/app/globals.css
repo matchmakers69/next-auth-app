@@ -94,6 +94,8 @@ textarea {
     --background: 56, 59, 80;
     --text-light: 233, 233, 230;
     --body: 0, 6, 18;
+    --facebook-color: #0866ff;
+    --google-color: #4285f4;
     --border-bottom-light: 176, 196, 177;
     --button-brown-bg: 188, 138, 95;
     --navy: 1, 42, 74;
@@ -103,19 +105,13 @@ textarea {
     --foreground-green: 27, 67, 50;
     --foreground-blue: 33, 158, 188;
     --light-blue: 142, 202, 230;
-    --foreground-dark-violet: 70, 70, 104;
-    --foreground-lighter-violet: 161, 136, 166;
-    --light-green: 216, 243, 220;
     --light-grey: 251, 250, 247;
     --dark-purple: 20, 33, 61;
     --bg-purple: 36, 0, 70;
-    --wave-purple: 60, 9, 108;
     --spacer-x3: clamp(4rem, 2vw + 1.6px, 8rem);
     --spacer-x2: clamp(22.71px, 4.8vw + 17.99px, 4rem);
-
     --primary: 233, 233, 230;
     --primary-foreground: 233, 233, 230;
-
     --secondary: 233, 233, 230;
     --secondary-foreground: 56, 59, 80;
     --accent: 210 40% 96.1%;
@@ -125,8 +121,6 @@ textarea {
     --error: 255 57 57;
     --destructive-foreground: 230 180 180;
     --destructive: 174 14 14;
-
-    --border: 233, 233, 230;
     --border-input-dark: 71 75 101;
     --border-input-light: 60 60 59;
     --p-input: clamp(1rem, 1rem + 0.5vw, 1rem);
@@ -171,42 +165,6 @@ textarea {
 
 .border-spacer {
   border-right: 1px solid rgba(var(--border-bottom-light), 1);
-}
-
-.sidebar-menu-toggle-button-icon::after,
-.sidebar-menu-toggle-button-icon::before,
-.site-menu-toggle-icon-dark::after,
-.site-menu-toggle-icon-dark::before {
-  content: "";
-  height: 1px;
-}
-
-.sidebar-menu-toggle-button-icon::after,
-.site-menu-toggle-icon-dark::after {
-  width: 0.8rem;
-  margin: 3px 0;
-}
-
-.site-menu-toggle-icon-dark::before,
-.sidebar-menu-toggle-button-icon::before {
-  width: 1.4rem;
-  margin: 3px 0;
-}
-
-.sidebar-menu-toggle-button-icon::after {
-  background: rgb(var(--text-light));
-}
-
-.site-menu-toggle-icon-dark::after {
-  background: rgb(var(--dark-green));
-}
-
-.sidebar-menu-toggle-button-icon::before {
-  background: rgb(var(--text-light));
-}
-
-.site-menu-toggle-icon-dark::before {
-  background: rgb(var(--dark-green));
 }
 
 .nth-child-1 {

@@ -25,6 +25,8 @@ export default {
       },
       colors: {
         border: "rgb(var(--border))",
+        "bg-facebook": "var(--facebook-color)",
+        "bg-google": "var(--google-color)",
         "border-input-dark": "rgb(var(--border-input-dark))",
         "border-input-light": "rgb(var(--border-input-light) / 0.09)",
         ring: "rgb(var(--ring))",
@@ -43,15 +45,11 @@ export default {
         "border-bottom-light": "rgba(var(--border-bottom-light))",
         "foreground-blue": "rgb(var(--foreground-blue))",
         "light-blue": "rgb(var(--light-blue))",
-        "foreground-dark-violet": "rgb(var(--foreground-dark-violet))",
-        "foreground-lighter-violet": "rgb(var(--foreground-lighter-violet))",
         black: "rgb(var(--black))",
         white: "rgb(var(--white))",
-        "light-green": "rgb(var(--light-green))",
         "light-grey": "rgb(var(--light-grey))",
         "dark-purple": "rgb(var(--dark-purple))",
         "bg-purple": "rgb(var(--bg-purple))",
-        "wave-purple": "rgb(var(--wave-purple))",
         "text-light": "rgb(var(--text-light))",
         foreground: "rgb(var(--foreground))",
 
@@ -82,7 +80,8 @@ export default {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },

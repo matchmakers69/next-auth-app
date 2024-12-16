@@ -1,38 +1,37 @@
 import { auth } from "@/auth";
-import { LogOut } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Nav from "./Nav";
-import { logout } from "@/actions/auth";
+import avatar from "../../../../public/icons/avatar.png";
+import Logout from "@/components/authentication/Logout";
+import { Button } from "../Button";
 
 const NavbarMain = async () => {
   const session = await auth();
+  const userName = session?.user?.name ?? "";
+  const avatarSrc = session?.user?.image ?? avatar;
+
   return (
     <Nav>
-      <div className="flex items-center gap-5 text-black">
-        {session && session.user ? (
-          <>
-            <form
-              action={async () => {
-                "use server";
+      {session && session.user ? (
+        <>
+          <p className="mt-2 text-left text-base">{userName}</p>
 
-                await logout();
-              }}
-            >
-              <button type="submit">
-                <span className="max-sm:hidden">Logout</span>
-                <LogOut className="size-6 text-red-500 sm:hidden" />
-              </button>
-            </form>
-
-            <Link href="#">
-              <Image alt="avatar" src="/avatar.png" width="40" height="40" />
-            </Link>
-          </>
-        ) : (
-          <>hello</>
-        )}
-      </div>
+          <Link href="#">
+            <Image alt="User avatar" src={avatarSrc} width="40" height="40" />
+          </Link>
+          <Logout />
+        </>
+      ) : (
+        <Button
+          className="rounded-lg border-[1px] border-solid uppercase hover:bg-white hover:text-navy"
+          asChild
+          variant="link"
+          size="sm"
+        >
+          <Link href="/auth/login">Login</Link>
+        </Button>
+      )}
     </Nav>
   );
 };

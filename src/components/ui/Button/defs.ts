@@ -7,20 +7,21 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default: "button-brown-bg text-white",
-        outline: "border text-primary-foreground bg-transparent",
+        outline:
+          "border border-solid border-[1px] rounded-lg text-primary-foreground bg-transparent",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         secondary:
           "bg-secondary text-secondary-foreground hover:text-text-light",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-primary underline-offset-4",
         social:
-          "flex items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500",
+          "flex text-white items-center rounded-lg shadow-md max-w-xs px-6 py-2 text-sm focus:ring-2 focus:outline-none font-medium",
       },
       size: {
         default: "h-20 px-6 py-2 text-base min-w-[17rem] max-w-[20rem]",
         full: "h-20 px-6 py-2 text-base w-full",
-        sm: "h-16 px-7 text-base min-w-[11rem] max-w-[15rem]",
+        sm: "h-16 px-7 text-base min-w-[14rem] max-w-[18rem]",
         lg: "h-22 px-8 text-md min-w-[18rem] max-w-[22rem]",
         xl: "h-24 px-8 text-md",
         icon: "h-10 w-9",

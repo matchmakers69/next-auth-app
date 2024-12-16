@@ -1,9 +1,10 @@
-import { IBM_Plex_Sans } from "next/font/google";
+import { Poppins } from "next/font/google";
+import "remixicon/fonts/remixicon.css";
 import "./globals.css";
 import { type Metadata } from "next/types";
 import SessionProvider from "@/components/providers/SessionProvider";
 
-const IbmPlex = IBM_Plex_Sans({
+const PoppinsFont = Poppins({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-ibmPlex",
@@ -37,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${IbmPlex.className}`}>
+      <body className={`${PoppinsFont.className}`}>
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>

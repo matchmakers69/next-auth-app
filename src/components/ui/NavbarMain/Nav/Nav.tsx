@@ -32,13 +32,17 @@ const Nav = ({ children }: NavProps) => {
           y: "0%",
         },
       }}
-      className="fixed left-0 top-0 z-10 flex w-full justify-center"
+      className="backdrop-brightness-135 fixed left-0 top-0 z-10 h-[70px] w-[100vw] border-b border-gray-500/60 bg-transparent backdrop-blur-lg backdrop-opacity-75"
     >
-      <nav className="sticky top-0 flex w-full items-center justify-between">
-        <Link href="/">
-          <Logo width={45} height={45} />
-        </Link>
-        {children}
+      <nav className="relative mx-auto flex h-full w-[calc(100vw-2*1.5vw)] max-w-[2000px] items-stretch justify-between">
+        <div className="header-logo relative flex flex-1 items-center justify-start py-[20px]">
+          <Link className="logo-link inline-block" href="/">
+            <Logo width={120} />
+          </Link>
+        </div>
+        <div className="relative flex flex-1 items-center justify-end gap-[20px] p-[20px]">
+          {children}
+        </div>
       </nav>
     </motion.header>
   );
