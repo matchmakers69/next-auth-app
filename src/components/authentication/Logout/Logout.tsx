@@ -16,10 +16,10 @@ const Logout = () => {
           type="submit"
           variant="default"
           size="sm"
-          className="bg-button-brown-bg"
+          className="rounded-lg border-[1px] border-solid hover:bg-white hover:text-navy"
         >
-          <span className="max-sm:hidden">Logout</span>
-          <LogOut className="size-6 text-red-500 sm:hidden" />
+          <LogOut className="size-6 hover:text-navy" />
+          <span className="max-sm:hidden ml-3 inline-block">Logout</span>
         </Button>
       </form>
     </>

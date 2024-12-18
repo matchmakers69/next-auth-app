@@ -1,4 +1,4 @@
 export interface LogoProps {
-	width?: string | number;
-	height?: string | number;
+  width?: number;
+  height?: number;
 }

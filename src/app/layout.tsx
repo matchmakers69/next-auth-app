@@ -7,7 +7,7 @@ import SessionProvider from "@/components/providers/SessionProvider";
 const PoppinsFont = Poppins({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-ibmPlex",
+  variable: "--font-poppins",
   weight: ["300", "400", "500", "600", "700"],
 });
 

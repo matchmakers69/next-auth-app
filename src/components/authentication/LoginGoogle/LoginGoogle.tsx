@@ -12,12 +12,12 @@ const LoginGoogle = () => {
     <>
       <Button
         size="sm"
-        className="bg-bg-google w-full hover:bg-[#4285F4]/90 hover:bg-opacity-30 focus:ring-[#4285F4]/50"
+        className="w-full bg-bg-google hover:bg-[#4285F4]/90 hover:bg-opacity-30 focus:ring-[#4285F4]/50"
         variant="social"
         onClick={() => handleLogin("google")}
       >
         <i className="ri-google-fill text-[2rem]" />
-        <span className="ml-3 block">Google</span>
+        <span className="ml-3 block">Log in with Google</span>
       </Button>
     </>
   );

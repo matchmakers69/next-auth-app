@@ -18,13 +18,19 @@ const NavbarMain = async () => {
           <p className="mt-2 text-left text-base">{userName}</p>
 
           <Link href="#">
-            <Image alt="User avatar" src={avatarSrc} width="40" height="40" />
+            <Image
+              alt="User avatar"
+              src={avatarSrc}
+              width="40"
+              height="40"
+              className="rounded-full"
+            />
           </Link>
           <Logout />
         </>
       ) : (
         <Button
-          className="rounded-lg border-[1px] border-solid uppercase hover:bg-white hover:text-navy"
+          className="rounded-lg border-[1px] border-solid hover:bg-white hover:text-navy"
           asChild
           variant="link"
           size="sm"

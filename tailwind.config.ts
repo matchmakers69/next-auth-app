@@ -15,6 +15,9 @@ export default {
       },
     },
     extend: {
+      borderRadius: {
+        lg: "10px",
+      },
       fontSize: {
         base: "1.4rem",
         sm: "1.6rem",
@@ -33,10 +36,7 @@ export default {
         "ring-dark": "rgb(var(--ring-dark))",
         background: "rgb(var(--background))",
         body: "rgb(var(--body))",
-        "button-brown-bg": "rgb(var(--button-brown-bg))",
         navy: "rgb(var(--navy))",
-        "dark-green": "rgb(var(--dark-green))",
-        "foreground-green": "rgb(var(--foreground-green))",
         "destructive-foreground": "rgb(var(--destructive-foreground))",
         destructive: "rgb(var(--destructive))",
         error: "rgb(var(--error))",
@@ -51,6 +51,7 @@ export default {
         "dark-purple": "rgb(var(--dark-purple))",
         "bg-purple": "rgb(var(--bg-purple))",
         "text-light": "rgb(var(--text-light))",
+        "text-grey": "rgb(var(--text-grey))",
         foreground: "rgb(var(--foreground))",
 
         primary: {
@@ -79,9 +80,7 @@ export default {
         "4xl-max": { max: "1850px" },
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        authHeroImg: "url('/images/auth-icon.jpg')",
       },
     },
   },

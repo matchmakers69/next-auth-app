@@ -41,6 +41,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/lodash": "^4.17.13",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",

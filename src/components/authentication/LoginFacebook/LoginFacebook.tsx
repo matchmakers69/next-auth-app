@@ -11,12 +11,12 @@ const LoginFacebook = () => {
   return (
     <Button
       size="sm"
-      className="bg-bg-facebook w-full hover:bg-[#0866ff]/90 hover:bg-opacity-30 focus:ring-[#0866ff]/50"
+      className="w-full bg-bg-facebook hover:bg-[#0866ff]/90 hover:bg-opacity-30 focus:ring-[#0866ff]/50"
       variant="social"
       onClick={() => handleLogin("facebook")}
     >
       <i className="ri-facebook-fill text-[2rem]" />
-      <span className="ml-3 block">Facebook</span>
+      <span className="ml-3 block">Log in with Facebook</span>
     </Button>
   );
 };

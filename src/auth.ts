@@ -5,6 +5,10 @@ import Google from "next-auth/providers/google";
 import Facebook from "next-auth/providers/facebook";
 import { db } from "./libs/db";
 import { UserRole } from "@prisma/client";
+import Credentials from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
+import { loginSchema } from "./components/authentication/schemas/loginSchema";
+import { getUserByEmail } from "./data/user";
 
 export type ExtendedUser = DefaultSession["user"] & {
   role: UserRole;
@@ -58,6 +62,22 @@ export const {
     Facebook({
       clientId: FACEBOOK_CLIENT_ID,
       clientSecret: FACEBOOK_CLIENT_SECRET,
+    }),
+    Credentials({
+      async authorize(credentials) {
+        const validatedFields = loginSchema.safeParse(credentials);
+        if (validatedFields.success) {
+          const { email, password } = validatedFields.data;
+          // We want to check if email is connected with any email in database
+          const user = await getUserByEmail(email);
+          if (!user?.password) {
+            return null;
+          }
+          const passwordsMatch = await bcrypt.compare(password, user.password); // compare password hash
+          if (passwordsMatch) return user;
+        }
+        return null;
+      },
     }),
   ],
   callbacks: {

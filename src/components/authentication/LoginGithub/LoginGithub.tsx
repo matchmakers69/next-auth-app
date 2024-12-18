@@ -12,12 +12,12 @@ const LoginGithub = () => {
     <>
       <Button
         size="sm"
-        className="w-full bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200"
+        className="w-full bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200"
         variant="social"
         onClick={() => handleLogin("github")}
       >
         <i className="ri-github-fill text-[2rem]" />
-        <span className="ml-3 block">Github</span>
+        <span className="ml-3 block">Log in with Github</span>
       </Button>
     </>
   );
