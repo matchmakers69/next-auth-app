@@ -1,10 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { SocialProviders } from "../types/defs";
+import { SocialButtonsText, SocialProviders } from "../types/defs";
 import { login } from "@/actions/auth";
 
-const LoginFacebook = () => {
+const LoginFacebook = ({
+  text = "Log in with Facebook",
+}: SocialButtonsText) => {
   const handleLogin = (provider: SocialProviders) => {
     login(provider);
   };
@@ -16,7 +18,7 @@ const LoginFacebook = () => {
       onClick={() => handleLogin("facebook")}
     >
       <i className="ri-facebook-fill text-[2rem]" />
-      <span className="ml-3 block">Log in with Facebook</span>
+      <span className="ml-3 block">{text}</span>
     </Button>
   );
 };

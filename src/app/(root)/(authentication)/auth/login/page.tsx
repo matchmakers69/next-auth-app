@@ -1,11 +1,11 @@
-import LoginFacebook from "@/components/authentication/LoginFacebook";
 import LoginGithub from "@/components/authentication/LoginGithub";
 import LoginGoogle from "@/components/authentication/LoginGoogle";
 import { IBM_Plex_Sans } from "next/font/google";
-import AuthLeftColumnContainer from "../../_components/AuthLeftColumnContainer";
+import AuthLeftColumnContainer from "@/components/authentication/AuthLeftColumnContainer";
 import PageTitle from "@/components/ui/PageTitle";
-import GraphicContainer from "../../_components/GraphicContainer";
-import LoginForm from "../../_components/LoginForm";
+import LoginFacebook from "@/components/authentication/LoginFacebook";
+import LoginForm from "@/components/authentication/LoginForm";
+import GraphicContainer from "@/components/authentication/GraphicContainer";
 
 const IbmPlex = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -51,7 +51,7 @@ function LoginPage() {
             <div className="w-full border-t border-[rgb(175,175,175)]" />
           </div>
           <div className="relative flex justify-center">
-            <p className="text-text-grey bg-[rgb(20,20,20)] px-3 text-base dark:bg-neutral-900">
+            <p className="bg-[rgb(20,20,20)] px-3 text-base text-text-grey dark:bg-neutral-900">
               or provide login details
             </p>
           </div>

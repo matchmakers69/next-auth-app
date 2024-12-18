@@ -1,10 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { SocialProviders } from "../types/defs";
+import { SocialButtonsText, SocialProviders } from "../types/defs";
 import { login } from "@/actions/auth";
 
-const LoginGithub = () => {
+const LoginGithub = ({ text = "Log in with Github" }: SocialButtonsText) => {
   const handleLogin = (provider: SocialProviders) => {
     login(provider);
   };
@@ -17,7 +17,7 @@ const LoginGithub = () => {
         onClick={() => handleLogin("github")}
       >
         <i className="ri-github-fill text-[2rem]" />
-        <span className="ml-3 block">Log in with Github</span>
+        <span className="ml-3 block">{text}</span>
       </Button>
     </>
   );

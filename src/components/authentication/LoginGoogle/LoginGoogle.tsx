@@ -1,10 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { SocialProviders } from "../types/defs";
+import { SocialButtonsText, SocialProviders } from "../types/defs";
 import { login } from "@/actions/auth";
 
-const LoginGoogle = () => {
+const LoginGoogle = ({ text = "Log in with Google" }: SocialButtonsText) => {
   const handleLogin = (provider: SocialProviders) => {
     login(provider);
   };
@@ -17,7 +17,7 @@ const LoginGoogle = () => {
         onClick={() => handleLogin("google")}
       >
         <i className="ri-google-fill text-[2rem]" />
-        <span className="ml-3 block">Log in with Google</span>
+        <span className="ml-3 block">{text}</span>
       </Button>
     </>
   );
