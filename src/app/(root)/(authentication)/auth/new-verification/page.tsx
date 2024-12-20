@@ -1,31 +1,17 @@
-import { IBM_Plex_Sans } from "next/font/google";
 import AuthLeftColumnContainer from "@/components/authentication/AuthLeftColumnContainer";
 import PageTitle from "@/components/ui/PageTitle";
 import GraphicContainer from "@/components/authentication/GraphicContainer";
 import NewVerificationForm from "@/components/authentication/NewVerificationForm";
-
-const IbmPlex = IBM_Plex_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-ibmPlex",
-  weight: ["300", "400", "500", "600", "700"],
-});
 
 function NewVerificationPage() {
   return (
     <>
       <AuthLeftColumnContainer>
         <PageTitle
-          title="Welcome back!"
-          subtitle="Enter your username and password to log in to your admin panel"
+          title="User verification"
+          subtitle="Confirming your verification"
         />
-        <div className="mb-4 w-full">
-          <p
-            className={`${IbmPlex.className} mb-4 text-base font-normal text-text-light`}
-          >
-            Log in with one click
-          </p>
-        </div>
+
         <NewVerificationForm />
       </AuthLeftColumnContainer>
       <GraphicContainer>

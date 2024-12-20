@@ -1,45 +1,43 @@
-import { auth } from "@/auth";
-import {
-  apiAuthPrefix,
-  publicRoutes,
-  authRoutes,
-  DEFAULT_LOGIN_REDIRECT,
-} from "../routes";
+import NextAuth, { type Session } from "next-auth";
+import { type NextRequest } from "next/server";
 import { routes } from "./libs/routes";
+import { apiAuthPrefix, publicRoutes, authRoutes, DEFAULT_LOGIN_REDIRECT } from "../routes";
+import authConfig from "./auth.config";
 
-export default auth((req) => {
-  const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
+const { auth } = NextAuth(authConfig);
 
-  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
-  if (isApiAuthRoute) {
-    return;
-  }
+export default auth((req: NextRequest & { auth: Session | null }): Response | void => {
+	const { nextUrl } = req;
+	const isLoggedIn = !!req.auth;
 
-  if (isAuthRoute) {
-    if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-    }
-    return;
-  }
+	const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+	const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+	const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-  if (!isLoggedIn && !isPublicRoute) {
-    let callbackUrl = nextUrl.pathname;
-    if (nextUrl.search) {
-      callbackUrl += nextUrl.search;
-    }
-    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-    return Response.redirect(
-      new URL(`${routes.LOGIN}?callbackUrl=${encodedCallbackUrl}`, nextUrl),
-    );
-  }
+	if (isApiAuthRoute) {
+		return;
+	}
 
-  return;
+	if (isAuthRoute) {
+		if (isLoggedIn) {
+			return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+		}
+		return;
+	}
+
+	if (!isLoggedIn && !isPublicRoute) {
+		let callbackUrl = nextUrl.pathname;
+		if (nextUrl.search) {
+			callbackUrl += nextUrl.search;
+		}
+		const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+		return Response.redirect(new URL(`${routes.LOGIN}?callbackUrl=${encodedCallbackUrl}`, nextUrl));
+	}
+
+	return;
 });
 
-// This line configures which routes the middleware should run on
+// Optionally, don't invoke Middleware on some paths
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|images|icons|favicon.ico).*)"],
+	matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"], // matcher used from Clerk
 };

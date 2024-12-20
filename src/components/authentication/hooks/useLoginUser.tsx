@@ -4,8 +4,11 @@ import { useState, useTransition } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoginFormValues, loginSchema } from "../schemas/loginSchema";
 import { signIn } from "@/actions/signIn";
+import { useRouter } from "next/navigation";
+import { DEFAULT_LOGIN_REDIRECT } from "../../../../routes";
 
 export const useLoginUser = () => {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [success, setSuccess] = useState<string | undefined>("");
   const [error, setError] = useState<string | undefined>("");
@@ -40,19 +43,18 @@ export const useLoginUser = () => {
           if (data?.error) {
             setShowTwoFactor(false);
             reset();
-            setError(data?.error);
-          }
-
-          if (data?.success) {
+            setError(data.error);
+          } else if (data?.success) {
             reset();
-            setSuccess(data.success);
-          }
-          if (data?.twoFactor) {
+            setSuccess("Login successful");
+            router.push(DEFAULT_LOGIN_REDIRECT);
+          } else if (data?.twoFactor) {
             setShowTwoFactor(true);
           }
         })
-        .catch(() => {
-          setError("Something went wrong with login!");
+        .catch((error) => {
+          console.error("Login error:", error);
+          setError("Unexpected error occurred during login.");
         });
     });
   };

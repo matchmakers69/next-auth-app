@@ -7,6 +7,8 @@ import { useCallback, useEffect, useState } from "react";
 import { newVerification } from "@/actions/new-verification";
 import { FormError } from "@/components/ui/formParts/FormError";
 import { FormSuccess } from "@/components/ui/formParts/FormSuccess";
+import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 
 function NewVerificationForm() {
   const [error, setError] = useState<string | undefined>();
@@ -42,6 +44,17 @@ function NewVerificationForm() {
         <FormSuccess message={success} />
         {/* // TODO be aware error may show up despite user's email is verified - should be fixed on production */}
         {!success && <FormError message={error} />}
+      </div>
+      <div className="flex w-full items-center gap-[8px]">
+        <p className="text-[12px] text-text-grey">Have an account?</p>
+        <Button
+          className="flex-start min-w-[auto] px-0 underline"
+          asChild
+          variant="link"
+          size="sm"
+        >
+          <Link href="/auth/login">Sign in</Link>
+        </Button>
       </div>
     </>
   );

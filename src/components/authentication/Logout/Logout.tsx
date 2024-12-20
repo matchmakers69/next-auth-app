@@ -12,12 +12,7 @@ const Logout = () => {
           await logout();
         }}
       >
-        <Button
-          type="submit"
-          variant="default"
-          size="sm"
-          className="rounded-lg border-[1px] border-solid hover:bg-white hover:text-navy"
-        >
+        <Button type="submit" size="sm" variant="outline">
           <LogOut className="size-6 hover:text-navy" />
           <span className="max-sm:hidden ml-3 inline-block">Logout</span>
         </Button>

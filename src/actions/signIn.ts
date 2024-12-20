@@ -16,15 +16,13 @@ import { DEFAULT_LOGIN_REDIRECT } from "../../routes";
 import { generateTwoFactorToken, generateVerificationToken } from "@/libs/tokens";
 import { sendTwoFactorTokenEmail, sendVerificationEmail } from "@/libs/mail";
 import { db } from "@/libs/db";
-import { actionMessages } from "@/libs/appData";
 
 export const signIn = async (values: LoginFormValues, callbackUrl?: string | null) => {
 	// server site validation
 	const validatedFields = loginSchema.safeParse(values);
-	console.log(validatedFields, "validatedFields")
 
 	if (!validatedFields.success) {
-		return { error: "Invalid fields!" };
+		return { error: "The email or password you entered is incorrect." };
 	}
 
 	const { email, password, code } = validatedFields.data;
@@ -94,21 +92,21 @@ export const signIn = async (values: LoginFormValues, callbackUrl?: string | nul
 	// User logins here
 	try {
 		await signInUser("credentials", {
-			email,
-			password,
-			redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+		  email,
+		  password,
+		  // redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+		  redirect: false, // Disable automatic redirect
 		});
-	} catch (error) {
+		return { success: true, callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT };
+	  } catch (error) {
 		if (error instanceof AuthError) {
-			switch (error.type) {
-				case "CredentialsSignin":
-					return { error: actionMessages.LOGIN.invalidCredentials };
-				default:
-					return {
-						error: actionMessages.LOGIN.loginWentWrong,
-					};
-			}
+		  switch (error.type) {
+			case "CredentialsSignin":
+			  return { error: "The email or password you entered is incorrect." };
+			default:
+			  return { error: "Something went wrong with login!" };
+		  }
 		}
 		throw error;
-	}
+	  }
 };
