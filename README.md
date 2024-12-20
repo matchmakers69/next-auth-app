@@ -7,3 +7,11 @@
 ### https://medium.com/@christopher_28348/next-js-easiest-auth-implementation-with-email-password-google-github-and-password-reset-ab0c669f012a - good tutorial next auth
 
 ### https://www.youtube.com/watch?v=1MnvcLPheLo - next authenication
+
+## Prisma
+
+#### After changes in models
+
+### npx prisma generate
+
+### npx prisma push

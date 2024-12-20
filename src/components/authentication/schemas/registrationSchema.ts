@@ -3,6 +3,7 @@ import { z } from "zod";
 export const registerSchema = z.object({
   name: z
     .string()
+    .trim()
     .min(2, { message: "Name is required field" })
     .max(30, { message: "Name must be a maximun 30 characters" })
     .refine(
@@ -14,6 +15,7 @@ export const registerSchema = z.object({
     ),
   email: z
     .string()
+    .trim()
     .min(1, { message: "Email is required field" })
     .email("Invalid email address"),
   password: z

@@ -1,36 +1,28 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller } from "react-hook-form";
 import { Stack } from "@mui/material";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
-import {
-  LoginFormValues,
-  loginSchema,
-} from "@/components/authentication/schemas/loginSchema";
 import { Button } from "@/components/ui/Button";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
+import { useLoginUser } from "../hooks/useLoginUser";
+import { FormError } from "@/components/ui/formParts/FormError";
+import { FormSuccess } from "@/components/ui/formParts/FormSuccess";
 
 const LoginForm: React.FC = () => {
-  const [showTwoFactor, setShowTwoFactor] = useState(false);
   const {
+    submitLogin,
     control,
-    handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
-  } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-      code: "",
-    },
-  });
-
-  const handleSubmitLogin = (data: LoginFormValues) => {
-    console.log("Submitted Data:", data);
-  };
+    errors,
+    isDirty,
+    isSubmitting,
+    isPending,
+    success,
+    error,
+    urlError,
+    showTwoFactor,
+  } = useLoginUser();
 
   return (
     <>
@@ -38,7 +30,7 @@ const LoginForm: React.FC = () => {
         className="w-full"
         autoComplete="off"
         noValidate
-        onSubmit={handleSubmit(handleSubmitLogin)}
+        onSubmit={submitLogin}
       >
         {showTwoFactor && (
           <div>
@@ -116,14 +108,17 @@ const LoginForm: React.FC = () => {
             </div>
           </Stack>
         )}
-
+        <div className="mb-8">
+          <FormError message={error || urlError} />
+          <FormSuccess message={success} />
+        </div>
         <Button
           type="submit"
           variant="default"
           size="full"
-          disabled={!isDirty || isSubmitting}
+          disabled={!isDirty || isSubmitting || isPending}
         >
-          Log In
+          {showTwoFactor ? "Confirm" : "Log in"}
         </Button>
       </form>
       <Stack
@@ -134,7 +129,7 @@ const LoginForm: React.FC = () => {
         width="100%"
       >
         <div className="flex items-center gap-[8px]">
-          <p className="text-text-grey text-[12px]">Don’t have account yet?</p>
+          <p className="text-[12px] text-text-grey">Don’t have account yet?</p>
           <Button
             className="flex-start min-w-[auto] px-0 underline"
             asChild

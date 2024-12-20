@@ -1,34 +1,24 @@
 "use client";
-
 import Link from "next/link";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller } from "react-hook-form";
 import { Stack } from "@mui/material";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
-import {
-  RegisterFormValues,
-  registerSchema,
-} from "@/components/authentication/schemas/registrationSchema";
 import { Button } from "@/components/ui/Button";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
+import { useRegisterUser } from "../hooks/useRegisterUser";
+import { FormError } from "@/components/ui/formParts/FormError";
+import { FormSuccess } from "@/components/ui/formParts/FormSuccess";
 
 const RegisterForm: React.FC = () => {
   const {
     control,
-    handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
-  } = useForm<RegisterFormValues>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-    },
-  });
-
-  const handleRegisterUser = (data: RegisterFormValues) => {
-    console.log("Submitted Data:", data);
-  };
+    submitSignUpUser,
+    errors,
+    isDirty,
+    isSubmitting,
+    error,
+    success,
+  } = useRegisterUser();
 
   return (
     <>
@@ -36,7 +26,7 @@ const RegisterForm: React.FC = () => {
         className="w-full"
         autoComplete="off"
         noValidate
-        onSubmit={handleSubmit(handleRegisterUser)}
+        onSubmit={submitSignUpUser}
       >
         <Stack
           sx={{
@@ -110,7 +100,10 @@ const RegisterForm: React.FC = () => {
             )}
           </div>
         </Stack>
-
+        <div className="mb-3">
+          <FormError message={error} />
+          <FormSuccess message={success} />
+        </div>
         <Button
           type="submit"
           variant="default"

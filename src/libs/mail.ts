@@ -7,7 +7,7 @@ const domain = process.env.NEXT_PUBLIC_APP_URL;
 export const sendVerificationEmail = async (email: string, token: string) => {
 	const confirmLink = `${domain}${routes.NEW_VERIFICATION}?token=${token}`;
 	await resend.emails.send({
-		from: "onboarding@resend.dev", // TODO temporary only
+		from: "onboarding@resend.dev", // TODO temporary only change to company name i.e
 		to: email,
 		subject: "Confirm your email",
 		html: `<p>Click <a href=${confirmLink}>here</a> to confirm email.</p>`,

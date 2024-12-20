@@ -1,0 +1,74 @@
+import { useSearchParams } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useTransition } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { LoginFormValues, loginSchema } from "../schemas/loginSchema";
+import { signIn } from "@/actions/signIn";
+
+export const useLoginUser = () => {
+  const [isPending, startTransition] = useTransition();
+  const [success, setSuccess] = useState<string | undefined>("");
+  const [error, setError] = useState<string | undefined>("");
+  const [showTwoFactor, setShowTwoFactor] = useState(false);
+
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? `Email already in use. Please login with form.`
+      : "";
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isDirty },
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      code: "",
+    },
+  });
+
+  const handleLoginSubmit: SubmitHandler<LoginFormValues> = (values) => {
+    setSuccess("");
+    setError("");
+    startTransition(() => {
+      signIn(values, callbackUrl)
+        .then((data) => {
+          if (data?.error) {
+            setShowTwoFactor(false);
+            reset();
+            setError(data?.error);
+          }
+
+          if (data?.success) {
+            reset();
+            setSuccess(data.success);
+          }
+          if (data?.twoFactor) {
+            setShowTwoFactor(true);
+          }
+        })
+        .catch(() => {
+          setError("Something went wrong with login!");
+        });
+    });
+  };
+
+  const submitLogin = handleSubmit(handleLoginSubmit);
+
+  return {
+    submitLogin,
+    control,
+    errors,
+    isDirty,
+    isSubmitting,
+    isPending,
+    success,
+    error,
+    urlError,
+    showTwoFactor,
+  };
+};

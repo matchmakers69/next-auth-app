@@ -29,14 +29,25 @@ const NavbarMain = async () => {
           <Logout />
         </>
       ) : (
-        <Button
-          className="rounded-lg border-[1px] border-solid hover:bg-white hover:text-navy"
-          asChild
-          variant="link"
-          size="sm"
-        >
-          <Link href="/auth/login">Login</Link>
-        </Button>
+        <div className="flex items-center gap-6">
+          <Button
+            className="button-basic rounded-lg hover:opacity-60"
+            asChild
+            variant="link"
+            size="sm"
+          >
+            <Link href="/auth/login">Sign in</Link>
+          </Button>
+
+          <Button
+            className="rounded-lg bg-gradient-to-r from-blue-700 to-indigo-500 hover:opacity-60"
+            asChild
+            variant="link"
+            size="sm"
+          >
+            <Link href="/auth/register">Sign up</Link>
+          </Button>
+        </div>
       )}
     </Nav>
   );
