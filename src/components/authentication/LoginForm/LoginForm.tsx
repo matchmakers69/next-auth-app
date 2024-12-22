@@ -93,7 +93,7 @@ const LoginForm: React.FC = () => {
                     {...field}
                     type="password"
                     id="password"
-                    placeholder="Enter your password"
+                    placeholder="******************"
                     label="Password"
                     variant="outlined"
                     error={!!errors.password}
@@ -146,7 +146,7 @@ const LoginForm: React.FC = () => {
             variant="link"
             size="sm"
           >
-            <Link href="/auth/reset">Forgot your password?</Link>
+            <Link href="/auth/reset-password">Forgot your password?</Link>
           </Button>
         </div>
       </Stack>

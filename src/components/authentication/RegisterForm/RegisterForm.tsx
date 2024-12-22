@@ -86,7 +86,7 @@ const RegisterForm: React.FC = () => {
                   {...field}
                   type="password"
                   id="password"
-                  placeholder="Enter your password"
+                  placeholder="******************"
                   label="Password"
                   variant="outlined"
                   error={!!errors.password}
