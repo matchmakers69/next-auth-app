@@ -328,8 +328,7 @@ textarea {
     --foreground-blue: 33, 158, 188;
     --light-blue: 142, 202, 230;
     --light-grey: 251, 250, 247;
-    --dark-purple: 20, 33, 61;
-    --bg-purple: 36, 0, 70;
+    --dark-grey: #1a1a1a;
     --spacer-x3: clamp(4rem, 2vw + 1.6px, 8rem);
     --spacer-x2: clamp(22.71px, 4.8vw + 17.99px, 4rem);
     --primary: 233, 233, 230;

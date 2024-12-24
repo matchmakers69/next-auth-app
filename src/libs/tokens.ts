@@ -29,7 +29,8 @@ export const generateTwoFactorToken = async (email: string) => {
 
 export const generateVerificationToken = async (email: string) => {
   const token = uuidv4();
-  const expires = new Date(new Date().getTime() + 3600 * 1000); // token will expire in one hour
+  //const expires = new Date(new Date().getTime() + 3600 * 1000); // token will expire in one hour
+  const expires = new Date(new Date().getTime() + 5 * 60 * 1000);  // token will expire in 5 minutes
 
   const existingToken = await getVerificationTokenByEmail(email);
   if (existingToken) {

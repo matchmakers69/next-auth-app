@@ -50,10 +50,10 @@ export const signIn = async (values: LoginFormValues, callbackUrl?: string | nul
 		if (code) {
 			const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email);
 			if (!twoFactorToken) {
-				return { error: "Your code is invalid" };
+				return { error: "Your code is not correct! Try again!" };
 			}
 			if (twoFactorToken.token !== code) {
-				return { error: "Your code is invalid" };
+				return { error: "Your code is not correct! Try again!" };
 			}
 
 			const codeHasExpired = new Date(twoFactorToken.expires) < new Date();

@@ -1,11 +1,12 @@
-import { routes } from "@/libs/routes";
+import paths from "@/utils/paths";
+
 
 /**
  * An array of routes that are accesible to the public
  * These routes do not require authentication
  * @type {string[]}
  */
-export const publicRoutes = [routes.HOME, routes.NEW_VERIFICATION];
+export const publicRoutes = [paths.home(), paths.newVerification()];
 
 /**
  * An array of routes that are used for authentication
@@ -13,11 +14,11 @@ export const publicRoutes = [routes.HOME, routes.NEW_VERIFICATION];
  * @type {string[]}
  */
 export const authRoutes = [
-  routes.LOGIN,
-  routes.REGISTER,
-  routes.ERROR,
-  routes.PASSWORD_RESET,
-  routes.NEW_PASSWORD,
+  paths.login(),
+  paths.register(),
+  paths.error(),
+  paths.passwordReset(),
+  paths.newPassword(),
 ];
 
 /**
@@ -30,4 +31,4 @@ export const apiAuthPrefix = "/api/auth";
  * The default redirect path after logging in
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = routes.HOME;
+export const DEFAULT_LOGIN_REDIRECT = paths.settings();

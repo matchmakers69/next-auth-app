@@ -26,6 +26,9 @@ export default {
         xl: "4rem",
         "2xl": "6rem",
       },
+      borderColor: {
+        'dark-border': 'hsla(0, 0%, 100%, 0.05)',
+      },
       colors: {
         border: "rgb(var(--border))",
         "bg-facebook": "var(--facebook-color)",
@@ -48,8 +51,7 @@ export default {
         black: "rgb(var(--black))",
         white: "rgb(var(--white))",
         "light-grey": "rgb(var(--light-grey))",
-        "dark-purple": "rgb(var(--dark-purple))",
-        "bg-purple": "rgb(var(--bg-purple))",
+        "dark-grey": "var(--dark-grey)",
         "text-light": "rgb(var(--text-light))",
         "text-grey": "rgb(var(--text-grey))",
         foreground: "rgb(var(--foreground))",

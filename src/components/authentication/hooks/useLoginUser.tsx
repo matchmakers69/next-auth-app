@@ -43,12 +43,15 @@ export const useLoginUser = () => {
           if (data?.error) {
             setShowTwoFactor(false);
             reset();
-            setError(data.error);
-          } else if (data?.success) {
+            setError(data.error ?? "Something went wrong with your login!");
+          }
+          if (data?.success) {
             reset();
-            setSuccess("Login successful");
+            setSuccess("Congrats! You are now logged in!");
             router.push(DEFAULT_LOGIN_REDIRECT);
-          } else if (data?.twoFactor) {
+          }
+
+          if (data?.twoFactor) {
             setShowTwoFactor(true);
           }
         })

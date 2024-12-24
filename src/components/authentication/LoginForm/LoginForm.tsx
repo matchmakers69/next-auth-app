@@ -32,7 +32,7 @@ const LoginForm: React.FC = () => {
         noValidate
         onSubmit={submitLogin}
       >
-        {showTwoFactor && (
+        {showTwoFactor && ( // BE AWARE: Currently no functinality to change 2FA from front end, possibly Admin panel needed - currentlu we toggle tru/false from database
           <div>
             <Controller
               name="code"
@@ -41,11 +41,12 @@ const LoginForm: React.FC = () => {
                 <MuiTextField
                   {...field}
                   id="code"
-                  placeholder="Enter your code (optional)"
+                  placeholder="i.e 123456"
                   label="Verification Code"
                   variant="outlined"
                   error={!!errors.code}
                   fullWidth
+                  disabled={isPending}
                   margin="normal"
                 />
               )}

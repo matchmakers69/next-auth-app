@@ -1,7 +1,7 @@
 import { ReactNode, Suspense } from "react";
 import Loading from "./loading";
 
-export default function Layout({
+export default function AuthLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (

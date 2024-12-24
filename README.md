@@ -8,6 +8,10 @@
 
 ### https://www.youtube.com/watch?v=1MnvcLPheLo - next authenication
 
+### Inspiration links
+
+#### https://wheelwidget.com/app/#main
+
 ## Prisma
 
 #### After changes in models

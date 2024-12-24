@@ -2,14 +2,13 @@ import { auth } from "@/auth";
 import Link from "next/link";
 import Image from "next/image";
 import Nav from "./Nav";
-import avatar from "../../../../public/icons/avatar.png";
 import Logout from "@/components/authentication/Logout";
 import { Button } from "../Button";
 
 const NavbarMain = async () => {
   const session = await auth();
-  const userName = session?.user?.name ?? "";
-  const avatarSrc = session?.user?.image ?? avatar;
+  const userName = session?.user?.name ?? "Username";
+  const avatarSrc = session?.user?.image ?? "/icons/avatar.svg";
 
   return (
     <Nav>
@@ -21,8 +20,8 @@ const NavbarMain = async () => {
             <Image
               alt="User avatar"
               src={avatarSrc}
-              width="40"
-              height="40"
+              width="30"
+              height="30"
               className="rounded-full"
             />
           </Link>

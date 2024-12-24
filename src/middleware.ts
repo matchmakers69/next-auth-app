@@ -1,8 +1,9 @@
 import NextAuth, { type Session } from "next-auth";
 import { type NextRequest } from "next/server";
-import { routes } from "./libs/routes";
+
 import { apiAuthPrefix, publicRoutes, authRoutes, DEFAULT_LOGIN_REDIRECT } from "../routes";
 import authConfig from "./auth.config";
+import paths from "./utils/paths";
 
 const { auth } = NextAuth(authConfig);
 
@@ -31,7 +32,7 @@ export default auth((req: NextRequest & { auth: Session | null }): Response | vo
 			callbackUrl += nextUrl.search;
 		}
 		const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-		return Response.redirect(new URL(`${routes.LOGIN}?callbackUrl=${encodedCallbackUrl}`, nextUrl));
+		return Response.redirect(new URL(`${paths.login()}?callbackUrl=${encodedCallbackUrl}`, nextUrl));
 	}
 
 	return;

@@ -6,7 +6,8 @@ import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmation
 import { getAccountByUserId } from "./data/account";
 import authConfig from "@/auth.config";
 import { db } from "./libs/db";
-import { routes } from "./libs/routes";
+import paths from "./utils/paths";
+
 
 export type ExtendedUser = DefaultSession["user"] & {
 	role: UserRole;
@@ -27,8 +28,8 @@ export const {
 	signOut,
 } = NextAuth({
 	pages: {
-		signIn: routes.LOGIN,
-		error: routes.ERROR,
+		signIn: paths.login(),
+		error: paths.error(),
 	},
 	events: {
 		// IMPORTANT! Added to make sure if user logs in with Github or Google email will be verified
@@ -54,7 +55,8 @@ export const {
 				if (existingUser.isTwoFactorEnabled) {
 					const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
 
-					if (!twoFactorConfirmation) return false;
+					if (!twoFactorConfirmation) return false; // User is not allowed to login without 2FA
+
 					// Delete two factor confirmation for next sign in
 					await db.twoFactorConfirmation.delete({
 						where: {
