@@ -29,5 +29,5 @@ export const resetPassword = async (values: ResetPasswordFormValues) => {
 	const passwordResetToken = await generatePasswordResetToken(email);
 	await sendPasswordResetEmail(passwordResetToken.email, passwordResetToken.token);
 
-	return { success: "Reset password email has been sent!" };
+	return { success: "Reset password email has been sent! Check your email." };
 };

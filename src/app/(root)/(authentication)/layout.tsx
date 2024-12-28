@@ -7,7 +7,7 @@ export default function AuthLayout({
   return (
     <main className="relative h-full w-full">
       <Suspense fallback={<Loading />}>
-        <div className="fullscreen flex flex-row flex-nowrap items-center justify-center gap-[50px] p-[20px]">
+        <div className="flex h-full w-full flex-row items-center justify-center p-8 lg:justify-between lg:p-0">
           {children}
         </div>
       </Suspense>

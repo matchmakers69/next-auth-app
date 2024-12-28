@@ -377,6 +377,31 @@ textarea {
   flex-direction: column;
 }
 
+.sidebar-menu-toggle-button-icon::after,
+.sidebar-menu-toggle-button-icon::before {
+  content: "";
+  height: 1px;
+}
+
+.sidebar-menu-toggle-button-icon::after {
+  width: 0.8rem;
+  margin: 3px 0;
+}
+
+.site-menu-toggle-icon-dark::before,
+.sidebar-menu-toggle-button-icon::before {
+  width: 1.4rem;
+  margin: 3px 0;
+}
+
+.sidebar-menu-toggle-button-icon::after {
+  background: rgb(var(--text-light));
+}
+
+.sidebar-menu-toggle-button-icon::before {
+  background: rgb(var(--text-light));
+}
+
 .shadow-header {
   box-shadow: 0px 1px 0px 0px rgba(242, 240, 232, 0.2);
 }

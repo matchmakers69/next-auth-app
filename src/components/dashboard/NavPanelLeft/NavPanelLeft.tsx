@@ -3,6 +3,8 @@ import Logout from "@/components/authentication/Logout";
 import { Logo } from "@/components/ui/Logo";
 import { IBM_Plex_Sans } from "next/font/google";
 import Link from "next/link";
+import SidebarLeftContainer from "./SidebarLeftContainer";
+import LogoSidebarContainer from "./LogoSidebarContainer";
 
 const IbmPlex = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -17,21 +19,30 @@ const NavPanelLeft = async () => {
   const email = session?.user.email ?? "";
 
   return (
-    <aside className="max-lg:hidden border-dark-border bg-dark-grey fixed inset-y-0 left-0 w-[32rem] border-r">
+    <SidebarLeftContainer>
       <nav className="bg-platinum flex h-full min-h-0 flex-col">
         <div className="border-dark-border flex flex-col border-b p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">
           <div className="flex flex-col justify-center">
-            <Link className="logo-link inline-block" href="/">
-              <Logo width={115} />
-            </Link>
+            <LogoSidebarContainer>
+              <Link className="logo-link inline-block" href="/">
+                <Logo width={115} />
+              </Link>
+            </LogoSidebarContainer>
           </div>
         </div>
         <div className="flex flex-1 flex-col overflow-y-auto p-6 [&>[data-slot=section]+[data-slot=section]]:mt-8">
+          <div className="flex-scroll-mb-5 mb-8 flex w-full">
+            <p
+              className={`${IbmPlex.className} text-base font-normal uppercase text-text-grey`}
+            >
+              Menu
+            </p>
+          </div>
           <div className="flex flex-col gap-0.5" data-slot="section">
             Link here
           </div>
         </div>
-        <footer className="max-lg:hidden border-dark-border flex flex-col border-t p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">
+        <footer className="border-dark-border flex flex-col border-t p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">
           {session && session.user && (
             <>
               <div className="username-wrapper mb-4 flex w-full select-none flex-col flex-wrap gap-[5px]">
@@ -56,7 +67,7 @@ const NavPanelLeft = async () => {
           )}
         </footer>
       </nav>
-    </aside>
+    </SidebarLeftContainer>
   );
 };
 

@@ -13,13 +13,14 @@ const PageTitle = ({ title, subtitle }: PageTitleProps) => {
   return (
     <div className="flex w-full flex-col gap-[15px]">
       <h1
-        className={`text-[2rem] font-extrabold leading-[1.2] text-text-light sm:text-lg md:text-[4rem]`}
+        className={`relative text-[2.4rem] font-semibold uppercase leading-[1.2] text-text-light sm:text-lg md:text-[4rem]`}
       >
         {title}
+        <span className="absolute bottom-[-5px] left-0 h-[1px] w-[30px] bg-text-light"></span>
       </h1>
       {subtitle && (
         <p
-          className={`${IbmPlex.className} md:text-md-xl text-text-grey text-sm font-normal`}
+          className={`${IbmPlex.className} md:text-md-xl text-sm font-normal text-text-grey`}
         >
           {subtitle}
         </p>
