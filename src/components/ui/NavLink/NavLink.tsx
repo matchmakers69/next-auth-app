@@ -20,7 +20,7 @@ export const NavLink = ({
       href={href}
       className={cn(
         "focus:outline-none focus:ring-1 focus-visible:ring-ring",
-        className, // Add base classes passed via props
+        className,
         isActive && classNameActive, // Add active styles if isActive
       )}
       {...props}

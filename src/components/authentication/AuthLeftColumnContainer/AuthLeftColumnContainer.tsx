@@ -2,8 +2,10 @@ import { BaseProps } from "@/components/ui/types/defs";
 
 const AuthLeftColumnContainer = ({ children }: BaseProps) => {
   return (
-    <div className="flex w-full max-w-[480px] flex-col justify-center p-8 lg:ml-24 lg:mr-24 lg:w-[35vw] lg:max-w-[580px] lg:p-0 lg:shadow-none xl:ml-36 xl:mr-36">
-      {children}
+    <div className="col-auth-left scroll-touch relative flex min-h-[100vh] w-[100%] flex-col items-center justify-center lg:w-[50%]">
+      <div className="flex w-full max-w-[480px] flex-col items-center justify-center px-[1.5rem] py-[4rem] md:max-w-[500px]">
+        {children}
+      </div>
     </div>
   );
 };

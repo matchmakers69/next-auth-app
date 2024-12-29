@@ -9,6 +9,7 @@ function ResetPasswordPage() {
       <AuthLeftColumnContainer>
         <PageTitle
           title="Password recovery"
+          className="mb-12"
           subtitle="Please enter your email address to receive a password recovery link"
         />
         <ResetPasswordForm />

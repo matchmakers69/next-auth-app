@@ -6,7 +6,7 @@ import { Logo } from "@/components/ui/Logo";
 
 const GraphicContainer = ({ children }: BaseProps) => {
   return (
-    <div className="relative hidden h-full flex-1 bg-authHeroImg bg-cover bg-center bg-no-repeat lg:flex lg:flex-col">
+    <div className="fixed right-0 top-0 hidden min-h-full w-[50%] bg-authHeroImg bg-cover bg-center bg-no-repeat lg:flex lg:flex-col">
       <div className="inner-wrapper flex w-full flex-col gap-[10px] p-[40px]">
         <div>
           <Link className="logo-link inline-block" href="/">

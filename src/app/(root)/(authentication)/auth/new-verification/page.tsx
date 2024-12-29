@@ -8,6 +8,7 @@ function NewVerificationPage() {
     <>
       <AuthLeftColumnContainer>
         <PageTitle
+          className="mb-12"
           title="User verification"
           subtitle="Confirming your verification"
         />

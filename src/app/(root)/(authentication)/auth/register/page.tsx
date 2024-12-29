@@ -20,6 +20,7 @@ function RegisterPage() {
       <AuthLeftColumnContainer>
         <PageTitle
           title="Sign up"
+          className="mb-12"
           subtitle="Register to log in to your admin panel"
         />
 

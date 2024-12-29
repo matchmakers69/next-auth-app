@@ -9,6 +9,7 @@ function NewPasswordPage() {
       <AuthLeftColumnContainer>
         <PageTitle
           title="New password"
+          className="mb-12"
           subtitle="Please enter your new email password"
         />
         <NewPasswordForm />

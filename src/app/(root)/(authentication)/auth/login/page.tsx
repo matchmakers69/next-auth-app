@@ -19,6 +19,7 @@ function LoginPage() {
     <>
       <AuthLeftColumnContainer>
         <PageTitle
+          className="mb-12"
           title="Welcome back!"
           subtitle="Enter your username and password to log in to your admin panel"
         />

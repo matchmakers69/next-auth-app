@@ -1,6 +1,7 @@
 import React from "react";
 import { IBM_Plex_Sans } from "next/font/google";
 import { PageTitleProps } from "./defs";
+import { cn } from "@/libs/utils";
 
 const IbmPlex = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -9,11 +10,11 @@ const IbmPlex = IBM_Plex_Sans({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const PageTitle = ({ title, subtitle }: PageTitleProps) => {
+const PageTitle = ({ title, subtitle, className }: PageTitleProps) => {
   return (
-    <div className="flex w-full flex-col gap-[15px]">
+    <div className={cn("flex w-full flex-col gap-[15px]", className)}>
       <h1
-        className={`relative text-[2.4rem] font-semibold uppercase leading-[1.2] text-text-light sm:text-lg md:text-[4rem]`}
+        className={`relative text-[2.4rem] font-semibold leading-[1.2] text-text-light sm:text-lg md:text-[4rem]`}
       >
         {title}
         <span className="absolute bottom-[-5px] left-0 h-[1px] w-[30px] bg-text-light"></span>

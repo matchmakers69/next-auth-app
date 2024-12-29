@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from 'tailwindcss/plugin';
 
 export default {
   content: [
@@ -86,5 +87,15 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addUtilities }) {
+      addUtilities({
+        '.scroll-touch': {
+          '-webkit-overflow-scrolling': 'touch',
+          'overflow-y': 'auto',
+          'overscroll-behavior': 'contain',
+        },
+      });
+    }),
+  ],
 } satisfies Config;
