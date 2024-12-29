@@ -1,11 +1,12 @@
 "use client";
+
 import Link from "next/link";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { Logo } from "../../Logo";
-import { NavProps } from "./defs";
 import { useRef, useState } from "react";
+import { HeaderProps } from "./defs";
 
-const Nav = ({ children }: NavProps) => {
+const Header = ({ children }: HeaderProps) => {
   const [isHidden, setIsHidden] = useState(false);
   const { scrollY } = useScroll();
   const lastYPositionRef = useRef(0);
@@ -48,4 +49,4 @@ const Nav = ({ children }: NavProps) => {
   );
 };
 
-export default Nav;
+export default Header;

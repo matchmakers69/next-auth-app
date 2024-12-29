@@ -1,32 +1,24 @@
-import { appLinkLabels } from "./appData";
-import { routes } from "./routes";
 
-export const navigation = [
+
+export const sidebarNavigation = [
   {
     id: 1,
-    label: appLinkLabels.HOME,
-    href: routes.HOME,
+    label: "Home",
+
   },
 
   {
     id: 2,
-    label: appLinkLabels.LOGIN,
-    href: routes.LOGIN,
+    label: "Settings",
+
   },
   {
     id: 3,
-    label: appLinkLabels.REGISTER,
-    href: routes.REGISTER,
+    label: "Topics",
+
   },
 ];
 
-export const dropDownNavDashboard = [
-  {
-    id: 1,
-    label: appLinkLabels.SIGN_OUT,
-    href: "",
-  },
-];
 
 export const framerSidebarBackground = {
   initial: { opacity: 0 },

@@ -5,6 +5,8 @@ import { IBM_Plex_Sans } from "next/font/google";
 import Link from "next/link";
 import SidebarLeftContainer from "./SidebarLeftContainer";
 import LogoSidebarContainer from "./LogoSidebarContainer";
+import { navigationLinks } from "./config/navListMapper";
+import { NavLink } from "@/components/ui/NavLink";
 
 const IbmPlex = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -34,12 +36,25 @@ const NavPanelLeft = async () => {
           <div className="flex-scroll-mb-5 mb-8 flex w-full">
             <p
               className={`${IbmPlex.className} text-base font-normal uppercase text-text-grey`}
-            >
-              Menu
-            </p>
+            ></p>
           </div>
           <div className="flex flex-col gap-0.5" data-slot="section">
-            Link here
+            <ul className="m-0 flex w-full flex-1 flex-col items-center justify-center gap-4 p-0 md:flex-initial md:items-stretch">
+              {navigationLinks.map((link) => {
+                return (
+                  <li key={link.id}>
+                    <NavLink
+                      className="relative flex h-[52px] max-w-full cursor-pointer select-none items-center justify-start gap-[10px] rounded-[10px] bg-transparent px-[15px] py-[10px] text-[#555] transition-all duration-200 ease-out md:hover:bg-[#ffffff13]"
+                      classNameActive="text-primary bg-[#ffffff0d]"
+                      href={link.href}
+                    >
+                      <i className={`ri-${link.icon}-line`} />
+                      <span className="text-inherit">{link.label}</span>
+                    </NavLink>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
         <footer className="border-dark-border flex flex-col border-t p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">

@@ -2,7 +2,6 @@
 
 import { getUserByEmail } from "@/data/user";
 import { getVerificationTokenByToken } from "@/data/verification-token";
-import { actionMessages } from "@/libs/appData";
 import { db } from "@/libs/db";
 
 
@@ -40,5 +39,5 @@ export const newVerification = async (token: string) => {
 		where: { id: existingToken.id },
 	});
 
-	return { success: actionMessages.VERIFICATION.emailVerified };
+	return { success: "Congrats! Your email has been verified." };
 };
