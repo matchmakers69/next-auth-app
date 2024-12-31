@@ -1,3 +1,4 @@
+import { SxProps } from "@mui/material";
 import { TextFieldProps } from "@mui/material/TextField";
 
 export type MuiTextFieldProps = {
@@ -6,6 +7,7 @@ export type MuiTextFieldProps = {
 	name?: string;
 	maxWidth?: number;
 	minWidth?: number;
+	sx?: SxProps;
 	["data-testid"]?: string;
 	["aria-label"]?: string;
 } & TextFieldProps;

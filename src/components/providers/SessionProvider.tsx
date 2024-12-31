@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 
 const SessionProvider = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
+
   return (
     <AuthSessionProvider session={session}>{children}</AuthSessionProvider>
   );

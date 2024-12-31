@@ -15,7 +15,7 @@ export const navigationLinks = sidebarNavigation.map((item) => {
       icon = "settings"
       break;
       case "topics":
-        href = "#"; // TODO make sure to update it
+        href = paths.topics()
         icon = "news"
         break;
 

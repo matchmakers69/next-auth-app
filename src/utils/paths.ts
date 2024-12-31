@@ -23,6 +23,12 @@ const paths = {
     error() {
         return "/auth/error"
     },
+    topics() {
+        return `/topics`
+    },
+    topicComments() {
+        return `/topics/comments`
+    },
     topicShow(topicSlug: string) {
         return `/topics/${topicSlug}`
     },

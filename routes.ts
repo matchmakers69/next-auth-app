@@ -6,7 +6,7 @@ import paths from "@/utils/paths";
  * These routes do not require authentication
  * @type {string[]}
  */
-export const publicRoutes = [paths.home(), paths.newVerification()];
+export const publicRoutes = [paths.home(), paths.newVerification(), paths.topics()];
 
 /**
  * An array of routes that are used for authentication

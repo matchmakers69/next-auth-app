@@ -1,4 +1,9 @@
 import PageTitle from "@/components/ui/PageTitle";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Settings",
+};
 
 function SettingsPage() {
   return (

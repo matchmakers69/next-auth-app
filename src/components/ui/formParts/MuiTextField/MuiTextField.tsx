@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { TextField } from "@mui/material";
+import { SxProps, TextField, Theme } from "@mui/material";
 import { MuiTextFieldProps } from "./defs";
 
 const MuiTextField = forwardRef<HTMLInputElement, MuiTextFieldProps>(
@@ -9,12 +9,52 @@ const MuiTextField = forwardRef<HTMLInputElement, MuiTextFieldProps>(
       label,
       name,
       id = "",
+      sx,
       "data-testid": dataTestid,
       "aria-label": ariaLabel,
       ...props // Allows using TextFieldProps like label, variant, etc.
     },
     ref, // Ref is received here and forwarded to TextField
   ) => {
+    const defaultSx: SxProps<Theme> = {
+      "& .MuiInputLabel-root": {
+        color: "var(--text-light)",
+        fontSize: "1.4rem",
+      },
+      "& .MuiInputLabel-root.Mui-focused": {
+        color: "var(--text-light)",
+        fontSize: "1.4rem",
+      },
+      "& .MuiInputBase-input": {
+        fontSize: "1.4rem",
+        color: "var(--text-light)",
+        "&::placeholder": {
+          opacity: 0.3,
+        },
+      },
+      "& .MuiOutlinedInput-root": {
+        fontSize: "1.4rem",
+        color: "var(--text-light)",
+        borderRadius: "10px",
+        transition: "border-color 120ms ease-in",
+
+        "& fieldset": {
+          border: "1px solid",
+          borderColor: "hsla(0,0%,100%,.1)",
+          background: "transparent",
+        },
+
+        "&:hover fieldset": {
+          borderColor: "hsla(0,0%,100%,.05)",
+        },
+        "&.Mui-focused fieldset": {
+          borderColor: "var(--text-light)",
+          background: "transparent",
+        },
+      },
+      ...sx,
+    };
+
     return (
       <TextField
         ref={ref} // Forwarding ref to the underlying TextField component
@@ -24,44 +64,7 @@ const MuiTextField = forwardRef<HTMLInputElement, MuiTextFieldProps>(
         label={label}
         name={name}
         variant={variant}
-        sx={{
-          "& .MuiInputLabel-root": {
-            color: "#F8F9FA",
-            fontSize: "1.4rem",
-          },
-          "& .MuiInputLabel-root.Mui-focused": {
-            color: "#F8F9FA",
-            fontSize: "1.4rem",
-          },
-          "& .MuiInputBase-input": {
-            fontSize: "1.4rem",
-            color: "#F8F9FA",
-            "&::placeholder": {
-              opacity: 0.3,
-            },
-          },
-          "& .MuiOutlinedInput-root": {
-            fontSize: "1.4rem",
-            color: "#F8F9FA",
-            boxSizing: "border-box",
-            height: "100%",
-            borderRadius: "10px",
-            transition: "border-color 120ms ease-in",
-            "& fieldset": {
-              border: "1px solid",
-              borderColor: "hsla(0,0%,100%,.05)",
-              background: "transparent",
-            },
-
-            "&:hover fieldset": {
-              borderColor: "hsla(0,0%,100%,.05)",
-            },
-            "&.Mui-focused fieldset": {
-              borderColor: "white",
-              background: "transparent",
-            },
-          },
-        }}
+        sx={defaultSx}
         {...props}
       />
     );

@@ -23,7 +23,7 @@ const NavPanelLeft = async () => {
   return (
     <SidebarLeftContainer>
       <nav className="bg-platinum flex h-full min-h-0 flex-col">
-        <div className="border-dark-border flex flex-col border-b p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">
+        <div className="flex flex-col border-b border-dark-border p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">
           <div className="flex flex-col justify-center">
             <LogoSidebarContainer>
               <Link className="logo-link inline-block" href="/">
@@ -44,7 +44,7 @@ const NavPanelLeft = async () => {
                 return (
                   <li key={link.id}>
                     <NavLink
-                      className="relative flex h-[52px] max-w-full cursor-pointer select-none items-center justify-start gap-[10px] rounded-[10px] bg-transparent px-[15px] py-[10px] text-[#555] transition-all duration-200 ease-out md:hover:bg-[#ffffff13]"
+                      className="relative flex h-[52px] max-w-full cursor-pointer select-none items-center justify-start gap-[10px] rounded-[10px] bg-transparent px-[15px] py-[10px] text-[#555] transition-all duration-200 ease-out md:hover:bg-[#ffffff13] md:hover:text-text-light"
                       classNameActive="text-primary bg-[#ffffff0d]"
                       href={link.href}
                     >
@@ -57,7 +57,7 @@ const NavPanelLeft = async () => {
             </ul>
           </div>
         </div>
-        <footer className="border-dark-border flex flex-col border-t p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">
+        <footer className="flex flex-col border-t border-dark-border p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">
           {session && session.user && (
             <>
               <div className="username-wrapper mb-4 flex w-full select-none flex-col flex-wrap gap-[5px]">

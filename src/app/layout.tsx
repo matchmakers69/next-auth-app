@@ -38,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${PoppinsFont.className}`}>
+      <body className={`${PoppinsFont.className} body-app scroll-touch`}>
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>

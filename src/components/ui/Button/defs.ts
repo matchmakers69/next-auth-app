@@ -20,9 +20,9 @@ export const buttonVariants = cva(
           "flex text-text-light items-center rounded-lg shadow-md px-6 py-2 text-sm focus:ring-2 focus:outline-none font-medium",
       },
       size: {
-        default: "h-20 px-6 py-2 text-base min-w-[17rem]",
+        default: "h-20 px-6 py-2 text-sm min-w-[17rem]",
         full: "h-20 px-6 py-2 text-sm w-full",
-        sm: "px-7 text-base min-w-[10rem] h-[40px]",
+        sm: "px-7 text-sm min-w-[10rem] h-[42px]",
         lg: "h-22 px-8 text-md min-w-[18rem] max-w-[24rem]",
         xl: "h-24 px-8 text-md",
         icon: "h-10 w-9",
