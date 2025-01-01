@@ -5,6 +5,7 @@ import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { Logo } from "../../Logo";
 import { useRef, useState } from "react";
 import { HeaderProps } from "./defs";
+import paths from "@/utils/paths";
 
 const Header = ({ children }: HeaderProps) => {
   const [isHidden, setIsHidden] = useState(false);
@@ -37,7 +38,7 @@ const Header = ({ children }: HeaderProps) => {
     >
       <div className="relative mx-auto flex h-full w-[calc(100vw-2*1.5vw)] max-w-[2000px] items-stretch justify-between">
         <div className="header-logo flex items-center justify-start py-[20px]">
-          <Link className="logo-link inline-block" href="/">
+          <Link className="logo-link inline-block" href={paths.home()}>
             <Logo width={120} />
           </Link>
         </div>

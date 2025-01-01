@@ -1,26 +1,30 @@
+"use client";
+
 import { ReactNode } from "react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 
 import Logout from "@/components/authentication/Logout";
 import { Button } from "../../Button";
 import paths from "@/utils/paths";
-import { auth } from "@/auth";
 
-const HeaderAuth = async () => {
-  const session = await auth();
+const HeaderAuth = () => {
+  const session = useSession();
+  const user = session.data?.user;
+  const userName = session.data?.user?.name ?? "Username";
+  const avatarSrc = session.data?.user?.image ?? "/icons/avatar.svg";
 
   let authContent: ReactNode;
-
-  if (session && session?.user) {
+  if (user) {
     authContent = (
       <div className="flex items-center gap-6">
-        <p className="text-sm">{session?.user?.name ?? "Username"}</p>
+        <p className="text-sm">{userName}</p>
 
         <Link className="block h-[30px] w-[30px]" href={paths.settings()}>
           <Image
             alt="User avatar"
-            src={session?.user?.image ?? "/icons/avatar.svg"}
+            src={avatarSrc}
             width="30"
             height="30"
             className="rounded-full"
@@ -29,7 +33,7 @@ const HeaderAuth = async () => {
         <Logout />
       </div>
     );
-  } else {
+  } else if (!user && session.status !== "loading") {
     authContent = (
       <div className="flex items-center gap-6">
         <Button
