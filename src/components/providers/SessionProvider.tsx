@@ -1,10 +1,21 @@
-import { auth } from "@/auth";
-import { SessionProvider as AuthSessionProvider } from "next-auth/react";
-import { ReactNode } from "react";
+"use client";
+import {
+  SessionProvider as AuthSessionProvider,
+  getSession,
+} from "next-auth/react";
+import { Session } from "next-auth";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 
-const SessionProvider = async ({ children }: { children: ReactNode }) => {
-  const session = await auth();
+const SessionProvider = ({ children }: { children: ReactNode }) => {
+  const [session, setSession] = useState<Session | null>(null);
+  const fetchSession = useCallback(async () => {
+    const session = await getSession();
+    setSession(session);
+  }, []);
 
+  useEffect(() => {
+    fetchSession();
+  }, [fetchSession]);
   return (
     <AuthSessionProvider session={session}>{children}</AuthSessionProvider>
   );

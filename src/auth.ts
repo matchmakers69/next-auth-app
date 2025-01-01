@@ -90,7 +90,7 @@ export const {
 
 			return session;
 		},
-		async jwt({ token }) {
+		async jwt({ token, trigger, session }) {
 			if (!token.sub) return token;
 			const existingUser = await getUserById(token.sub);
 			if (!existingUser) return token;
@@ -102,6 +102,11 @@ export const {
 			// assign the role to token
 			token.role = existingUser.role;
 			token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
+
+			if (trigger === "update" && session) {
+				token = {...token, user : session}
+				return token;
+			  };
 
 			return token;
 		},

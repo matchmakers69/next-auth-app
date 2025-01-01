@@ -1,22 +1,25 @@
 "use client";
 
 import { ReactNode } from "react";
-import { useSession } from "next-auth/react";
+import Logout from "@/components/authentication/Logout";
 import Link from "next/link";
 import Image from "next/image";
-
-import Logout from "@/components/authentication/Logout";
 import { Button } from "../../Button";
 import paths from "@/utils/paths";
 
+import { useCurrentSession } from "@/hooks/useCurrentSession";
+
 const HeaderAuth = () => {
-  const session = useSession();
-  const user = session.data?.user;
-  const userName = session.data?.user?.name ?? "Username";
-  const avatarSrc = session.data?.user?.image ?? "/icons/avatar.svg";
+  const { session, status } = useCurrentSession();
 
   let authContent: ReactNode;
-  if (user) {
+
+  if (status === "loading") {
+    authContent = <div>Loading...</div>;
+  } else if (session && session?.user) {
+    const userName = session?.user.name ?? "Username";
+    const avatarSrc = session?.user.image ?? "/icons/avatar.svg";
+
     authContent = (
       <div className="flex items-center gap-6">
         <p className="text-sm">{userName}</p>
@@ -33,7 +36,7 @@ const HeaderAuth = () => {
         <Logout />
       </div>
     );
-  } else if (!user && session.status !== "loading") {
+  } else {
     authContent = (
       <div className="flex items-center gap-6">
         <Button
@@ -42,7 +45,7 @@ const HeaderAuth = () => {
           variant="link"
           size="sm"
         >
-          <Link href="/auth/login">Sign in</Link>
+          <Link href={paths.login()}>Sign in</Link>
         </Button>
 
         <Button
@@ -51,11 +54,12 @@ const HeaderAuth = () => {
           variant="link"
           size="sm"
         >
-          <Link href="/auth/register">Sign up</Link>
+          <Link href={paths.register()}>Sign up</Link>
         </Button>
       </div>
     );
   }
+
   return authContent;
 };
 

@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, Box } from "@mui/material";
-import { ModalProps } from "./defs";
+import { ButtonModal, ModalProps } from "./defs";
 
 const Modal = ({
   children,
@@ -7,9 +7,35 @@ const Modal = ({
   onClose,
   "data-testid": dataTestid,
   title = "",
+  primaryButtonText,
   additionalPaperProps,
+  onPrimaryButtonClick,
+  href,
+  primaryButtonOrder,
+  secondaryButtonText,
+  onSecondaryButtonClick,
+  secondaryButtonOrder,
   ...muiProps
 }: ModalProps) => {
+  const buttons: ButtonModal = {
+    primaryButton: {
+      text: primaryButtonText,
+      onClick: onPrimaryButtonClick,
+      href,
+      order: primaryButtonOrder,
+    },
+    secondaryButton: {
+      text: secondaryButtonText,
+      onClick: onSecondaryButtonClick,
+      order: secondaryButtonOrder,
+    },
+  };
+
+  const hasButton = Object.values(buttons).some((button) =>
+    Boolean(button.text),
+  );
+
+  console.log(hasButton, "hasButton");
   return (
     <Dialog
       role="dialog"
@@ -28,7 +54,7 @@ const Modal = ({
           pt: 4,
         }}
       >
-        {title}
+        <h3 className="mb-[2rem]">{title}</h3>
       </Box>
       <DialogContent sx={{ paddingTop: 4 }}>{children}</DialogContent>
     </Dialog>
