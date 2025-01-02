@@ -1,8 +1,6 @@
 "use server";
 
-import {
-  createTopicSchema,
-} from "@/components/articles/CreateTopicForm/validation/createTopicValidationSchema";
+import { createTopicSchema } from "@/components/articles/CreateTopicForm/validation/createTopicValidationSchema";
 import { currentUser } from "@/libs/auth";
 import type { Topic } from "@prisma/client";
 import { revalidatePath } from "next/cache";
@@ -10,20 +8,17 @@ import { redirect } from "next/navigation";
 import paths from "@/utils/paths";
 import { db } from "@/libs/db";
 
-interface CreateTopicFormState {
+type FormState = {
   success: boolean;
   fields?: Record<string, string>;
-  errors?: {
-    name?: string[];
-    description?: string[];
-    _form?: string[];
-  };
-}
+  errors?: Record<string, string[]>;
+};
 
 export async function createTopic(
-  prevState: CreateTopicFormState,
-  formData: FormData,
-): Promise<CreateTopicFormState> {
+  prevState: FormState,
+  payload: FormData,
+): Promise<FormState> {
+  console.log("payload received", payload);
   const user = await currentUser();
   if (!user || !user.id) {
     return {
@@ -34,18 +29,28 @@ export async function createTopic(
     };
   }
 
+  if (!(payload instanceof FormData)) {
+    return {
+      success: false,
+      errors: { error: ["Invalid Form Data"] },
+    };
+  }
+
   let topic: Topic;
 
   try {
     const validatedFields = createTopicSchema.safeParse({
-      name: formData.get("name"),
-      description: formData.get("description"),
+      name: payload.get("name"),
+      description: payload.get("description"),
     });
-    
+
     if (!validatedFields.success) {
+      const errors = validatedFields.error.flatten().fieldErrors;
+      const fields: Record<string, string> = {};
       return {
         success: false,
-        errors: validatedFields.error.flatten().fieldErrors,
+        fields,
+        errors,
       };
     }
 
@@ -55,7 +60,6 @@ export async function createTopic(
         description: validatedFields.data.description,
       },
     });
-   
   } catch (error: unknown) {
     console.error("Error creating topic:", error);
 
