@@ -18,6 +18,8 @@
 
 ### https://medium.com/@christianovik009/adding-file-upload-using-react-hook-form-and-zod-using-nextks-f6def5d6881f - adding file upload
 
+### https://dev.to/emmanuel_xs/how-to-use-react-hook-form-with-useactionstate-hook-in-nextjs15-1hja - server actions
+
 ### Tree shaking: https://blog.nonstopio.com/boosting-react-js-performance-with-tree-shaking-ee77261d0c95
 
 ### https://www.midjourneyfree.ai/user/image-gallery
