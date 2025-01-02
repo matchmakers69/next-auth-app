@@ -10,7 +10,7 @@ export default function Layout({
       <NavbarMain />
       <div className="container mx-auto flex h-screen flex-col">
         <Suspense fallback={<Loading />}>
-          <div className="flex-grow">{children}</div>
+          <section className="pt-[4.8rem]">{children}</section>
         </Suspense>
       </div>
     </main>

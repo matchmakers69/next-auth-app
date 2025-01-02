@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 
+
 const nextConfig: NextConfig = {
   images: {
     dangerouslyAllowSVG: true,
@@ -10,6 +11,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+ 
 };
+
 
 export default nextConfig;

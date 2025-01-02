@@ -29,6 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  background: linear-gradient(159.25deg, #161616 -9.83%, #0d0d0d 112.33%);
 }
 
 /*
@@ -314,23 +315,22 @@ textarea {
     --body: 20, 20, 20;
     --foreground: 248, 249, 250;
     --text-light: 233, 233, 230;
-    --text-grey: 175, 175, 175;
+    --text-grey: #a8a8a8;
+    --sidebar-grey: #1a1a1a;
     --facebook-color: #0866ff;
     --google-color: #4285f4;
-    --border-bottom-light: 176, 196, 177;
-    --navy: 1, 42, 74;
+    --border-grey-light: #aeaeae;
     --black: 2, 2, 2;
     --white: 255, 255, 255;
-    --foreground-blue: 33, 158, 188;
+    --background-grey-light: #eaeaea;
     --light-blue: 142, 202, 230;
     --light-grey: 251, 250, 247;
-    --dark-grey: #1a1a1a;
+    --dark-grey: #3f3f3f;
     --spacer-x3: clamp(4rem, 2vw + 1.6px, 8rem);
     --spacer-x2: clamp(22.71px, 4.8vw + 17.99px, 4rem);
     --primary: 233, 233, 230;
     --primary-foreground: 233, 233, 230;
-    --secondary: 233, 233, 230;
-    --secondary-foreground: 56, 59, 80;
+    --secondary: #1d4ed8;
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --success-foreground: 148 210 189;

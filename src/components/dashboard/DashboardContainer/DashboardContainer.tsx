@@ -27,8 +27,8 @@ const DashboardContainer = ({ children }: DashboardContainerProps) => {
 
   return (
     <>
-      <main className="flex flex-1 flex-col pb-2 lg:min-w-0 lg:pl-[32rem] lg:pr-2 lg:pt-2">
-        <header className="dashboard-header border-dark-border bg-dark-grey mb-6 border-b">
+      <main className="flex flex-1 flex-col lg:min-w-0 lg:pl-[32rem]">
+        <header className="dashboard-header bg-sidebar-grey mb-6 border-b border-dark-border">
           <div className="header-dashboard-inner flex w-full items-center justify-between px-6 py-4 lg:items-start lg:justify-start lg:px-8 lg:py-6">
             <h2
               className={`${IbmPlex.className} text-[1.8rem] font-medium leading-[1.2] text-text-light sm:text-lg md:text-[2.4rem]`}

@@ -41,15 +41,16 @@ const MuiTextField = forwardRef<HTMLInputElement, MuiTextFieldProps>(
         "& fieldset": {
           border: "1px solid",
           borderColor: "hsla(0,0%,100%,.1)",
-          background: "transparent",
         },
 
         "&:hover fieldset": {
           borderColor: "hsla(0,0%,100%,.05)",
+          border: "1px solid",
         },
         "&.Mui-focused fieldset": {
           borderColor: "var(--text-light)",
-          background: "transparent",
+          background: "none",
+          outline: 0,
         },
       },
       ...sx,

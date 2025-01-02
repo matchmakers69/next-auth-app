@@ -1,5 +1,13 @@
-import { Dialog, DialogContent, Box } from "@mui/material";
+import { Dialog, DialogContent, Box, DialogActions } from "@mui/material";
+import { IBM_Plex_Sans } from "next/font/google";
 import { ButtonModal, ModalProps } from "./defs";
+
+const IbmPlex = IBM_Plex_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-ibmPlex",
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 const Modal = ({
   children,
@@ -35,7 +43,6 @@ const Modal = ({
     Boolean(button.text),
   );
 
-  console.log(hasButton, "hasButton");
   return (
     <Dialog
       role="dialog"
@@ -50,13 +57,28 @@ const Modal = ({
     >
       <Box
         sx={{
-          px: 6,
-          pt: 4,
+          padding: "16px 18px",
+          paddingBottom: 0,
         }}
       >
-        <h3 className="mb-[2rem]">{title}</h3>
+        <h3
+          className={`${IbmPlex.className} text-[2rem] font-semibold text-dark-grey sm:text-[2.4rem]`}
+        >
+          {title}
+        </h3>
       </Box>
-      <DialogContent sx={{ paddingTop: 4 }}>{children}</DialogContent>
+      <DialogContent sx={{ padding: "16px 18px" }}>{children}</DialogContent>
+      {hasButton && (
+        <DialogActions
+          sx={{
+            pb: 8,
+            pt: 8,
+            justifyContent: "center",
+          }}
+        >
+          buttons
+        </DialogActions>
+      )}
     </Dialog>
   );
 };

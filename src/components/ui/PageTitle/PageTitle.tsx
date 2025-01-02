@@ -2,6 +2,7 @@ import React from "react";
 import { IBM_Plex_Sans } from "next/font/google";
 import { PageTitleProps } from "./defs";
 import { cn } from "@/libs/utils";
+import StarsIcon from "../StarsIcon";
 
 const IbmPlex = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -10,15 +11,22 @@ const IbmPlex = IBM_Plex_Sans({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const PageTitle = ({ title, subtitle, className }: PageTitleProps) => {
+const PageTitle = ({ title, subtitle, slogan, className }: PageTitleProps) => {
   return (
-    <div className={cn("flex w-full flex-col gap-[15px]", className)}>
-      <h1
-        className={`relative text-[2.4rem] font-semibold leading-[1.2] text-text-light sm:text-lg md:text-[4rem]`}
-      >
-        {title}
-        <span className="absolute bottom-[-5px] left-0 h-[1px] w-[30px] bg-text-light"></span>
-      </h1>
+    <header className={cn("flex w-full flex-col", className)}>
+      <div className={`${slogan || subtitle ? "mb-2" : "mb-0"} flex gap-2`}>
+        <StarsIcon />
+        <h1
+          className={`${IbmPlex.className} text-[1.8rem] font-semibold uppercase text-text-grey sm:text-[2rem]`}
+        >
+          {title}
+        </h1>
+      </div>
+      {slogan && (
+        <p className="text-[2.4rem] font-semibold leading-[1.2] text-text-light sm:text-lg md:text-[4rem]">
+          {slogan}
+        </p>
+      )}
       {subtitle && (
         <p
           className={`${IbmPlex.className} md:text-md-xl text-sm font-normal text-text-grey`}
@@ -26,7 +34,7 @@ const PageTitle = ({ title, subtitle, className }: PageTitleProps) => {
           {subtitle}
         </p>
       )}
-    </div>
+    </header>
   );
 };
 

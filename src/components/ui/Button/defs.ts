@@ -9,11 +9,11 @@ export const buttonVariants = cva(
         default:
           "bg-gradient-to-r from-blue-700 to-indigo-500 text-text-light rounded-lg items-center justify-center flex flex-col",
         outline:
-          "border border-solid border-[hsla(0,0%,100%,0.05)] rounded-lg text-[rgba(var(--white),1)] bg-transparent hover:opacity-60",
+          "border border-solid border-[hsla(0,0%,100%,0.1)] rounded-lg text-[rgba(var(--white),1)] bg-transparent hover:opacity-60",
         destructive:
           "bg-destructive rounded-lg text-destructive-foreground shadow-sm hover:bg-destructive/90",
         secondary:
-          "bg-secondary text-secondary-foreground hover:text-text-light",
+          "bg-secondary text-text-light rounded-lg items-center justify-center flex flex-col",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-text-light",
         social:
