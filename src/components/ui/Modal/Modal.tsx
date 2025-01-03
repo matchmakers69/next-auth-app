@@ -1,4 +1,11 @@
-import { Dialog, DialogContent, Box, DialogActions } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  Box,
+  DialogActions,
+  SxProps,
+  Theme,
+} from "@mui/material";
 import { IBM_Plex_Sans } from "next/font/google";
 import { ButtonModal, ModalProps } from "./defs";
 
@@ -8,6 +15,19 @@ const IbmPlex = IBM_Plex_Sans({
   variable: "--font-ibmPlex",
   weight: ["300", "400", "500", "600", "700"],
 });
+
+const defaultPaperStyles: SxProps<Theme> = {
+  maxWidth: "60",
+  boxShadow: `0px 4px 8px -4px rgb(0 0 0 / 48%)`,
+  margin: "1.6rem",
+  minWidth: "50rem",
+  "@media (min-width: 768px)": {
+    minWidth: "52rem",
+  },
+  "@media (min-width: 960px)": {
+    minWidth: "62rem",
+  },
+};
 
 const Modal = ({
   children,
@@ -52,7 +72,11 @@ const Modal = ({
       onClose={onClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      PaperProps={additionalPaperProps}
+      PaperProps={{
+        role: "document",
+        ...additionalPaperProps,
+        sx: { ...defaultPaperStyles, ...additionalPaperProps?.sx },
+      }}
       {...muiProps}
     >
       <Box

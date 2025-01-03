@@ -3,23 +3,39 @@
 import Modal from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
-import { Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import { CreateTopicValues } from "./validation/createTopicValidationSchema";
 import { CreateTopicFormProps } from "./defs";
-import { useCreateTopic } from "./hooks/useCreateTopic";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
 import { createTopicSx } from "./helper/muiTextFieldStyles";
 import { createTopic } from "@/actions/create-topic";
 import { startTransition, useActionState, useRef } from "react";
 
 const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
-  const { reset, control, handleSubmit } = useCreateTopic();
-
-  const [formState, formAction, isPending] = useActionState(createTopic, {
-    success: false,
+  const [state, formAction, isPending] = useActionState(createTopic, {
     errors: {},
   });
 
+  const {
+    control,
+    handleSubmit,
+    reset,
+    // formState: { isSubmitSuccessful },
+  } = useForm<CreateTopicValues>({
+    mode: "onTouched",
+    defaultValues: {
+      name: "",
+      description: "",
+    },
+  });
+
   const formRef = useRef<HTMLFormElement>(null);
+  // Sometimes might be useful - not required here due to user is redirected anyway
+  // useEffect(() => {
+  //   if (isSubmitSuccessful) {
+  //     reset();
+  //   }
+  // }, [reset, isSubmitSuccessful]);
 
   return (
     <>
@@ -27,14 +43,9 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
         open={open}
         title="Create new topic"
         additionalPaperProps={{
-          role: "document",
           sx: {
-            maxWidth: "800px",
-            boxShadow: `0px 4px 8px -4px rgb(0 0 0 / 48%)`,
-            margin: "1.6rem",
-            minWidth: "58rem",
-            md: {
-              minWidth: "72.5rem",
+            lg: {
+              minWidth: "64rem",
             },
           },
         }}
@@ -45,7 +56,7 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
       >
         <form
           ref={formRef}
-          className="w-full"
+          className="flex w-full flex-col flex-wrap"
           autoComplete="off"
           noValidate
           action={formAction}
@@ -67,7 +78,7 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
                   placeholder="Enter topic name"
                   label="Title"
                   variant="outlined"
-                  error={!!formState?.errors?.name}
+                  error={!!state?.errors?.name}
                   fullWidth
                   margin="none"
                   sx={createTopicSx}
@@ -75,10 +86,8 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
               )}
             />
 
-            {formState?.errors?.name && (
-              <FormHelperText>
-                {formState.errors.name.join(", ")}
-              </FormHelperText>
+            {state?.errors?.name && (
+              <FormHelperText>{state.errors.name.join(", ")}</FormHelperText>
             )}
           </div>
           <div>
@@ -99,15 +108,15 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
                   rows={4}
                   margin="none"
                   value={field.value}
-                  error={!!formState?.errors?.description}
+                  error={!!state?.errors?.description}
                   sx={createTopicSx}
                 />
               )}
             />
 
-            {formState?.errors?.description && (
+            {state?.errors?.description && (
               <FormHelperText>
-                {formState?.errors?.description.join(", ")}
+                {state?.errors?.description.join(", ")}
               </FormHelperText>
             )}
           </div>
