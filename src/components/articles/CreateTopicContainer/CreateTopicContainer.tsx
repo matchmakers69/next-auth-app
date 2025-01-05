@@ -1,10 +1,11 @@
 "use client";
 
+import { Plus } from "lucide-react";
 import { useCallback, useState } from "react";
 import CreateTopicForm from "../CreateTopicForm";
 import { Button } from "@/components/ui/Button";
 
-const TopicsContainer = () => {
+const CreateTopicContainer = () => {
   const [open, setOpen] = useState(false);
 
   const handleCloseModal = useCallback(() => {
@@ -16,11 +17,13 @@ const TopicsContainer = () => {
       <div className="cta-button-wrapper flex w-full items-center justify-end">
         <Button
           onClick={() => setOpen(true)}
-          size="sm"
           type="button"
+          size="lg"
           variant="secondary"
+          className="flex flex-row items-center"
         >
-          Create topic
+          <Plus />
+          <span className="max-sm:hidden ml-3 inline-block">Add new topic</span>
         </Button>
       </div>
       {open && <CreateTopicForm open={open} onClose={handleCloseModal} />}
@@ -28,4 +31,4 @@ const TopicsContainer = () => {
   );
 };
 
-export default TopicsContainer;
+export default CreateTopicContainer;

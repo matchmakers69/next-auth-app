@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import { IBM_Plex_Sans } from "next/font/google";
 import { ButtonModal, ModalProps } from "./defs";
+import { X } from "lucide-react";
+import { Button } from "../Button";
 
 const IbmPlex = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -83,6 +85,10 @@ const Modal = ({
         sx={{
           padding: "16px 18px",
           paddingBottom: 0,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "1rem",
         }}
       >
         <h3
@@ -90,6 +96,14 @@ const Modal = ({
         >
           {title}
         </h3>
+        <Button
+          variant="secondary"
+          type="button"
+          onClick={onClose}
+          className="h-[32px] w-[32px] min-w-0 rounded-none border border-[rgb(20,20,20)] bg-transparent text-[rgb(20,20,20)] transition-colors duration-200 hover:border-[rgb(20,20,20)] focus:border-[var(--text-light)] focus:bg-transparent"
+        >
+          <X strokeWidth={1} />
+        </Button>
       </Box>
       <DialogContent sx={{ padding: "16px 18px" }}>{children}</DialogContent>
       {hasButton && (

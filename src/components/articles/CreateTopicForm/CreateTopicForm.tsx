@@ -10,6 +10,7 @@ import FormHelperText from "@/components/ui/formParts/FormHelperText";
 import { createTopicSx } from "./helper/muiTextFieldStyles";
 import { createTopic } from "@/actions/create-topic";
 import { startTransition, useActionState, useRef } from "react";
+import { Loader } from "lucide-react";
 
 const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
   const [state, formAction, isPending] = useActionState(createTopic, {
@@ -33,9 +34,10 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
   // Sometimes might be useful - not required here due to user is redirected anyway
   // useEffect(() => {
   //   if (isSubmitSuccessful) {
-  //     reset();
+  //     onClose();
+  //     // reset();
   //   }
-  // }, [reset, isSubmitSuccessful]);
+  // }, [isSubmitSuccessful]);
 
   return (
     <>
@@ -128,7 +130,10 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
               size="sm"
               disabled={isPending}
             >
-              Create
+              {isPending && <Loader className="size-6 animate-spin" />}
+              <span className="inline-block">
+                {isPending ? "Creating now..." : "Create topic"}
+              </span>
             </Button>
           </div>
         </form>
