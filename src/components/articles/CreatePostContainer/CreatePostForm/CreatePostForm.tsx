@@ -4,40 +4,31 @@ import Modal from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
 import { Controller, useForm } from "react-hook-form";
-import { CreateTopicValues } from "./validation/createTopicValidationSchema";
-import { CreateTopicFormProps } from "./defs";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
-import { createTopicSx } from "./helper/muiTextFieldStyles";
-import { createTopic } from "@/actions/create-topic";
-import { startTransition, useActionState, useRef } from "react";
+import { FormEvent, startTransition, useActionState, useRef } from "react";
 import { Loader } from "lucide-react";
+import { CreatePostValues } from "./validation/createPostValidationSchema";
+import { CreatePostFormProps } from "./defs";
+import { InputSx } from "../../styles/muiTextFieldStyles";
+import { createPost } from "@/actions/create-post";
 
-const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
-  const [state, formAction, isPending] = useActionState(createTopic, {
-    errors: {},
-  });
+const CreatePostForm = ({ open, onClose, slug }: CreatePostFormProps) => {
+  const [state, formAction, isPending] = useActionState(
+    createPost.bind(null, slug),
+    {
+      errors: {},
+    },
+  );
 
-  const {
-    control,
-    handleSubmit,
-    reset,
-    // formState: { isSubmitSuccessful },
-  } = useForm<CreateTopicValues>({
+  const { control, handleSubmit, reset } = useForm<CreatePostValues>({
     mode: "onTouched",
     defaultValues: {
-      name: "",
-      description: "",
+      title: "",
+      content: "",
     },
   });
 
   const formRef = useRef<HTMLFormElement>(null);
-  // Sometimes might be useful - not required here due to user is redirected anyway
-  // useEffect(() => {
-  //   if (isSubmitSuccessful) {
-  //     onClose();
-  //     // reset();
-  //   }
-  // }, [isSubmitSuccessful]);
 
   return (
     <>
@@ -62,63 +53,65 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
           autoComplete="off"
           noValidate
           action={formAction}
-          onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+          onSubmit={(event: FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             handleSubmit(() => {
-              startTransition(() => formAction(new FormData(formRef.current!)));
+              startTransition(() => {
+                formAction(new FormData(formRef.current!));
+              });
             })(event);
           }}
         >
           <div className="mb-12">
             <Controller
-              name="name"
+              name="title"
               control={control}
               render={({ field }) => (
                 <MuiTextField
                   {...field}
-                  id="name"
-                  placeholder="Enter topic name"
+                  id="title"
+                  placeholder="Post title"
                   label="Title"
                   variant="outlined"
-                  error={!!state?.errors?.name}
+                  error={!!state?.errors?.title}
                   fullWidth
                   margin="none"
-                  sx={createTopicSx}
+                  sx={InputSx}
                 />
               )}
             />
 
-            {state?.errors?.name && (
-              <FormHelperText>{state.errors.name.join(", ")}</FormHelperText>
+            {state?.errors?.title && (
+              <FormHelperText>{state.errors.title.join(", ")}</FormHelperText>
             )}
           </div>
           <div>
             <Controller
-              name="description"
+              name="content"
               control={control}
               render={({ field }) => (
                 <MuiTextField
-                  id="description-value"
-                  placeholder="Describe your topic"
-                  name="description"
+                  id="content-value"
+                  placeholder="Describe your content"
+                  name="content"
                   fullWidth
-                  label="Description"
-                  data-testid="descriptionValue"
-                  aria-label="Enter description"
+                  label="Content"
+                  data-testid="contentValue"
+                  aria-label="Enter content"
                   onChange={field.onChange}
                   multiline
-                  rows={4}
+                  rows={2}
                   margin="none"
                   value={field.value}
-                  error={!!state?.errors?.description}
-                  sx={createTopicSx}
+                  error={!!state?.errors?.content}
+                  sx={InputSx}
                 />
               )}
             />
 
-            {state?.errors?.description && (
+            {state?.errors?.content && (
               <FormHelperText>
-                {state?.errors?.description.join(", ")}
+                {state?.errors?.content.join(", ")}
               </FormHelperText>
             )}
           </div>
@@ -132,7 +125,7 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
             >
               {isPending && <Loader className="size-6 animate-spin" />}
               <span className="inline-block">
-                {isPending ? "Creating now..." : "Create topic"}
+                {isPending ? "Creating now..." : "Create post"}
               </span>
             </Button>
           </div>
@@ -142,4 +135,4 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
   );
 };
 
-export default CreateTopicForm;
+export default CreatePostForm;

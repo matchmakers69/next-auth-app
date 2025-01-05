@@ -1,6 +1,6 @@
 "use server";
 
-import { createTopicSchema } from "@/components/articles/CreateTopicForm/validation/createTopicValidationSchema";
+import { createTopicSchema } from "@/components/articles/CreateTopicContainer/CreateTopicForm/validation/createTopicValidationSchema";
 import { currentUser } from "@/libs/auth";
 import type { Topic } from "@prisma/client";
 import { revalidatePath } from "next/cache";
@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 import paths from "@/utils/paths";
 import { db } from "@/libs/db";
 
-type FormState = {
+type CreateTopicFormState = {
   errors?: {
     name?: string[];
     description?: string[];
@@ -17,9 +17,9 @@ type FormState = {
 };
 
 export async function createTopic(
-  prevState: FormState,
+  prevState: CreateTopicFormState,
   formData: FormData,
-): Promise<FormState> {
+): Promise<CreateTopicFormState> {
   const result = createTopicSchema.safeParse({
     name: formData.get("name"),
     description: formData.get("description"),

@@ -1,5 +1,6 @@
 import { SxProps, Theme } from "@mui/material";
-export const createTopicSx: SxProps<Theme> = {
+
+export const InputSx: SxProps<Theme> = {
   "& .MuiOutlinedInput-root": {
     fontSize: "1.4rem",
     color: "var(--dark-grey)",

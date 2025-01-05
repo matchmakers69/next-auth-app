@@ -1,11 +1,11 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import { useCallback, useState } from "react";
-import CreateTopicForm from "./CreateTopicForm";
+import React, { useCallback, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import CreatePostForm from "./CreatePostForm";
 
-const CreateTopicContainer = () => {
+const CreatePostContainer = () => {
   const [open, setOpen] = useState(false);
 
   const handleCloseModal = useCallback(() => {
@@ -23,12 +23,12 @@ const CreateTopicContainer = () => {
           className="flex flex-row items-center"
         >
           <Plus />
-          <span className="max-sm:hidden ml-3 inline-block">Add topic</span>
+          <span className="max-sm:hidden ml-3 inline-block">Add post</span>
         </Button>
       </div>
-      {open && <CreateTopicForm open={open} onClose={handleCloseModal} />}
+      {open && <CreatePostForm open={open} onClose={handleCloseModal} />}
     </>
   );
 };
 
-export default CreateTopicContainer;
+export default CreatePostContainer;
