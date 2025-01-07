@@ -1,10 +1,10 @@
-import { getTopicsList } from "@/actions/getTopicList";
+import { getTopicsList } from "@/app/queries/get-topics-list";
 import Chip from "@/components/ui/Chip";
 import paths from "@/utils/paths";
 
 const TopicsList = async () => {
   const topics = await getTopicsList();
-  console.log(topics, "topics");
+  if (!topics) return;
 
   return (
     <>

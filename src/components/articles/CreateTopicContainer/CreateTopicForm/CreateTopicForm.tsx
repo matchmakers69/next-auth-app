@@ -11,6 +11,7 @@ import { createTopic } from "@/actions/create-topic";
 import { startTransition, useActionState, useRef } from "react";
 import { Loader } from "lucide-react";
 import { InputSx } from "../../styles/muiTextFieldStyles";
+import { FormError } from "@/components/ui/formParts/FormError";
 
 const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
   const [state, formAction, isPending] = useActionState(createTopic, {
@@ -122,6 +123,12 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
               </FormHelperText>
             )}
           </div>
+
+          {state?.errors?._form ? (
+            <div className="mb-8">
+              <FormError message={state?.errors?._form.join(", ")} />
+            </div>
+          ) : null}
 
           <div className="button-wrapper mt-6">
             <Button

@@ -11,6 +11,7 @@ import { CreatePostValues } from "./validation/createPostValidationSchema";
 import { CreatePostFormProps } from "./defs";
 import { InputSx } from "../../styles/muiTextFieldStyles";
 import { createPost } from "@/actions/create-post";
+import { FormError } from "@/components/ui/formParts/FormError";
 
 const CreatePostForm = ({ open, onClose, slug }: CreatePostFormProps) => {
   const [state, formAction, isPending] = useActionState(
@@ -115,6 +116,12 @@ const CreatePostForm = ({ open, onClose, slug }: CreatePostFormProps) => {
               </FormHelperText>
             )}
           </div>
+
+          {state?.errors?._form ? (
+            <div className="mb-8">
+              <FormError message={state?.errors?._form.join(", ")} />
+            </div>
+          ) : null}
 
           <div className="button-wrapper mt-6">
             <Button

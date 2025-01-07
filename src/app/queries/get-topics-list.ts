@@ -1,5 +1,3 @@
-"use server";
-
 import { db } from "@/libs/db";
 
 export const getTopicsList = async () => {

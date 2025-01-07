@@ -4,8 +4,9 @@ import { Plus } from "lucide-react";
 import React, { useCallback, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import CreatePostForm from "./CreatePostForm";
+import { CreatePostContainerProps } from "./defs";
 
-const CreatePostContainer = () => {
+const CreatePostContainer = ({ slug }: CreatePostContainerProps) => {
   const [open, setOpen] = useState(false);
 
   const handleCloseModal = useCallback(() => {
@@ -26,7 +27,9 @@ const CreatePostContainer = () => {
           <span className="max-sm:hidden ml-3 inline-block">Add post</span>
         </Button>
       </div>
-      {open && <CreatePostForm open={open} onClose={handleCloseModal} />}
+      {open && (
+        <CreatePostForm slug={slug} open={open} onClose={handleCloseModal} />
+      )}
     </>
   );
 };

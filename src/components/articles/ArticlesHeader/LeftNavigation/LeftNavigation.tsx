@@ -10,7 +10,7 @@ const LeftNavigation = () => {
           classNameActive="text-primary"
           href={paths.topicComments()}
         >
-          <span className="text-inherit">Discussion</span>
+          <span className="text-inherit">Discuss</span>
         </NavLink>
       </li>
     </ul>

@@ -18,7 +18,7 @@ export default async function TopicShowPage({ params }: TopicShowPageProps) {
         />
       </div>
       <div className="sm:col-span-full md:col-span-1">
-        <CreatePostContainer />
+        <CreatePostContainer slug={slug} />
       </div>
     </div>
   );

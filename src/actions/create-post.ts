@@ -40,6 +40,7 @@ export async function createPost(
       errors: result.error.flatten().fieldErrors,
     };
   }
+  
 
   const topic = await db.topic.findFirst({
     where: { slug },
