@@ -10,6 +10,8 @@
 
 ### https://github.com/nextauthjs/next-auth/issues/9504 - useSession hook resolved
 
+### https://www.youtube.com/watch?v=ySqesLjz6K0 - build online cv
+
 ### https://medium.com/@christopher_28348/next-js-easiest-auth-implementation-with-email-password-google-github-and-password-reset-ab0c669f012a - good tutorial next auth
 
 ### https://www.youtube.com/watch?v=1MnvcLPheLo - next authenication

@@ -1,4 +1,4 @@
-import { fetchTopPosts } from "@/app/queries/posts";
+import { fetchTopPosts } from "@/queries/posts";
 import PostList from "@/components/articles/CreatePostContainer/PostList";
 import CreateTopicContainer from "@/components/articles/CreateTopicContainer";
 import TopicsList from "@/components/articles/TopicsList";

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPostByPostId } from "@/app/queries/get-topics-by-id";
+import { getPostByPostId } from "@/queries/get-topics-by-id";
 import ShowPost from "@/components/articles/ShowPost";
 import { Button } from "@/components/ui/Button";
 import paths from "@/utils/paths";

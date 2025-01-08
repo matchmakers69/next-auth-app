@@ -1,4 +1,4 @@
-import { getTopicsList } from "@/app/queries/get-topics-list";
+import { getTopicsList } from "@/queries/get-topics-list";
 import Chip from "@/components/ui/Chip";
 import paths from "@/utils/paths";
 

@@ -1,6 +1,6 @@
 "use server";
 
-import { createCommentSchema } from "@/components/articles/CreateCommentForm/validation/createCommentValidationSchema";
+import { createCommentSchema } from "@/components/articles/CommentsContainer/CreateCommentForm/validation/createCommentValidationSchema";
 import { currentUser } from "@/libs/auth";
 import { revalidatePath } from "next/cache";
 import paths from "@/utils/paths";

@@ -1,4 +1,4 @@
-import { PostWithData } from "@/app/queries/posts"
+import { PostWithData } from "@/queries/posts"
 
 export type PostListProps = {
     fetchData: () => Promise<PostWithData[]>

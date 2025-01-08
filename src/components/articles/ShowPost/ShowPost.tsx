@@ -1,5 +1,5 @@
 import { ShowPostProps } from "./defs";
-import CreateCommentForm from "../CreateCommentForm";
+import CreateCommentForm from "../CommentsContainer/CreateCommentForm";
 
 export default function ShowPost({ post }: ShowPostProps) {
   return (
