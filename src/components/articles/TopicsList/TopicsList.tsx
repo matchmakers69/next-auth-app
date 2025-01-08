@@ -8,7 +8,7 @@ const TopicsList = async () => {
 
   return (
     <>
-      <div className="flex flex-wrap items-center gap-5">
+      <div className="flex flex-wrap items-center gap-4">
         {topics.map((topic) => (
           <div className="" key={topic.id}>
             <Chip

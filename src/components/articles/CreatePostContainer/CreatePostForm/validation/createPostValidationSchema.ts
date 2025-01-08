@@ -9,7 +9,7 @@ export const createPostSchema = z.object({
   content: z
     .string()
     .min(10, "Minimum 10 characters are required")
-    .max(200, "Too many characters. Maximum is 200"),
+    .max(1000, "Too many characters. Maximum is 1000"),
 });
 
 export type CreatePostValues = z.infer<typeof createPostSchema>;

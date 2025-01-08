@@ -1,3 +1,8 @@
+
 export interface ShowPostProps {
-    postId: string
-}
+    post: {
+      id: string;
+      title: string;
+      content: string;
+    };
+  }

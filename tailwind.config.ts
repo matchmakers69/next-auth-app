@@ -10,16 +10,20 @@ export default {
   theme: {
     container: {
       padding: {
-        DEFAULT: "1.5rem",
-        sm: "2rem",
-        lg: "3rem",
+        DEFAULT: "3rem",
+        sm: "4rem",
+        lg: "6rem",
       },
     },
     extend: {
       borderRadius: {
         lg: "10px",
       },
+      padding: {
+        section: "clamp(1rem, 2.5vw, 3rem) clamp(0rem, 1.5vw, 1.5rem)"
+      },
       fontSize: {
+        xs: "1.2rem",
         base: "1.4rem",
         sm: "1.6rem",
         md: "1.8rem",
@@ -39,7 +43,7 @@ export default {
         ring: "rgb(var(--ring))",
         "ring-dark": "rgb(var(--ring-dark))",
         background: "rgb(var(--background))",
-        body: "rgb(var(--body))",
+        body: "var(--body)",
         "sidebar-grey": "var(--sidebar-grey)",
         "destructive-foreground": "rgb(var(--destructive-foreground))",
         destructive: "rgb(var(--destructive))",
@@ -48,12 +52,12 @@ export default {
         success: "rgb(var(--success))",
         "border-grey-light": "var(--border-grey-light)",
         "background-grey-light": "var(--background-grey-light)",
-        "light-blue": "rgb(var(--light-blue))",
+        "light-blue": "var(--light-blue)",
         black: "rgb(var(--black))",
         white: "rgb(var(--white))",
         "light-grey": "rgb(var(--light-grey))",
         "dark-grey": "var(--dark-grey)",
-        "text-light": "rgb(var(--text-light))",
+        "text-light": "var(--text-light)",
         "text-grey": "var(--text-grey)",
         foreground: "rgb(var(--foreground))",
 

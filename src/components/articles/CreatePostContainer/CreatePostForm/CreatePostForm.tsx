@@ -101,7 +101,7 @@ const CreatePostForm = ({ open, onClose, slug }: CreatePostFormProps) => {
                   aria-label="Enter content"
                   onChange={field.onChange}
                   multiline
-                  rows={2}
+                  rows={6}
                   margin="none"
                   value={field.value}
                   error={!!state?.errors?.content}

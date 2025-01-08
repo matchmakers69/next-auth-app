@@ -1,17 +1,21 @@
-import { notFound } from "next/navigation";
 import { ShowPostProps } from "./defs";
-import { getPostByPostId } from "@/app/queries/get-topics-by-id";
+import CreateCommentForm from "../CreateCommentForm";
 
-export default async function ShowPost({ postId }: ShowPostProps) {
-  const post = await getPostByPostId(postId);
-  if (!post) {
-    notFound();
-  }
-
+export default function ShowPost({ post }: ShowPostProps) {
   return (
-    <div className="m-4">
-      <h1 className="my-2 text-2xl font-bold">{post.title}</h1>
-      <p className="rounded border p-4">{post.content}</p>
-    </div>
+    <>
+      <h1 className="mb-[4rem] text-[2.4rem] font-semibold sm:text-[2.6rem] md:text-[4rem] lg:text-2xl">
+        {post.title}
+      </h1>
+      <section className="grid-rows-auto grid h-auto w-full grid-cols-[100%] md:grid-cols-[30%_60%_10%] lg:grid-cols-[30%_40%_10%_10%]">
+        <div className="left-col mr-[2rem] hidden h-auto w-full sm:block" />
+        <div className="comment-content col-span-2 scroll-smooth">
+          <div className="text-content">
+            <p className="text-text-light">{post.content}</p>
+          </div>
+          <CreateCommentForm postId={post.id} startOpen />
+        </div>
+      </section>
+    </>
   );
 }

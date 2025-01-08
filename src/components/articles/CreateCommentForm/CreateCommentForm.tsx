@@ -16,8 +16,7 @@ import {
 } from "react";
 import { createComment } from "@/actions/create-comment";
 import { FormError } from "@/components/ui/formParts/FormError";
-import { InputSx } from "../styles/muiTextFieldStyles";
-import { Loader } from "lucide-react";
+import { Loader, Reply } from "lucide-react";
 
 const CreateCommentForm = ({
   postId,
@@ -67,26 +66,25 @@ const CreateCommentForm = ({
         })(event);
       }}
     >
-      <div className="mb-12">
+      <div className="mb-10">
         <Controller
           name="content"
           control={control}
           render={({ field }) => (
             <MuiTextField
-              id="description-value"
-              placeholder="Describe your topic"
-              name="description"
+              id="comment-value"
+              placeholder="Write a comment"
+              name="content"
               fullWidth
-              label="Description"
-              data-testid="descriptionValue"
-              aria-label="Enter description"
+              label="Comment"
+              data-testid="commentValue"
+              aria-label="Enter your comment"
               onChange={field.onChange}
               multiline
               rows={6}
               margin="none"
               value={field.value}
               error={!!state?.errors?.content}
-              sx={InputSx}
             />
           )}
         />
@@ -102,7 +100,7 @@ const CreateCommentForm = ({
         </div>
       ) : null}
 
-      <div className="button-wrapper mt-6">
+      <div className="button-wrapper flex w-full items-end justify-end">
         <Button type="submit" variant="default" size="sm" disabled={isPending}>
           {isPending && <Loader className="size-6 animate-spin" />}
           <span className="inline-block">
@@ -114,9 +112,18 @@ const CreateCommentForm = ({
   );
   return (
     <div>
-      <Button size="sm" variant="secondary" onClick={() => setOpen(!open)}>
-        Reply
-      </Button>
+      <div className="reply-button-wrapper mb-6 mt-4 flex w-full items-start justify-end">
+        <Button
+          className="min-w-0 font-medium text-light-blue"
+          size="sm"
+          variant="link"
+          onClick={() => setOpen(!open)}
+        >
+          <Reply />
+
+          <span className="max-sm:hidden ml-3 inline-block">Reply</span>
+        </Button>
+      </div>
       {open && form}
     </div>
   );

@@ -19,21 +19,21 @@ const MuiTextField = forwardRef<HTMLInputElement, MuiTextFieldProps>(
     const defaultSx: SxProps<Theme> = {
       "& .MuiInputLabel-root": {
         color: "var(--text-light)",
-        fontSize: "1.4rem",
+        fontSize: "1.5rem",
       },
       "& .MuiInputLabel-root.Mui-focused": {
         color: "var(--text-light)",
-        fontSize: "1.4rem",
+        fontSize: "1.5rem",
       },
       "& .MuiInputBase-input": {
-        fontSize: "1.4rem",
+        fontSize: "1.5rem",
         color: "var(--text-light)",
         "&::placeholder": {
           opacity: 0.3,
         },
       },
       "& .MuiOutlinedInput-root": {
-        fontSize: "1.4rem",
+        fontSize: "1.5rem",
         color: "var(--text-light)",
         borderRadius: "10px",
         transition: "border-color 120ms ease-in",

@@ -2,16 +2,16 @@ import { SxProps, Theme } from "@mui/material";
 
 export const InputSx: SxProps<Theme> = {
   "& .MuiOutlinedInput-root": {
-    fontSize: "1.4rem",
+    fontSize: "1.5rem",
     color: "var(--dark-grey)",
     borderRadius: "10px",
     transition: "border-color 120ms ease-in",
     "& .MuiInputLabel-root.Mui-focused": {
       color: "var(--dark-grey)",
-      fontSize: "1.4rem",
+      fontSize: "1.5rem",
     },
     "& .MuiInputBase-input": {
-      fontSize: "1.4rem",
+      fontSize: "1.5rem",
       color: "var(--dark-grey)",
       "&::placeholder": {
         opacity: 0.3,
