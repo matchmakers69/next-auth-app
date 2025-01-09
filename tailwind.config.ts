@@ -16,8 +16,12 @@ export default {
       },
     },
     extend: {
+      backdropBlur: {
+        'custom': '25px',
+      },
       borderRadius: {
         lg: "10px",
+        xl: '24px',
       },
       padding: {
         section: "clamp(1rem, 2.5vw, 3rem) clamp(0rem, 1.5vw, 1.5rem)"

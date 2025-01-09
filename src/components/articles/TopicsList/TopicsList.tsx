@@ -18,7 +18,7 @@ const TopicsList = async () => {
               variant="filled"
               clickable
               textColor="rgb(var(--light-grey))"
-              backgroundColor="#ffffff0d"
+              backgroundColor="hsla(0,0%,100%,0.08)"
             />
           </div>
         ))}
