@@ -17,11 +17,11 @@ const MuiTextField = forwardRef<HTMLInputElement, MuiTextFieldProps>(
     ref, // Ref is received here and forwarded to TextField
   ) => {
     const defaultSx: SxProps<Theme> = {
-      "& .MuiInputLabel-root": {
+      "& .MuiInputLabel-outlined": {
         color: "var(--text-light)",
         fontSize: "1.5rem",
       },
-      "& .MuiInputLabel-root.Mui-focused": {
+      "& .MuiInputLabel-outlined.Mui-focused": {
         color: "var(--text-light)",
         fontSize: "1.5rem",
       },

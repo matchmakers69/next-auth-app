@@ -334,7 +334,7 @@ textarea {
     --spacer-x2: clamp(22.71px, 4.8vw + 17.99px, 4rem);
     --primary: 233, 233, 230;
     --primary-foreground: 233, 233, 230;
-    --secondary: #1d4ed8;
+    --secondary: #8ba9fe;
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --success-foreground: 148 210 189;

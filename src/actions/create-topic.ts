@@ -6,6 +6,7 @@ import type { Topic } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import paths from "@/utils/paths";
+import { Prisma } from "@prisma/client";
 import { db } from "@/libs/db";
 
 type CreateTopicFormState = {
@@ -52,7 +53,13 @@ export async function createTopic(
       },
     });
   } catch (err: unknown) {
-    if (err instanceof Error) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
+      return {
+        errors: {
+          name: ["A topic with this name already exists."],
+        },
+      };
+    } else if (err instanceof Error) {
       return {
         errors: {
           _form: [err.message],

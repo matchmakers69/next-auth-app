@@ -35,7 +35,7 @@ const CreatePostForm = ({ open, onClose, slug }: CreatePostFormProps) => {
     <>
       <Modal
         open={open}
-        title="Create new topic"
+        title="Add a new post"
         additionalPaperProps={{
           sx: {
             lg: {

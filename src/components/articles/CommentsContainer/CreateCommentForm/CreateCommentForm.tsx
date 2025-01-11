@@ -66,7 +66,7 @@ const CreateCommentForm = ({
         })(event);
       }}
     >
-      <div className="mb-10">
+      <div className="mb-10 mt-6">
         <Controller
           name="content"
           control={control}
@@ -81,7 +81,7 @@ const CreateCommentForm = ({
               aria-label="Enter your comment"
               onChange={field.onChange}
               multiline
-              rows={6}
+              rows={4}
               margin="none"
               value={field.value}
               error={!!state?.errors?.content}
@@ -111,8 +111,8 @@ const CreateCommentForm = ({
     </form>
   );
   return (
-    <div>
-      <div className="reply-button-wrapper mb-6 mt-4 flex w-full items-start justify-end">
+    <>
+      <div className="reply-button-wrapper flex w-full items-start justify-end">
         <Button
           className="min-w-0 font-medium text-light-blue"
           size="sm"
@@ -125,7 +125,7 @@ const CreateCommentForm = ({
         </Button>
       </div>
       {open && form}
-    </div>
+    </>
   );
 };
 
