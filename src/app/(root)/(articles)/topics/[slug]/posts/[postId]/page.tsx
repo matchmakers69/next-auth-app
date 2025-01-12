@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/Button";
 import paths from "@/utils/paths";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import PostShowLoading from "@/components/articles/PostShowLoading";
+import { Suspense } from "react";
 
 interface PostShowPageProps {
   params: {
@@ -37,8 +39,9 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
           </Link>
         </Button>
       </div>
-
-      <ShowPost post={post} />
+      <Suspense fallback={<PostShowLoading />}>
+        <ShowPost post={post} />
+      </Suspense>
     </>
   );
 }

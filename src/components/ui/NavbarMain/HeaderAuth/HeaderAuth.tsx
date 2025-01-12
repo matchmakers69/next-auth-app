@@ -15,14 +15,16 @@ const HeaderAuth = () => {
   let authContent: ReactNode;
 
   if (status === "loading") {
-    authContent = <div>Loading...</div>;
+    authContent = <span>Loading auth status...</span>;
   } else if (session && session?.user) {
     const userName = session?.user.name ?? "Username";
     const avatarSrc = session?.user.image ?? "/icons/avatar.svg";
 
     authContent = (
       <div className="flex items-center gap-6">
-        <p className="text-sm">{userName}</p>
+        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm">
+          {userName}
+        </p>
 
         <Link className="block h-[30px] w-[30px]" href={paths.settings()}>
           <Image
