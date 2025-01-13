@@ -1,32 +1,49 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { useSearchTopics } from "./hooks/useSearchTopics";
+import { useSearchParams } from "next/navigation";
+import { Controller, useForm } from "react-hook-form";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
-import { Controller } from "react-hook-form";
 import { Search } from "lucide-react";
+import { SearchPostsValues } from "./validation/searchValidationSchema";
+import { searchPosts } from "@/actions/search-posts";
+import { FormEvent, startTransition, useRef } from "react";
 
 const SearchForm = () => {
-  const {
-    submitSearch,
-    control,
-    errors,
-    isDirty,
-    isSubmitting,
-    isPending,
-    success,
-    error,
-  } = useSearchTopics();
+  const searchParams = useSearchParams();
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const { control, handleSubmit } = useForm<SearchPostsValues>({
+    mode: "onTouched",
+    defaultValues: {
+      term: searchParams.get("term") ?? "",
+    },
+  });
+
+  const onSubmit = (formData: FormData) => {
+    startTransition(() => {
+      searchPosts(formData);
+    });
+  };
   return (
     <form
       className="w-full"
+      ref={formRef}
       autoComplete="off"
       noValidate
-      onSubmit={submitSearch}
+      action={searchPosts}
+      onSubmit={(event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        handleSubmit(() => {
+          // startTransition(() => searchPosts(new FormData(formRef.current!)));
+          const formData = new FormData(formRef.current!);
+          onSubmit(formData);
+        })(event);
+      }}
     >
       <div className="search-form-elements-wrapper flex h-[42px] w-full items-center rounded-[10px] border border-solid border-[hsla(0,0%,100%,.1)]">
         <Controller
-          name="topic"
+          name="term"
           control={control}
           render={({ field }) => (
             <MuiTextField
@@ -35,7 +52,6 @@ const SearchForm = () => {
               id="topic"
               placeholder="Search terms..."
               variant="outlined"
-              error={!!errors.topic}
               fullWidth
               hiddenLabel
               margin="none"

@@ -42,6 +42,8 @@
 
 #### After changes in models
 
+### npx prisma db push
+
 ### npx prisma generate
 
-### npx prisma push
+### https://medium.com/@ignatovich.dm/enhancing-form-handling-in-react-19-a-look-at-action-useformstate-and-useformstatus-a5ee68d6bf93

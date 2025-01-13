@@ -10,7 +10,7 @@ const PostList = async ({ fetchData }: PostListProps) => {
     <ul className="flex w-full flex-col gap-6">
       {posts.map((post) => (
         <li
-          className="backdrop-blur-custom flex items-center overflow-hidden rounded rounded-[18px] border border-[#202020] px-[1rem] py-0 odd:bg-[hsla(0,0%,100%,0.01)] even:border-[hsla(0,0%,100%,0.05)] even:bg-[hsla(0,0%,100%,0.03)]"
+          className="flex items-center overflow-hidden rounded-[18px] border border-[#202020] px-[1rem] py-0 backdrop-blur-custom odd:bg-[hsla(0,0%,100%,0.01)] even:border-[hsla(0,0%,100%,0.05)] even:bg-[hsla(0,0%,100%,0.03)]"
           key={post.id}
         >
           <Link
