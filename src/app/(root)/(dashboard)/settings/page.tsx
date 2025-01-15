@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 function SettingsPage() {
   return (
     <>
-      <PageTitle title="Settings" />
+      <PageTitle className="mb-16" title="Settings" />
       <SettingsContainer />
     </>
   );

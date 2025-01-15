@@ -1,17 +1,17 @@
 import { cn } from "@/libs/utils";
-import { forwardRef } from "react";
+import { forwardRef, HTMLAttributes } from "react";
 
 const CardTitle = forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
+  HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h3
+  <h2
     ref={ref}
-    className={cn("mb-12 font-semibold leading-none tracking-tight", className)}
+    className={cn("mb-12 font-medium leading-none tracking-tight", className)}
     {...props}
   >
     {props.children}
-  </h3>
+  </h2>
 ));
 CardTitle.displayName = "CardTitle";
 

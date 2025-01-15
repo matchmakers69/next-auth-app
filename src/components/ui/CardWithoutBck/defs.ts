@@ -1,3 +1,3 @@
 import { BaseProps } from "../types/defs";
 
-export type CardWithoutBckProps = BaseProps
+export type CardWithoutBckProps = BaseProps & { className?: string };

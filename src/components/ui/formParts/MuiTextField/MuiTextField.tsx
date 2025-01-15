@@ -21,6 +21,10 @@ const MuiTextField = forwardRef<HTMLInputElement, MuiTextFieldProps>(
         color: "var(--text-light)",
         fontSize: "1.5rem",
       },
+      "& .MuiInputLabel-outlined.Mui-disabled": {
+        color: "var(--text-light)",
+        fontSize: "1.5rem",
+      },
       "& .MuiInputLabel-outlined.Mui-focused": {
         color: "var(--text-light)",
         fontSize: "1.5rem",

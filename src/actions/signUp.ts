@@ -45,6 +45,6 @@ export const signUp = async (data: RegisterFormValues) => {
   await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
   return {
-    success: "Confirmation email sent!",
+    success: "Confirmation email sent! Check your inbox",
   };
 };

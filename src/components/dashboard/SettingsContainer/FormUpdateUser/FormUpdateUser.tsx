@@ -91,7 +91,7 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
           <FormHelperText>{state.errors.name.join(", ")}</FormHelperText>
         )}
       </div>
-      {user.is0Auth === false && (
+      {!user.is0Auth && (
         <>
           <div className="mb-12">
             <Controller

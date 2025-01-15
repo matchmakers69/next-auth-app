@@ -8,7 +8,7 @@ const SidebarLeftContainer = ({ children }: SidebarLeftContainerProps) => {
 
   return (
     <aside
-      className={`bg-sidebar-grey fixed inset-y-0 left-0 w-[32rem] flex-shrink-0 border-r border-dark-border transition-transform duration-300 ease-in-out ${isSideBarInView ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
+      className={`fixed inset-y-0 left-0 z-40 w-[32rem] flex-shrink-0 border-r border-dark-border bg-sidebar-grey transition-transform duration-300 ease-in-out ${isSideBarInView ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
     >
       {children}
     </aside>
