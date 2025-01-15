@@ -20,6 +20,10 @@
 
 ### https://medium.com/@christianovik009/adding-file-upload-using-react-hook-form-and-zod-using-nextks-f6def5d6881f - adding file upload
 
+### https://medium.com/@damien_16960/part-1-next-js-14-x-nextauth-4-d7d42c8307c6#2dd1 - next 14 auth
+
+### https://medium.com/@matijazib/building-a-newsletter-form-in-next-js-15-with-react-19-react-hook-form-and-shadcn-ui-bc6555dc1c10 - newsletter with prisma, react-hook-form
+
 ### https://dev.to/emmanuel_xs/how-to-use-react-hook-form-with-useactionstate-hook-in-nextjs15-1hja - server actions
 
 ### Tree shaking: https://blog.nonstopio.com/boosting-react-js-performance-with-tree-shaking-ee77261d0c95

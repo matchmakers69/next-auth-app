@@ -2,7 +2,9 @@ import { Poppins } from "next/font/google";
 import "remixicon/fonts/remixicon.css";
 import "./globals.css";
 import { type Metadata } from "next/types";
-import SessionProvider from "@/components/providers/SessionProvider";
+import SessionProvider from "@/components/providers/SessionProvider/SessionProvider";
+import ToasterProvider from "@/components/providers/ToasterProvider";
+import ProgressBarProvider from "@/components/providers/ProgressBarProvider";
 
 const PoppinsFont = Poppins({
   subsets: ["latin"],
@@ -39,7 +41,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${PoppinsFont.className} body-app scroll-touch`}>
-        <SessionProvider>{children}</SessionProvider>
+        <ToasterProvider />
+        <ProgressBarProvider>
+          <SessionProvider>{children}</SessionProvider>
+        </ProgressBarProvider>
       </body>
     </html>
   );

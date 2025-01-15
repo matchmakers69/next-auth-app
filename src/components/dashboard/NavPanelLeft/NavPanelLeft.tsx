@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+"use client";
+
 import Logout from "@/components/authentication/Logout";
 import { Logo } from "@/components/ui/Logo";
 import { IBM_Plex_Sans } from "next/font/google";
@@ -7,6 +8,7 @@ import SidebarLeftContainer from "./SidebarLeftContainer";
 import LogoSidebarContainer from "./LogoSidebarContainer";
 import { navigationLinks } from "./config/navListMapper";
 import { NavLink } from "@/components/ui/NavLink";
+import { useCurrentSession } from "@/hooks/useCurrentSession";
 
 const IbmPlex = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -15,11 +17,10 @@ const IbmPlex = IBM_Plex_Sans({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const NavPanelLeft = async () => {
-  const session = await auth();
-  const userName = session?.user?.name ?? "Username";
+const NavPanelLeft = () => {
+  const { session, status } = useCurrentSession();
+  const userName = session?.user.name ?? "Username";
   const email = session?.user.email ?? "";
-
   return (
     <SidebarLeftContainer>
       <nav className="bg-platinum flex h-full min-h-0 flex-col">
@@ -66,14 +67,18 @@ const NavPanelLeft = async () => {
                 >
                   Signed as
                 </label>
-                <div className="flex w-full flex-col flex-wrap gap-[3px]">
-                  <p className="w-full overflow-hidden text-ellipsis text-left text-sm text-text-light">
-                    {userName}
-                  </p>
-                  <p className="w-full overflow-hidden text-ellipsis text-left text-sm font-semibold text-text-light">
-                    {email}
-                  </p>
-                </div>
+                {status === "loading" ? (
+                  <span>Loading...</span>
+                ) : (
+                  <div className="flex w-full flex-col flex-wrap gap-[3px]">
+                    <p className="w-full overflow-hidden text-ellipsis text-left text-sm text-text-light">
+                      {userName}
+                    </p>
+                    <p className="w-full overflow-hidden text-ellipsis text-left text-sm font-semibold text-text-light">
+                      {email}
+                    </p>
+                  </div>
+                )}
               </div>
               <div className="flex items-center py-4">
                 <Logout />

@@ -1,3 +1,4 @@
+import SettingsContainer from "@/components/dashboard/SettingsContainer";
 import PageTitle from "@/components/ui/PageTitle";
 import { Metadata } from "next";
 
@@ -9,6 +10,7 @@ function SettingsPage() {
   return (
     <>
       <PageTitle title="Settings" />
+      <SettingsContainer />
     </>
   );
 }

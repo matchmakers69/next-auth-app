@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../../Button";
 import paths from "@/utils/paths";
-
 import { useCurrentSession } from "@/hooks/useCurrentSession";
 
 const HeaderAuth = () => {

@@ -343,7 +343,7 @@ textarea {
     --destructive-foreground: 230 180 180;
     --destructive: 174 14 14;
     --border-input-dark: 71 75 101;
-    --border-input-light: 60 60 59;
+    --border-input-light: #7e7e7e;
     --p-input: clamp(1rem, 1rem + 0.5vw, 1rem);
     --ring: 248, 249, 250;
     --ring-dark: 42, 49, 50;

@@ -43,7 +43,7 @@ export default {
         "bg-facebook": "var(--facebook-color)",
         "bg-google": "var(--google-color)",
         "border-input-dark": "rgb(var(--border-input-dark))",
-        "border-input-light": "rgb(var(--border-input-light) / 0.09)",
+        "border-input-light": "var(--border-input-light)",
         ring: "rgb(var(--ring))",
         "ring-dark": "rgb(var(--ring-dark))",
         background: "rgb(var(--background))",
