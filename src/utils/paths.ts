@@ -38,6 +38,12 @@ const paths = {
 
     postShow(topicSlug: string, postId: string) {
         return `/topics/${topicSlug}/posts/${postId}`
+    },
+    subscriptions() {
+        return `/subscriptions`
+    },
+    features() {
+        return `/features`
     }
 }
 

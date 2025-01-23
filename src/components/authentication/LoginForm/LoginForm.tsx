@@ -128,8 +128,9 @@ const LoginForm: React.FC = () => {
         alignItems="center"
         justifyContent="space-between"
         width="100%"
+        marginTop={2}
       >
-        <div className="flex items-center gap-[8px]">
+        <div className="cta-button-wrapper flex items-center gap-[8px]">
           <p className="text-[12px] text-text-grey">Don’t have account yet?</p>
           <Button
             className="flex-start min-w-[auto] px-0 underline"

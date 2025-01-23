@@ -79,6 +79,7 @@ const NewPasswordForm: React.FC = () => {
         alignItems="center"
         justifyContent="space-between"
         width="100%"
+        marginTop={2}
       >
         <div className="flex items-center gap-[8px]">
           <p className="text-[12px] text-text-grey">Don’t have account yet?</p>

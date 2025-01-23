@@ -6,13 +6,12 @@ export const getTopicsList = async () => {
       select: {
         id: true,
         slug: true,
-        
       },
     });
     
     return res;
   } catch (error) {
     console.error(`Some error ${error}`);
-    throw new Error("Cannot fetch restaurants");
+    throw new Error("Cannot fetch topics");
   }
 };

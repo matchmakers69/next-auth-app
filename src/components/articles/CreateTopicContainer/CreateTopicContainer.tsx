@@ -18,12 +18,12 @@ const CreateTopicContainer = () => {
         <Button
           onClick={() => setOpen(true)}
           type="button"
-          size="lg"
+          size="sm"
           variant="secondary"
           className="flex flex-row items-center"
         >
           <Plus />
-          <span className="max-sm:hidden ml-3 inline-block">Add topic</span>
+          <span className="max-sm:hidden inline-block">Add topic</span>
         </Button>
       </div>
       {open && <CreateTopicForm open={open} onClose={handleCloseModal} />}

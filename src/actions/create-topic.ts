@@ -1,7 +1,7 @@
 "use server";
 
 import { createTopicSchema } from "@/components/articles/CreateTopicContainer/CreateTopicForm/validation/createTopicValidationSchema";
-import { currentUser } from "@/libs/auth";
+import { currentUser } from "@/libs/currentUser";
 import type { Topic } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";

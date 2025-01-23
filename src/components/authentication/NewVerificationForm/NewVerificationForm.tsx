@@ -45,7 +45,7 @@ function NewVerificationForm() {
         {/* // TODO be aware error may show up despite user's email is verified - should be fixed on production */}
         {!success && <FormError message={error} />}
       </div>
-      <div className="flex w-full items-center gap-[8px]">
+      <div className="mt-[16px] flex w-full items-center gap-[8px]">
         <p className="text-[12px] text-text-grey">Have an account?</p>
         <Button
           className="flex-start min-w-[auto] px-0 underline"

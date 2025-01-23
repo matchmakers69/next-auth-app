@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import paths from "@/utils/paths";
 import { db } from "@/libs/db";
 import { createPostSchema } from "@/components/articles/CreatePostContainer/CreatePostForm/validation/createPostValidationSchema";
-import { currentUser } from "@/libs/auth";
+import { currentUser } from "@/libs/currentUser";
 import { Post } from "@prisma/client";
 
 interface CreatePostFormState {

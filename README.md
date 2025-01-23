@@ -22,9 +22,13 @@
 
 ### https://medium.com/@damien_16960/part-1-next-js-14-x-nextauth-4-d7d42c8307c6#2dd1 - next 14 auth
 
+### https://medium.com/@mohantaankit2002/implementing-multi-step-form-wizards-in-next-js-with-server-side-validation-b381a7f9de4a - Multistep form
+
 ### https://medium.com/@matijazib/building-a-newsletter-form-in-next-js-15-with-react-19-react-hook-form-and-shadcn-ui-bc6555dc1c10 - newsletter with prisma, react-hook-form
 
 ### https://dev.to/emmanuel_xs/how-to-use-react-hook-form-with-useactionstate-hook-in-nextjs15-1hja - server actions
+
+### https://levelup.gitconnected.com/implementing-intuitive-session-expiration-handling-in-nextjs-14-a-step-by-step-guide-914db287ac6e - implementing session expiration
 
 ### Tree shaking: https://blog.nonstopio.com/boosting-react-js-performance-with-tree-shaking-ee77261d0c95
 

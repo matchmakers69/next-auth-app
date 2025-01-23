@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
 import paths from "@/utils/paths";
 import { getUserByEmail, getUserById } from "@/data/user";
-import { currentUser } from "@/libs/auth";
+import { currentUser } from "@/libs/currentUser";
 import { generateVerificationToken } from "@/libs/tokens";
 import { sendVerificationEmail } from "@/libs/mail";
 import { db } from "@/libs/db";
@@ -44,6 +44,7 @@ export async function updateUserSettings(
   }
 
   const user = await currentUser();
+  console.log(user, "user");
   if (!user || !user.id) {
     return {
       errors: {

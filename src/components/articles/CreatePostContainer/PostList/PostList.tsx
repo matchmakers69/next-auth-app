@@ -1,10 +1,19 @@
 import paths from "@/utils/paths";
 import { PostListProps } from "./defs";
 import Link from "next/link";
+import Alert from "@/components/ui/Alert/Alert";
 
 const PostList = async ({ fetchData }: PostListProps) => {
   const posts = await fetchData();
   if (!posts) return null;
+
+  if (!posts.length) {
+    return (
+      <Alert data-testid="posts-missing-data" severity="info">
+        Sorry, but there are no posts yet.
+      </Alert>
+    );
+  }
 
   return (
     <ul className="flex w-full flex-col gap-6">

@@ -1,22 +1,23 @@
-
+import { v4 as uuidv4 } from "uuid";
 
 export const sidebarNavigation = [
   {
-    id: 1,
+    id: uuidv4(),
     label: "Home",
-
   },
 
   {
-    id: 2,
+    id: uuidv4(),
     label: "Settings",
-
   },
   {
-    id: 3,
+    id: uuidv4(),
     label: "Topics",
-
   },
+  {
+    id: uuidv4(),
+    label: "Subscriptions",
+  }
 ];
 
 

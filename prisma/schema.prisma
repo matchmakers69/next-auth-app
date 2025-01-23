@@ -24,9 +24,12 @@ model User {
   email                 String?                 @unique
   emailVerified         DateTime?
   image                 String?
- sessions               Session[]
+  createdAt             DateTime       @default(now())
+  updatedAt             DateTime       @updatedAt
+  sessions              Session[]
   Post                  Post[]
   Comment               Comment[]
+  subscriptions         Subscription[]
   role                  UserRole                @default(USER)
   password              String?
   accounts              Account[]
@@ -141,4 +144,55 @@ model Comment {
   post     Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   children Comment[] @relation("Comments")
+}
+
+// SUBSCRIPTIONS
+enum SUBSCRIPTION_CURRENCY {
+  PLN
+  EUR
+  GBP
+  USD
+}
+
+enum SUBSCRIPTION_BILLING_PERIOD {
+  MONTHLY
+  YEARLY
+}
+
+enum SUBSCRIPTION_STATUS {
+  ACTIVE
+  NOT_ACTIVE
+}
+
+enum PAYMENT_STATUS {
+  NOT_PAID
+  PAID
+}
+
+model Payment {
+  id             String         @id @default(uuid())
+  amount         Float
+  due_date       DateTime       @db.Date
+  status         PAYMENT_STATUS @default(NOT_PAID)
+  subscriptionId String?
+  subscription   Subscription?  @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+}
+
+// Subscription model
+model Subscription {
+ id                String                      @id @default(uuid())
+  name              String
+  price             Float
+  currency          SUBSCRIPTION_CURRENCY       @default(GBP)
+  start_date        DateTime                    @db.Date
+  end_date          DateTime?                   @db.Date
+  billing_period    SUBSCRIPTION_BILLING_PERIOD @default(MONTHLY)
+  next_payment_date DateTime                    @db.Date
+  category          String
+  avatar_url        String
+  status            SUBSCRIPTION_STATUS         @default(ACTIVE)
+
+  ownerId  String
+  owner    User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  payments Payment[]
 }

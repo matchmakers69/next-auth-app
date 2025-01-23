@@ -1,10 +1,19 @@
 import { getTopicsList } from "@/queries/get-topics-list";
 import Chip from "@/components/ui/Chip";
 import paths from "@/utils/paths";
+import Alert from "@/components/ui/Alert/Alert";
 
 const TopicsList = async () => {
   const topics = await getTopicsList();
   if (!topics) return;
+
+  if (!topics.length) {
+    return (
+      <Alert data-testid="subscriptions-missing-data" severity="info">
+        Sorry, but there are no topics yet.
+      </Alert>
+    );
+  }
 
   return (
     <>
