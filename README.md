@@ -54,4 +54,6 @@
 
 ### npx prisma generate
 
+### npx prisma db seed
+
 ### https://medium.com/@ignatovich.dm/enhancing-form-handling-in-react-19-a-look-at-action-useformstate-and-useformstatus-a5ee68d6bf93

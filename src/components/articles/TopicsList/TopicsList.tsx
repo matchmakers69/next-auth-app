@@ -9,7 +9,7 @@ const TopicsList = async () => {
 
   if (!topics.length) {
     return (
-      <Alert data-testid="subscriptions-missing-data" severity="info">
+      <Alert data-testid="subscriptions-missing-data" type="info">
         Sorry, but there are no topics yet.
       </Alert>
     );

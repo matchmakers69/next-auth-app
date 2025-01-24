@@ -1,5 +1,7 @@
+import CreateSubscriptionContainer from "@/components/subscriptions/CreateSubscriptionContainer";
 import Alert from "@/components/ui/Alert/Alert";
 import PageTitle from "@/components/ui/PageTitle";
+import { SubscriptionsProvider } from "@/contexts/SubscriptionsProvider";
 import { getSubscriptionsList } from "@/queries/get-subscriptions-list";
 import { getCurrentUserFromDatabase } from "@/queries/getCurrentUserFromDatabase";
 import { Metadata } from "next";
@@ -23,16 +25,19 @@ export default async function SubscriptionsPage() {
     return null;
   }
 
-  if (!subscriptions.length) {
-    return (
-      <Alert data-testid="subscriptions-missing-data" severity="info">
-        Sorry, but you don't have any subscriptions yet.
-      </Alert>
-    );
-  }
   return (
     <>
-      <PageTitle className="mb-16" title="Subscriptions" />
+      <section className="mb-16 flex w-full items-center justify-between">
+        <PageTitle title="Subscriptions" />
+        <SubscriptionsProvider>
+          <CreateSubscriptionContainer />
+        </SubscriptionsProvider>
+      </section>
+      {!subscriptions.length && (
+        <Alert data-testid="subscriptions-missing-data" type="info">
+          Sorry, but you don't have any subscriptions yet.
+        </Alert>
+      )}
       {/* Table data here */}
     </>
   );

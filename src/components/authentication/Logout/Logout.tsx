@@ -28,9 +28,9 @@ const Logout = () => {
         {isPending ? (
           <Loader className="size-6 animate-spin" />
         ) : (
-          <LogOut className="size-6 hover:text-navy" />
+          <LogOut className="hover:text-navy size-6" />
         )}
-        <span className="max-sm:hidden ml-3 inline-block">
+        <span className="ml-3 inline-block">
           {isPending ? "Logging out..." : "Logout"}
         </span>
       </Button>

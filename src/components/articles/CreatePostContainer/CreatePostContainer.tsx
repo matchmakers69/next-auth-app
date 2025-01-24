@@ -1,6 +1,5 @@
 "use client";
 
-import { Plus } from "lucide-react";
 import React, { useCallback, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import CreatePostForm from "./CreatePostForm";
@@ -23,8 +22,7 @@ const CreatePostContainer = ({ slug }: CreatePostContainerProps) => {
           variant="secondary"
           className="flex flex-row items-center"
         >
-          <Plus />
-          <span className="max-sm:hidden inline-block">Add post</span>
+          <span className="inline-block">New post</span>
         </Button>
       </div>
       {open && (

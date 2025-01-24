@@ -33,9 +33,7 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
         >
           <Link className="flex items-center" href={paths.topicShow(slug)}>
             <ArrowLeft />
-            <span className="max-sm:hidden ml-3 inline-block">
-              Back to topic page
-            </span>
+            <span className="ml-3 inline-block">Back to topic page</span>
           </Link>
         </Button>
       </div>

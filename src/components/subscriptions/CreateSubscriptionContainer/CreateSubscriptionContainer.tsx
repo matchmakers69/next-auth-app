@@ -1,10 +1,10 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import CreateTopicForm from "./CreateTopicForm";
 import { Button } from "@/components/ui/Button";
+import CreateSubscriptionWizard from "./CreateSubscriptionWizard";
 
-const CreateTopicContainer = () => {
+const CreateSubscriptionContainer = () => {
   const [open, setOpen] = useState(false);
 
   const handleCloseModal = useCallback(() => {
@@ -21,12 +21,14 @@ const CreateTopicContainer = () => {
           variant="secondary"
           className="flex flex-row items-center"
         >
-          <span className="inline-block">New topic</span>
+          <span className="inline-block">New subscription</span>
         </Button>
       </div>
-      {open && <CreateTopicForm open={open} onClose={handleCloseModal} />}
+      {open && (
+        <CreateSubscriptionWizard open={open} onClose={handleCloseModal} />
+      )}
     </>
   );
 };
 
-export default CreateTopicContainer;
+export default CreateSubscriptionContainer;

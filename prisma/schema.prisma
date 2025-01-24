@@ -19,21 +19,21 @@ enum UserRole {
 }
 
 model User {
-  id                    String                  @unique @default(uuid())
+  id                    String                 @unique @default(uuid())
   name                  String
-  email                 String?                 @unique
+  email                 String?                @unique
   emailVerified         DateTime?
   image                 String?
-  createdAt             DateTime       @default(now())
-  updatedAt             DateTime       @updatedAt
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
   sessions              Session[]
   Post                  Post[]
   Comment               Comment[]
   subscriptions         Subscription[]
-  role                  UserRole                @default(USER)
+  role                  UserRole               @default(USER)
   password              String?
   accounts              Account[]
-  isTwoFactorEnabled    Boolean                 @default(false)
+  isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
 }
 
@@ -57,11 +57,11 @@ model Account {
 }
 
 model Session {
-  id String @id @default(cuid())
-  sessionToken String @unique
-  userId String
-  expires DateTime
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
@@ -155,6 +155,7 @@ enum SUBSCRIPTION_CURRENCY {
 }
 
 enum SUBSCRIPTION_BILLING_PERIOD {
+  WEEKLY
   MONTHLY
   YEARLY
 }
@@ -169,6 +170,21 @@ enum PAYMENT_STATUS {
   PAID
 }
 
+enum SUBSCRIPTION_CATEGORY_LABEL {
+  ENTERNTAINMENT
+  HOME
+  CAR
+  SPORT
+  EDUCATION
+  HOBBY
+  OTHER
+}
+
+model SubscriptionCategory {
+  id    String                       @id @default(uuid())
+  label SUBSCRIPTION_CATEGORY_LABEL?
+}
+
 model Payment {
   id             String         @id @default(uuid())
   amount         Float
@@ -180,7 +196,7 @@ model Payment {
 
 // Subscription model
 model Subscription {
- id                String                      @id @default(uuid())
+  id                String                      @id @default(uuid())
   name              String
   price             Float
   currency          SUBSCRIPTION_CURRENCY       @default(GBP)

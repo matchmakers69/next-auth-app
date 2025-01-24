@@ -9,7 +9,7 @@ const PostList = async ({ fetchData }: PostListProps) => {
 
   if (!posts.length) {
     return (
-      <Alert data-testid="posts-missing-data" severity="info">
+      <Alert data-testid="posts-missing-data" type="info">
         Sorry, but there are no posts yet.
       </Alert>
     );

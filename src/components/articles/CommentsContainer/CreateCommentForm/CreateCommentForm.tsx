@@ -121,7 +121,7 @@ const CreateCommentForm = ({
         >
           <Reply />
 
-          <span className="max-sm:hidden ml-3 inline-block">Reply</span>
+          <span className="ml-3 inline-block">Reply</span>
         </Button>
       </div>
       {open && form}

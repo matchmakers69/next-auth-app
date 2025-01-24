@@ -9,9 +9,10 @@ export const Logo = ({ width = 50, height = 50 }: LogoProps) => {
         alt="logo"
         className="cursor-pointer"
         quality={100}
+        priority
         width={width}
-        height={height} // Provide height here
-        sizes={`(max-width: ${width}px) 100vw, ${width}px`} // Adjust sizes dynamically
+        height={height}
+        sizes={`(max-width: ${width}px) 100vw, ${width}px`}
         style={{
           objectFit: "contain",
           width: `${width}px`,
