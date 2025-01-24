@@ -2,20 +2,31 @@ import { db } from "@/libs/db";
 import { subscriptionsCategories } from "@/libs/placeholder-data";
 
 async function main() {
-    try {
-      for (const subscriptionCategory of subscriptionsCategories) {
+  try {
+    for (const subscriptionCategory of subscriptionsCategories) {
+      const existingCategory = await db.subscriptionCategory.findFirst({
+        where: { label: subscriptionCategory.label },
+      });
+
+      if (!existingCategory) {
         await db.subscriptionCategory.create({
           data: subscriptionCategory,
         });
+        console.log(`Created category: ${subscriptionCategory.label}`);
+      } else {
+        console.log(
+          `Category ${subscriptionCategory.label} already exists, skipping.`,
+        );
       }
-      console.log('Seed completed successfully');
-    } catch (error) {
-      console.error('Error during seeding:', error);
-      throw error; // Re-throw the error to be caught in the outer catch block
-    } finally {
-      await db.$disconnect();
     }
+    console.log("Seed completed successfully");
+  } catch (error) {
+    console.error("Error during seeding:", error);
+    throw error;
+  } finally {
+    await db.$disconnect();
   }
+}
 
 main()
   .then(async () => {
