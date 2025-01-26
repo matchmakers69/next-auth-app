@@ -5,8 +5,17 @@ import { CreateSubscriptionWizardProps } from "./defs";
 import { Form, FormProvider, useForm } from "react-hook-form";
 import { getSubscriptionsStepByKey } from "../../services";
 import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/SubscriptionsProvider";
-import { useCallback } from "react";
 import { useSubscriptionsStepper } from "../../hooks/useSubscriptionsStepper";
+import {
+  ExpenseInformationSchema,
+  GeneralInformationSchema,
+} from "./schemas/subscriptionsStepsSchema";
+import { SubscriptionStepValues } from "../../types";
+
+const schemas = {
+  subscriptionsGeneralInformation: GeneralInformationSchema,
+  expenseInformation: ExpenseInformationSchema,
+};
 
 const CreateSubscriptionWizard = ({
   open,
@@ -22,16 +31,37 @@ const CreateSubscriptionWizard = ({
 
   // Creating a new subscription login
   const methods = useForm({
-    mode: "onSubmit",
+    mode: "all",
+    // resolver: zodResolver(schemas[currentStep]),
+    defaultValues: {
+      subscriptionsGeneralInformation: {
+        name: "",
+        category: "",
+        avatar_url: "https://dsc.cloud/88160a/Google-Avatar.png",
+      },
+      expenseInformation: {
+        cost: undefined,
+        currency: "",
+        billingPeriod: "",
+        nextPaymentDate: "",
+      },
+    },
   });
 
-  const handleAddSubscriptionSubmit = (stepsValues: any) => {
+  const handleAddSubscriptionSubmit = (stepValues: SubscriptionStepValues) => {
     if (!currentStep) {
       throw new Error("Current step is not defined");
     }
 
     if (!lastStep) {
       handleGoToNextStep();
+    } else {
+      const subscriptionsStepsData: SubscriptionStepValues = {
+        ...methods.getValues(),
+        ...stepValues,
+      };
+
+      console.log(subscriptionsStepsData);
     }
   };
 

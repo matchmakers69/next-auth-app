@@ -8,7 +8,7 @@ export const getSubscriptionsList = cache(
     orderBy: { key: string; value: string },
   ): Promise<Subscription[]> => {
     try {
-      const result = await db.subscription.findMany({
+      const subscriptions = await db.subscription.findMany({
         where: {
           ownerId: userId,
         },
@@ -16,7 +16,7 @@ export const getSubscriptionsList = cache(
         orderBy: { [`${orderBy.key}`]: orderBy.value },
       });
 
-      return result;
+      return subscriptions;
     } catch (error) {
       console.error(`Some error ${error}`);
       throw new Error("Cannot fetch topics");

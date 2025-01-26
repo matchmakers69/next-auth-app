@@ -5,6 +5,7 @@ import { type Metadata } from "next/types";
 import SessionProvider from "@/components/providers/SessionProvider/SessionProvider";
 import ToasterProvider from "@/components/providers/ToasterProvider";
 import ProgressBarProvider from "@/components/providers/ProgressBarProvider";
+import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
 
 const PoppinsFont = Poppins({
   subsets: ["latin"],
@@ -43,7 +44,9 @@ export default function RootLayout({
       <body className={`${PoppinsFont.className} body-app scroll-touch`}>
         <ToasterProvider />
         <ProgressBarProvider>
-          <SessionProvider>{children}</SessionProvider>
+          <SessionProvider>
+            <ReactQueryProvider>{children}</ReactQueryProvider>
+          </SessionProvider>
         </ProgressBarProvider>
       </body>
     </html>

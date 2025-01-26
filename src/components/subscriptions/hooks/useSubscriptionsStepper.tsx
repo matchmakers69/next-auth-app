@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { SubscriptionsStepsMapper, SubscriptionsStepValue } from "../types";
+import { SubscriptionsStepsMapper } from "../types";
 import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/SubscriptionsProvider";
 
 export const useSubscriptionsStepper = () => {

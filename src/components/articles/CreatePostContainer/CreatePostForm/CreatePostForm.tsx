@@ -9,7 +9,7 @@ import { FormEvent, startTransition, useActionState, useRef } from "react";
 import { Loader } from "lucide-react";
 import { CreatePostValues } from "./validation/createPostValidationSchema";
 import { CreatePostFormProps } from "./defs";
-import { InputSx } from "../../styles/muiTextFieldStyles";
+import { InputSx } from "../../../ui/formParts/MuiTextField/muiTextFieldStyles";
 import { createPost } from "@/actions/create-post";
 import { FormError } from "@/components/ui/formParts/FormError";
 

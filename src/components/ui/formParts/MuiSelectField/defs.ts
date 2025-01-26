@@ -1,23 +1,20 @@
-import { FieldError } from "react-hook-form";
+export interface OptionType {
+	label: string;
+	value: string | number;
+	disabled?: boolean; // Optional property
+  }
 
-export type Value = string | number;
-
-export type OptionType = Value | { label: string | null; value: Value; disabled?: boolean };
-
-interface CustomSelectProps<T extends OptionType> {
-	id: string;
-	inputLabelId: string;
-	label?: string;
-	name: string;
-	value: Value;
-	onChange: (option: T) => void;
-	options: T[];
-	displayEmpty?: boolean;
-	placeholder?: string;
-	emptyLabel?: string;
-	["data-testid"]?: string;
-	["aria-label"]?: string;
-	error?: FieldError | boolean;
+export interface MuiSelectFieldProps<T extends OptionType> {
+  id: string;
+  inputLabelId: string;
+  options: T[];
+  value: T["value"];
+  onChange: (selected: T) => void;
+  label?: string;
+  placeholder?: string;
+  emptyLabel?: string;
+  displayEmpty?: boolean;
+  error?: boolean;
+  name?: string;
+  "data-testid"?: string;
 }
-
-export type MuiSelectFieldProps<T extends OptionType> = CustomSelectProps<T>;

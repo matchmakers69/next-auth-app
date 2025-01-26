@@ -1,4 +1,4 @@
-import { SubscriptionsStepValue } from "@/components/subscriptions/types";
+import { SubscriptionExpenseInformation, SubscriptionGeneralInformation, SubscriptionsStepValue } from "@/components/subscriptions/types";
 import { BaseProps } from "@/components/ui/types/defs";
 import {
   SUBSCRIPTION_BILLING_PERIOD,
@@ -8,23 +8,10 @@ import { Dispatch } from "react";
 
 export type SubscriptionsProviderProps = BaseProps;
 
-type SubscriptionGeneralInformation = {
-  name: string;
-  category: string;
-  avatarUrl?: string;
-};
-
-type SubscriptionExpenseInformation = {
-  cost: number;
-  currency: SUBSCRIPTION_CURRENCY;
-  billingPeriod: SUBSCRIPTION_BILLING_PERIOD;
-  nextPaymentDate: string;
-};
-
 export type SubscriptionsStateInitial = {
   currentStep: SubscriptionsStepValue;
   subscriptionsGeneralInformation: SubscriptionGeneralInformation | null;
-  subscriptionsExpenseInformation: SubscriptionExpenseInformation | null;
+  expenseInformation: SubscriptionExpenseInformation | null;
 };
 
 export type SubscriptionsAction =
