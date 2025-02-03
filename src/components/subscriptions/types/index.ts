@@ -32,3 +32,7 @@ export type SubscriptionStepValues = {
   subscriptionsGeneralInformation: SubscriptionGeneralInformation;
   expenseInformation: SubscriptionExpenseInformation;
 };
+
+export type FinalCreateSubscriptionStep = {
+  onSubmit: (stepValues: Pick<SubscriptionStepValues, "expenseInformation">) => void
+}

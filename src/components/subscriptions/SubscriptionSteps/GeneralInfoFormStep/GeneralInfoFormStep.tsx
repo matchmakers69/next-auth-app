@@ -6,9 +6,9 @@ import { Controller, useController, useFormContext } from "react-hook-form";
 import { SubscriptionStepValues } from "../../types";
 import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/SubscriptionsProvider";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
-import { InputSx } from "@/components/ui/formParts/MuiTextField/muiTextFieldStyles";
 import { SubscriptionCategoriesSelector } from "../../SubscriptionCategoriesSelector";
 import { SUBSCRIPTION_CATEGORY_LABEL } from "@prisma/client";
+import { InputSx } from "@/utils/stylesUtils";
 
 const GeneralInfoFormStep = ({ title, onSubmit }: GeneralInfoFormStepProps) => {
   const { handleSubmit, control } = useFormContext<SubscriptionStepValues>();
@@ -25,29 +25,32 @@ const GeneralInfoFormStep = ({ title, onSubmit }: GeneralInfoFormStepProps) => {
       type: "SET_GENERAL_INFORMATION",
       payload: stepValues.subscriptionsGeneralInformation,
     });
-    console.log(stepValues, "stepValues");
     onSubmit(stepValues);
   };
 
   return (
-    <div>
-      <h4>{title}</h4>
-      <form noValidate onSubmit={handleSubmit(handleSaveGeneralInfo)}>
-        <div className="mb-10 mt-6">
+    <>
+      <h4 className="mb-10 text-sm font-semibold">{title}</h4>
+      <form
+        autoComplete="off"
+        noValidate
+        onSubmit={handleSubmit(handleSaveGeneralInfo)}
+      >
+        <div className="mb-10">
           <Controller
             name="subscriptionsGeneralInformation.name"
             control={control}
             render={({ field }) => (
               <MuiTextField
-                id="subscription-name-value"
-                placeholder="I.e Netflix"
+                id="subscription-name"
+                placeholder="i.e Netflix"
                 name="name"
                 fullWidth
-                label="Subscription name"
+                label="Enter name of your subscription"
                 data-testid="subscriptionValue"
                 aria-label="Enter subscription name"
                 onChange={field.onChange}
-                rows={4}
+                type="text"
                 margin="none"
                 value={field.value}
                 sx={InputSx}
@@ -68,7 +71,34 @@ const GeneralInfoFormStep = ({ title, onSubmit }: GeneralInfoFormStepProps) => {
             onChange={categoryController.field.onChange}
           />
         </div>
-        <div className="button-wrapper mt-6">
+        <div className="mb-10 mt-6">
+          <Controller
+            name="subscriptionsGeneralInformation.avatarUrl"
+            control={control}
+            render={({ field }) => (
+              <MuiTextField
+                id="subscription-avatar-url"
+                placeholder="i.e https://dsc.cloud/88160a/Google-Avatar.png"
+                name="avatarUrl"
+                fullWidth
+                type="text"
+                label="Avatar url"
+                data-testid="avatarValue"
+                aria-label="Enter avatar url"
+                onChange={field.onChange}
+                margin="none"
+                value={field.value}
+                sx={InputSx}
+                //error={!!state?.errors?.content}
+              />
+            )}
+          />
+
+          {/* {state?.errors?.content && (
+            <FormHelperText>{state?.errors?.content.join(", ")}</FormHelperText>
+          )} */}
+        </div>
+        <div className="button-wrapper mt-20">
           <Button
             type="submit"
             variant="default"
@@ -83,7 +113,7 @@ const GeneralInfoFormStep = ({ title, onSubmit }: GeneralInfoFormStepProps) => {
           </Button>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 

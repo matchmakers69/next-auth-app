@@ -14,16 +14,16 @@ export const useSubscriptionsStepper = () => {
     }
     const nextIndex = currentIndex + 1;
     dispatch({ type: "SET_STEP", payload: stepValues[nextIndex] });
-  }, []);
+  }, [currentStep, stepValues]);
 
   const handleBackToPrevStep = useCallback(() => {
     const currentIndex = stepValues.indexOf(currentStep);
-    if (currentIndex === 0) {
-      return;
+
+    if (currentIndex > 0) {
+      const prevStep = currentIndex - 1;
+      dispatch({ type: "SET_STEP", payload: stepValues[prevStep] });
     }
-    const prevStep = currentIndex - 1;
-    dispatch({ type: "SET_STEP", payload: stepValues[prevStep] });
-  }, []);
+  }, [currentStep, stepValues]);
 
   const lastStep = currentStep === stepValues[stepValues.length - 1];
 

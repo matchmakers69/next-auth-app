@@ -1,6 +1,5 @@
 "use client";
 
-import Modal from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
 import { Controller, useForm } from "react-hook-form";
@@ -9,9 +8,10 @@ import { FormEvent, startTransition, useActionState, useRef } from "react";
 import { Loader } from "lucide-react";
 import { CreatePostValues } from "./validation/createPostValidationSchema";
 import { CreatePostFormProps } from "./defs";
-import { InputSx } from "../../../ui/formParts/MuiTextField/muiTextFieldStyles";
 import { createPost } from "@/actions/create-post";
 import { FormError } from "@/components/ui/formParts/FormError";
+import { InputSx } from "@/utils/stylesUtils";
+import { Modal } from "@/components/ui/Modal";
 
 const CreatePostForm = ({ open, onClose, slug }: CreatePostFormProps) => {
   const [state, formAction, isPending] = useActionState(

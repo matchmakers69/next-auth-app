@@ -1,4 +1,12 @@
-import { setHours, setMinutes, setSeconds, setMilliseconds } from "date-fns";
+import { DATE_GLOBAL_FORMAT } from "@/constants";
+import { setHours, setMinutes, setSeconds, setMilliseconds, format } from "date-fns";
+
+
+// Get today's date
+const today = new Date();
+
+// Format the date
+export const formattedCurrentDate = format(today, DATE_GLOBAL_FORMAT);
 
 export const preserveDateTime = (newValue: Date | null, currentDate: Date = new Date()): Date | null => {
 	if (newValue) {
@@ -12,3 +20,5 @@ export const preserveDateTime = (newValue: Date | null, currentDate: Date = new 
 	}
 	return null;
 };
+
+

@@ -1,20 +1,20 @@
 export interface OptionType {
-	label: string;
-	value: string | number;
-	disabled?: boolean; // Optional property
-  }
+  label: string;
+  value: string | number;
+  disabled?: boolean;
+}
 
 export interface MuiSelectFieldProps<T extends OptionType> {
   id: string;
-  inputLabelId: string;
+  labelOptionalText?: string;
   options: T[];
   value: T["value"];
   onChange: (selected: T) => void;
-  label?: string;
-  placeholder?: string;
+  labelText?: string;
   emptyLabel?: string;
   displayEmpty?: boolean;
   error?: boolean;
   name?: string;
-  "data-testid"?: string;
+  ["data-testid"]?: string;
+  ["aria-label"]?: string;
 }

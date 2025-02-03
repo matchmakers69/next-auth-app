@@ -1,24 +1,56 @@
 import { MuiSelectFieldProps, OptionType } from "./defs";
-import InputLabel from "@mui/material/InputLabel";
 import {
   FormControl,
   MenuItem,
   Select,
   SelectChangeEvent,
+  SxProps,
+  Theme,
 } from "@mui/material";
+import { FormLabel } from "../FormLabel";
+import { fontDefault } from "@/utils/fonts";
+
+const defaultSx: SxProps<Theme> = {
+  fontSize: "1.5rem",
+  fontFamily: fontDefault,
+  borderRadius: "10px",
+  color: "var(--dark-grey)",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderWidth: "1px",
+      borderColor: "var(--border-grey-light)",
+    },
+    "&:hover fieldset": {
+      borderWidth: "1px",
+      borderColor: "var(--dark-grey)",
+    },
+    "&.Mui-focused fieldset": {
+      borderWidth: "1px",
+      borderColor: "var(--dark-grey) !important",
+    },
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderRadius: "10px",
+    borderWidth: "1px",
+  },
+  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "var(--dark-grey) !important",
+    borderWidth: "1px !important",
+  },
+};
 
 function MuiSelectField<T extends OptionType>({
   id,
-  inputLabelId,
+  labelOptionalText,
   options,
   value,
   onChange,
-  label,
-  placeholder,
+  labelText,
   emptyLabel,
   displayEmpty,
   error,
   "data-testid": dataTestid,
+  "aria-label": ariaLabel,
 }: MuiSelectFieldProps<T>) {
   const handleChange = (e: SelectChangeEvent<string | number>) => {
     const selectedValue = options.find(
@@ -39,13 +71,20 @@ function MuiSelectField<T extends OptionType>({
         width: "100%",
       }}
     >
-      {label && <InputLabel id={inputLabelId}>{label}</InputLabel>}
+      {labelText && (
+        <FormLabel
+          htmlFor={labelText}
+          label={labelText}
+          optionalText={labelOptionalText || ""}
+        />
+      )}
       <Select
         id={id}
         value={value ?? ""}
         onChange={handleChange}
         data-hj-suppress
         data-testid={dataTestid}
+        aria-label={ariaLabel}
         displayEmpty={displayEmpty}
         SelectDisplayProps={{
           role: "combobox",
@@ -61,36 +100,18 @@ function MuiSelectField<T extends OptionType>({
             },
           },
         }}
-        sx={{
-          fontSize: "1.5rem",
-          borderRadius: "10px",
-          color: "var(--dark-grey)",
-          "& fieldset": {
-            border: "1px solid",
-            borderColor: "var(--border-grey-light)",
-          },
-          "&:hover fieldset": {
-            border: "1px solid",
-            borderColor: "var(--dark-grey)",
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "var(--dark-grey)",
-            background: "none",
-          },
-
-          ".MuiOutlinedInput-notchedOutline": {
-            borderRadius: "10px",
-          },
-        }}
+        sx={defaultSx}
       >
         {displayEmpty && (
-          <MenuItem value="" disabled>
+          <MenuItem
+            sx={{
+              fontSize: "1.5rem",
+              color: "var(--dark-grey)",
+            }}
+            value=""
+            disabled
+          >
             {emptyLabel}
-          </MenuItem>
-        )}
-        {placeholder && (
-          <MenuItem value="" disabled>
-            {placeholder}
           </MenuItem>
         )}
         {options.map((option) => (

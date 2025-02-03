@@ -1,8 +1,7 @@
 "use client";
 
-import Modal from "@/components/ui/Modal";
 import { CreateSubscriptionWizardProps } from "./defs";
-import { Form, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { getSubscriptionsStepByKey } from "../../services";
 import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/SubscriptionsProvider";
 import { useSubscriptionsStepper } from "../../hooks/useSubscriptionsStepper";
@@ -11,6 +10,9 @@ import {
   GeneralInformationSchema,
 } from "./schemas/subscriptionsStepsSchema";
 import { SubscriptionStepValues } from "../../types";
+import { LocationProvider } from "@/components/providers/LocationProvider";
+import { Modal } from "@/components/ui/Modal";
+import { formattedCurrentDate } from "@/utils/dates";
 
 const schemas = {
   subscriptionsGeneralInformation: GeneralInformationSchema,
@@ -37,13 +39,13 @@ const CreateSubscriptionWizard = ({
       subscriptionsGeneralInformation: {
         name: "",
         category: "",
-        avatar_url: "https://dsc.cloud/88160a/Google-Avatar.png",
+        avatarUrl: "https://dsc.cloud/88160a/Google-Avatar.png",
       },
       expenseInformation: {
-        cost: undefined,
+        cost: 0,
         currency: "",
         billingPeriod: "",
-        nextPaymentDate: "",
+        nextPaymentDate: null,
       },
     },
   });
@@ -61,7 +63,7 @@ const CreateSubscriptionWizard = ({
         ...stepValues,
       };
 
-      console.log(subscriptionsStepsData);
+      console.log(subscriptionsStepsData, "cg=hujek");
     }
   };
 
@@ -82,11 +84,13 @@ const CreateSubscriptionWizard = ({
       }}
     >
       <FormProvider {...methods}>
-        <SubscriptionStepComponent
-          title={subscriptionTitle}
-          onPrev={handleBackToPrevStep}
-          onSubmit={handleAddSubscriptionSubmit}
-        />
+        <LocationProvider>
+          <SubscriptionStepComponent
+            title={subscriptionTitle}
+            onPrev={handleBackToPrevStep}
+            onSubmit={handleAddSubscriptionSubmit}
+          />
+        </LocationProvider>
       </FormProvider>
     </Modal>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import Modal from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
 import { Controller, useForm } from "react-hook-form";
@@ -10,8 +9,9 @@ import FormHelperText from "@/components/ui/formParts/FormHelperText";
 import { createTopic } from "@/actions/create-topic";
 import { startTransition, useActionState, useRef } from "react";
 import { Loader } from "lucide-react";
-import { InputSx } from "../../../ui/formParts/MuiTextField/muiTextFieldStyles";
 import { FormError } from "@/components/ui/formParts/FormError";
+import { Modal } from "@/components/ui/Modal";
+import { InputSx } from "@/utils/stylesUtils";
 
 const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
   const [state, formAction, isPending] = useActionState(createTopic, {

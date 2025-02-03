@@ -9,7 +9,7 @@ export const GeneralInformationSchema = z.object({
         return { message: "You have to select job type" };
       },
     }),
-    avatar_url: z
+    avatarUrl: z
       .string()
       .max(500, {
         message: "Too many characters for avatar url field. Max is 500",

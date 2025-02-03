@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import CreateTopicForm from "./CreateTopicForm";
 import { Button } from "@/components/ui/Button";
+import { CreateTopicForm } from "./CreateTopicForm";
 
 const CreateTopicContainer = () => {
   const [open, setOpen] = useState(false);

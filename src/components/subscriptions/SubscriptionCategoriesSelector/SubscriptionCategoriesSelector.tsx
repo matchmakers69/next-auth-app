@@ -38,7 +38,7 @@ const SubscriptionCategoriesSelector = ({
   return (
     <MuiSelectField
       id="subscription-categories"
-      inputLabelId="subscription-categories"
+      labelText="Subscription category"
       onChange={handleChange}
       value={value}
       name="subscriptionCategory"
