@@ -1,14 +1,11 @@
-export interface OptionType {
-  label: string;
-  value: string | number;
-  disabled?: boolean;
-}
+export type Value = string | number;
+export type OptionType = Value | { label: string | null; value: Value; disabled?: boolean };
 
-export interface MuiSelectFieldProps<T extends OptionType> {
+interface CustomSelectProps<T extends OptionType> {
   id: string;
   labelOptionalText?: string;
   options: T[];
-  value: T["value"];
+  value: Value;
   onChange: (selected: T) => void;
   labelText?: string;
   emptyLabel?: string;
@@ -18,3 +15,4 @@ export interface MuiSelectFieldProps<T extends OptionType> {
   ["data-testid"]?: string;
   ["aria-label"]?: string;
 }
+export type MuiSelectFieldProps<T extends OptionType> = CustomSelectProps<T>;

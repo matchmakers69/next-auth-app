@@ -12,7 +12,8 @@ export type NumberFieldProps = {
 	sx?: SxProps;
 	["data-testid"]?: string;
 	["aria-label"]?: string;
-	min?: number | null;
-	max?: number | null;
+	min?: string | null;
+	max?: string | null;
 	isCurrency?: boolean;
+	step?: string;
 } & TextFieldProps;

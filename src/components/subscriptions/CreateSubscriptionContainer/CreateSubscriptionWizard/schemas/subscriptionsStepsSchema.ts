@@ -32,7 +32,7 @@ export const GeneralInformationSchema = z.object({
 
 export const ExpenseInformationSchema = z.object({
   expenseInformation: z.object({
-    cost: z
+    price: z
       .number()
       .min(1, "Please enter a valid cost")
       .max(9999999999, "Number must be less than or equal to 10 digits")

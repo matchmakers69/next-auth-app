@@ -22,26 +22,22 @@ const SubscriptionCategoriesSelector = ({
     return <div>{error.message ?? "Cannot fetch subscription categories"}</div>;
   }
 
-  // Map subscription categories to enum values
   const mappedOptions = subscriptionCategories.map((category) => ({
     label: category.label || "Uncategorized",
-    value: category.label as SUBSCRIPTION_CATEGORY_LABEL, // Ensure proper casting
+    value: category.label as SUBSCRIPTION_CATEGORY_LABEL,
   }));
 
-  const handleChange = (selected: {
-    label: SUBSCRIPTION_CATEGORY_LABEL;
-    value: SUBSCRIPTION_CATEGORY_LABEL;
-  }) => {
-    onChange(selected.value); // Extract `value` and pass it to the parent handler
+  const handleChange = (selected: SUBSCRIPTION_CATEGORY_LABEL) => {
+    onChange(selected);
   };
 
   return (
     <MuiSelectField
       id="subscription-categories"
-      labelText="Subscription category"
-      onChange={handleChange}
-      value={value}
-      name="subscriptionCategory"
+      labelText="Category"
+      onChange={(selected) => handleChange(selected.value)}
+      value={value || ""}
+      name="category"
       displayEmpty
       emptyLabel="Select category"
       options={mappedOptions}

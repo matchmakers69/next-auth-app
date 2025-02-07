@@ -53,8 +53,10 @@ function MuiSelectField<T extends OptionType>({
   "aria-label": ariaLabel,
 }: MuiSelectFieldProps<T>) {
   const handleChange = (e: SelectChangeEvent<string | number>) => {
-    const selectedValue = options.find(
-      (option) => option.value === e.target.value,
+    const selectedValue = options.find((option) =>
+      typeof option === "number" || typeof option === "string"
+        ? option === e.target.value
+        : option.value === e.target.value,
     );
 
     if (selectedValue) {
@@ -114,20 +116,37 @@ function MuiSelectField<T extends OptionType>({
             {emptyLabel}
           </MenuItem>
         )}
-        {options.map((option) => (
-          <MenuItem
-            data-hj-suppress
-            disabled={option.disabled ?? false}
-            value={option.value}
-            key={option.value}
-            sx={{
-              fontSize: "1.5rem",
-              color: "var(--dark-grey)",
-            }}
-          >
-            {option.label}
-          </MenuItem>
-        ))}
+        {options.map((option) => {
+          if (typeof option === "object") {
+            return (
+              <MenuItem
+                data-hj-suppress
+                disabled={option.disabled ?? false}
+                value={option.value}
+                key={option.value}
+                sx={{
+                  fontSize: "1.5rem",
+                  color: "var(--dark-grey)",
+                }}
+              >
+                {option.label}
+              </MenuItem>
+            );
+          }
+          return (
+            <MenuItem
+              sx={{
+                fontSize: "1.5rem",
+                color: "var(--dark-grey)",
+              }}
+              data-hj-suppress
+              value={option}
+              key={option}
+            >
+              {option}
+            </MenuItem>
+          );
+        })}
       </Select>
     </FormControl>
   );

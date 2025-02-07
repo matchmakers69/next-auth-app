@@ -24,7 +24,6 @@ export default async function SubscriptionsPage() {
   if (!subscriptions) {
     return null;
   }
-
   return (
     <>
       <section className="mb-16 flex w-full items-center justify-between">

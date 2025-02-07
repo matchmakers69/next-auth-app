@@ -46,6 +46,8 @@
 
 ### https://github.com/codegenixdev/complex-form-enterprise/blob/main/src/features/form/components/form.tsx - components for multistepform
 
+### https://egghead.io/fetch-and-render-paginated-data-with-react-19-use~b42bd?utm_campaign=Fetch%20and%20render%20paginated%20data%20with%20React%2019%20use&utm_content=screenshot&utm_content=Fetch%20and%20render%20paginated%20data%20with%20React%2019%20use&utm_medium=email_action&utm_source=customer.io - fetch paginated data in react-19
+
 ## Prisma
 
 #### After changes in models

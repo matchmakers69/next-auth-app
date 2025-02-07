@@ -47,6 +47,8 @@ const MUIDateTimePicker = forwardRef<HTMLDivElement, MUIDateTimePickerProps>(
   ) => {
     const [open, setOpen] = useState(false);
 
+    const parsedMaxDate = maxDate ? new Date(maxDate) : undefined;
+    const parsedMinDate = minDate ? new Date(minDate) : undefined;
     return (
       <>
         {labelText && (
@@ -63,8 +65,8 @@ const MUIDateTimePicker = forwardRef<HTMLDivElement, MUIDateTimePickerProps>(
           disablePast={disablePast}
           format={format}
           name={name}
-          maxDate={maxDate ?? undefined}
-          minDate={minDate ?? undefined}
+          maxDate={parsedMaxDate}
+          minDate={parsedMinDate}
           onChange={(newVal) => {
             onChange(newVal);
           }}

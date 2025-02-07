@@ -14,8 +14,9 @@ const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(
       sx = {},
       "data-testid": dataTestid = "number-field",
       "aria-label": ariaLabel,
-      min = 0,
-      max = 999999,
+      min = "",
+      max = "",
+      step = "",
       isCurrency = false,
       ...props // Allows using TextFieldProps like label, variant, etc.
     },
@@ -35,9 +36,9 @@ const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(
         {...props}
         slotProps={{
           input: {
-            endAdornment: isCurrency && (
+            startAdornment: isCurrency && (
               <InputAdornment data-testid="currency-symbol" position="start">
-                <HandCoins size={24} />
+                <HandCoins size={16} />
               </InputAdornment>
             ),
           },
@@ -46,6 +47,7 @@ const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(
             "data-testid": dataTestid,
             min: min,
             max: max,
+            step: step,
           },
         }}
       />

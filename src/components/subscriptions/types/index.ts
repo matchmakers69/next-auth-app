@@ -22,7 +22,7 @@ export type SubscriptionGeneralInformation = {
 };
 
 export type SubscriptionExpenseInformation = {
-  cost: number;
+  price: number;
   currency: SUBSCRIPTION_CURRENCY;
   billingPeriod: SUBSCRIPTION_BILLING_PERIOD;
   nextPaymentDate: string;

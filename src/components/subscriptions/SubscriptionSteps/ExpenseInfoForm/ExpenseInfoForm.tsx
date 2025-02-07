@@ -5,17 +5,18 @@ import { ExpenseInfoFormProps } from "./defs";
 import { Button } from "@/components/ui/Button";
 import NumberField from "@/components/ui/formParts/NumberField/NumberField";
 import MuiSelectField from "@/components/ui/formParts/MuiSelectField";
-import { billingPeriodOptions } from "@/utils/billing";
+
 import {
   SUBSCRIPTION_BILLING_PERIOD,
   SUBSCRIPTION_CURRENCY,
 } from "@prisma/client";
 import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
 import { DATE_GLOBAL_FORMAT } from "@/constants";
-import { startOfToday } from "date-fns";
 import { InputSx } from "@/utils/stylesUtils";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
 import { currencies } from "@/utils/currencies";
+import { addDays, format, parse, startOfDay } from "date-fns";
+import { SUBSCRIPTION_BILLING_OPTIONS } from "@/constants/mocks";
 
 const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
   const {
@@ -35,10 +36,12 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
     });
   };
 
-  const mappedBillingOptions = billingPeriodOptions.map((billingOption) => ({
-    label: billingOption || "Uncategorized",
-    value: billingOption as SUBSCRIPTION_BILLING_PERIOD,
-  }));
+  const mappedBillingOptions = SUBSCRIPTION_BILLING_OPTIONS.map(
+    (billingOption) => ({
+      label: billingOption || "Uncategorized",
+      value: billingOption as SUBSCRIPTION_BILLING_PERIOD,
+    }),
+  );
 
   return (
     <>
@@ -51,13 +54,13 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
         <div className="currencies-row mb-10 flex items-end gap-10">
           <div className="currency-field-wrapper flex w-full flex-col md:w-[50%]">
             <Controller
-              name="expenseInformation.cost"
+              name="expenseInformation.price"
               control={control}
               render={({ field }) => (
                 <NumberField
                   id="subscription-cost"
                   placeholder="e.g. 5.00"
-                  name="cost"
+                  name="price"
                   fullWidth
                   label="Cost"
                   data-testid="costValue"
@@ -68,8 +71,8 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                   type="number"
                   sx={InputSx}
                   isCurrency
-                  min={0}
-                  max={1000}
+                  step="0.01"
+                  min="0"
                   //error={!!state?.errors?.content}
                 />
               )}
@@ -147,7 +150,12 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                 return (
                   <MUIDateTimePicker
                     disablePast
-                    minDate={startOfToday()}
+                    minDate={addDays(startOfDay(new Date()), 1)}
+                    // minDate={parse(
+                    //   format(new Date(), "yyyy-MM-dd"),
+                    //   "yyyy-MM-dd",
+                    //   new Date(),
+                    // )}
                     maxDate={null}
                     format={DATE_GLOBAL_FORMAT}
                     error={Boolean(errors.expenseInformation?.nextPaymentDate)}
