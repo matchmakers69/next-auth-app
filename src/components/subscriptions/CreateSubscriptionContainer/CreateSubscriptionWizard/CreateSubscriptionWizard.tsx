@@ -53,6 +53,7 @@ const CreateSubscriptionWizard = ({
         currency: "",
         billingPeriod: "",
         nextPaymentDate: null,
+        start_date: null,
       },
     },
   });

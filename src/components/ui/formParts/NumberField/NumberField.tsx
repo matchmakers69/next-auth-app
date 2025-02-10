@@ -38,7 +38,7 @@ const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(
           input: {
             startAdornment: isCurrency && (
               <InputAdornment data-testid="currency-symbol" position="start">
-                <HandCoins size={16} />
+                <HandCoins size={24} />
               </InputAdornment>
             ),
           },

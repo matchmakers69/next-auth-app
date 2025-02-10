@@ -14,9 +14,8 @@ import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
 import { DATE_GLOBAL_FORMAT } from "@/constants";
 import { InputSx } from "@/utils/stylesUtils";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
-import { currencies } from "@/utils/currencies";
-import { addDays, format, parse, startOfDay } from "date-fns";
-import { SUBSCRIPTION_BILLING_OPTIONS } from "@/constants/mocks";
+import { addDays, format, parse, startOfDay, startOfToday } from "date-fns";
+import { CURRENCIES, SUBSCRIPTION_BILLING_OPTIONS } from "@/constants/mocks";
 
 const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
   const {
@@ -90,10 +89,10 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
               render={({ field }) => (
                 <MUITextFieldSelect
                   id="currency-select"
-                  labelText="Select Currency"
+                  labelText="Select currency"
                   displayValue
                   name="currency"
-                  options={currencies}
+                  options={CURRENCIES}
                   data-testid="currency-value"
                   aria-label="Enter your currency"
                   onChange={(selected) => {
@@ -112,32 +111,86 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
             />
           </div>
         </div>
+        <div className="mb-10">
+          <Controller
+            name="expenseInformation.billingPeriod"
+            control={control}
+            render={({ field }) => (
+              <MuiSelectField
+                id="billingPeriod-id"
+                labelText="Billing period"
+                displayEmpty
+                emptyLabel="How ofter do you pay?"
+                name="billingPeriod"
+                data-testid="billingPeriod-value"
+                aria-label="Enter your billing period"
+                onChange={(selected) => {
+                  const typedSelected = selected as {
+                    label: string;
+                    value: SUBSCRIPTION_BILLING_PERIOD;
+                  };
+                  field.onChange(typedSelected.value);
+                }}
+                value={field.value}
+                options={mappedBillingOptions}
+                //error={!!state?.errors?.content}
+              />
+            )}
+          />
+
+          {/* {state?.errors?.name && (
+            <FormHelperText>{state.errors.name.join(", ")}</FormHelperText>
+          )} */}
+        </div>
         <div className="billing-period-row mb-10 flex items-end gap-10">
           <div className="billing-period-wrapper flex w-full flex-col md:w-[50%]">
             <Controller
-              name="expenseInformation.billingPeriod"
               control={control}
-              render={({ field }) => (
-                <MuiSelectField
-                  id="billingPeriod-id"
-                  labelText="Billing period"
-                  displayEmpty
-                  emptyLabel="Select period"
-                  name="billingPeriod"
-                  data-testid="billingPeriod-value"
-                  aria-label="Enter your billing period"
-                  onChange={(selected) => {
-                    const typedSelected = selected as {
-                      label: string;
-                      value: SUBSCRIPTION_BILLING_PERIOD;
-                    };
-                    field.onChange(typedSelected.value);
-                  }}
-                  value={field.value}
-                  options={mappedBillingOptions}
-                  //error={!!state?.errors?.content}
-                />
-              )}
+              name="expenseInformation.start_date"
+              render={({
+                field: { onChange: onReactHookFormChange, value },
+                fieldState: { error },
+              }) => {
+                const isValidDate = (val: unknown): val is Date => {
+                  return val instanceof Date && !isNaN(val.getTime());
+                };
+                const dateValue = isValidDate(value)
+                  ? value
+                  : value
+                    ? new Date(value as string)
+                    : null;
+                return (
+                  <MUIDateTimePicker
+                    disablePast
+                    minDate={startOfToday()}
+                    error={Boolean(error)}
+                    // minDate={parse(
+                    //   format(new Date(), "yyyy-MM-dd"),
+                    //   "yyyy-MM-dd",
+                    //   new Date(),
+                    // )}
+                    maxDate={null}
+                    format={DATE_GLOBAL_FORMAT}
+                    // errorMessage={
+                    //   errors.expenseInformation?.start_date?.message
+                    // }
+                    onChange={(newValue) => {
+                      const finalValue = isValidDate(newValue)
+                        ? newValue.toISOString()
+                        : newValue;
+                      onReactHookFormChange(finalValue);
+                    }}
+                    // onChange={(newValue) => {
+                    //   onReactHookFormChange(newValue);
+                    //   trigger(["expenseInformation.start_date"]);
+                    // }}
+                    labelText="Start subscription date"
+                    timezone="default"
+                    value={dateValue}
+                    placeholder="Start subscription date"
+                  />
+                );
+              }}
             />
           </div>
           <div className="next-billing-column flex w-full flex-col md:w-[50%]">
@@ -169,7 +222,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                     labelText="Next billing payment"
                     timezone="default"
                     value={value ? new Date(value) : null}
-                    placeholder="Payment date"
+                    placeholder="Next billing payment"
                   />
                 );
               }}

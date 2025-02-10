@@ -29,7 +29,6 @@ const MUIDateTimePicker = forwardRef<HTMLDivElement, MUIDateTimePickerProps>(
       disableFuture = false,
       disablePast = false,
       error = false,
-      errorMessage,
       format = "dd MMM yyyy",
       labelOptionalText,
       labelText,
@@ -85,6 +84,7 @@ const MUIDateTimePicker = forwardRef<HTMLDivElement, MUIDateTimePickerProps>(
             openPickerIcon: { "data-testid": dataTestId },
             textField: {
               placeholder,
+              error: !!error,
               id: labelText,
               sx: (theme: Theme) =>
                 dateTimeTextFieldStyling(theme, error, open, disabled),

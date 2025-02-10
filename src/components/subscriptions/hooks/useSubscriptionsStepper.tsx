@@ -5,27 +5,28 @@ import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/Subscr
 export const useSubscriptionsStepper = () => {
   const { dispatch, currentStep } = useSubscriptionsContext();
 
-  const stepValues = Object.values(SubscriptionsStepsMapper);
+  const subscriptionStepValues = Object.values(SubscriptionsStepsMapper);
 
   const handleGoToNextStep = useCallback(() => {
-    const currentIndex = stepValues.indexOf(currentStep);
-    if (currentIndex === stepValues.length - 1) {
+    const currentIndex = subscriptionStepValues.indexOf(currentStep);
+    if (currentIndex === subscriptionStepValues.length - 1) {
       return;
     }
     const nextIndex = currentIndex + 1;
-    dispatch({ type: "SET_STEP", payload: stepValues[nextIndex] });
-  }, [currentStep, stepValues]);
+    dispatch({ type: "SET_STEP", payload: subscriptionStepValues[nextIndex] });
+  }, [currentStep, subscriptionStepValues]);
 
   const handleBackToPrevStep = useCallback(() => {
-    const currentIndex = stepValues.indexOf(currentStep);
+    const currentIndex = subscriptionStepValues.indexOf(currentStep);
 
     if (currentIndex > 0) {
       const prevStep = currentIndex - 1;
-      dispatch({ type: "SET_STEP", payload: stepValues[prevStep] });
+      dispatch({ type: "SET_STEP", payload: subscriptionStepValues[prevStep] });
     }
-  }, [currentStep, stepValues]);
+  }, [currentStep, subscriptionStepValues]);
 
-  const lastStep = currentStep === stepValues[stepValues.length - 1];
+  const lastStep =
+    currentStep === subscriptionStepValues[subscriptionStepValues.length - 1];
 
   return {
     handleGoToNextStep,

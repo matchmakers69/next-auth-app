@@ -6,6 +6,7 @@ import {
 export const SubscriptionsStepsMapper = {
   generalInformation: "General information",
   expenseInformation: "Expense information",
+  subscriptionSummary: "Subscription summary",
 } as const;
 
 // We want to get union of all keys of SubscriptionsSteps
@@ -26,6 +27,7 @@ export type SubscriptionExpenseInformation = {
   currency: SUBSCRIPTION_CURRENCY;
   billingPeriod: SUBSCRIPTION_BILLING_PERIOD;
   nextPaymentDate: string;
+  start_date: string;
 };
 
 export type SubscriptionStepValues = {

@@ -7,13 +7,13 @@ import { SUBSCRIPTION_CURRENCY } from "@prisma/client";
 
 interface CreateSubscriptionFormState {
   errors?: {
-    name?: string;
-    category?: string;
-    avatarUrl?: string;
-    price?: number;
-    currency?: string;
-    billing_period?: string;
-    next_payment_date?: string;
+    name?: string[];
+    category?: string[];
+    avatarUrl?: string[];
+    price?: number[];
+    currency?: string[];
+    billing_period?: string[];
+    next_payment_date?: string[];
     _form?: string[];
   };
   success?: boolean;

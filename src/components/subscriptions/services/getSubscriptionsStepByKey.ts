@@ -1,5 +1,6 @@
-import { ExpenseInfoForm } from "../SubscriptionSteps/ExpenseInfoForm";
+import { ExpenseInfoFormStep } from "../SubscriptionSteps/ExpenseInfoFormStep";
 import { GeneralInfoFormStep } from "../SubscriptionSteps/GeneralInfoFormStep";
+import { SummaryFormStep } from "../SubscriptionSteps/SummaryFormStep";
 import { SubscriptionsStepsMapper, SubscriptionsStepValue } from "../types";
 
 
@@ -22,7 +23,11 @@ export const getSubscriptionsStepByKey = (currentStep: SubscriptionsStepValue ) 
         },
         [SubscriptionsStepsMapper.expenseInformation]: {
             title: "Expense information",
-            component: ExpenseInfoForm
+            component: ExpenseInfoFormStep
+        },
+        [SubscriptionsStepsMapper.subscriptionSummary]: {  
+            title: "Subscription summary",
+            component: SummaryFormStep
         }
     };
 

@@ -10,7 +10,8 @@ const SubscriptionsContext = createContext<SubscriptionsContextType | null>(
 );
 
 const initialSubscriptionsState = {
-  currentStep: SubscriptionsStepsMapper.generalInformation,
+  // currentStep: SubscriptionsStepsMapper.generalInformation,
+  currentStep: SubscriptionsStepsMapper.expenseInformation,
   subscriptionsGeneralInformation: null,
   expenseInformation: null,
 };
