@@ -22,4 +22,5 @@ export interface MUITextFieldSelectProps extends Omit<TextFieldProps, "onChange"
   ["data-testid"]?: string;
   ["aria-label"]?: string;
   displayValue?: boolean;
+  placeholder?: string;
 }

@@ -23,6 +23,7 @@ const MUITextFieldSelect = forwardRef<
       displayEmpty = false,
       emptyLabel = "Select an option",
       displayValue = false,
+      placeholder = "",
       ...props
     },
     ref,
@@ -87,6 +88,7 @@ const MUITextFieldSelect = forwardRef<
         label={labelText}
         variant={variant}
         sx={mergedSx}
+        placeholder={placeholder}
         select
         value={value}
         onChange={(e) => {

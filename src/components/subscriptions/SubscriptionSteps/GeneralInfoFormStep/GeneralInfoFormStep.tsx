@@ -8,7 +8,6 @@ import {
   useCallback,
 } from "react";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
-import { Button } from "@/components/ui/Button";
 import { GeneralInfoFormStepProps } from "./defs";
 import { Controller, useFormContext } from "react-hook-form";
 import { SubscriptionStepValues } from "../../types";
@@ -18,6 +17,7 @@ import { InputSx } from "@/utils/stylesUtils";
 import { runGeneralInfoValidation } from "@/actions/subscriptionSteps/run-general-info-validation";
 import MuiSelectField from "@/components/ui/formParts/MuiSelectField";
 import { SUBSCRIPTION_CATEGORIES } from "@/constants/mocks";
+import { SubscriptionStepperFooter } from "../../SubscriptionStepperFooter";
 
 const GeneralInfoFormStep = ({ title, onSubmit }: GeneralInfoFormStepProps) => {
   const [state, formAction, isPending] = useActionState(
@@ -147,16 +147,7 @@ const GeneralInfoFormStep = ({ title, onSubmit }: GeneralInfoFormStepProps) => {
             )}
           />
         </div>
-        <div className="button-wrapper mt-20">
-          <Button
-            type="submit"
-            variant="default"
-            size="sm"
-            disabled={isPending}
-          >
-            Go next
-          </Button>
-        </div>
+        <SubscriptionStepperFooter />
       </form>
     </>
   );

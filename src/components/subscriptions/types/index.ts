@@ -37,4 +37,4 @@ export type SubscriptionStepValues = {
 
 export type FinalCreateSubscriptionStep = {
   onSubmit: (stepValues: Pick<SubscriptionStepValues, "expenseInformation">) => void
-}
+} // TODO update this type when u get to last step

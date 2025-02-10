@@ -1,6 +1,7 @@
-import { FinalCreateSubscriptionStep } from "../../types";
+import { SubscriptionExpenseInformation } from "../../types";
 
 export type ExpenseInfoFormProps = {
   title: string;
   onPrev: () => void;
-} & FinalCreateSubscriptionStep;
+  onSubmit: (values: SubscriptionExpenseInformation) => void; 
+};

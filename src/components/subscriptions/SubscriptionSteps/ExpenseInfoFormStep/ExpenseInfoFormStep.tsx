@@ -2,10 +2,9 @@ import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/Subscr
 import { Controller, useFormContext } from "react-hook-form";
 import { SubscriptionStepValues } from "../../types";
 import { ExpenseInfoFormProps } from "./defs";
-import { Button } from "@/components/ui/Button";
 import NumberField from "@/components/ui/formParts/NumberField/NumberField";
 import MuiSelectField from "@/components/ui/formParts/MuiSelectField";
-
+import FormHelperText from "@/components/ui/formParts/FormHelperText";
 import {
   SUBSCRIPTION_BILLING_PERIOD,
   SUBSCRIPTION_CURRENCY,
@@ -16,24 +15,32 @@ import { InputSx } from "@/utils/stylesUtils";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
 import { addDays, format, parse, startOfDay, startOfToday } from "date-fns";
 import { CURRENCIES, SUBSCRIPTION_BILLING_OPTIONS } from "@/constants/mocks";
+import { SubscriptionStepperFooter } from "../../SubscriptionStepperFooter";
+import {
+  startTransition,
+  useActionState,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
+import { runExpensesInfoValidation } from "@/actions/subscriptionSteps/run-expenses-info-validation";
 
 const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
+  const [state, formAction, isPending] = useActionState(
+    runExpensesInfoValidation,
+    {
+      errors: {},
+      success: false,
+    },
+  );
   const {
     handleSubmit,
     control,
+    getValues,
     trigger,
     formState: { errors },
   } = useFormContext<SubscriptionStepValues>();
   const { dispatch } = useSubscriptionsContext();
-  const handleSaveExpenseInformation = (stepValues: SubscriptionStepValues) => {
-    dispatch({
-      type: "SET_EXPENSE_INFORMATION",
-      payload: stepValues.expenseInformation,
-    });
-    onSubmit({
-      expenseInformation: stepValues.expenseInformation,
-    });
-  };
 
   const mappedBillingOptions = SUBSCRIPTION_BILLING_OPTIONS.map(
     (billingOption) => ({
@@ -42,13 +49,45 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
     }),
   );
 
+  const formRef = useRef<HTMLFormElement>(null);
+  const stepValues = getValues().expenseInformation;
+
+  const handleSaveExpensesInfoStep = () => {
+    const formData = new FormData(formRef.current!);
+    //formData.append("category", stepValues.category); // append required as a workaround for validation
+
+    startTransition(() => {
+      formAction(formData);
+    });
+
+    dispatch({
+      type: "SET_EXPENSE_INFORMATION",
+      payload: stepValues,
+    });
+  };
+
+  const handleGoToNextStep = useCallback(() => {
+    onSubmit(stepValues);
+  }, [state]);
+
+  useEffect(() => {
+    if (!state.success) {
+      return;
+    }
+    handleGoToNextStep();
+  }, [state]);
   return (
     <>
       <h4 className="mb-10 text-sm font-semibold">{title}</h4>
       <form
+        ref={formRef}
         autoComplete="off"
+        action={formAction}
         noValidate
-        onSubmit={handleSubmit(handleSaveExpenseInformation)}
+        onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+          event.preventDefault();
+          handleSubmit(handleSaveExpensesInfoStep)(event);
+        }}
       >
         <div className="currencies-row mb-10 flex items-end gap-10">
           <div className="currency-field-wrapper flex w-full flex-col md:w-[50%]">
@@ -72,17 +111,16 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                   isCurrency
                   step="0.01"
                   min="0"
-                  //error={!!state?.errors?.content}
+                  error={!!state?.errors?.price}
                 />
               )}
             />
 
-            {/* {state?.errors?.content && (
-            <FormHelperText>{state?.errors?.content.join(", ")}</FormHelperText>
-          )} */}
+            {state?.errors?.price && (
+              <FormHelperText>{state?.errors?.price.join(", ")}</FormHelperText>
+            )}
           </div>
           <div className="currency-selector-wrapper flex w-full flex-col md:w-[50%]">
-            {/* SUBSCRIPTION_CURRENCY */}
             <Controller
               control={control}
               name="expenseInformation.currency"
@@ -92,6 +130,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                   labelText="Select currency"
                   displayValue
                   name="currency"
+                  placeholder="i.e USD"
                   options={CURRENCIES}
                   data-testid="currency-value"
                   aria-label="Enter your currency"
@@ -106,9 +145,15 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                   displayEmpty
                   emptyLabel="Select a currency"
                   fullWidth
+                  error={!!state?.errors?.currency}
                 />
               )}
             />
+            {state?.errors?.currency && (
+              <FormHelperText>
+                {state?.errors?.currency.join(", ")}
+              </FormHelperText>
+            )}
           </div>
         </div>
         <div className="mb-10">
@@ -133,14 +178,16 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                 }}
                 value={field.value}
                 options={mappedBillingOptions}
-                //error={!!state?.errors?.content}
+                error={!!state?.errors?.billing_period}
               />
             )}
           />
 
-          {/* {state?.errors?.name && (
-            <FormHelperText>{state.errors.name.join(", ")}</FormHelperText>
-          )} */}
+          {state?.errors?.billing_period && (
+            <FormHelperText>
+              {state.errors.billing_period.join(", ")}
+            </FormHelperText>
+          )}
         </div>
         <div className="billing-period-row mb-10 flex items-end gap-10">
           <div className="billing-period-wrapper flex w-full flex-col md:w-[50%]">
@@ -163,7 +210,6 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                   <MUIDateTimePicker
                     disablePast
                     minDate={startOfToday()}
-                    error={Boolean(error)}
                     // minDate={parse(
                     //   format(new Date(), "yyyy-MM-dd"),
                     //   "yyyy-MM-dd",
@@ -171,9 +217,6 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                     // )}
                     maxDate={null}
                     format={DATE_GLOBAL_FORMAT}
-                    // errorMessage={
-                    //   errors.expenseInformation?.start_date?.message
-                    // }
                     onChange={(newValue) => {
                       const finalValue = isValidDate(newValue)
                         ? newValue.toISOString()
@@ -188,10 +231,16 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                     timezone="default"
                     value={dateValue}
                     placeholder="Start subscription date"
+                    error={!!state?.errors?.start_date}
                   />
                 );
               }}
             />
+            {state?.errors?.start_date && (
+              <FormHelperText>
+                {state.errors.start_date.join(", ")}
+              </FormHelperText>
+            )}
           </div>
           <div className="next-billing-column flex w-full flex-col md:w-[50%]">
             <Controller
@@ -211,7 +260,6 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                     // )}
                     maxDate={null}
                     format={DATE_GLOBAL_FORMAT}
-                    error={Boolean(errors.expenseInformation?.nextPaymentDate)}
                     errorMessage={
                       errors.expenseInformation?.nextPaymentDate?.message
                     }
@@ -223,30 +271,19 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                     timezone="default"
                     value={value ? new Date(value) : null}
                     placeholder="Next billing payment"
+                    error={!!state?.errors?.next_payment}
                   />
                 );
               }}
             />
+            {errors.expenseInformation?.nextPaymentDate && (
+              <FormHelperText>
+                {errors.expenseInformation?.nextPaymentDate.message}
+              </FormHelperText>
+            )}
           </div>
         </div>
-
-        <div className="button-wrapper mt-20 flex items-end gap-6">
-          <Button onClick={onPrev} size="sm" type="button" variant="default">
-            Back to previous step
-          </Button>
-          <Button
-            type="submit"
-            variant="default"
-            size="sm"
-            // disabled={isPending}
-          >
-            {/* {isPending && <Loader className="size-6 animate-spin" />}
-                    <span className="inline-block">
-                      {isPending ? "Creating now..." : "Create topic"}
-                    </span> */}
-            Create subscription
-          </Button>
-        </div>
+        <SubscriptionStepperFooter onPrev={onPrev} />
       </form>
     </>
   );

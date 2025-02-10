@@ -1,4 +1,6 @@
+import { SubscriptionGeneralInformation } from "../../types";
+
 export type GeneralInfoFormStepProps = {
     title: string;
-    onSubmit: (values: any) => void; //TODO: Define type for values
+    onSubmit: (values: SubscriptionGeneralInformation) => void;
 }
