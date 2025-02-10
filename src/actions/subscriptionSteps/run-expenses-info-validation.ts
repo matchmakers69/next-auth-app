@@ -4,12 +4,12 @@ import { ExpenseInfoSchema } from "@/components/subscriptions/CreateSubscription
 
 interface ExpensesInfoState {
   errors: {
-    price?: string[];
-    currency?: string[];
-    billing_period?: string[];
-    start_date?: string[];
-    next_payment?: string[];
-    _form?: string[];
+    price: string[];
+    currency: string[];
+    billing_period: string[];
+    start_date: string[];
+    next_payment: string[];
+    _form: string[];
   };
   success: boolean;
 }

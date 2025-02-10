@@ -24,6 +24,7 @@ import {
   useRef,
 } from "react";
 import { runExpensesInfoValidation } from "@/actions/subscriptionSteps/run-expenses-info-validation";
+import { isValidDate } from "@/utils/dates";
 
 const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
   const [state, formAction, isPending] = useActionState(
@@ -54,7 +55,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
 
   const handleSaveExpensesInfoStep = () => {
     const formData = new FormData(formRef.current!);
-    //formData.append("category", stepValues.category); // append required as a workaround for validation
+    formData.append("start_date", stepValues.start_date); // append required as a workaround for validation
 
     startTransition(() => {
       formAction(formData);
@@ -76,6 +77,8 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
     }
     handleGoToNextStep();
   }, [state]);
+
+  console.log("error", state.errors);
   return (
     <>
       <h4 className="mb-10 text-sm font-semibold">{title}</h4>
@@ -196,11 +199,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
               name="expenseInformation.start_date"
               render={({
                 field: { onChange: onReactHookFormChange, value },
-                fieldState: { error },
               }) => {
-                const isValidDate = (val: unknown): val is Date => {
-                  return val instanceof Date && !isNaN(val.getTime());
-                };
                 const dateValue = isValidDate(value)
                   ? value
                   : value
@@ -208,13 +207,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                     : null;
                 return (
                   <MUIDateTimePicker
-                    disablePast
-                    minDate={startOfToday()}
-                    // minDate={parse(
-                    //   format(new Date(), "yyyy-MM-dd"),
-                    //   "yyyy-MM-dd",
-                    //   new Date(),
-                    // )}
+                    minDate={null}
                     maxDate={null}
                     format={DATE_GLOBAL_FORMAT}
                     onChange={(newValue) => {
@@ -223,10 +216,6 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                         : newValue;
                       onReactHookFormChange(finalValue);
                     }}
-                    // onChange={(newValue) => {
-                    //   onReactHookFormChange(newValue);
-                    //   trigger(["expenseInformation.start_date"]);
-                    // }}
                     labelText="Start subscription date"
                     timezone="default"
                     value={dateValue}
@@ -245,40 +234,39 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
           <div className="next-billing-column flex w-full flex-col md:w-[50%]">
             <Controller
               control={control}
-              name="expenseInformation.nextPaymentDate"
+              name="expenseInformation.next_payment"
               render={({
                 field: { onChange: onReactHookFormChange, value },
               }) => {
+                const dateValue = isValidDate(value)
+                  ? value
+                  : value
+                    ? new Date(value as string)
+                    : null;
                 return (
                   <MUIDateTimePicker
                     disablePast
-                    minDate={addDays(startOfDay(new Date()), 1)}
-                    // minDate={parse(
-                    //   format(new Date(), "yyyy-MM-dd"),
-                    //   "yyyy-MM-dd",
-                    //   new Date(),
-                    // )}
+                    minDate={startOfToday()}
                     maxDate={null}
                     format={DATE_GLOBAL_FORMAT}
-                    errorMessage={
-                      errors.expenseInformation?.nextPaymentDate?.message
-                    }
                     onChange={(newValue) => {
-                      onReactHookFormChange(newValue);
-                      trigger(["expenseInformation.nextPaymentDate"]);
+                      const finalValue = isValidDate(newValue)
+                        ? newValue.toISOString()
+                        : newValue;
+                      onReactHookFormChange(finalValue);
                     }}
                     labelText="Next billing payment"
                     timezone="default"
-                    value={value ? new Date(value) : null}
+                    value={dateValue}
                     placeholder="Next billing payment"
                     error={!!state?.errors?.next_payment}
                   />
                 );
               }}
             />
-            {errors.expenseInformation?.nextPaymentDate && (
+            {state?.errors?.next_payment && (
               <FormHelperText>
-                {errors.expenseInformation?.nextPaymentDate.message}
+                {state.errors.next_payment.join(", ")}
               </FormHelperText>
             )}
           </div>

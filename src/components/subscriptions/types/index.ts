@@ -26,7 +26,7 @@ export type SubscriptionExpenseInformation = {
   price: number;
   currency: SUBSCRIPTION_CURRENCY;
   billingPeriod: SUBSCRIPTION_BILLING_PERIOD;
-  nextPaymentDate: string;
+  next_payment: string;
   start_date: string;
 };
 

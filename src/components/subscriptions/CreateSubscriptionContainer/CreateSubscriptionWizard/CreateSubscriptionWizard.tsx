@@ -52,8 +52,8 @@ const CreateSubscriptionWizard = ({
         price: 0,
         currency: "",
         billingPeriod: "",
-        nextPaymentDate: null,
         start_date: null,
+        next_payment: null,
       },
     },
   });
@@ -85,8 +85,9 @@ const CreateSubscriptionWizard = ({
         billing_period: nestedSubscriptionsData.expenseInformation
           .billingPeriod as SUBSCRIPTION_BILLING_PERIOD,
         next_payment_date: new Date(
-          nestedSubscriptionsData.expenseInformation.nextPaymentDate,
+          nestedSubscriptionsData.expenseInformation.next_payment,
         ),
+        // TODO add start date
         ownerId: user?.id,
       };
 
