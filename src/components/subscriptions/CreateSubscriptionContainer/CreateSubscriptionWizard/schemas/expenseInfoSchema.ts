@@ -8,20 +8,11 @@ const validateBillingOptions = Object.values(
 
 export const ExpenseInfoSchema = z.object({
   price: z
-    .number()
-    .min(1, "Please enter a valid cost")
-    .max(9999999999, "Number must be less than or equal to 10 digits")
-    .positive("Please enter a positive number")
-    .transform((val) => {
-      if (typeof val === "string") {
-        return parseFloat(val);
-      }
-      return val;
-    })
-    .refine(
-      (value) => /^(-?)(?!0\d*$)\d*\.?\d+$/.test(String(value)),
-      "Cost of subscription is not valid",
-    ),
+    .string()
+    .transform((val) => parseFloat(val)) // Convert string to number
+    .refine((num) => !isNaN(num), { message: "Price must be a valid number" }) // Ensure it's a number
+    .refine((num) => num >= 0.01, { message: "Price must be at least 0.01" }) // No zero or negatives
+    .refine((num) => num <= 9999999999, { message: "Number must be less than or equal to 10 digits" }),
   currency: z.string().min(1, "Currency is required"),
   billing_period: z.enum(validateBillingOptions as [string, ...string[]], {
     // Explicit cast to tuple

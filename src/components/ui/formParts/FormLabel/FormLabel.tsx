@@ -1,17 +1,16 @@
 import { fontDefault } from "@/utils/fonts";
 import { styled } from "@mui/material";
 
-const StyledWrapper = styled("label")(({ theme }) => ({
-  display: "block",
+const StyledWrapper = styled("div")({
   lineHeight: "25px",
   marginBottom: "0.25rem",
-}));
+});
 
-const StyledLabel = styled("label")(({ theme }) => ({
+const StyledLabel = styled("label")({
   fontWeight: 600,
   fontSize: "1.5rem",
   fontFamily: fontDefault,
-}));
+});
 
 const StyledRequired = styled("span")(({ theme }) => ({
   color: "var(--dark-grey)",

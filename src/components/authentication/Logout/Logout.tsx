@@ -19,6 +19,7 @@ const Logout = () => {
   return (
     <>
       <Button
+        className="border-[hsla(0,0%,100%,0.1)] text-[rgba(var(--white),1)]"
         onClick={handleSignOut}
         type="button"
         size="sm"

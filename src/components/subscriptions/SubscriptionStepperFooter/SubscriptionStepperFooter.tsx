@@ -19,9 +19,15 @@ const SubscriptionStepperFooter = ({
   const { currentStep } = useSubscriptionsContext();
 
   return (
-    <div className="button-wrapper mt-20 flex items-end gap-6">
+    <footer className="button-wrapper mt-20 flex w-full items-center justify-center gap-10 py-6">
       {currentStep !== SubscriptionsStepsMapper.generalInformation && (
-        <Button onClick={onPrev} size="sm" type="button" variant="default">
+        <Button
+          onClick={onPrev}
+          size="sm"
+          type="button"
+          className="border-light-blue text-light-blue"
+          variant="outline"
+        >
           Back to previous step
         </Button>
       )}
@@ -31,7 +37,7 @@ const SubscriptionStepperFooter = ({
           {isPending ? "Is submitting..." : ButtonsMapper[currentStep]}
         </span>
       </Button>
-    </div>
+    </footer>
   );
 };
 

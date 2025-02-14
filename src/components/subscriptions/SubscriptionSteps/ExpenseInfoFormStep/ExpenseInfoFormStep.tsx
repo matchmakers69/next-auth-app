@@ -13,7 +13,7 @@ import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
 import { DATE_GLOBAL_FORMAT } from "@/constants";
 import { InputSx } from "@/utils/stylesUtils";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
-import { addDays, format, parse, startOfDay, startOfToday } from "date-fns";
+import { startOfToday } from "date-fns";
 import { CURRENCIES, SUBSCRIPTION_BILLING_OPTIONS } from "@/constants/mocks";
 import { SubscriptionStepperFooter } from "../../SubscriptionStepperFooter";
 import {
@@ -34,13 +34,8 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
       success: false,
     },
   );
-  const {
-    handleSubmit,
-    control,
-    getValues,
-    trigger,
-    formState: { errors },
-  } = useFormContext<SubscriptionStepValues>();
+  const { handleSubmit, control, getValues } =
+    useFormContext<SubscriptionStepValues>();
   const { dispatch } = useSubscriptionsContext();
 
   const mappedBillingOptions = SUBSCRIPTION_BILLING_OPTIONS.map(
@@ -55,7 +50,18 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
 
   const handleSaveExpensesInfoStep = () => {
     const formData = new FormData(formRef.current!);
-    formData.append("start_date", stepValues.start_date); // append required as a workaround for validation
+    // Ensure price is converted to a number before submitting
+    const numericPrice = parseFloat(stepValues.price.toString());
+
+    if (isNaN(numericPrice)) {
+      console.error("Invalid price value:", stepValues.price);
+      return;
+    }
+    formData.append("price", numericPrice.toString());
+    formData.append("currency", stepValues.currency);
+    formData.append("billing_period", stepValues.billingPeriod);
+    formData.append("start_date", stepValues.start_date);
+    formData.append("next_payment", stepValues.next_payment);
 
     startTransition(() => {
       formAction(formData);
@@ -92,7 +98,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
           handleSubmit(handleSaveExpensesInfoStep)(event);
         }}
       >
-        <div className="currencies-row mb-10 flex items-end gap-10">
+        <div className="currencies-row mb-10 flex items-start gap-10">
           <div className="currency-field-wrapper flex w-full flex-col md:w-[50%]">
             <Controller
               name="expenseInformation.price"
@@ -192,8 +198,8 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
             </FormHelperText>
           )}
         </div>
-        <div className="billing-period-row mb-10 flex items-end gap-10">
-          <div className="billing-period-wrapper flex w-full flex-col md:w-[50%]">
+        <div className="subscription-dates-row mb-10 flex items-start gap-10">
+          <div className="start-date-col flex w-full flex-col md:w-[50%]">
             <Controller
               control={control}
               name="expenseInformation.start_date"
@@ -231,7 +237,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
               </FormHelperText>
             )}
           </div>
-          <div className="next-billing-column flex w-full flex-col md:w-[50%]">
+          <div className="next-billing-col flex w-full flex-col md:w-[50%]">
             <Controller
               control={control}
               name="expenseInformation.next_payment"

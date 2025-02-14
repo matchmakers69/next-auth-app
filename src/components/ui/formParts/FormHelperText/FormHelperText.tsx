@@ -8,6 +8,8 @@ const FormHelperText = ({ children }: BaseProps) => {
         fontSize: "1.2rem",
         color: "#d32f2f",
         marginTop: "0.25rem",
+        minHeight: "1.5rem",
+        display: "block",
       }}
     >
       {children}
