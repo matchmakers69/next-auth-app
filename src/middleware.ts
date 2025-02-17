@@ -52,8 +52,6 @@ export default auth(
         new URL(`${paths.login()}?callbackUrl=${encodedCallbackUrl}`, nextUrl),
       );
     }
-
-    return;
   },
 );
 

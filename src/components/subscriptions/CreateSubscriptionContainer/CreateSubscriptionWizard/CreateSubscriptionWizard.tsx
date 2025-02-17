@@ -5,10 +5,6 @@ import { FormProvider, useForm } from "react-hook-form";
 import { getSubscriptionsStepByKey } from "../../services";
 import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/SubscriptionsProvider";
 import { useSubscriptionsStepper } from "../../hooks/useSubscriptionsStepper";
-import {
-  ExpenseInformationSchema,
-  GeneralInformationSchema,
-} from "./schemas/subscriptionsStepsSchema";
 import { SubscriptionStepValues } from "../../types";
 import { LocationProvider } from "@/components/providers/LocationProvider";
 import { Modal } from "@/components/ui/Modal";
@@ -19,10 +15,10 @@ import {
 } from "@prisma/client";
 import { useSession } from "next-auth/react";
 
-const schemas = {
-  subscriptionsGeneralInformation: GeneralInformationSchema,
-  expenseInformation: ExpenseInformationSchema,
-};
+// const schemas = {
+//   subscriptionsGeneralInformation: GeneralInformationSchema,
+//   expenseInformation: ExpenseInformationSchema,
+// };
 
 const CreateSubscriptionWizard = ({
   open,

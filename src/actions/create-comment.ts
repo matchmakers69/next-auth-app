@@ -42,8 +42,8 @@ export async function createComment(
     await db.comment.create({
       data: {
         content: result.data.content,
-        postId: postId,
-        parentId: parentId,
+        postId,
+        parentId,
         userId: user.id,
       },
     });
@@ -54,13 +54,12 @@ export async function createComment(
           _form: [err.message],
         },
       };
-    } else {
-      return {
-        errors: {
-          _form: ["Something went wrong..."],
-        },
-      };
     }
+    return {
+      errors: {
+        _form: ["Something went wrong..."],
+      },
+    };
   }
 
   const topic = await db.topic.findFirst({

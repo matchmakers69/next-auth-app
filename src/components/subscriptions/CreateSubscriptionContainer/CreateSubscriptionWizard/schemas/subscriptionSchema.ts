@@ -26,7 +26,7 @@ export const SubscriptionSchema = z.object({
       },
     )
     .optional(),
-    price: z.coerce.number().min(0, "Required"),
+  price: z.coerce.number().min(0, "Required"),
   // price: z
   //   .number()
   //   .min(1, "Please enter a valid cost")
@@ -59,6 +59,5 @@ export const SubscriptionSchema = z.object({
     .refine((value) => !isNaN(Date.parse(value)), "Enter a valid date")
     .transform((value) => new Date(value)),
 });
-
 
 export type SubscriptionSchemaType = z.infer<typeof SubscriptionSchema>;

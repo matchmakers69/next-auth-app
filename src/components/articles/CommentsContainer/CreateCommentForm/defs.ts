@@ -1,5 +1,5 @@
 export interface CreateCommentFormProps {
-    postId: string;
-    parentId?: string;
-    startOpen?: boolean;
-  }
+  postId: string;
+  parentId?: string;
+  startOpen?: boolean;
+}

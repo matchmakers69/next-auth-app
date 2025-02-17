@@ -1,12 +1,14 @@
 export type Value = string | number;
-export type OptionType = Value | { label: string | null; value: Value; disabled?: boolean };
+export type OptionType =
+  | Value
+  | { label: string | null; value: Value; disabled?: boolean };
 
 interface CustomSelectProps<T extends OptionType> {
   id: string;
   labelOptionalText?: string;
   options: T[];
   value: Value;
-  onChange: (selected: T) => void;
+  onChange: (_selected: T) => void;
   labelText?: string;
   emptyLabel?: string;
   displayEmpty?: boolean;

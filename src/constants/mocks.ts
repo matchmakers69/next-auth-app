@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { SUBSCRIPTION_BILLING_PERIOD } from "@prisma/client";
 
 export const SUBSCRIPTION_BILLING_OPTIONS: SUBSCRIPTION_BILLING_PERIOD[] = [
@@ -18,20 +17,20 @@ export const SUBSCRIPTION_CATEGORIES = [
 
 export const CURRENCIES = [
   {
-    value: 'USD',
-    label: '$',
+    value: "USD",
+    label: "$",
   },
   {
-    value: 'EUR',
-    label: '€',
+    value: "EUR",
+    label: "€",
   },
   {
-    value: 'GBP',
-    label: '£',
+    value: "GBP",
+    label: "£",
   },
   {
-    value: 'PLN',
-    label: 'zł',
+    value: "PLN",
+    label: "zł",
   },
 ];
 

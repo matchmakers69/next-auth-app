@@ -40,7 +40,6 @@ export async function createPost(
       errors: result.error.flatten().fieldErrors,
     };
   }
-  
 
   const topic = await db.topic.findFirst({
     where: { slug },
@@ -49,7 +48,7 @@ export async function createPost(
   if (!topic) {
     return {
       errors: {
-        _form: ['Cannot find topic'],
+        _form: ["Cannot find topic"],
       },
     };
   }
@@ -70,13 +69,12 @@ export async function createPost(
           _form: [err.message],
         },
       };
-    } else {
-      return {
-        errors: {
-          _form: ['Failed to create post'],
-        },
-      };
     }
+    return {
+      errors: {
+        _form: ["Failed to create post"],
+      },
+    };
   }
 
   revalidatePath(paths.topicShow(slug));

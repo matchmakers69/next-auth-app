@@ -13,16 +13,15 @@ export const getCurrentUserFromDatabase = async () => {
       },
     });
 
-    if(!currentUser) {
+    if (!currentUser) {
       return null;
-    }   
-
-    return {
-        ...currentUser,
-        createdAt: currentUser.createdAt.toISOString(),
-        updatedAt: currentUser.updatedAt.toDateString(),
     }
 
+    return {
+      ...currentUser,
+      createdAt: currentUser.createdAt.toISOString(),
+      updatedAt: currentUser.updatedAt.toDateString(),
+    };
   } catch (error) {
     console.error(`Some error ${error}`);
     throw new Error("Cannot fetch user");

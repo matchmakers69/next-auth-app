@@ -1,1 +1,1 @@
-export { default as MUITextFieldSelect} from "./MUITextFieldSelect"
+export { default as MUITextFieldSelect } from "./MUITextFieldSelect";

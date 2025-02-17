@@ -7,7 +7,7 @@ const SessionProvider = ({ children, session, sessionKey }: ProvidersProps) => {
     if (sessionKey) {
       return sessionKey;
     }
-  }, [session]);
+  }, [sessionKey]);
   return (
     <AuthSessionProvider session={session} key={memoizedSessionKey}>
       {children}

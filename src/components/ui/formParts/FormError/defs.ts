@@ -1,3 +1,3 @@
 export interface FormErrorProps {
-	message?: string;
+  message?: string;
 }

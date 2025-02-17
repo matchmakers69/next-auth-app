@@ -1,3 +1,4 @@
+import { Typescript } from "@/components/admin/sections/typescript/Typescript";
 import PageTitle from "@/components/ui/PageTitle";
 import { Metadata } from "next";
 
@@ -9,7 +10,7 @@ function TypescriptPage() {
   return (
     <>
       <PageTitle className="mb-16" title="Typescript tips" />
-      {/* Typescript grid here */}
+      <Typescript />
     </>
   );
 }

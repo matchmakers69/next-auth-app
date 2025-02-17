@@ -12,7 +12,9 @@ export const ExpenseInfoSchema = z.object({
     .transform((val) => parseFloat(val)) // Convert string to number
     .refine((num) => !isNaN(num), { message: "Price must be a valid number" }) // Ensure it's a number
     .refine((num) => num >= 0.01, { message: "Price must be at least 0.01" }) // No zero or negatives
-    .refine((num) => num <= 9999999999, { message: "Number must be less than or equal to 10 digits" }),
+    .refine((num) => num <= 9999999999, {
+      message: "Number must be less than or equal to 10 digits",
+    }),
   currency: z.string().min(1, "Currency is required"),
   billing_period: z.enum(validateBillingOptions as [string, ...string[]], {
     // Explicit cast to tuple
@@ -28,7 +30,6 @@ export const ExpenseInfoSchema = z.object({
         code: "custom",
         message: "Field is required and must be a valid date.",
       });
-      return;
     }
   }),
   next_payment: z.union([z.string(), z.null()]).superRefine((value, ctx) => {

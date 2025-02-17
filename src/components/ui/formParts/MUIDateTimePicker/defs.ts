@@ -11,10 +11,9 @@ export type MUIDateTimePickerProps = {
   labelOptionalText?: string;
   maxDate?: Date | null;
   minDate?: Date | null;
-  onChange?: (value: Date | null) => void;
+  onChange?: (_value: Date | null) => void;
   placeholder?: string;
   timezone?: string;
   value?: Date | null;
   name?: string;
 } & BaseProps;
-

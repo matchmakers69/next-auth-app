@@ -21,7 +21,7 @@ interface CreateSubscriptionFormState {
 
 export async function createSubscription(
   formData: FormData,
-  prevState: CreateSubscriptionFormState,
+  _prevState: CreateSubscriptionFormState,
 ): Promise<CreateSubscriptionFormState> {
   const result = SubscriptionSchema.safeParse({
     name: formData.get("name"),

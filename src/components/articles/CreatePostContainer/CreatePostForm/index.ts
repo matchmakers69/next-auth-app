@@ -1,1 +1,1 @@
-export { default} from "./CreatePostForm";
+export { default } from "./CreatePostForm";

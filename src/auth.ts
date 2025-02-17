@@ -67,9 +67,8 @@ export const {
           });
         }
         return true; // By default you allow users to sign in
-      } else {
-        return false; // Handle the case where user is undefined
       }
+      return false; // Handle the case where user is undefined
     },
     async session({ token, session }) {
       if (token.sub && session.user) {

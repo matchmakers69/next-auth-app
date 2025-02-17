@@ -10,7 +10,7 @@ export const navigationLinks = adminSidebarNavigation.map((item) => {
       icon = "home";
       break;
 
-      case "admin":
+    case "admin":
       href = paths.adminMain();
       icon = "home";
       break;

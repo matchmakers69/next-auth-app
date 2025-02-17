@@ -3,14 +3,17 @@ import { Dispatch } from "react";
 
 export type DashboardContextProviderProps = BaseProps;
 export type DashboardContextState = {
-    isSideBarInView: boolean
-}
+  isSideBarInView: boolean;
+};
 
-export type DashboardContextAction = | {type: "TOGGLE_SIDEBAR", payload: boolean} | {
-    type: "CLOSE_SIDEBAR", payload: boolean
-}
+export type DashboardContextAction =
+  | { type: "TOGGLE_SIDEBAR"; payload: boolean }
+  | {
+      type: "CLOSE_SIDEBAR";
+      payload: boolean;
+    };
 
 export type DashboardContextInit = {
-    isSideBarInView: boolean;
-    dispatch: Dispatch<DashboardContextAction>
-}
+  isSideBarInView: boolean;
+  dispatch: Dispatch<DashboardContextAction>;
+};

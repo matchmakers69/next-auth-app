@@ -12,18 +12,18 @@ export const navigationLinks = sidebarNavigation.map((item) => {
 
     case "settings":
       href = paths.settings();
-      icon = "settings"
+      icon = "settings";
       break;
 
-      case "topics":
-        href = paths.topics()
-        icon = "news"
-        break;
+    case "topics":
+      href = paths.topics();
+      icon = "news";
+      break;
 
-        case "subscriptions":
-          href = paths.subscriptions()
-          icon = "bank-card"
-          break;
+    case "subscriptions":
+      href = paths.subscriptions();
+      icon = "bank-card";
+      break;
 
     default:
       break;

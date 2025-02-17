@@ -45,9 +45,9 @@ const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(
           htmlInput: {
             "aria-label": ariaLabel,
             "data-testid": dataTestid,
-            min: min,
-            max: max,
-            step: step,
+            min,
+            max,
+            step,
           },
         }}
       />

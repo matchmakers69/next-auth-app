@@ -1,1 +1,1 @@
-export { default} from "./DashboardProvider"
+export { default } from "./DashboardProvider";

@@ -1,7 +1,7 @@
 import { db } from "@/libs/db";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET(_req: Request) {
   try {
     const categories = await db.subscriptionCategory.findMany();
     const mappedCategories = categories.map((category) => ({

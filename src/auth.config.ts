@@ -30,38 +30,42 @@ if (!FACEBOOK_CLIENT_ID || !FACEBOOK_CLIENT_SECRET) {
 }
 
 export default {
-	providers: [
-        GitHub({
-          clientId: GITHUB_CLIENT_ID,
-          clientSecret: GITHUB_CLIENT_SECRET,
-        }),
-        Google({
-          clientId: AUTH_GOOGLE_ID,
-          clientSecret: AUTH_GOOGLE_SECRET,
-        }),
-        Facebook({
-          clientId: FACEBOOK_CLIENT_ID,
-          clientSecret: FACEBOOK_CLIENT_SECRET,
-        }),
-        Credentials({
-          async authorize(credentials) {
-            const validatedFields = loginSchema.safeParse(credentials);
-            if (validatedFields.success) {
-              const { email, password } = validatedFields.data;
-              // We want to check if email is connected with any email in database
-              const user = await getUserByEmail(email);
-              if (!user?.password) {
-                return null;
-              }
-              const passwordsMatch = await bcrypt.compare(password, user.password); // compare password hash
-              if (passwordsMatch) return user;
-            }
+  providers: [
+    GitHub({
+      clientId: GITHUB_CLIENT_ID,
+      clientSecret: GITHUB_CLIENT_SECRET,
+    }),
+    Google({
+      clientId: AUTH_GOOGLE_ID,
+      clientSecret: AUTH_GOOGLE_SECRET,
+    }),
+    Facebook({
+      clientId: FACEBOOK_CLIENT_ID,
+      clientSecret: FACEBOOK_CLIENT_SECRET,
+    }),
+    Credentials({
+      async authorize(credentials) {
+        const validatedFields = loginSchema.safeParse(credentials);
+        if (validatedFields.success) {
+          const { email, password } = validatedFields.data;
+          // We want to check if email is connected with any email in database
+          const user = await getUserByEmail(email);
+          if (!user?.password) {
             return null;
-          },
-          credentials: {
-            email: { label: "Email", type: "email", placeholder: "example@example.com" },
-            password: { label: "Password", type: "password" }
           }
-        }),
-      ],
+          const passwordsMatch = await bcrypt.compare(password, user.password); // compare password hash
+          if (passwordsMatch) return user;
+        }
+        return null;
+      },
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "example@example.com",
+        },
+        password: { label: "Password", type: "password" },
+      },
+    }),
+  ],
 } satisfies NextAuthConfig;

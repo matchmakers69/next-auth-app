@@ -12,9 +12,9 @@ const StyledLabel = styled("label")({
   fontFamily: fontDefault,
 });
 
-const StyledRequired = styled("span")(({ theme }) => ({
+const StyledRequired = styled("span")({
   color: "var(--dark-grey)",
-}));
+});
 
 export type FormLabelProps = {
   id?: string;

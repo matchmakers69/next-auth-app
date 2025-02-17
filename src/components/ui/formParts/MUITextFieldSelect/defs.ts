@@ -6,7 +6,8 @@ export interface OptionType {
   disabled?: boolean;
 }
 
-export interface MUITextFieldSelectProps extends Omit<TextFieldProps, "onChange"> {
+export interface MUITextFieldSelectProps
+  extends Omit<TextFieldProps, "onChange"> {
   id?: string;
   labelText?: string;
   emptyLabel?: string;
@@ -14,7 +15,7 @@ export interface MUITextFieldSelectProps extends Omit<TextFieldProps, "onChange"
   error?: boolean;
   options: OptionType[];
   value: OptionType["value"];
-  onChange: (selected: OptionType) => void; // Custom onChange handler
+  onChange: (_selected: OptionType) => void; // Custom onChange handler
   name?: string;
   maxWidth?: number;
   minWidth?: number;

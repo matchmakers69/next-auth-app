@@ -1,1 +1,1 @@
-export { default as AdminMenuSidebar } from "./AdminMenuSidebar"
+export { default as AdminMenuSidebar } from "./AdminMenuSidebar";

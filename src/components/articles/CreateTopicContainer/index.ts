@@ -1,1 +1,1 @@
-export { default } from "./CreateTopicContainer"
+export { default } from "./CreateTopicContainer";

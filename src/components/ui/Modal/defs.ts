@@ -27,7 +27,6 @@ type ModalButtonProps = {
 };
 
 export type ButtonModal = {
-    [key in ModalButtonTypes]: ModalButtonProps
-}
-
-
+  // eslint-disable-next-line no-unused-vars
+  [key in ModalButtonTypes]: ModalButtonProps;
+};

@@ -1,1 +1,1 @@
-export { default as SubscriptionStepperFooter } from './SubscriptionStepperFooter';
+export { default as SubscriptionStepperFooter } from "./SubscriptionStepperFooter";

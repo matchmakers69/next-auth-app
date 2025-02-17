@@ -1,3 +1,3 @@
 export interface FormSuccessProps {
-	message?: string;
+  message?: string;
 }

@@ -15,7 +15,7 @@ interface ExpensesInfoState {
 }
 
 type PartialErrorsExpensesInfoState = {
-  errors?: Partial<ExpensesInfoState['errors']>;
+  errors?: Partial<ExpensesInfoState["errors"]>;
   success?: boolean;
 };
 

@@ -1,16 +1,15 @@
-
 import { SxProps, Theme } from "@mui/material";
 import { fontDefault } from "./fonts";
 
 export const InputSx: SxProps<Theme> = {
   "& .MuiInputLabel-outlined": {
-        color: "var(--dark-grey)",
-        fontSize: "1.5rem",
-      },
-      "& .MuiInputLabel-outlined.Mui-focused": {
-        color: "var(--dark-grey)",
-        fontSize: "1.5rem",
-      },
+    color: "var(--dark-grey)",
+    fontSize: "1.5rem",
+  },
+  "& .MuiInputLabel-outlined.Mui-focused": {
+    color: "var(--dark-grey)",
+    fontSize: "1.5rem",
+  },
   "& .MuiOutlinedInput-root": {
     fontSize: "1.5rem",
     color: "var(--dark-grey)",
@@ -38,7 +37,6 @@ export const InputSx: SxProps<Theme> = {
     },
   },
 };
-
 
 export const datePickerPaperStyling = (theme: Theme) => {
   return {

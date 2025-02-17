@@ -34,9 +34,8 @@ export const sidebarNavigation = [
   {
     id: uuidv4(),
     label: "Subscriptions",
-  }
+  },
 ];
-
 
 export const framerSidebarBackground = {
   initial: { opacity: 0 },

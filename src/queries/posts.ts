@@ -1,6 +1,5 @@
 import { db } from "@/libs/db";
 
-
 // export type PostWithData = Post & {
 //   topic: {
 //     slug: string;
@@ -10,8 +9,9 @@ import { db } from "@/libs/db";
 // };
 
 // Alternative way to define the type
-export type PostWithData = Awaited<ReturnType<typeof fetchPostsByTopicSlug>>[number];
-
+export type PostWithData = Awaited<
+  ReturnType<typeof fetchPostsByTopicSlug>
+>[number];
 
 export function fetchPostsByTopicSlug(slug: string) {
   return db.post.findMany({
@@ -41,7 +41,6 @@ export function fetchTopPosts(): Promise<PostWithData[]> {
     take: 5,
   });
 }
-
 
 // Search posts
 export function fetchPostsBySearchTerm(term: string): Promise<PostWithData[]> {

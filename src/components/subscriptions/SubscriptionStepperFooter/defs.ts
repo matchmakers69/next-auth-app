@@ -1,4 +1,4 @@
 export type SubscriptionStepperFooterProps = {
-    onPrev?: () => void;
-    isPending?: boolean;
+  onPrev?: () => void;
+  isPending?: boolean;
 };

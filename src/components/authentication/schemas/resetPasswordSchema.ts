@@ -5,7 +5,6 @@ export const resetPasswordSchema = z.object({
     .string()
     .min(1, { message: "Email is a required field" })
     .email("Invalid email address"),
-
 });
 
 export type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;

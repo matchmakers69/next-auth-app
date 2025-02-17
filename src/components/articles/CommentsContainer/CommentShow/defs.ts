@@ -1,4 +1,4 @@
 export type CommentShowProps = {
-    commentId: string;
-    postId: string;
-}
+  commentId: string;
+  postId: string;
+};

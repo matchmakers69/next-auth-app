@@ -12,7 +12,7 @@ export const login = async (provider: string) => {
 export const logout = async () => {
   try {
     await auth.signOut({ redirectTo: "/" });
-    return { success: true }; 
+    return { success: true };
   } catch (error) {
     if ((error as Error).name === "SignOutError") {
       return { error: "Error with signing out!" };

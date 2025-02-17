@@ -8,7 +8,7 @@ export const getTopicsList = async () => {
         slug: true,
       },
     });
-    
+
     return res;
   } catch (error) {
     console.error(`Some error ${error}`);

@@ -75,14 +75,14 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
 
   const handleGoToNextStep = useCallback(() => {
     onSubmit(stepValues);
-  }, [state]);
+  }, [onSubmit, stepValues]);
 
   useEffect(() => {
     if (!state.success) {
       return;
     }
     handleGoToNextStep();
-  }, [state]);
+  }, [handleGoToNextStep, state]);
 
   console.log("error", state.errors);
   return (
@@ -277,7 +277,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
             )}
           </div>
         </div>
-        <SubscriptionStepperFooter onPrev={onPrev} />
+        <SubscriptionStepperFooter isPending={isPending} onPrev={onPrev} />
       </form>
     </>
   );

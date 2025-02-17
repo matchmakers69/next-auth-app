@@ -3,5 +3,5 @@ import { SubscriptionExpenseInformation } from "../../types";
 export type ExpenseInfoFormProps = {
   title: string;
   onPrev: () => void;
-  onSubmit: (values: SubscriptionExpenseInformation) => void; 
+  onSubmit: (_values: SubscriptionExpenseInformation) => void;
 };

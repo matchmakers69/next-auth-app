@@ -1,1 +1,1 @@
-export { default } from "./NavPanelLeft"
+export { default } from "./NavPanelLeft";

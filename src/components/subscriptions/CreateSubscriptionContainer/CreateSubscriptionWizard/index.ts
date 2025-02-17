@@ -1,1 +1,1 @@
-export { default } from "./CreateSubscriptionWizard"; 
+export { default as CreateSubscriptionWizard } from "./CreateSubscriptionWizard";

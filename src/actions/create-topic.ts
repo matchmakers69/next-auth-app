@@ -53,7 +53,10 @@ export async function createTopic(
       },
     });
   } catch (err: unknown) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
+    if (
+      err instanceof Prisma.PrismaClientKnownRequestError &&
+      err.code === "P2002"
+    ) {
       return {
         errors: {
           name: ["A topic with this name already exists."],
@@ -65,13 +68,12 @@ export async function createTopic(
           _form: [err.message],
         },
       };
-    } else {
-      return {
-        errors: {
-          _form: ["Something went wrong"],
-        },
-      };
     }
+    return {
+      errors: {
+        _form: ["Something went wrong"],
+      },
+    };
   }
 
   revalidatePath(paths.home());

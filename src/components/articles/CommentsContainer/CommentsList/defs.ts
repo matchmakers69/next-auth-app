@@ -1,3 +1,3 @@
 export type CommentsListProps = {
-    postId: string
-}
+  postId: string;
+};

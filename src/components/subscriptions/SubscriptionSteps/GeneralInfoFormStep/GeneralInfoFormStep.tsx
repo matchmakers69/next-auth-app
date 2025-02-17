@@ -147,7 +147,7 @@ const GeneralInfoFormStep = ({ title, onSubmit }: GeneralInfoFormStepProps) => {
             )}
           />
         </div>
-        <SubscriptionStepperFooter />
+        <SubscriptionStepperFooter isPending={isPending} />
       </form>
     </>
   );

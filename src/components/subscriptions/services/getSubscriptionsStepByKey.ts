@@ -3,33 +3,37 @@ import { GeneralInfoFormStep } from "../SubscriptionSteps/GeneralInfoFormStep";
 import { SummaryFormStep } from "../SubscriptionSteps/SummaryFormStep";
 import { SubscriptionsStepsMapper, SubscriptionsStepValue } from "../types";
 
-
 export type SubscriptionComponentProps = {
-    title: string;
-    onPrev: () => void;
-    onSubmit: (stepsValues: any) => void; //TODO: Define type for stepsValues
-}
-
-export type SubscriptionComponentType = {
-    title: string;
-    component: React.FC<SubscriptionComponentProps>;
+  title: string;
+  onPrev: () => void;
+  onSubmit: (_stepsValues: Record<string, unknown>) => void;
 };
 
-export const getSubscriptionsStepByKey = (currentStep: SubscriptionsStepValue ) => {
-    const SubscriptionsSteps: Record<SubscriptionsStepValue, SubscriptionComponentType> = {
-        [SubscriptionsStepsMapper.generalInformation]: {
-            title: "General information",
-            component: GeneralInfoFormStep,
-        },
-        [SubscriptionsStepsMapper.expenseInformation]: {
-            title: "Expense information",
-            component: ExpenseInfoFormStep
-        },
-        [SubscriptionsStepsMapper.subscriptionSummary]: {  
-            title: "Subscription summary",
-            component: SummaryFormStep
-        }
-    };
+export type SubscriptionComponentType = {
+  title: string;
+  component: React.FC<SubscriptionComponentProps>;
+};
 
-return SubscriptionsSteps[currentStep as SubscriptionsStepValue];
-}
+export const getSubscriptionsStepByKey = (
+  currentStep: SubscriptionsStepValue,
+) => {
+  const SubscriptionsSteps: Record<
+    SubscriptionsStepValue,
+    SubscriptionComponentType
+  > = {
+    [SubscriptionsStepsMapper.generalInformation]: {
+      title: "General information",
+      component: GeneralInfoFormStep,
+    },
+    [SubscriptionsStepsMapper.expenseInformation]: {
+      title: "Expense information",
+      component: ExpenseInfoFormStep,
+    },
+    [SubscriptionsStepsMapper.subscriptionSummary]: {
+      title: "Subscription summary",
+      component: SummaryFormStep,
+    },
+  };
+
+  return SubscriptionsSteps[currentStep as SubscriptionsStepValue];
+};

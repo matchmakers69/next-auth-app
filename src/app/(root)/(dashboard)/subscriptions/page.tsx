@@ -34,7 +34,7 @@ export default async function SubscriptionsPage() {
       </section>
       {!subscriptions.length && (
         <Alert data-testid="subscriptions-missing-data" type="info">
-          Sorry, but you don't have any subscriptions yet.
+          Sorry, but you do not have any subscriptions yet.
         </Alert>
       )}
       {/* Table data here */}

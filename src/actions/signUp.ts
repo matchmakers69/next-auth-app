@@ -38,7 +38,6 @@ export const signUp = async (data: RegisterFormValues) => {
     },
   });
 
-
   // After registration we should verify user and send token to the user
   const verificationToken = await generateVerificationToken(email);
 

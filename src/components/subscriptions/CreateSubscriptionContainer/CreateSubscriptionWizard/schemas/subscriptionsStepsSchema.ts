@@ -66,5 +66,9 @@ export const ExpenseInformationSchema = z.object({
     .transform((value) => new Date(value)), // Converts to a `Date` object
 });
 
-export type GeneralInformationSchemaType = z.infer<typeof GeneralInformationSchema>;
-export type ExpenseInformationSchemaType = z.infer<typeof ExpenseInformationSchema>;
+export type GeneralInformationSchemaType = z.infer<
+  typeof GeneralInformationSchema
+>;
+export type ExpenseInformationSchemaType = z.infer<
+  typeof ExpenseInformationSchema
+>;

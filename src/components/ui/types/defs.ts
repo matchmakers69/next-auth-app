@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import { ComponentProps } from "react";
 import { SxProps, Theme } from "@mui/material";
 import { ReactNode } from "react";
 
@@ -9,5 +9,4 @@ export type BaseProps<T = ReactNode> = {
   sx?: SxProps<Theme>;
 };
 
-
-export type SvgComponentProps = ComponentProps<'svg'> & { title?: string };
+export type SvgComponentProps = ComponentProps<"svg"> & { title?: string };

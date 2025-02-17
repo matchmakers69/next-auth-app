@@ -1,9 +1,9 @@
-import { SubscriptionExpenseInformation, SubscriptionGeneralInformation, SubscriptionsStepValue } from "@/components/subscriptions/types";
-import { BaseProps } from "@/components/ui/types/defs";
 import {
-  SUBSCRIPTION_BILLING_PERIOD,
-  SUBSCRIPTION_CURRENCY,
-} from "@prisma/client";
+  SubscriptionExpenseInformation,
+  SubscriptionGeneralInformation,
+  SubscriptionsStepValue,
+} from "@/components/subscriptions/types";
+import { BaseProps } from "@/components/ui/types/defs";
 import { Dispatch } from "react";
 
 export type SubscriptionsProviderProps = BaseProps;

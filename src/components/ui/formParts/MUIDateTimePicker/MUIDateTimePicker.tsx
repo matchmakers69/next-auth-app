@@ -14,7 +14,7 @@ const DateTimePickerWrapper = forwardRef<
   HTMLDivElement,
   DateTimePickerProps<Date>
 >((props, ref) => {
-  const { ownerState, ...rest } = props as any;
+  const { ...rest } = props as any;
   return (
     <DateTimePicker views={["day", "month", "year"]} ref={ref} {...rest} />
   );
@@ -34,7 +34,7 @@ const MUIDateTimePicker = forwardRef<HTMLDivElement, MUIDateTimePickerProps>(
       labelText,
       maxDate,
       minDate,
-      onChange = () => {},
+      onChange = () => undefined,
       placeholder = "Select date",
       sx = {},
       timezone = "system",

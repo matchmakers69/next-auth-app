@@ -33,7 +33,6 @@ export const isValidDate = (val: unknown): val is Date => {
   return val instanceof Date && !isNaN(val.getTime());
 };
 
-
 export const isDateBeforeToday = (date: Date): boolean => {
   return date < today;
 };
