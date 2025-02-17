@@ -1,23 +1,17 @@
-"use client";
-import {
-  SessionProvider as AuthSessionProvider,
-  getSession,
-} from "next-auth/react";
-import { Session } from "next-auth";
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { SessionProvider as AuthSessionProvider } from "next-auth/react";
+import { ProvidersProps } from "./defs";
+import { useMemo } from "react";
 
-const SessionProvider = ({ children }: { children: ReactNode }) => {
-  const [session, setSession] = useState<Session | null>(null);
-  const fetchSession = useCallback(async () => {
-    const session = await getSession();
-    setSession(session);
-  }, []);
-
-  useEffect(() => {
-    fetchSession();
-  }, [fetchSession]);
+const SessionProvider = ({ children, session, sessionKey }: ProvidersProps) => {
+  const memoizedSessionKey = useMemo(() => {
+    if (sessionKey) {
+      return sessionKey;
+    }
+  }, [session]);
   return (
-    <AuthSessionProvider session={session}>{children}</AuthSessionProvider>
+    <AuthSessionProvider session={session} key={memoizedSessionKey}>
+      {children}
+    </AuthSessionProvider>
   );
 };
 

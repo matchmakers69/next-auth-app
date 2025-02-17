@@ -1,5 +1,3 @@
-import { notFound } from "next/navigation";
-import { getPostByPostId } from "@/queries/get-topics-by-id";
 import ShowPost from "@/components/articles/ShowPost";
 import { Button } from "@/components/ui/Button";
 import paths from "@/utils/paths";
@@ -9,19 +7,15 @@ import PostShowLoading from "@/components/articles/PostShowLoading";
 import { Suspense } from "react";
 
 interface PostShowPageProps {
-  params: {
+  params: Promise<{
     slug: string;
     postId: string;
-  };
+  }>;
 }
 
 export default async function PostShowPage({ params }: PostShowPageProps) {
   const { slug, postId } = await params;
 
-  const post = await getPostByPostId(postId);
-  if (!post) {
-    notFound();
-  }
   return (
     <>
       <div className="back-button-container mb-12">
@@ -38,7 +32,7 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
         </Button>
       </div>
       <Suspense fallback={<PostShowLoading />}>
-        <ShowPost post={post} />
+        <ShowPost postId={postId} />
       </Suspense>
     </>
   );

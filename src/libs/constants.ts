@@ -1,5 +1,22 @@
 import { v4 as uuidv4 } from "uuid";
 
+export const adminSidebarNavigation = [
+  {
+    id: uuidv4(),
+    label: "Home",
+  },
+
+  {
+    id: uuidv4(),
+    label: "Admin",
+  },
+
+  {
+    id: uuidv4(),
+    label: "Typescript",
+  },
+];
+
 export const sidebarNavigation = [
   {
     id: uuidv4(),

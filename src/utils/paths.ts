@@ -44,6 +44,12 @@ const paths = {
     },
     features() {
         return `/features`
+    },
+    adminMain() {
+        return `/administrator/main`
+    },
+    adminTypescript() {
+        return `/administrator/typescript`
     }
 }
 

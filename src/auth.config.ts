@@ -3,8 +3,8 @@ import bcrypt from "bcryptjs";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import Facebook from "next-auth/providers/facebook";
-
 import type { NextAuthConfig } from "next-auth";
+
 import { loginSchema } from "./components/authentication/schemas/loginSchema";
 import { getUserByEmail } from "@/data/user";
 
@@ -58,6 +58,10 @@ export default {
             }
             return null;
           },
+          credentials: {
+            email: { label: "Email", type: "email", placeholder: "example@example.com" },
+            password: { label: "Password", type: "password" }
+          }
         }),
       ],
 } satisfies NextAuthConfig;

@@ -2,7 +2,6 @@
 
 import * as auth from "@/auth";
 import paths from "@/utils/paths";
-import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
 
 export const login = async (provider: string) => {
@@ -12,19 +11,12 @@ export const login = async (provider: string) => {
 
 export const logout = async () => {
   try {
-    await auth.signOut({ redirectTo: paths.login() });
-  revalidatePath(paths.login());
+    await auth.signOut({ redirectTo: "/" });
+    return { success: true }; 
   } catch (error) {
-    if (error instanceof AuthError) {
-			switch (error.type) {
-				case "SignOutError":
-					return { error: "Error with signing out!" };
-				default:
-					return {
-						error: "Could not sign out user!",
-					};
-			}
-		}
-		throw error;
+    if ((error as Error).name === "SignOutError") {
+      return { error: "Error with signing out!" };
+    }
+    return { error: "Could not sign out user!" };
   }
 };

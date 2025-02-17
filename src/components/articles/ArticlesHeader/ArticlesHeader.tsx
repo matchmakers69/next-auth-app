@@ -1,11 +1,11 @@
 import Header from "@/components/ui/NavbarMain/Header";
-import HeaderAuth from "@/components/ui/NavbarMain/HeaderAuth";
 import Navigation from "@/components/ui/NavbarMain/Navigation";
 import LeftNavigation from "./LeftNavigation";
 import SearchForm from "../Search/SearchForm";
 import { Suspense } from "react";
+import { HeaderAuth } from "@/components/ui/NavbarMain/HeaderAuth";
 
-const ArticlesHeader = () => {
+const ArticlesHeader = async () => {
   return (
     <Header>
       <div className="mr-10 flex w-full flex-wrap items-center">

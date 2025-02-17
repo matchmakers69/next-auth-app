@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 import "remixicon/fonts/remixicon.css";
 import "./globals.css";
+import { auth } from "@/auth";
 import { type Metadata } from "next/types";
 import SessionProvider from "@/components/providers/SessionProvider/SessionProvider";
 import ToasterProvider from "@/components/providers/ToasterProvider";
@@ -34,17 +35,19 @@ export const metadata: Metadata = {
   creator: "Przemek Lewtak",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+  const sessionKey = new Date().valueOf(); // Workaround to force re-render on session change
   return (
     <html lang="en">
       <body className={`${PoppinsFont.className} body-app scroll-touch`}>
         <ToasterProvider />
         <ProgressBarProvider>
-          <SessionProvider>
+          <SessionProvider session={session} sessionKey={sessionKey}>
             <ReactQueryProvider>{children}</ReactQueryProvider>
           </SessionProvider>
         </ProgressBarProvider>

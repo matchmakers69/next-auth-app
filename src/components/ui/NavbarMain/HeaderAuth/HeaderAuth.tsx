@@ -9,13 +9,10 @@ import paths from "@/utils/paths";
 import { useCurrentSession } from "@/hooks/useCurrentSession";
 
 const HeaderAuth = () => {
-  const { session, status } = useCurrentSession();
-
+  const { session } = useCurrentSession();
   let authContent: ReactNode;
 
-  if (status === "loading") {
-    authContent = <span>Loading auth status...</span>;
-  } else if (session && session?.user) {
+  if (session && session?.user) {
     const userName = session?.user.name ?? "Username";
     const avatarSrc = session?.user.image ?? "/icons/avatar.svg";
 

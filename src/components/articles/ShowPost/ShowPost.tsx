@@ -1,8 +1,14 @@
 import { ShowPostProps } from "./defs";
+import { notFound } from "next/navigation";
+import { getPostByPostId } from "@/queries/get-topics-by-id";
 import CreateCommentForm from "../CommentsContainer/CreateCommentForm";
 import CommentsList from "../CommentsContainer/CommentsList";
 
-export default function ShowPost({ post }: ShowPostProps) {
+export default async function ShowPost({ postId }: ShowPostProps) {
+  const post = await getPostByPostId(postId);
+  if (!post) {
+    notFound();
+  }
   return (
     <>
       <h1 className="mb-[4rem] text-[2.4rem] font-semibold sm:text-[2.6rem] md:text-[4rem] lg:text-2xl">

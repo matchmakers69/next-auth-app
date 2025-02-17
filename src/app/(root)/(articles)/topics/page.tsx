@@ -11,7 +11,7 @@ function TopicsPage() {
         <div className="mb-6 sm:col-span-full md:col-span-3 md:mb-0">
           <PageTitle
             title="Topics"
-            slogan="Irregularly scheduled publications of thoughts, idead and tutorials."
+            slogan="Irregularly scheduled publications of thoughts, ideas and tutorials."
           />
         </div>
         <div className="sm:col-span-full md:col-span-1">

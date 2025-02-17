@@ -1,6 +1,5 @@
 "use server";
 
-import { AuthError } from "next-auth";
 import bcrypt from "bcryptjs";
 
 import { signIn as signInUser } from "@/auth";
@@ -29,7 +28,7 @@ export const signIn = async (values: LoginFormValues, callbackUrl?: string | nul
 	const existingUser = await getUserByEmail(email);
 
 	if (!existingUser?.email || !existingUser.password) {
-		return { error: "Email does not exist!" };
+		return { error: "Credentials do not exist! Please sign up!" };
 	}
 
 	if (!existingUser.emailVerified) {
@@ -99,14 +98,10 @@ export const signIn = async (values: LoginFormValues, callbackUrl?: string | nul
 		});
 		return { success: true, callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT };
 	  } catch (error) {
-		if (error instanceof AuthError) {
-		  switch (error.type) {
-			case "CredentialsSignin":
-			  return { error: "The email or password you entered is incorrect." };
-			default:
-			  return { error: "Something went wrong with login!" };
+		if ((error as Error).name === "CredentialsSignin") {
+			return { error: "The email or password you entered is incorrect." };
 		  }
-		}
-		throw error;
+		  
+		  return { error: "Something went wrong with login!" };
 	  }
 };

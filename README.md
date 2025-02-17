@@ -1,5 +1,7 @@
 ### https://www.youtube.com/watch?v=xHQQ5I7E_H8 - next auth 5
 
+### https://github.com/nextauthjs/next-auth/issues/9504#issuecomment-2326123445 - useSession explained
+
 ### https://developers.google.com/identity/protocols/oauth2 - next auth5
 
 ### https://www.youtube.com/watch?v=sQ3fPyko6o8 - next auth 5

@@ -1,5 +1,5 @@
 import Header from "./Header";
-import HeaderAuth from "./HeaderAuth";
+import { HeaderAuth } from "./HeaderAuth";
 import Navigation from "./Navigation";
 
 const NavbarMain = async () => {
