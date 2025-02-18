@@ -10,9 +10,8 @@ export const SubscriptionsStepsMapper = {
 } as const;
 
 // We want to get union of all keys of SubscriptionsSteps
-
 export type SubscriptionsStepValue =
-  (typeof SubscriptionsStepsMapper)[keyof typeof SubscriptionsStepsMapper];
+  (typeof SubscriptionsStepsMapper)[keyof typeof SubscriptionsStepsMapper]; // Union of all values of SubscriptionsStepsMapper can be used to define currentStep as a dynamic key
 
 export type SubscriptionsStepKey = keyof typeof SubscriptionsStepsMapper;
 
@@ -30,9 +29,12 @@ export type SubscriptionExpenseInformation = {
   start_date: string;
 };
 
+export type SubscriptionSummary = SubscriptionGeneralInformation & SubscriptionExpenseInformation;
+
 export type SubscriptionStepValues = {
   subscriptionsGeneralInformation: SubscriptionGeneralInformation;
   expenseInformation: SubscriptionExpenseInformation;
+  subscriptionSummary: SubscriptionSummary;
 };
 
 export type FinalCreateSubscriptionStep = {

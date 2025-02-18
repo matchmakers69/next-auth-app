@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/Button";
-import CreateSubscriptionWizard from "./CreateSubscriptionWizard";
+import { CreateSubscriptionWizard } from "./CreateSubscriptionWizard";
 
 const CreateSubscriptionContainer = () => {
   const [open, setOpen] = useState(false);
