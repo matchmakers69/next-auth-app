@@ -6,7 +6,7 @@ import paths from "@/utils/paths";
 import { db } from "@/libs/db";
 import { createPostSchema } from "@/components/articles/CreatePostContainer/CreatePostForm/validation/createPostValidationSchema";
 import { currentUser } from "@/libs/currentUser";
-import { Post } from "@prisma/client";
+import { Article } from "@prisma/client";
 
 interface CreatePostFormState {
   errors?: {
@@ -52,9 +52,9 @@ export async function createPost(
       },
     };
   }
-  let post: Post;
+  let article: Article;
   try {
-    post = await db.post.create({
+    article = await db.article.create({
       data: {
         title: result.data.title,
         content: result.data.content,
@@ -78,5 +78,5 @@ export async function createPost(
   }
 
   revalidatePath(paths.topicShow(slug));
-  redirect(paths.postShow(slug, post.id));
+  redirect(paths.postShow(slug, article.id));
 }

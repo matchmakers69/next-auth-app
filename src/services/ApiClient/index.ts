@@ -1,5 +1,6 @@
 import { requests } from "@/config/axios";
-import { SubscriptionCategories } from "./types";
+import { SubscriptionCategories } from "../../types";
+
 
 export const ApiClient = (url: string) => {
   return {

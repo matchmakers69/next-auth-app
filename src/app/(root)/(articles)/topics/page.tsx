@@ -1,4 +1,4 @@
-import { fetchTopPosts } from "@/queries/posts";
+import { fetchTopArticles } from "@/queries/articles";
 import PostList from "@/components/articles/CreatePostContainer/PostList";
 import CreateTopicContainer from "@/components/articles/CreateTopicContainer";
 import TopicsList from "@/components/articles/TopicsList";
@@ -24,7 +24,7 @@ function TopicsPage() {
           <h2 className="mb-8 text-[2.0rem] font-semibold md:text-[2.4rem]">
             Top posts
           </h2>
-          <PostList fetchData={fetchTopPosts} />
+          <PostList fetchData={fetchTopArticles} />
         </div>
 
         <aside className="order-1 p-4 md:order-none">

@@ -8,12 +8,12 @@ export const adminSidebarNavigation = [
 
   {
     id: uuidv4(),
-    label: "Admin",
+    label: "Dashboard",
   },
 
   {
     id: uuidv4(),
-    label: "Typescript",
+    label: "Blog",
   },
 ];
 

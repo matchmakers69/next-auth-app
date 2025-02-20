@@ -1,7 +1,7 @@
 import { adminSidebarNavigation } from "@/libs/constants";
 import paths from "@/utils/paths";
 
-export const navigationLinks = adminSidebarNavigation.map((item) => {
+export const adminNavLinks = adminSidebarNavigation.map((item) => {
   let href = "#"; // Default fallback
   let icon = "";
   switch (item.label.toLowerCase()) {
@@ -10,14 +10,14 @@ export const navigationLinks = adminSidebarNavigation.map((item) => {
       icon = "home";
       break;
 
-    case "admin":
-      href = paths.adminMain();
-      icon = "home";
+    case "dashboard":
+      href = paths.adminDashboard();
+      icon = "dashboard";
       break;
 
-    case "typescript":
-      href = paths.adminTypescript();
-      icon = "settings";
+    case "blog":
+      href = paths.adminBlog();
+      icon = "news";
       break;
 
     default:

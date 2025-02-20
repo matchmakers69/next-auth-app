@@ -27,7 +27,7 @@ const Navigation = () => {
           <NavLink
             className="relative flex h-[42px] max-w-full cursor-pointer select-none items-center justify-start gap-[10px] rounded-[10px] border border-solid border-[hsla(0,0%,100%,0.1)] bg-transparent px-[15px] py-[10px] text-sm text-light-grey transition-all duration-200 ease-out md:hover:bg-[#ffffff13] md:hover:text-text-light"
             classNameActive="text-primary bg-[#ffffff0d]"
-            href={paths.adminMain()}
+            href={paths.adminDashboard()}
           >
             <span className="text-inherit">Admin</span>
           </NavLink>

@@ -27,7 +27,7 @@ model User {
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
   sessions              Session[]
-  Post                  Post[]
+  Post                  Article[]
   Comment               Comment[]
   subscriptions         Subscription[]
   role                  UserRole               @default(USER)
@@ -106,16 +106,16 @@ enum Status {
 }
 
 model Topic {
-  id          String @id @default(cuid())
-  slug        String @unique
+  id          String    @id @default(cuid())
+  slug        String    @unique
   description String
-  posts       Post[]
+  posts       Article[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Post {
+model Article {
   id      String @id @default(cuid())
   title   String
   content String
@@ -141,7 +141,7 @@ model Comment {
   updatedAt DateTime @updatedAt
 
   parent   Comment?  @relation("Comments", fields: [parentId], references: [id], onDelete: Cascade)
-  post     Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  post     Article   @relation(fields: [postId], references: [id], onDelete: Cascade)
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   children Comment[] @relation("Comments")
 }

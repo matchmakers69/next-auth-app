@@ -1,7 +1,7 @@
 import CreatePostContainer from "@/components/articles/CreatePostContainer";
 import PostList from "@/components/articles/CreatePostContainer/PostList";
 import PageTitle from "@/components/ui/PageTitle";
-import { fetchPostsByTopicSlug } from "@/queries/posts";
+import { fetchArticlesByTopicSlug } from "@/queries/articles";
 
 interface TopicShowPageProps {
   params: Promise<{
@@ -28,7 +28,7 @@ export default async function TopicShowPage({ params }: TopicShowPageProps) {
 
       <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_minmax(25rem,30rem)] xl:grid-cols-[1fr_minmax(30rem,35rem)]">
         <div className="p-4">
-          <PostList fetchData={() => fetchPostsByTopicSlug(slug)} />
+          <PostList fetchData={() => fetchArticlesByTopicSlug(slug)} />
         </div>
       </div>
     </>

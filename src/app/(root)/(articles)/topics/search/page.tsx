@@ -1,5 +1,5 @@
 import PostList from "@/components/articles/CreatePostContainer/PostList";
-import { fetchPostsBySearchTerm } from "@/queries/posts";
+import { fetchArticlesBySearchTerm } from "@/queries/articles";
 
 interface SearchPageProps {
   searchParams: Promise<{
@@ -14,7 +14,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   }
   return (
     <div className="w-full">
-      <PostList fetchData={() => fetchPostsBySearchTerm(term)} />
+      <PostList fetchData={() => fetchArticlesBySearchTerm(term)} />
     </div>
   );
 }

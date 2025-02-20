@@ -1,6 +1,6 @@
 import { db } from "@/libs/db";
 
-// export type PostWithData = Post & {
+// export type Article = Post & {
 //   topic: {
 //     slug: string;
 //   };
@@ -9,12 +9,12 @@ import { db } from "@/libs/db";
 // };
 
 // Alternative way to define the type
-export type PostWithData = Awaited<
-  ReturnType<typeof fetchPostsByTopicSlug>
+export type Article = Awaited<
+  ReturnType<typeof fetchArticlesByTopicSlug>
 >[number];
 
-export function fetchPostsByTopicSlug(slug: string) {
-  return db.post.findMany({
+export function fetchArticlesByTopicSlug(slug: string) {
+  return db.article.findMany({
     where: { topic: { slug } },
     include: {
       topic: { select: { slug: true } },
@@ -24,8 +24,8 @@ export function fetchPostsByTopicSlug(slug: string) {
   });
 }
 
-export function fetchTopPosts(): Promise<PostWithData[]> {
-  return db.post.findMany({
+export function fetchTopArticles(): Promise<Article[]> {
+  return db.article.findMany({
     orderBy: [
       {
         comments: {
@@ -43,8 +43,8 @@ export function fetchTopPosts(): Promise<PostWithData[]> {
 }
 
 // Search posts
-export function fetchPostsBySearchTerm(term: string): Promise<PostWithData[]> {
-  return db.post.findMany({
+export function fetchArticlesBySearchTerm(term: string): Promise<Article[]> {
+  return db.article.findMany({
     include: {
       topic: { select: { slug: true } },
       user: { select: { name: true, image: true } },

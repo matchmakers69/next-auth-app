@@ -6,7 +6,7 @@ import { IBM_Plex_Sans } from "next/font/google";
 import Link from "next/link";
 import SidebarLeftContainer from "./SidebarLeftContainer";
 import LogoSidebarContainer from "./LogoSidebarContainer";
-import { navigationLinks } from "./config/navListMapper";
+import { adminNavLinks } from "./config/adminNavListMapper";
 import { NavLink } from "@/components/ui/NavLink";
 import { useCurrentSession } from "@/hooks/useCurrentSession";
 
@@ -41,7 +41,7 @@ const AdminMenuSidebar = () => {
           </div>
           <div className="flex flex-col gap-0.5" data-slot="section">
             <ul className="m-0 flex w-full flex-1 flex-col items-center justify-center gap-4 p-0 md:flex-initial md:items-stretch">
-              {navigationLinks.map((link) => {
+              {adminNavLinks.map((link) => {
                 return (
                   <li key={link.id}>
                     <NavLink

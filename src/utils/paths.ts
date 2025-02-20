@@ -45,11 +45,17 @@ const paths = {
   features() {
     return `/features`;
   },
-  adminMain() {
-    return `/administrator/main`;
+  adminDashboard() {
+    return `/administrator/dashboard`;
   },
   adminTypescript() {
     return `/administrator/typescript`;
+  },
+  adminBlog() {
+    return `/administrator/blog`;
+  },
+  adminBlogPostShow(blogSlug: string) {
+    return `/administrator/blog/${blogSlug}`;
   },
 };
 
