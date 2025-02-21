@@ -40,3 +40,11 @@ export const isDateBeforeToday = (date: Date): boolean => {
 export const isDateAfterToday = (date: Date): boolean => {
   return date > today;
 };
+
+export const formatDateToEnglish = (date: Date) => {
+  return new Date(date).toLocaleDateString("en-GB", {
+    month: "numeric",
+    day: "numeric",
+    year: "numeric",
+  });
+};

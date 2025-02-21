@@ -11,7 +11,7 @@ const BlogPage = () => {
   return (
     <>
       <PageTitle className="mb-16" title="Admin's Blog" />
-      <PostListRSC paginate={false} />
+      <PostListRSC paginate />
     </>
   );
 };

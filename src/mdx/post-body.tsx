@@ -8,25 +8,27 @@ import { mdxComponents } from "./components";
 
 export function PostBody({ children }: { children: string }) {
   return (
-    <MDXRemote
-      source={children}
-      options={{
-        mdxOptions: {
-          remarkPlugins: [
-            remarkGfm,
-            remarkFrontmatter,
-            [
-              remarkToc,
-              {
-                tight: true,
-                maxDepth: 5,
-              },
+    <>
+      <MDXRemote
+        source={children}
+        options={{
+          mdxOptions: {
+            remarkPlugins: [
+              remarkGfm,
+              remarkFrontmatter,
+              [
+                remarkToc,
+                {
+                  tight: true,
+                  maxDepth: 5,
+                },
+              ],
             ],
-          ],
-          rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
-        },
-      }}
-      components={mdxComponents}
-    />
+            rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+          },
+        }}
+        components={mdxComponents}
+      />
+    </>
   );
 }

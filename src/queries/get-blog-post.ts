@@ -43,3 +43,22 @@ export const getPostBySlug = async (slug: string) => {
   const posts = await getBlogPosts();
   return posts.find((post) => post.slug === slug);
 };
+
+export async function getPostsData(slug: string) {
+  const posts = await getBlogPosts();
+  const postIndex = posts.findIndex((p) => p?.slug === slug);
+
+  if (postIndex === -1) {
+    throw new Error(
+      `${slug} not found in posts. Did you forget to rename the file?`
+    );
+  }
+
+  const post = posts[postIndex];
+
+  return {
+    previous: posts[postIndex + 1] || null,
+    next: posts[postIndex - 1] || null,
+    ...post,
+  };
+}

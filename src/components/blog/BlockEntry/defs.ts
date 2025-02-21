@@ -3,7 +3,7 @@ export type BlockEntryProps = {
   description?: string;
   type?: string;
   href: string;
-  date?: Date;
+  date?: string;
   views?: number;
   isThirdParty?: boolean;
 };

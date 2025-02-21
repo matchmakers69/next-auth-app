@@ -1,26 +1,10 @@
 import { BaseProps } from "@/components/ui/types/defs";
-import { getBlogPosts } from "@/queries/get-blog-post";
-
-async function getPostsData({ slug }: { slug: string }) {
-  const posts = await getBlogPosts();
-  const postIndex = posts.findIndex((p) => p?.slug === slug);
-
-  if (postIndex === -1) {
-    throw new Error(
-      `${slug} not found in posts. Did you forget to rename the file?`,
-    );
-  }
-
-  const post = posts[postIndex];
-
-  const { ...rest } = post;
-
-  return {
-    previous: posts[postIndex + 1] || null,
-    next: posts[postIndex - 1] || null,
-    ...rest,
-  };
-}
+import { getPostsData } from "@/queries/get-blog-post";
+import { Button } from "@/components/ui/Button";
+import paths from "@/utils/paths";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { formatDateToEnglish } from "@/utils/dates";
 
 interface PostLayoutProps extends BaseProps {
   params: Promise<{
@@ -29,20 +13,28 @@ interface PostLayoutProps extends BaseProps {
 }
 
 const PostLayout = async ({ children, params }: PostLayoutProps) => {
-  const { title, date, lastModified } = await getPostsData(await params);
-  const lastModifiedDate = lastModified
-    ? new Date(lastModified).toLocaleDateString("en-GB", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-      })
-    : null;
+  const { slug } = await params;
+  const { title, date, lastModified } = await getPostsData(slug);
+
   return (
     <>
+      <div className="back-button-wrapper mb-12 flex w-full justify-end">
+        <Button
+          className="max-w-[20rem] rounded-lg border border-solid border-[hsla(0,0%,100%,0.1)] bg-transparent text-[rgba(var(--white),1)] hover:opacity-60"
+          asChild
+          variant="link"
+          size="sm"
+        >
+          <Link className="flex items-center" href={paths.adminBlog()}>
+            <ArrowLeft />
+            <span className="ml-3 inline-block">Back to blog page</span>
+          </Link>
+        </Button>
+      </div>
       <span className="date">{date}</span>
       {lastModified ? (
         <span className="text-sm text-gray-500">
-          Last modified {lastModifiedDate}
+          Last modified {formatDateToEnglish(new Date(lastModified))}
         </span>
       ) : null}
       <article>

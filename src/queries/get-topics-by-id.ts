@@ -2,7 +2,7 @@ import { db } from "@/libs/db";
 
 export async function getPostByPostId(postId: string) {
   try {
-    const singlePost = await db.post.findFirst({
+    const singlePost = await db.article.findFirst({
       where: { id: postId },
     });
 
