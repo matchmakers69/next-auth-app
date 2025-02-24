@@ -1,6 +1,6 @@
 import { fetchCommentsByPostId } from "@/queries/comments";
 import { CommentsListProps } from "./defs";
-import CommentShow from "../CommentShow";
+import { CommentShow } from "../CommentShow";
 
 const CommentsList = async ({ postId }: CommentsListProps) => {
   const comments = await fetchCommentsByPostId(postId);

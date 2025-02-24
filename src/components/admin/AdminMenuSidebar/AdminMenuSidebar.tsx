@@ -40,7 +40,7 @@ const AdminMenuSidebar = () => {
             ></p>
           </div>
           <div className="flex flex-col gap-0.5" data-slot="section">
-            <ul className="m-0 flex w-full flex-1 flex-col items-center justify-center gap-4 p-0 md:flex-initial md:items-stretch">
+            <ul className="admin-list m-0 flex w-full flex-1 flex-col gap-4 p-0 md:flex-initial md:items-stretch">
               {adminNavLinks.map((link) => {
                 return (
                   <li key={link.id}>

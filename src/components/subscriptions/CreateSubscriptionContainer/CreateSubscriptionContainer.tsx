@@ -1,21 +1,17 @@
 "use client";
 
-import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CreateSubscriptionWizard } from "./CreateSubscriptionWizard";
+import { useFeatureSwitcher } from "@/hooks/useFeatureSwitcher";
 
 const CreateSubscriptionContainer = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleCloseModal = useCallback(() => {
-    setOpen(false);
-  }, []);
+  const featureModal = useFeatureSwitcher();
 
   return (
     <>
       <div className="cta-button-wrapper flex w-full items-center md:justify-end">
         <Button
-          onClick={() => setOpen(true)}
+          onClick={() => featureModal.on()}
           type="button"
           size="sm"
           variant="secondary"
@@ -24,8 +20,11 @@ const CreateSubscriptionContainer = () => {
           <span className="inline-block">New subscription</span>
         </Button>
       </div>
-      {open && (
-        <CreateSubscriptionWizard open={open} onClose={handleCloseModal} />
+      {featureModal.isOn && (
+        <CreateSubscriptionWizard
+          open={featureModal.isOn}
+          onClose={featureModal.off}
+        />
       )}
     </>
   );

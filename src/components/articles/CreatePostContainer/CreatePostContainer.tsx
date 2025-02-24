@@ -1,22 +1,18 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import CreatePostForm from "./CreatePostForm";
 import { CreatePostContainerProps } from "./defs";
+import { useFeatureSwitcher } from "@/hooks/useFeatureSwitcher";
 
 const CreatePostContainer = ({ slug }: CreatePostContainerProps) => {
-  const [open, setOpen] = useState(false);
-
-  const handleCloseModal = useCallback(() => {
-    setOpen(false);
-  }, []);
+  const modalFeature = useFeatureSwitcher();
 
   return (
     <>
       <div className="cta-button-wrapper flex w-full items-center md:justify-end">
         <Button
-          onClick={() => setOpen(true)}
+          onClick={() => modalFeature.on()}
           type="button"
           size="sm"
           variant="secondary"
@@ -25,8 +21,12 @@ const CreatePostContainer = ({ slug }: CreatePostContainerProps) => {
           <span className="inline-block">New post</span>
         </Button>
       </div>
-      {open && (
-        <CreatePostForm slug={slug} open={open} onClose={handleCloseModal} />
+      {modalFeature.isOn && (
+        <CreatePostForm
+          slug={slug}
+          open={modalFeature.isOn}
+          onClose={modalFeature.off}
+        />
       )}
     </>
   );

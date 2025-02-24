@@ -395,11 +395,11 @@ textarea {
 }
 
 .sidebar-menu-toggle-button-icon::after {
-  background: rgb(var(--text-light));
+  background: var(--text-light);
 }
 
 .sidebar-menu-toggle-button-icon::before {
-  background: rgb(var(--text-light));
+  background: var(--text-light);
 }
 
 .shadow-header {

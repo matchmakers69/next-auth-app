@@ -23,12 +23,12 @@ const DashboardHeader = ({ onOpenSidebar }: DashboardHeaderProps) => {
           Welcome back, {username}
         </h2>
         <button
-          className="sidebar-menu-toggle-button inline-flex h-full cursor-pointer items-center p-[1.5rem] focus:outline-none focus:ring-1 focus-visible:ring-offset-1 md:p-[20px] lg:hidden"
+          className="sidebar-menu-toggle-button flex h-full cursor-pointer items-center p-[1rem] focus:outline-none focus:ring-1 focus-visible:ring-offset-1 md:p-[20px] lg:hidden"
           onClick={onOpenSidebar}
           type="button"
           aria-label="toggle navigation sidebar"
         >
-          <span className="sidebar-menu-toggle-button-icon inline-flex h-[1.5rem] w-[1.5rem] flex-col items-start sm:mr-[0.8rem]" />
+          <span className="sidebar-menu-toggle-button-icon flex h-[2rem] w-[2rem] flex-col items-start justify-center sm:mr-[0.8rem]" />
           <span className="hidden text-sm font-thin uppercase sm:inline-block">
             Menu
           </span>

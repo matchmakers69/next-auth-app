@@ -1,21 +1,17 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useFeatureSwitcher } from "@/hooks/useFeatureSwitcher";
 import { Button } from "@/components/ui/Button";
 import { CreateTopicForm } from "./CreateTopicForm";
 
 const CreateTopicContainer = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleCloseModal = useCallback(() => {
-    setOpen(false);
-  }, []);
+  const featureModal = useFeatureSwitcher();
 
   return (
     <>
       <div className="cta-button-wrapper flex w-full items-center md:justify-end">
         <Button
-          onClick={() => setOpen(true)}
+          onClick={() => featureModal.on()}
           type="button"
           size="sm"
           variant="secondary"
@@ -24,7 +20,9 @@ const CreateTopicContainer = () => {
           <span className="inline-block">New topic</span>
         </Button>
       </div>
-      {open && <CreateTopicForm open={open} onClose={handleCloseModal} />}
+      {featureModal.isOn && (
+        <CreateTopicForm open={featureModal.isOn} onClose={featureModal.off} />
+      )}
     </>
   );
 };
