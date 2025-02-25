@@ -1,5 +1,5 @@
 import { BaseProps } from "@/components/ui/types/defs";
-import { getPostsData } from "@/queries/get-blog-post";
+import { getPostsData } from "@/libs/get-blog-postAPI";
 import { Button } from "@/components/ui/Button";
 import paths from "@/utils/paths";
 import { ArrowLeft } from "lucide-react";

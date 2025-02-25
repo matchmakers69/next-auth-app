@@ -1,6 +1,6 @@
-import { Post } from "../../../types"
+import { Post } from "../../../types";
 
 export type PostsListProps = {
-    posts: Post[]
-    paginate?: boolean
-}
+  posts: Post[];
+  paginate?: boolean;
+};

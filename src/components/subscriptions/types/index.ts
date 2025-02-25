@@ -29,7 +29,8 @@ export type SubscriptionExpenseInformation = {
   start_date: string;
 };
 
-export type SubscriptionSummary = SubscriptionGeneralInformation & SubscriptionExpenseInformation;
+export type SubscriptionSummary = SubscriptionGeneralInformation &
+  SubscriptionExpenseInformation;
 
 export type SubscriptionStepValues = {
   subscriptionsGeneralInformation: SubscriptionGeneralInformation;

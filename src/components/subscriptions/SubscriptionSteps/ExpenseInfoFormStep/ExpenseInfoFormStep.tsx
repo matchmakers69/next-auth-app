@@ -10,7 +10,6 @@ import {
   SUBSCRIPTION_CURRENCY,
 } from "@prisma/client";
 import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
-import { DATE_GLOBAL_FORMAT } from "@/constants";
 import { InputSx } from "@/utils/stylesUtils";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
 import { startOfToday } from "date-fns";
@@ -24,7 +23,7 @@ import {
   useRef,
 } from "react";
 import { runExpensesInfoValidation } from "@/actions/subscriptionSteps/run-expenses-info-validation";
-import { isValidDate } from "@/utils/dates";
+import { DATE_GLOBAL_FORMAT, isValidDate } from "@/utils/dates";
 
 const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
   const [state, formAction, isPending] = useActionState(

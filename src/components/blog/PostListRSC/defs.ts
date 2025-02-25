@@ -1,3 +1,3 @@
 export type PostListRSCProps = {
-    paginate?: boolean;
-}
+  paginate?: boolean;
+};

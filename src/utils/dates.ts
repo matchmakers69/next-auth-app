@@ -1,4 +1,3 @@
-import { DATE_GLOBAL_FORMAT } from "@/constants";
 import {
   setHours,
   setMinutes,
@@ -6,6 +5,9 @@ import {
   setMilliseconds,
   format,
 } from "date-fns";
+
+export const DATE_GLOBAL_LOCALE = "en-GB";
+export const DATE_GLOBAL_FORMAT = "dd/MM/yyyy";
 
 // Get today's date
 const today = new Date();

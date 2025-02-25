@@ -1,4 +1,4 @@
-import { fetchCommentsByPostId } from "@/queries/comments";
+import { fetchCommentsByPostId } from "@/libs/commentsAPI";
 import Image from "next/image";
 import { CommentShowProps } from "./defs";
 import CreateCommentForm from "../CreateCommentForm";

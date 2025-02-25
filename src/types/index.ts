@@ -23,3 +23,36 @@ export type Post = Base & {
   isThirdParty?: boolean;
   type: "post";
 };
+
+export interface Budget {
+  id: number;
+  attributes: {
+    category: string;
+    amount: number;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+  };
+}
+
+export interface Income {
+  id: number;
+  attributes: {
+    description: string;
+    amount: number;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+  };
+}
+
+export interface Expense {
+  id: number;
+  attributes: {
+    description: string;
+    amount: number;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+  };
+}

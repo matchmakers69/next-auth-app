@@ -1,4 +1,4 @@
-import { fetchTopArticles } from "@/queries/articles";
+import { fetchTopArticles } from "@/libs/articlesAPI";
 import PostList from "@/components/articles/CreatePostContainer/PostList";
 import CreateTopicContainer from "@/components/articles/CreateTopicContainer";
 import TopicsList from "@/components/articles/TopicsList";

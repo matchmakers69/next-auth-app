@@ -25,7 +25,7 @@ export const getBlogPosts = cache(async (isMockPostsIncluded?: boolean) => {
     });
 
   const postsWithMetadata = await Promise.all(refactoredPosts);
-// Merge with Mocked Posts (if enabled)
+  // Merge with Mocked Posts (if enabled)
   const postsWithMetadataAndThirdPartyPosts = [
     ...postsWithMetadata,
     ...(isMockPostsIncluded ? MOCKED_POSTS : []),
@@ -50,7 +50,7 @@ export async function getPostsData(slug: string) {
 
   if (postIndex === -1) {
     throw new Error(
-      `${slug} not found in posts. Did you forget to rename the file?`
+      `${slug} not found in posts. Did you forget to rename the file?`,
     );
   }
 

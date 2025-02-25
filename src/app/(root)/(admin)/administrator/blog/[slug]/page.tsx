@@ -2,7 +2,7 @@ import { PostBody } from "@/mdx/post-body";
 import {
   getBlogPosts,
   getPostBySlug,
-} from "../../../../../../queries/get-blog-post";
+} from "../../../../../../libs/get-blog-postAPI";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {

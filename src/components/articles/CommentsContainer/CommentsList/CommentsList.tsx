@@ -1,4 +1,4 @@
-import { fetchCommentsByPostId } from "@/queries/comments";
+import { fetchCommentsByPostId } from "@/libs/commentsAPI";
 import { CommentsListProps } from "./defs";
 import { CommentShow } from "../CommentShow";
 

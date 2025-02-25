@@ -1,1 +1,1 @@
-export { default as BlockEntry } from "./BlockEntry"
+export { default as BlockEntry } from "./BlockEntry";

@@ -1,4 +1,4 @@
-import { getBlogPosts } from "../../../queries/get-blog-post";
+import { getBlogPosts } from "../../../libs/get-blog-postAPI";
 import { PostListRSCProps } from "./defs";
 import { PostsList } from "../PostsList";
 

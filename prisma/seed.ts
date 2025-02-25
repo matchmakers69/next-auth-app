@@ -1,5 +1,5 @@
 import { db } from "@/libs/db";
-import { subscriptionsCategories } from "@/libs/placeholder-data";
+import { subscriptionsCategories } from "@/libs/placeholder";
 
 async function main() {
   try {

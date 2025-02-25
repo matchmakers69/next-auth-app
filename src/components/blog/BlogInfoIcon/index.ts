@@ -1,1 +1,1 @@
-export { default as BlogInfoIcon } from './BlogInfoIcon';
+export { default as BlogInfoIcon } from "./BlogInfoIcon";

@@ -65,7 +65,7 @@ const paths = {
   },
   adminBlogPostShow(blogSlug: string) {
     return `/administrator/blog/${blogSlug}`;
-  }
+  },
 };
 
 export default paths;

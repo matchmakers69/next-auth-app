@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
 import paths from "@/utils/paths";
 import { getUserByEmail, getUserById } from "@/data/user";
-import { currentUser } from "@/libs/currentUser";
+import { currentUser } from "@/libs/currentUserAPI";
 import { generateVerificationToken } from "@/libs/tokens";
 import { sendVerificationEmail } from "@/libs/mail";
 import { db } from "@/libs/db";
