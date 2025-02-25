@@ -5,17 +5,16 @@ export const adminSidebarNavigation = [
     id: uuidv4(),
     label: "Home",
   },
-
   {
     id: uuidv4(),
     label: "Dashboard",
   },
-
   {
     id: uuidv4(),
     label: "Blog",
-  },
+  }
 ];
+
 
 export const sidebarNavigation = [
   {
@@ -35,6 +34,15 @@ export const sidebarNavigation = [
     id: uuidv4(),
     label: "Subscriptions",
   },
+  {
+    id: uuidv4(),
+    label: "Finance tracker",
+    children: [
+      { id: uuidv4(), label: "Overview" },
+      { id: uuidv4(), label: "Budget" },
+      { id: uuidv4(), label: "Cashflow" },
+    ],
+  }
 ];
 
 export const framerSidebarBackground = {

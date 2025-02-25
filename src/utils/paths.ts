@@ -45,6 +45,15 @@ const paths = {
   features() {
     return `/features`;
   },
+  financeTrackerOverview() {
+    return `/finance-tracker/overview`;
+  },
+  financeTrackerBudget() {
+    return `/finance-tracker/budget`;
+  },
+  financeTrackerCashflow() {
+    return `/finance-tracker/cashflow`;
+  },
   adminDashboard() {
     return `/administrator/dashboard`;
   },
@@ -56,7 +65,7 @@ const paths = {
   },
   adminBlogPostShow(blogSlug: string) {
     return `/administrator/blog/${blogSlug}`;
-  },
+  }
 };
 
 export default paths;
