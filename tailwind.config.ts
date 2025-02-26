@@ -16,6 +16,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        custom: ["Poppins", "sans-serif"],
+      },
       backdropBlur: {
         'custom': '25px',
       },
@@ -95,7 +98,7 @@ export default {
     },
   },
   plugins: [
-    plugin(function({ addUtilities }) {
+    plugin(({ addUtilities }) => {
       addUtilities({
         '.scroll-touch': {
           '-webkit-overflow-scrolling': 'touch',

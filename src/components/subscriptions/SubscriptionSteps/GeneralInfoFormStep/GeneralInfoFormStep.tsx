@@ -50,14 +50,14 @@ const GeneralInfoFormStep = ({ title, onSubmit }: GeneralInfoFormStepProps) => {
 
   const handleGoToNextStep = useCallback(() => {
     onSubmit(stepValues);
-  }, [state]);
+  }, [onSubmit, stepValues]);
 
   useEffect(() => {
     if (!state.success) {
       return;
     }
     handleGoToNextStep();
-  }, [state]);
+  }, [handleGoToNextStep, state]);
 
   return (
     <>

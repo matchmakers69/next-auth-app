@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { TextField, MenuItem, SxProps, Theme, Box } from "@mui/material";
 import { getDefaultSx } from "../defaultSx";
 import { MUITextFieldSelectProps } from "./defs";
-import { fontDefault } from "@/utils/fonts";
+import { fontDefault } from "@/constants/fonts";
 
 const MUITextFieldSelect = forwardRef<
   HTMLInputElement,

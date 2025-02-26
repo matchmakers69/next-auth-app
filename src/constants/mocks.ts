@@ -8,13 +8,16 @@ export const SUBSCRIPTION_BILLING_OPTIONS: SUBSCRIPTION_BILLING_PERIOD[] = [
 ];
 
 export const SUBSCRIPTION_CATEGORIES = [
-  "ENTERNTAINMENT",
-  "SPORT",
-  "HOME",
+  "ENTERTAINMENT",
+  "HOUSE",
   "CAR",
+  "SPORT",
   "EDUCATION",
   "HOBBY",
+  "OTHER",
 ];
+
+export const INCOME_CATEGORIES = ["SALARY", "BONUS", "REFUNDS", "OTHER"];
 
 export const CURRENCIES = [
   {
@@ -123,8 +126,8 @@ export const MOCKED_BUDGET = [
       createdAt: "2024-05-30T15:46:33.071Z",
       updatedAt: "2024-05-30T17:17:33.997Z",
       publishedAt: "2024-05-30T17:17:33.616Z",
-    }
-  }
+    },
+  },
 ];
 
 export const MOCKED_EXPENSES = [
@@ -166,8 +169,8 @@ export const MOCKED_EXPENSES = [
       createdAt: "2024-05-30T15:46:33.071Z",
       updatedAt: "2024-05-30T17:17:33.997Z",
       publishedAt: "2024-05-30T17:17:33.616Z",
-    }
-  }
+    },
+  },
 ];
 
 export const MOCKED_INCOMES = [
@@ -179,7 +182,7 @@ export const MOCKED_INCOMES = [
       createdAt: "2024-05-30T15:46:33.071Z",
       updatedAt: "2024-05-30T17:17:33.997Z",
       publishedAt: "2024-05-30T17:17:33.616Z",
-    }
+    },
   },
   {
     id: 2,
@@ -201,6 +204,6 @@ export const MOCKED_BUDGET_LIMIT = [
       createdAt: "2024-05-30T15:46:33.071Z",
       updatedAt: "2024-05-30T17:17:33.997Z",
       publishedAt: "2024-05-30T17:17:33.616Z",
-    }
-  }
+    },
+  },
 ];

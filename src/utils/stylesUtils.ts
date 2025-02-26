@@ -1,5 +1,5 @@
 import { SxProps, Theme } from "@mui/material";
-import { fontDefault } from "./fonts";
+import { fontDefault } from "../constants/fonts";
 
 export const InputSx: SxProps<Theme> = {
   "& .MuiInputLabel-outlined": {

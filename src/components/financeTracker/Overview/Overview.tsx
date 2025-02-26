@@ -1,25 +1,57 @@
 "use client";
 
-import { useGetBudgetQuery } from "@/reactQuery/hooks/useBudgetQuery";
-import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { LocationProvider } from "@/components/providers/LocationProvider";
+import { CreateIncomeForm } from "../CreateIncomeForm";
+import { useState } from "react";
+import { TransactionType } from "./defs";
 
-const Overview = () => {
-  const { data: budget, isLoading, error } = useGetBudgetQuery();
+export default function Overview() {
+  const [transactionType, setTransactionType] =
+    useState<TransactionType | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (!budget || isLoading) {
-    return <Loader2 size={30} className="mx-auto my-10 animate-spin" />;
-  }
+  const openModal = (type: TransactionType) => {
+    setTransactionType(type);
+    setIsModalOpen(true);
+  };
 
-  if (error) {
-    return <div>{error.message ?? "Cannot fetch budgets"}</div>;
-  }
+  const closeModal = () => {
+    setTransactionType(null);
+    setIsModalOpen(false);
+  };
 
-  const categories = budget.map((item) => item.category);
-  const amounts = budget.map((item) => item.amount);
-  console.log(categories);
-  console.log(amounts);
+  return (
+    <>
+      <div className="buttons-wrapper flex w-full items-center justify-end gap-6">
+        <Button
+          onClick={() => openModal("income")}
+          className="bg-gradient-to-r from-blue-700 to-indigo-500 text-[rgba(var(--white),1)] hover:opacity-60"
+          type="button"
+          size="sm"
+        >
+          <span className="inline-block">New income</span>
+        </Button>
 
-  return <div>hello</div>;
-};
+        <Button
+          onClick={() => openModal("expense")}
+          className="bg-light-blue text-[rgba(var(--white),1)] hover:opacity-60"
+          type="button"
+          size="sm"
+        >
+          <span className="inline-block">New expense</span>
+        </Button>
+      </div>
 
-export default Overview;
+      {isModalOpen && transactionType === "income" && (
+        <LocationProvider>
+          <CreateIncomeForm open={isModalOpen} onClose={closeModal} />
+        </LocationProvider>
+      )}
+
+      {isModalOpen && transactionType === "expense" && (
+        <div>Expense form goes here</div>
+      )}
+    </>
+  );
+}

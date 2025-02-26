@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SxProps, Theme } from "@mui/system";
 import { FC } from "react";
 import { CustomChipProps } from "./defs";
-import { fontDefault } from "@/utils/fonts";
+import { fontDefault } from "@/constants/fonts";
 
 const Chip: FC<CustomChipProps> = ({
   href,

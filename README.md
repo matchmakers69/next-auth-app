@@ -63,3 +63,7 @@
 ### https://medium.com/@ignatovich.dm/enhancing-form-handling-in-react-19-a-look-at-action-useformstate-and-useformstatus-a5ee68d6bf93
 
 ANALYZE=true next build
+
+### https://www.youtube.com/watch?v=nANLXwxZxks - finance tracker
+
+### https://dev.to/strapi/build-a-finance-tracker-with-nextjs-strapi-and-chartjs-part-2-1m9k - chart.js

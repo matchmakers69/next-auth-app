@@ -154,6 +154,21 @@ enum SUBSCRIPTION_CURRENCY {
   USD
 }
 
+enum SUBSCRIPTION_CATEGORY_LABEL {
+  ENTERTAINMENT
+  FITNESS
+  HOUSE
+  CAR
+  EDUCATION
+  HOBBY
+  OTHER
+}
+
+model SubscriptionCategory {
+  id    String                       @id @default(uuid())
+  label SUBSCRIPTION_CATEGORY_LABEL?
+}
+
 enum SUBSCRIPTION_BILLING_PERIOD {
   WEEKLY
   MONTHLY
@@ -168,21 +183,6 @@ enum SUBSCRIPTION_STATUS {
 enum PAYMENT_STATUS {
   NOT_PAID
   PAID
-}
-
-enum SUBSCRIPTION_CATEGORY_LABEL {
-  ENTERNTAINMENT
-  HOME
-  CAR
-  SPORT
-  EDUCATION
-  HOBBY
-  OTHER
-}
-
-model SubscriptionCategory {
-  id    String                       @id @default(uuid())
-  label SUBSCRIPTION_CATEGORY_LABEL?
 }
 
 model Payment {
@@ -211,4 +211,62 @@ model Subscription {
   ownerId  String
   owner    User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   payments Payment[]
+}
+
+// FINANCE TRACKER
+
+enum INCOME_CATEGORY_LABEL {
+  SALARY
+  BONUS
+  REFUNDS
+  OTHER
+}
+
+model IncomeCategory {
+  id    String                 @id @default(uuid())
+  label INCOME_CATEGORY_LABEL?
+}
+
+model FinanceCategory {
+  createdAt DateTime @default(now())
+  name      String
+  userId    String
+  icon      String
+  type      String   @default("income")
+
+  @@unique([name, userId, type])
+}
+
+model FinanceTransaction {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+  amount       Float
+  description  String
+  date         DateTime
+  userId       String
+  type         String   @default("income")
+  category     String
+  categoryIcon String
+}
+
+model MonthHistory {
+  userId  String
+  day     Int
+  month   Int
+  year    Int
+  income  Float
+  expense Float
+
+  @@id([day, month, year, userId])
+}
+
+model YearHistory {
+  userId  String
+  month   Int
+  year    Int
+  income  Float
+  expense Float
+
+  @@id([month, year, userId])
 }

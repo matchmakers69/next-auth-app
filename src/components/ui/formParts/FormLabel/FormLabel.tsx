@@ -1,4 +1,4 @@
-import { fontDefault } from "@/utils/fonts";
+import { fontDefault } from "@/constants/fonts";
 import { styled } from "@mui/material";
 
 const StyledWrapper = styled("div")({

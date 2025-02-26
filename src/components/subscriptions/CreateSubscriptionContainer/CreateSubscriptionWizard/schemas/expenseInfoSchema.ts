@@ -13,7 +13,7 @@ export const ExpenseInfoSchema = z.object({
     .refine((num) => !isNaN(num), { message: "Price must be a valid number" }) // Ensure it's a number
     .refine((num) => num >= 0.01, { message: "Price must be at least 0.01" }) // No zero or negatives
     .refine((num) => num <= 9999999999, {
-      message: "Number must be less than or equal to 10 digits",
+      message: "Price must be less than or equal to 10 digits",
     }),
   currency: z.string().min(1, "Currency is required"),
   billing_period: z.enum(validateBillingOptions as [string, ...string[]], {

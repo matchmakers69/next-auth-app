@@ -1,8 +1,9 @@
 import { db } from "@/libs/db";
-import { subscriptionsCategories } from "@/libs/placeholder";
+import { subscriptionsCategories, incomeCategories } from "@/libs/placeholder";
 
 async function main() {
   try {
+    // Seeding subscription categories
     for (const subscriptionCategory of subscriptionsCategories) {
       const existingCategory = await db.subscriptionCategory.findFirst({
         where: { label: subscriptionCategory.label },
@@ -12,13 +13,32 @@ async function main() {
         await db.subscriptionCategory.create({
           data: subscriptionCategory,
         });
-        console.log(`Created category: ${subscriptionCategory.label}`);
+        console.log(`Created subscription category: ${subscriptionCategory.label}`);
       } else {
         console.log(
-          `Category ${subscriptionCategory.label} already exists, skipping.`,
+          `Subscription category ${subscriptionCategory.label} already exists, skipping.`,
         );
       }
     }
+
+    // Seeding income categories
+    for (const incomeCategory of incomeCategories) {
+      const existingIncomeCategory = await db.incomeCategory.findFirst({
+        where: { label: incomeCategory.label },
+      });
+
+      if (!existingIncomeCategory) {
+        await db.incomeCategory.create({
+          data: incomeCategory,
+        });
+        console.log(`Created income category: ${incomeCategory.label}`);
+      } else {
+        console.log(
+          `Income category ${incomeCategory.label} already exists, skipping.`,
+        );
+      }
+    }
+
     console.log("Seed completed successfully");
   } catch (error) {
     console.error("Error during seeding:", error);

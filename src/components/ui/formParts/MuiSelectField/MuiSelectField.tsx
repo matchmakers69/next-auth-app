@@ -8,7 +8,7 @@ import {
   Theme,
 } from "@mui/material";
 import { FormLabel } from "../FormLabel";
-import { fontDefault } from "@/utils/fonts";
+import { fontDefault } from "@/constants/fonts";
 
 const defaultSx: SxProps<Theme> = {
   fontSize: "1.5rem",
