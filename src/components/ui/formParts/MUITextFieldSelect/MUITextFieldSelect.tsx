@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { TextField, MenuItem, SxProps, Theme, Box } from "@mui/material";
-import { getDefaultSx } from "../defaultSx";
+import { dropDownOptionsSx, getDefaultSx } from "../defaultSx";
 import { MUITextFieldSelectProps } from "./defs";
 import { fontDefault } from "@/constants/fonts";
 
@@ -30,17 +30,17 @@ const MUITextFieldSelect = forwardRef<
   ) => {
     const defaultSx: SxProps<Theme> = {
       "& .MuiInputLabel-outlined": {
-        color: "var(--dark-grey)",
+        color: "var(--text-light)",
         fontSize: "1.5rem",
       },
 
       "& .MuiInputLabel-outlined.Mui-focused": {
-        color: "var(--dark-grey)",
+        color: "var(--text-light)",
         fontSize: "1.5rem",
       },
       "& .MuiInputBase-input": {
         fontSize: "1.5rem",
-        color: "var(--dark-grey)",
+        fontFamily: fontDefault,
         ...(displayValue && {
           display: "flex",
           justifyContent: "space-between",
@@ -55,17 +55,19 @@ const MUITextFieldSelect = forwardRef<
         fontSize: "1.5rem",
         fontFamily: fontDefault,
         borderRadius: "10px",
+        color: "var(--text-light)",
+
         "& fieldset": {
           border: "1px solid",
-          borderColor: "var(--border-grey-light)",
+          borderColor: "hsla(0,0%,100%,0.15)",
         },
         "&:hover fieldset": {
           border: "1px solid",
-          borderColor: "var(--dark-grey)",
+          borderColor: "var(--text-light)",
         },
         "&.Mui-focused fieldset": {
           border: "1px solid",
-          borderColor: "var(--dark-grey)",
+          borderColor: "var(--text-light)",
         },
         ".MuiOutlinedInput-notchedOutline": {
           borderRadius: "10px",
@@ -91,6 +93,32 @@ const MUITextFieldSelect = forwardRef<
         placeholder={placeholder}
         select
         value={value}
+        slotProps={{
+          select: {
+            MenuProps: {
+              sx: {
+                "& .MuiPaper-root": {
+                  backgroundColor: "hsl(var(--background))",
+                  border: "1px solid hsla(0,0%,100%,0.15)",
+                  fontSize: "1.5rem",
+                  fontFamily: fontDefault,
+                  color: "var(--text-light)",
+                  borderRadius: "10px",
+                },
+                "& .MuiMenuItem-root": {
+                  fontSize: "1.4rem",
+                  padding: "10px 16px",
+                  "&:hover": {
+                    backgroundColor: "hsla(0,0%,100%,0.15)",
+                  },
+                  "&.Mui-selected": {
+                    backgroundColor: "hsla(0,0%,100%,0.15)",
+                  },
+                },
+              },
+            },
+          },
+        }}
         onChange={(e) => {
           const selectedOption = options.find(
             (opt) => opt.value === e.target.value,
@@ -102,14 +130,7 @@ const MUITextFieldSelect = forwardRef<
         {...props}
       >
         {displayEmpty && (
-          <MenuItem
-            sx={{
-              fontSize: "1.5rem",
-              color: "var(--dark-grey)",
-            }}
-            value=""
-            disabled
-          >
+          <MenuItem sx={dropDownOptionsSx} value="" disabled>
             {emptyLabel}
           </MenuItem>
         )}
@@ -119,9 +140,7 @@ const MUITextFieldSelect = forwardRef<
             value={option.value}
             disabled={option.disabled}
             sx={{
-              fontSize: "1.5rem",
-              color: "var(--dark-grey)",
-              fontWeight: 600,
+              ...dropDownOptionsSx,
               ...(displayValue && {
                 display: "flex",
                 alignItems: "center",

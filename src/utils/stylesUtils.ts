@@ -46,7 +46,7 @@ export const datePickerPaperStyling = (theme: Theme) => {
     },
     marginTop: "0.125",
     "& svg": {
-      stroke: theme.palette.grey[100],
+      stroke: "var(--text-light)",
       width: "1.3rem",
       height: "1.3rem",
       strokeWidth: "0.25rem",
@@ -58,7 +58,7 @@ export const datePickerPaperStyling = (theme: Theme) => {
     },
     "& .MuiIconButton-root:hover": {
       "& svg": {
-        stroke: theme.palette.primary,
+        stroke: "var(--text-light)",
       },
     },
     "& .MuiPickersCalendarHeader-labelContainer": {
@@ -177,15 +177,15 @@ export const dateTimeTextFieldStyling = (
 ) => {
   let background = "none";
   let border = error
-    ? `2px solid ${theme.palette.error.main} !important`
+    ? `1px solid ${theme.palette.error.main} !important`
     : `1px solid ${theme.palette.grey[600]}`;
   let focusedBorder = error
-    ? `2px solid ${theme.palette.error.main} !important`
-    : `2px solid ${theme.palette.primary} !important`;
+    ? `1px solid ${theme.palette.error.main} !important`
+    : "1px solid var(--text-light)";
   if (open)
     border = error
-      ? `2px solid ${theme.palette.error.main} !important`
-      : `2px solid ${theme.palette.primary} !important`;
+      ? `1px solid ${theme.palette.error.main} !important`
+      : "1px solid var(--text-light)";
   if (disabled) {
     border = "none";
     focusedBorder = "none";
@@ -194,10 +194,9 @@ export const dateTimeTextFieldStyling = (
 
   return {
     input: {
-      color: theme.palette.text.primary,
-      marginLeft: "-0.25rem",
+      color: "var(--text-light)",
       "&::placeholder": {
-        color: theme.palette.text.secondary,
+        color: "var(--text-light)",
         opacity: 1,
       },
     },
@@ -206,7 +205,12 @@ export const dateTimeTextFieldStyling = (
       fontSize: "1rem",
       marginLeft: "0",
       marginTop: "0.25rem",
-      color: error ? theme.palette.error.main : theme.palette.grey[700],
+      color: error ? theme.palette.error.main : "var(--text-light)",
+    },
+    "& .MuiInputAdornment-root": {
+        "& .MuiIconButton-root": {
+          color: "var(--text-light)",
+        }
     },
     "& .MuiOutlinedInput-root": {
       fontSize: "1.5rem",
@@ -217,11 +221,12 @@ export const dateTimeTextFieldStyling = (
         background: disabled ? theme.palette.grey[300] : "none",
         color: disabled ? theme.palette.text.primary : "none",
         zIndex: disabled ? "-100" : "0",
+        borderColor: "hsla(0,0%,100%,0.15)",
       },
     },
     "& .MuiOutlinedInput-root:focus": {
       "& fieldset": {
-        border: focusedBorder,
+        // border: focusedBorder,
         background,
       },
     },

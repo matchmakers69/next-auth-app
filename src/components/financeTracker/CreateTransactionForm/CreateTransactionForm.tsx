@@ -1,19 +1,23 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import { LocationProvider } from "@/components/providers/LocationProvider";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
 import { Controller, useForm } from "react-hook-form";
-import { IncomeSchemaType } from "./validation/createIncomeSchema";
-import { InputSx } from "@/utils/stylesUtils";
+import { TransactionSchemaType } from "./validation/createTransactionSchema";
 import { Modal } from "@/components/ui/Modal";
-import { CreateIncomeFormProps } from "./defs";
 import NumberField from "@/components/ui/formParts/NumberField/NumberField";
 import MuiSelectField from "@/components/ui/formParts/MuiSelectField";
-import { INCOME_CATEGORIES } from "@/constants/mocks";
+import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from "@/constants/mocks";
 import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
 import { isValidDate, DATE_GLOBAL_FORMAT } from "@/utils/dates";
+import { CreateTransactionFormProps } from "./defs";
 
-const CreateIncomeForm = ({ open, onClose }: CreateIncomeFormProps) => {
+const CreateTransactionForm = ({
+  open,
+  onClose,
+  type,
+}: CreateTransactionFormProps) => {
   //   const [state, formAction, isPending] = useActionState(
   //     createPost.bind(null, slug),
   //     {
@@ -21,10 +25,11 @@ const CreateIncomeForm = ({ open, onClose }: CreateIncomeFormProps) => {
   //     },
   //   );
 
-  const { control, reset } = useForm<IncomeSchemaType>({
+  const { control, reset } = useForm<TransactionSchemaType>({
     mode: "onTouched",
     defaultValues: {
       description: "",
+      type,
       amount: 0,
       category: "",
       date: undefined,
@@ -32,12 +37,14 @@ const CreateIncomeForm = ({ open, onClose }: CreateIncomeFormProps) => {
   });
 
   //const formRef = useRef<HTMLFormElement>(null);
+  const CATEGORY_OPTIONS =
+    type === "income" ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
 
   return (
-    <>
+    <LocationProvider>
       <Modal
         open={open}
-        title="Create a new incometransaction"
+        title={`Create a new ${type === "income" ? "income" : "expense"} transaction`}
         additionalPaperProps={{
           sx: {
             lg: {
@@ -84,7 +91,6 @@ const CreateIncomeForm = ({ open, onClose }: CreateIncomeFormProps) => {
                   margin="none"
                   value={field.value}
                   // error={!!state?.errors?.description}
-                  sx={InputSx}
                 />
               )}
             />
@@ -93,7 +99,7 @@ const CreateIncomeForm = ({ open, onClose }: CreateIncomeFormProps) => {
               <FormHelperText>{state.errors.title.join(", ")}</FormHelperText>
             )} */}
           </div>
-          <div>
+          <div className="mb-12">
             <Controller
               name="amount"
               control={control}
@@ -110,7 +116,6 @@ const CreateIncomeForm = ({ open, onClose }: CreateIncomeFormProps) => {
                   margin="none"
                   value={field.value}
                   type="number"
-                  sx={InputSx}
                   isCurrency
                   step="1"
                   min="0"
@@ -133,17 +138,17 @@ const CreateIncomeForm = ({ open, onClose }: CreateIncomeFormProps) => {
                 render={({ field }) => (
                   <>
                     <MuiSelectField
-                      id="income-categories"
-                      labelText="Income category"
-                      data-testid="incomeValue"
-                      aria-label="Enter subscription category"
+                      id="transaction-category"
+                      labelText="Category"
+                      data-testid="transaction-select"
+                      aria-label={`Enter transaction category category`}
                       value={field.value ?? ""}
                       onChange={field.onChange}
                       name="category"
                       // error={!!state?.errors?.category}
                       displayEmpty
-                      emptyLabel="Select income category"
-                      options={INCOME_CATEGORIES}
+                      emptyLabel="Select a category for this transaction"
+                      options={CATEGORY_OPTIONS}
                     />
                   </>
                 )}
@@ -215,8 +220,8 @@ const CreateIncomeForm = ({ open, onClose }: CreateIncomeFormProps) => {
           </div>
         </form>
       </Modal>
-    </>
+    </LocationProvider>
   );
 };
 
-export default CreateIncomeForm;
+export default CreateTransactionForm;

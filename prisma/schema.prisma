@@ -222,9 +222,25 @@ enum INCOME_CATEGORY_LABEL {
   OTHER
 }
 
+enum EXPENSE_CATEGORY_LABEL {
+  HOUSING
+  HOBBY
+  HOLIDAYS
+  FOOD
+  INSURANCES
+  FITNESS
+  EDUCATION
+  OTHER
+}
+
 model IncomeCategory {
   id    String                 @id @default(uuid())
   label INCOME_CATEGORY_LABEL?
+}
+
+model ExpenseCategory {
+  id    String                  @id @default(uuid())
+  label EXPENSE_CATEGORY_LABEL?
 }
 
 model FinanceCategory {

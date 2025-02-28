@@ -10,7 +10,6 @@ import {
   SUBSCRIPTION_CURRENCY,
 } from "@prisma/client";
 import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
-import { InputSx } from "@/utils/stylesUtils";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
 import { startOfToday } from "date-fns";
 import { CURRENCIES, SUBSCRIPTION_BILLING_OPTIONS } from "@/constants/mocks";
@@ -115,7 +114,6 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                   margin="none"
                   value={field.value}
                   type="number"
-                  sx={InputSx}
                   isCurrency
                   step="0.01"
                   min="0"
@@ -140,7 +138,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                   name="currency"
                   placeholder="i.e USD"
                   options={CURRENCIES}
-                  data-testid="currency-value"
+                  data-testid="currency-select-field-dropdown"
                   aria-label="Enter your currency"
                   onChange={(selected) => {
                     const typedSelected = selected as {

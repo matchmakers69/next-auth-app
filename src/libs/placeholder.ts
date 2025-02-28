@@ -14,3 +14,14 @@ export const incomeCategories = [
   { label: "REFUNDS" },
   { label: "OTHER" },
 ] as const;
+
+export const expenseCategories = [
+  { label: "HOUSING" },
+  { label: "HOBBY" },
+  { label: "HOLIDAYS" },
+  { label: "FOOD" },
+  { label: "INSURANCES" },
+  { label: "FITNESS" },
+  { label: "EDUCATION" },
+  { label: "OTHER" },
+] as const;

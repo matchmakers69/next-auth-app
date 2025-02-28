@@ -19,16 +19,19 @@ const IbmPlex = IBM_Plex_Sans({
 });
 
 const defaultPaperStyles: SxProps<Theme> = {
-  maxWidth: "60",
+  maxWidth: "60rem",
   boxShadow: `0px 4px 8px -4px rgb(0 0 0 / 48%)`,
-  margin: "1.6rem",
+  margin: "1.5rem",
   minWidth: "50rem",
+  padding: "1.5rem",
   "@media (min-width: 768px)": {
     minWidth: "52rem",
   },
   "@media (min-width: 960px)": {
     minWidth: "62rem",
   },
+  backgroundColor: "hsl(var(--background))",
+  border: "1px solid hsla(0,0%,100%,0.15)",
 };
 
 const Modal = ({
@@ -92,7 +95,7 @@ const Modal = ({
         }}
       >
         <h3
-          className={`${IbmPlex.className} text-[2rem] font-semibold text-dark-grey sm:text-[2.4rem]`}
+          className={`${IbmPlex.className} text-[2rem] font-semibold text-text-light sm:text-[2.4rem]`}
         >
           {title}
         </h3>
@@ -100,7 +103,7 @@ const Modal = ({
           variant="secondary"
           type="button"
           onClick={onClose}
-          className="h-[32px] w-[32px] min-w-0 rounded-none border border-[rgb(20,20,20)] bg-transparent text-[rgb(20,20,20)] transition-colors duration-200 hover:border-[rgb(20,20,20)] focus:border-[var(--text-light)] focus:bg-transparent"
+          className="h-[32px] w-[32px] min-w-0 rounded-none border border-text-light bg-transparent text-text-light transition-colors duration-200 hover:border-[rgb(20,20,20)] focus:border-[var(--text-light)] focus:bg-transparent"
         >
           <X strokeWidth={1} />
         </Button>

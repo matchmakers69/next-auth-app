@@ -1,5 +1,5 @@
 import { db } from "@/libs/db";
-import { subscriptionsCategories, incomeCategories } from "@/libs/placeholder";
+import { subscriptionsCategories, incomeCategories, expenseCategories } from "@/libs/placeholder";
 
 async function main() {
   try {
@@ -35,6 +35,24 @@ async function main() {
       } else {
         console.log(
           `Income category ${incomeCategory.label} already exists, skipping.`,
+        );
+      }
+    }
+
+    // Seeding expense categories
+    for (const expenseCategory of expenseCategories) {
+      const existingExpenseCategory = await db.expenseCategory.findFirst({
+        where: { label: expenseCategory.label },
+      });
+
+      if (!existingExpenseCategory) {
+        await db.expenseCategory.create({
+          data: expenseCategory,
+        });
+        console.log(`Created expense category: ${expenseCategory.label}`);
+      } else {
+        console.log(
+          `Expense category ${expenseCategory.label} already exists, skipping.`,
         );
       }
     }

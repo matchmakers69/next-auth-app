@@ -1,4 +1,30 @@
+import { fontDefault } from "@/constants/fonts";
 import { SxProps, Theme } from "@mui/material";
+
+export const dropDownOptionsSx = {
+  fontSize: "1.5rem",
+  color: "var(--text-light)",
+  fontFamily: fontDefault,
+};
+
+export const dropDownPaperOptionsSx = {
+  borderRadius: "10px",
+  backgroundColor: "hsl(var(--background))",
+  border: "1px solid hsla(0,0%,100%,0.15)",
+  fontSize: "1.5rem",
+  fontFamily: fontDefault,
+  color: "var(--text-light)",
+  "& .MuiMenuItem-root": {
+    fontSize: "1.4rem",
+    padding: "10px 16px",
+    "&:hover": {
+      backgroundColor: "hsla(0,0%,100%,0.15)",
+    },
+    "&.Mui-selected": {
+      backgroundColor: "hsla(0,0%,100%,0.15)",
+    },
+  },
+};
 
 export const getDefaultSx = (sx: SxProps<Theme> = {}) =>
   ({
@@ -27,9 +53,10 @@ export const getDefaultSx = (sx: SxProps<Theme> = {}) =>
       color: "var(--text-light)",
       borderRadius: "10px",
       transition: "border-color 120ms ease-in",
+
       "& fieldset": {
         border: "1px solid",
-        borderColor: "hsla(0,0%,100%,.1)",
+        borderColor: "hsla(0,0%,100%,0.15)",
       },
       "&:hover fieldset": {
         borderColor: "hsla(0,0%,100%,.05)",

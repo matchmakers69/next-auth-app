@@ -10,7 +10,6 @@ import { CreatePostValues } from "./validation/createPostValidationSchema";
 import { CreatePostFormProps } from "./defs";
 import { createPost } from "@/actions/create-post";
 import { FormError } from "@/components/ui/formParts/FormError";
-import { InputSx } from "@/utils/stylesUtils";
 import { Modal } from "@/components/ui/Modal";
 
 const CreatePostForm = ({ open, onClose, slug }: CreatePostFormProps) => {
@@ -77,7 +76,6 @@ const CreatePostForm = ({ open, onClose, slug }: CreatePostFormProps) => {
                   error={!!state?.errors?.title}
                   fullWidth
                   margin="none"
-                  sx={InputSx}
                 />
               )}
             />
@@ -105,7 +103,6 @@ const CreatePostForm = ({ open, onClose, slug }: CreatePostFormProps) => {
                   margin="none"
                   value={field.value}
                   error={!!state?.errors?.content}
-                  sx={InputSx}
                 />
               )}
             />

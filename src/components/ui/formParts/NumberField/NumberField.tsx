@@ -37,8 +37,12 @@ const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(
         slotProps={{
           input: {
             startAdornment: isCurrency && (
-              <InputAdornment data-testid="currency-symbol" position="start">
-                <HandCoins size={24} />
+              <InputAdornment
+                sx={{ color: "var(--text-light)" }}
+                data-testid="currency-symbol"
+                position="start"
+              >
+                <HandCoins size={20} />
               </InputAdornment>
             ),
           },

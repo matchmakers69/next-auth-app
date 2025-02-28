@@ -11,7 +11,6 @@ import { startTransition, useActionState, useRef } from "react";
 import { Loader } from "lucide-react";
 import { FormError } from "@/components/ui/formParts/FormError";
 import { Modal } from "@/components/ui/Modal";
-import { InputSx } from "@/utils/stylesUtils";
 
 const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
   const [state, formAction, isPending] = useActionState(createTopic, {
@@ -84,7 +83,6 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
                   error={!!state?.errors?.name}
                   fullWidth
                   margin="none"
-                  sx={InputSx}
                 />
               )}
             />
@@ -112,7 +110,6 @@ const CreateTopicForm = ({ open, onClose }: CreateTopicFormProps) => {
                   margin="none"
                   value={field.value}
                   error={!!state?.errors?.description}
-                  sx={InputSx}
                 />
               )}
             />

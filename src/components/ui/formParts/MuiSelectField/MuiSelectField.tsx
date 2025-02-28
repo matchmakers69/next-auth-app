@@ -9,24 +9,23 @@ import {
 } from "@mui/material";
 import { FormLabel } from "../FormLabel";
 import { fontDefault } from "@/constants/fonts";
+import { dropDownOptionsSx, dropDownPaperOptionsSx } from "../defaultSx";
 
 const defaultSx: SxProps<Theme> = {
   fontSize: "1.5rem",
   fontFamily: fontDefault,
   borderRadius: "10px",
-  color: "var(--dark-grey)",
+  color: "var(--text-light)",
+  border: "1px solid",
+  borderColor: "hsla(0,0%,100%,0.15)",
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderWidth: "1px",
-      borderColor: "var(--border-grey-light)",
-    },
-    "&:hover fieldset": {
-      borderWidth: "1px",
-      borderColor: "var(--dark-grey)",
+      border: "1px solid",
+      borderColor: "hsla(0,0%,100%,0.15)",
     },
     "&.Mui-focused fieldset": {
-      borderWidth: "1px",
-      borderColor: "var(--dark-grey) !important",
+      border: "1px solid",
+      borderColor: "var(--text-light)",
     },
   },
   "& .MuiOutlinedInput-notchedOutline": {
@@ -34,8 +33,14 @@ const defaultSx: SxProps<Theme> = {
     borderWidth: "1px",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: "var(--dark-grey) !important",
-    borderWidth: "1px !important",
+    border: "1px solid",
+    borderColor: "hsla(0,0%,100%,0.15)",
+  },
+  "&:hover": {
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "1px solid",
+      borderColor: "var(--text-light)",
+    },
   },
 };
 
@@ -95,21 +100,14 @@ function MuiSelectField<T extends OptionType>({
         MenuProps={{
           MenuListProps: { id: "select-field-menu" },
           PaperProps: {
-            sx: {
-              borderRadius: 0,
-              bgcolor: "background.default",
-              fontSize: "1.5rem",
-            },
+            sx: dropDownPaperOptionsSx,
           },
         }}
         sx={defaultSx}
       >
         {displayEmpty && (
           <MenuItem
-            sx={{
-              fontSize: "1.5rem",
-              color: "var(--dark-grey)",
-            }}
+            sx={{ ...dropDownOptionsSx, textTransform: "none" }}
             value=""
             disabled
           >
@@ -124,10 +122,7 @@ function MuiSelectField<T extends OptionType>({
                 disabled={option.disabled ?? false}
                 value={option.value}
                 key={option.value}
-                sx={{
-                  fontSize: "1.5rem",
-                  color: "var(--dark-grey)",
-                }}
+                sx={dropDownOptionsSx}
               >
                 {option.label}
               </MenuItem>
@@ -135,10 +130,7 @@ function MuiSelectField<T extends OptionType>({
           }
           return (
             <MenuItem
-              sx={{
-                fontSize: "1.5rem",
-                color: "var(--dark-grey)",
-              }}
+              sx={dropDownOptionsSx}
               data-hj-suppress
               value={option}
               key={option}

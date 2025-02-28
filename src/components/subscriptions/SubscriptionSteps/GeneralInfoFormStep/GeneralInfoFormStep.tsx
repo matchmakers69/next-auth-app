@@ -13,7 +13,6 @@ import { Controller, useFormContext } from "react-hook-form";
 import { SubscriptionStepValues } from "../../types";
 import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/SubscriptionsProvider";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
-import { InputSx } from "@/utils/stylesUtils";
 import { runGeneralInfoValidation } from "@/actions/subscriptionSteps/run-general-info-validation";
 import MuiSelectField from "@/components/ui/formParts/MuiSelectField";
 import { SUBSCRIPTION_CATEGORIES } from "@/constants/mocks";
@@ -89,7 +88,6 @@ const GeneralInfoFormStep = ({ title, onSubmit }: GeneralInfoFormStepProps) => {
                 onChange={field.onChange}
                 type="text"
                 margin="none"
-                sx={InputSx}
                 error={!!state?.errors?.name}
               />
             )}
@@ -142,7 +140,6 @@ const GeneralInfoFormStep = ({ title, onSubmit }: GeneralInfoFormStepProps) => {
                 onChange={field.onChange}
                 margin="none"
                 value={field.value}
-                sx={InputSx}
               />
             )}
           />

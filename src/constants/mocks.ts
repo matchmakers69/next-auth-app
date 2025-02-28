@@ -11,13 +11,23 @@ export const SUBSCRIPTION_CATEGORIES = [
   "ENTERTAINMENT",
   "HOUSE",
   "CAR",
-  "SPORT",
+  "FITNESS",
   "EDUCATION",
   "HOBBY",
   "OTHER",
 ];
 
 export const INCOME_CATEGORIES = ["SALARY", "BONUS", "REFUNDS", "OTHER"];
+export const EXPENSE_CATEGORIES = [
+  "HOUSING",
+  "HOBBY",
+  "HOLIDAYS",
+  "FOOD",
+  "INSURANCES",
+  "FITNESS",
+  "EDUCATION",
+  "OTHER",
+];
 
 export const CURRENCIES = [
   {

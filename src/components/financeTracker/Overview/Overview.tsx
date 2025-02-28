@@ -1,10 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { LocationProvider } from "@/components/providers/LocationProvider";
-import { CreateIncomeForm } from "../CreateIncomeForm";
+import { CreateTransactionForm } from "../CreateTransactionForm";
 import { useState } from "react";
-import { TransactionType } from "./defs";
+import { TransactionType } from "../types";
 
 export default function Overview() {
   const [transactionType, setTransactionType] =
@@ -44,13 +43,19 @@ export default function Overview() {
       </div>
 
       {isModalOpen && transactionType === "income" && (
-        <LocationProvider>
-          <CreateIncomeForm open={isModalOpen} onClose={closeModal} />
-        </LocationProvider>
+        <CreateTransactionForm
+          type="income"
+          open={isModalOpen}
+          onClose={closeModal}
+        />
       )}
 
       {isModalOpen && transactionType === "expense" && (
-        <div>Expense form goes here</div>
+        <CreateTransactionForm
+          type="expense"
+          open={isModalOpen}
+          onClose={closeModal}
+        />
       )}
     </>
   );
