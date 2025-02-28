@@ -13,7 +13,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { SubscriptionStepValues } from "../../types";
 import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/SubscriptionsProvider";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
-import { runGeneralInfoValidation } from "@/actions/subscriptionSteps/run-general-info-validation";
+import { runGeneralInfoValidation } from "@/actions/subscriptionActions/run-general-info-validation";
 import MuiSelectField from "@/components/ui/formParts/MuiSelectField";
 import { SUBSCRIPTION_CATEGORIES } from "@/constants/mocks";
 import { SubscriptionStepperFooter } from "../../SubscriptionStepperFooter";

@@ -1,17 +1,25 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import toast from "react-hot-toast";
 import { LocationProvider } from "@/components/providers/LocationProvider";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
 import { Controller, useForm } from "react-hook-form";
-import { TransactionSchemaType } from "./validation/createTransactionSchema";
+import {
+  TransactionSchema,
+  TransactionSchemaType,
+} from "./validation/createTransactionSchema";
 import { Modal } from "@/components/ui/Modal";
+import { zodResolver } from "@hookform/resolvers/zod";
 import NumberField from "@/components/ui/formParts/NumberField/NumberField";
 import MuiSelectField from "@/components/ui/formParts/MuiSelectField";
 import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from "@/constants/mocks";
 import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
-import { isValidDate, DATE_GLOBAL_FORMAT } from "@/utils/dates";
+import { isValidDate, DATE_GLOBAL_FORMAT, DateToUTCDate } from "@/utils/dates";
 import { CreateTransactionFormProps } from "./defs";
+import { useCreateTransactionMutation } from "@/reactQuery/hooks/useCreateTransactionMutation";
+import { useCallback } from "react";
+import { Loader } from "lucide-react";
 
 const CreateTransactionForm = ({
   open,
@@ -25,8 +33,9 @@ const CreateTransactionForm = ({
   //     },
   //   );
 
-  const { control, reset } = useForm<TransactionSchemaType>({
+  const { control, reset, handleSubmit } = useForm<TransactionSchemaType>({
     mode: "onTouched",
+    resolver: zodResolver(TransactionSchema),
     defaultValues: {
       description: "",
       type,
@@ -36,7 +45,30 @@ const CreateTransactionForm = ({
     },
   });
 
-  //const formRef = useRef<HTMLFormElement>(null);
+  const { mutate, isPending } = useCreateTransactionMutation(() => {
+    reset({
+      type,
+      description: "",
+      amount: 0,
+      category: "",
+      date: undefined,
+    });
+  });
+
+  const handleSubmitCreateTransaction = useCallback(
+    (values: TransactionSchemaType) => {
+      toast.loading("Creating transaction...", {
+        id: "create-transaction",
+      });
+
+      mutate({
+        ...values,
+        date: DateToUTCDate(values.date),
+      });
+    },
+    [mutate],
+  );
+
   const CATEGORY_OPTIONS =
     type === "income" ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
 
@@ -58,19 +90,10 @@ const CreateTransactionForm = ({
         }}
       >
         <form
-          // ref={formRef}
           className="flex w-full flex-col flex-wrap"
           autoComplete="off"
           noValidate
-          //   action={formAction}
-          //   onSubmit={(event: FormEvent<HTMLFormElement>) => {
-          //     event.preventDefault();
-          //     handleSubmit(() => {
-          //       startTransition(() => {
-          //         formAction(new FormData(formRef.current!));
-          //       });
-          //     })(event);
-          //   }}
+          onSubmit={handleSubmit(handleSubmitCreateTransaction)}
         >
           <div className="mb-12">
             <Controller
@@ -173,8 +196,6 @@ const CreateTransactionForm = ({
                       : null;
                   return (
                     <MUIDateTimePicker
-                      minDate={null}
-                      maxDate={null}
                       format={DATE_GLOBAL_FORMAT}
                       onChange={(newValue) => {
                         const finalValue = isValidDate(newValue)
@@ -210,12 +231,12 @@ const CreateTransactionForm = ({
               type="submit"
               variant="default"
               size="sm"
-              // disabled={isPending}
+              disabled={isPending}
             >
-              {/* {isPending && <Loader className="size-6 animate-spin" />}
+              {isPending && <Loader className="size-6 animate-spin" />}
               <span className="inline-block">
-                {isPending ? "Creating now..." : "Create post"}
-              </span> */}
+                {isPending ? "Creating transaction..." : "Create"}
+              </span>
             </Button>
           </div>
         </form>

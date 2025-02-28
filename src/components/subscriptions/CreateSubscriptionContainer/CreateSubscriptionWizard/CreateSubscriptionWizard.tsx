@@ -8,7 +8,7 @@ import { useSubscriptionsStepper } from "../../hooks/useSubscriptionsStepper";
 import { SubscriptionStepValues } from "../../types";
 import { LocationProvider } from "@/components/providers/LocationProvider";
 import { Modal } from "@/components/ui/Modal";
-import { createSubscription } from "@/actions/subscriptionSteps/create-subscription";
+import { createSubscription } from "@/actions/subscriptionActions/create-subscription";
 import {
   SUBSCRIPTION_BILLING_PERIOD,
   SUBSCRIPTION_CURRENCY,

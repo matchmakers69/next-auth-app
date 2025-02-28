@@ -1,4 +1,5 @@
 "use server";
+
 import { db } from "@/libs/db";
 import { revalidatePath } from "next/cache";
 import { currentUser } from "@/libs/currentUserAPI";
