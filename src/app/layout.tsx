@@ -7,6 +7,7 @@ import SessionProvider from "@/components/providers/SessionProvider/SessionProvi
 import ToasterProvider from "@/components/providers/ToasterProvider";
 import ProgressBarProvider from "@/components/providers/ProgressBarProvider";
 import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
+import { LocalizationProvider } from "@/components/providers/LocalizationProvider";
 
 const PoppinsFont = Poppins({
   subsets: ["latin"],
@@ -48,7 +49,9 @@ export default async function RootLayout({
         <ToasterProvider />
         <ProgressBarProvider>
           <SessionProvider session={session} sessionKey={sessionKey}>
-            <ReactQueryProvider>{children}</ReactQueryProvider>
+            <ReactQueryProvider>
+              <LocalizationProvider>{children}</LocalizationProvider>
+            </ReactQueryProvider>
           </SessionProvider>
         </ProgressBarProvider>
       </body>

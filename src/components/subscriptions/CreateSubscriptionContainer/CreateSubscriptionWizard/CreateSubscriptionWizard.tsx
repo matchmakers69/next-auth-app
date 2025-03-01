@@ -6,7 +6,6 @@ import { getSubscriptionsStepByKey } from "../../services";
 import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/SubscriptionsProvider";
 import { useSubscriptionsStepper } from "../../hooks/useSubscriptionsStepper";
 import { SubscriptionStepValues } from "../../types";
-import { LocationProvider } from "@/components/providers/LocationProvider";
 import { Modal } from "@/components/ui/Modal";
 import { createSubscription } from "@/actions/subscriptionActions/create-subscription";
 import {
@@ -134,13 +133,11 @@ const CreateSubscriptionWizard = ({
       }}
     >
       <FormProvider {...methods}>
-        <LocationProvider>
-          <SubscriptionStepComponent
-            title={subscriptionTitle}
-            onPrev={handleBackToPrevStep}
-            onSubmit={handleAddSubscriptionSubmit}
-          />
-        </LocationProvider>
+        <SubscriptionStepComponent
+          title={subscriptionTitle}
+          onPrev={handleBackToPrevStep}
+          onSubmit={handleAddSubscriptionSubmit}
+        />
       </FormProvider>
     </Modal>
   );

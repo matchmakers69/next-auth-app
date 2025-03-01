@@ -77,7 +77,6 @@ const MUIDateTimePicker = forwardRef<HTMLDivElement, MUIDateTimePickerProps>(
             inputAdornment: {
               position: "end",
               sx: {
-                fill: (theme: Theme) => theme.palette.grey[600],
                 paddingLeft: "0.1rem",
               },
             },
@@ -100,7 +99,7 @@ const MUIDateTimePicker = forwardRef<HTMLDivElement, MUIDateTimePickerProps>(
           timezone={timezone}
           value={value}
           slots={{
-            openPickerIcon: () => <Calendar />,
+            openPickerIcon: () => <Calendar size={20} />,
           }}
         />
       </>

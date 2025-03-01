@@ -1,3 +1,3 @@
 import { BaseProps } from "@/components/ui/types/defs";
 
-export type LocationProviderProps = BaseProps;
+export type LocalizationProviderProps = BaseProps;
