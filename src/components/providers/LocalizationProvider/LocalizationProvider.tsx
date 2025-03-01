@@ -1,7 +1,7 @@
 "use client";
 
 import { LocalizationProviderProps } from "./defs";
-import { LocalizationProvider as MUILocalizationProvider } from "@mui/x-date-pickers";
+import { LocalizationProvider as MUILocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 
 const LocalizationProvider = ({ children }: LocalizationProviderProps) => {

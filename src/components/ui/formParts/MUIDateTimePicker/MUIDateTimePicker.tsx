@@ -1,7 +1,7 @@
 import React, { useState, forwardRef } from "react";
+import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker";
 import { FormLabel } from "../FormLabel";
 import { MUIDateTimePickerProps } from "./defs";
-import { DateTimePicker, DateTimePickerProps } from "@mui/x-date-pickers";
 
 import {
   datePickerPaperStyling,
@@ -10,15 +10,12 @@ import {
 import { Theme } from "@mui/material";
 import { Calendar } from "lucide-react";
 
-const DateTimePickerWrapper = forwardRef<
-  HTMLDivElement,
-  DateTimePickerProps<Date>
->((props, ref) => {
-  const { ...rest } = props as any;
-  return (
-    <DateTimePicker views={["day", "month", "year"]} ref={ref} {...rest} />
-  );
-});
+const DateTimePickerWrapper = forwardRef<HTMLDivElement, DatePickerProps<Date>>(
+  (props, ref) => {
+    const { ...rest } = props as any;
+    return <DatePicker ref={ref} {...rest} />;
+  },
+);
 
 DateTimePickerWrapper.displayName = "DateTimePickerWrapper";
 
@@ -77,7 +74,6 @@ const MUIDateTimePicker = forwardRef<HTMLDivElement, MUIDateTimePickerProps>(
             inputAdornment: {
               position: "end",
               sx: {
-                fill: (theme: Theme) => theme.palette.grey[600],
                 paddingLeft: "0.1rem",
               },
             },
@@ -100,7 +96,7 @@ const MUIDateTimePicker = forwardRef<HTMLDivElement, MUIDateTimePickerProps>(
           timezone={timezone}
           value={value}
           slots={{
-            openPickerIcon: () => <Calendar />,
+            openPickerIcon: () => <Calendar size={20} />,
           }}
         />
       </>
