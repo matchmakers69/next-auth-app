@@ -17,7 +17,7 @@ import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
 import { isValidDate, DATE_GLOBAL_FORMAT, DateToUTCDate } from "@/utils/dates";
 import { CreateTransactionFormProps } from "./defs";
 import { useCreateTransactionMutation } from "@/reactQuery/hooks/useCreateTransactionMutation";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { Loader } from "lucide-react";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
 
@@ -43,7 +43,7 @@ const CreateTransactionForm = ({
     },
   });
 
-  const { mutate, isPending } = useCreateTransactionMutation(() => {
+  const { mutate, isPending, isSuccess } = useCreateTransactionMutation(() => {
     reset({
       type,
       description: "",
@@ -52,6 +52,12 @@ const CreateTransactionForm = ({
       date: undefined,
     });
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      onClose();
+    }
+  }, [isSuccess, onClose]);
 
   const handleSubmitCreateTransaction = useCallback(
     (values: TransactionSchemaType) => {
