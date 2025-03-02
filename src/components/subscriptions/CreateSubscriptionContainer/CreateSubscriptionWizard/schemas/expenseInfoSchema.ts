@@ -11,7 +11,7 @@ export const ExpenseInfoSchema = z.object({
     .string()
     .transform((val) => parseFloat(val)) // Convert string to number
     .refine((num) => !isNaN(num), { message: "Price must be a valid number" }) // Ensure it's a number
-    .refine((num) => num >= 0.01, { message: "Price must be at least 0.01" }) // No zero or negatives
+    .refine((num) => num >= 1, { message: "Price must be at least 1" }) // No zero or negatives
     .refine((num) => num <= 9999999999, {
       message: "Price must be less than or equal to 10 digits",
     }),

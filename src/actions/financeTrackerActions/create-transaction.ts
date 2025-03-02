@@ -9,7 +9,15 @@ import {
 } from "@/components/financeTracker/CreateTransactionForm/validation/createTransactionSchema";
 
 export async function CreateTransaction(formValues: TransactionSchemaType) {
-  const parsedBody = TransactionSchema.safeParse(formValues);
+  const formattedValues = {
+    ...formValues,
+    amount: `${formValues.amount}`,
+    date:
+      formValues.date instanceof Date
+        ? formValues.date.toISOString()
+        : formValues.date, // Convert Date to ISO string
+  };
+  const parsedBody = TransactionSchema.safeParse(formattedValues);
   if (!parsedBody.success) {
     throw new Error(parsedBody.error.message);
   }
@@ -20,16 +28,6 @@ export async function CreateTransaction(formValues: TransactionSchemaType) {
   }
 
   const { description, amount, category, date, type } = parsedBody.data;
-  const categoryRow = await db.financeCategory.findFirst({
-    where: {
-      userId: user.id,
-      name: category,
-    },
-  });
-
-  if (!categoryRow) {
-    throw new Error("category not found");
-  }
   await db.$transaction([
     db.financeTransaction.create({
       data: {
@@ -38,7 +36,7 @@ export async function CreateTransaction(formValues: TransactionSchemaType) {
         date,
         description: description || "",
         type,
-        category: categoryRow.name,
+        category,
         categoryIcon: "", //TODO possibly remove from schema
       },
     }),

@@ -115,7 +115,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                   value={field.value}
                   type="number"
                   isCurrency
-                  step="0.01"
+                  step="1"
                   min="0"
                   error={!!state?.errors?.price}
                 />

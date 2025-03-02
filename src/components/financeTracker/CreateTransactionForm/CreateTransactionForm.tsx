@@ -19,20 +19,19 @@ import { CreateTransactionFormProps } from "./defs";
 import { useCreateTransactionMutation } from "@/reactQuery/hooks/useCreateTransactionMutation";
 import { useCallback } from "react";
 import { Loader } from "lucide-react";
+import FormHelperText from "@/components/ui/formParts/FormHelperText";
 
 const CreateTransactionForm = ({
   open,
   onClose,
   type,
 }: CreateTransactionFormProps) => {
-  //   const [state, formAction, isPending] = useActionState(
-  //     createPost.bind(null, slug),
-  //     {
-  //       errors: {},
-  //     },
-  //   );
-
-  const { control, reset, handleSubmit } = useForm<TransactionSchemaType>({
+  const {
+    control,
+    reset,
+    handleSubmit,
+    formState: { errors, isSubmitting, isDirty },
+  } = useForm<TransactionSchemaType>({
     mode: "onTouched",
     resolver: zodResolver(TransactionSchema),
     defaultValues: {
@@ -111,14 +110,13 @@ const CreateTransactionForm = ({
                 rows={2}
                 margin="none"
                 value={field.value}
-                // error={!!state?.errors?.description}
+                error={!!errors.description}
               />
             )}
           />
-
-          {/* {state?.errors?.title && (
-              <FormHelperText>{state.errors.title.join(", ")}</FormHelperText>
-            )} */}
+          {errors.description && (
+            <FormHelperText>{errors.description.message}</FormHelperText>
+          )}
         </div>
         <div className="mb-12">
           <Controller
@@ -140,16 +138,14 @@ const CreateTransactionForm = ({
                 isCurrency
                 step="1"
                 min="0"
-                //error={!!state?.errors?.price}
+                error={!!errors.amount}
               />
             )}
           />
 
-          {/* {state?.errors?.content && (
-              <FormHelperText>
-                {state?.errors?.content.join(", ")}
-              </FormHelperText>
-            )} */}
+          {errors.amount && (
+            <FormHelperText>{errors.amount.message}</FormHelperText>
+          )}
         </div>
         <div className="transactions-row mb-10 flex items-start gap-10">
           <div className="categories-select-wrapper flex w-full flex-col md:w-[50%]">
@@ -166,19 +162,17 @@ const CreateTransactionForm = ({
                     value={field.value ?? ""}
                     onChange={field.onChange}
                     name="category"
-                    // error={!!state?.errors?.category}
                     displayEmpty
                     emptyLabel="Select a category for this transaction"
                     options={CATEGORY_OPTIONS}
+                    error={!!errors.category}
                   />
                 </>
               )}
             />
-            {/* {state?.errors?.category && (
-                <FormHelperText>
-                  {state.errors.category.join(", ")}
-                </FormHelperText>
-              )} */}
+            {errors.category && (
+              <FormHelperText>{errors.category.message}</FormHelperText>
+            )}
           </div>
           <div className="start-date-col flex w-full flex-col md:w-[50%]">
             <Controller
@@ -205,31 +199,23 @@ const CreateTransactionForm = ({
                     timezone="default"
                     value={dateValue}
                     placeholder="Start transaction date"
-                    // error={!!state?.errors?.start_date}
+                    error={!!errors.date}
                   />
                 );
               }}
             />
-            {/* {state?.errors?.start_date && (
-                <FormHelperText>
-                  {state.errors.start_date.join(", ")}
-                </FormHelperText>
-              )} */}
+            {errors.date && (
+              <FormHelperText>{errors.date.message}</FormHelperText>
+            )}
           </div>
         </div>
-
-        {/* {state?.errors?._form ? (
-            <div className="mb-8">
-              <FormError message={state?.errors?._form.join(", ")} />
-            </div>
-          ) : null} */}
 
         <div className="button-wrapper mt-6">
           <Button
             type="submit"
             variant="default"
             size="sm"
-            disabled={isPending}
+            disabled={!isDirty || isSubmitting || isPending}
           >
             {isPending && <Loader className="size-6 animate-spin" />}
             <span className="inline-block">
