@@ -23,7 +23,7 @@ const PostList = async ({ fetchData }: PostListProps) => {
           key={post.id}
         >
           <Link
-            className="flex h-full w-full flex-col justify-between p-section text-text-grey transition-colors duration-200 hover:text-light-blue"
+            className="hover:text-dark-blue flex h-full w-full flex-col justify-between p-section text-text-grey transition-colors duration-200"
             href={paths.postShow(post.topic.slug, post.id)}
           >
             <h3 className="mb-6 mt-[-0.25em] inline-block w-full overflow-hidden text-ellipsis whitespace-nowrap text-[2.6rem] font-semibold text-text-light">

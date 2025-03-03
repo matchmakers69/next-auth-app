@@ -38,7 +38,7 @@ const HeaderAuth = () => {
     authContent = (
       <div className="flex items-center gap-6">
         <Button
-          className="button-basic rounded-lg hover:opacity-60"
+          className="hover:bg-dark-blue rounded-lg bg-text-light text-black hover:text-black"
           asChild
           variant="link"
           size="sm"
@@ -47,7 +47,7 @@ const HeaderAuth = () => {
         </Button>
 
         <Button
-          className="rounded-lg bg-gradient-to-r from-blue-700 to-indigo-500 hover:opacity-60"
+          className="bg-dark-blue rounded-lg text-black hover:bg-text-light hover:text-black"
           asChild
           variant="link"
           size="sm"

@@ -25,20 +25,15 @@ export default function Overview() {
       <div className="buttons-wrapper flex w-full items-center justify-end gap-6">
         <Button
           onClick={() => openModal("income")}
-          className="bg-gradient-to-r from-blue-700 to-indigo-500 text-[rgba(var(--white),1)] hover:opacity-60"
+          variant="primary"
           type="button"
           size="sm"
         >
-          <span className="inline-block">New income</span>
+          New income
         </Button>
 
-        <Button
-          onClick={() => openModal("expense")}
-          className="bg-light-blue text-[rgba(var(--white),1)] hover:opacity-60"
-          type="button"
-          size="sm"
-        >
-          <span className="inline-block">New expense</span>
+        <Button onClick={() => openModal("expense")} type="button" size="sm">
+          New expense
         </Button>
       </div>
 

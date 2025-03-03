@@ -114,7 +114,7 @@ const CreateCommentForm = ({
     <>
       <div className="reply-button-wrapper flex w-full items-start justify-end">
         <Button
-          className="min-w-0 font-medium text-light-blue"
+          className="text-dark-blue min-w-0 font-medium"
           size="sm"
           variant="link"
           onClick={() => setOpen(!open)}

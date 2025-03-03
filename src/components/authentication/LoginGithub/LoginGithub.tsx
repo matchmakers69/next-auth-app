@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { SocialButtonsText, SocialProviders } from "../types/defs";
 import { login } from "@/actions/auth";
 
-const LoginGithub = ({ text = "Log in with Github" }: SocialButtonsText) => {
+const LoginGithub = ({ text = "Login with Github" }: SocialButtonsText) => {
   const handleLogin = (provider: SocialProviders) => {
     login(provider);
   };

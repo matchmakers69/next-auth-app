@@ -3,14 +3,18 @@
 import { LogOut } from "lucide-react";
 import { logout } from "@/actions/auth";
 import { Button } from "@/components/ui/Button";
+import { useRouter } from "next/navigation";
 import { useCurrentSession } from "@/hooks/useCurrentSession";
+import paths from "@/utils/paths";
 
 const Logout = () => {
   const { update } = useCurrentSession();
+  const router = useRouter();
 
   const handleLogout = async () => {
-    await logout(); // Call the server function
-    await update(); // 🔄 Refresh session state on client
+    await logout(); // Call server action to log out
+    await update(); // 🔄 Refresh session state
+    router.push(paths.login()); // ✅ Manually navigate to login page
   };
   return (
     <>

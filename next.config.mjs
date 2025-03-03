@@ -11,7 +11,7 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ["md", "tsx", "ts", "jsx", "js", "mdx"],
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
     mdxRs: true,
     turbo: { enabled: true },
   },

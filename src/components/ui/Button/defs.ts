@@ -2,18 +2,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { type ComponentProps } from "react";
 
 export const buttonVariants = cva(
-  "inline-flex items-center py-2 px-4 justify-center whitespace-nowrap font-custom text-sm transition focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-20",
+  "inline-flex items-center py-2 px-4 font-medium justify-center whitespace-nowrap text-sm transition focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-20",
   {
     variants: {
       variant: {
         default:
-          "bg-light-blue text-text-light rounded-lg items-center justify-center",
+          "bg-dark-blue text-black hover:bg-text-light hover:text-black rounded-lg items-center justify-center",
         outline:
           "border border-solid rounded-lg bg-transparent hover:opacity-60",
         destructive:
           "bg-destructive rounded-lg text-destructive-foreground shadow-sm hover:bg-destructive/90",
+          primary:
+          "bg-text-light text-black rounded-lg items-center justify-center flex flex-col hover:bg-dark-blue hover:text-black",
         secondary:
-          "bg-light-blue text-text-light rounded-lg items-center justify-center flex flex-col",
+          "bg-dark-blue text-black rounded-lg items-center justify-center flex flex-col",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-text-light",
         social:

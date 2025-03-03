@@ -119,7 +119,7 @@ const LoginForm: React.FC = () => {
           size="full"
           disabled={!isDirty || isSubmitting || isPending}
         >
-          {showTwoFactor ? "Confirm" : "Log in"}
+          {showTwoFactor ? "Confirm" : "Login"}
         </Button>
       </form>
       <Stack

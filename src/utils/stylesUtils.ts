@@ -123,7 +123,7 @@ export const datePickerPaperStyling = (theme: Theme) => {
       button: {
         visibility: "visible !important",
         opacity: 1,
-        backgroundColor: "var(--light-blue)",
+        backgroundColor: "var(--dark-blue)",
         color: "var(--text-light)",
         "&:hover": {
           backgroundColor: "var(--google-color)",

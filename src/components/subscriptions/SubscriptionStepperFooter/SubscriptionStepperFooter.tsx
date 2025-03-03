@@ -21,13 +21,7 @@ const SubscriptionStepperFooter = ({
   return (
     <footer className="button-wrapper mt-20 flex w-full items-center justify-center gap-10 py-6">
       {currentStep !== SubscriptionsStepsMapper.generalInformation && (
-        <Button
-          onClick={onPrev}
-          size="sm"
-          type="button"
-          className="border-light-blue text-light-blue"
-          variant="outline"
-        >
+        <Button onClick={onPrev} size="sm" type="button" variant="primary">
           Back to previous step
         </Button>
       )}

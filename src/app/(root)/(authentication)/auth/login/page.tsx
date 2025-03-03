@@ -3,7 +3,6 @@ import LoginGoogle from "@/components/authentication/LoginGoogle";
 import { IBM_Plex_Sans } from "next/font/google";
 import AuthLeftColumnContainer from "@/components/authentication/AuthLeftColumnContainer";
 import PageTitle from "@/components/ui/PageTitle";
-import LoginFacebook from "@/components/authentication/LoginFacebook";
 import LoginForm from "@/components/authentication/LoginForm";
 import GraphicContainer from "@/components/authentication/GraphicContainer";
 
@@ -29,17 +28,11 @@ function LoginPage() {
           <p
             className={`${IbmPlex.className} mb-4 text-base font-normal text-text-light`}
           >
-            Log in with one click
+            Login with one click
           </p>
-          <div className="flex w-full flex-col gap-[15px]">
-            <div className="flex w-full flex-wrap items-center justify-between gap-[15px] sm:flex-nowrap">
-              <div className="w-full max-w-[100%] xl:max-w-md">
-                <LoginFacebook />
-              </div>
-              <div className="w-full max-w-[100%] xl:max-w-md">
-                <LoginGoogle />
-              </div>
-            </div>
+          <div className="flex w-full flex-col gap-8">
+            <LoginGoogle />
+
             <div className="flex w-full flex-col">
               <LoginGithub />
             </div>

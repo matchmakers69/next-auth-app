@@ -3,7 +3,6 @@ import LoginGoogle from "@/components/authentication/LoginGoogle";
 import { IBM_Plex_Sans } from "next/font/google";
 import AuthLeftColumnContainer from "@/components/authentication/AuthLeftColumnContainer";
 import PageTitle from "@/components/ui/PageTitle";
-import LoginFacebook from "@/components/authentication/LoginFacebook";
 import RegisterForm from "@/components/authentication/RegisterForm";
 import GraphicContainer from "@/components/authentication/GraphicContainer";
 
@@ -32,9 +31,6 @@ function RegisterPage() {
           </p>
           <div className="flex w-full flex-col gap-[15px]">
             <div className="flex w-full flex-wrap items-center justify-between gap-[15px] sm:flex-nowrap">
-              <div className="w-full max-w-[100%] xl:max-w-md">
-                <LoginFacebook text="Sign up with Facebook" />
-              </div>
               <div className="w-full max-w-[100%] xl:max-w-md">
                 <LoginGoogle text="Sign up with Google" />
               </div>

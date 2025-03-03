@@ -322,13 +322,13 @@ textarea {
     --text-light: #e9e6df;
     --text-grey: #a8a8a8;
     --sidebar-grey: #1a1a1a;
-    --facebook-color: #0866ff;
     --google-color: #4285f4;
     --border-grey-light: #aeaeae;
     --black: 2, 2, 2;
     --white: 255, 255, 255;
     --background-grey-light: #eaeaea;
-    --light-blue: #5677d2;
+    --light-blue: 43, 149, 207;
+    --dark-blue: 0 204 204;
     --light-grey: 251, 250, 247;
     --dark-grey: #3f3f3f;
     --spacer-x3: clamp(4rem, 2vw + 1.6px, 8rem);

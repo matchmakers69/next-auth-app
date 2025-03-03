@@ -16,6 +16,14 @@ export default {
       },
     },
     extend: {
+      lineHeight: {
+        none: '1',
+        tight: '1.25',
+        snug: '1.375',
+        normal: '1.5',
+        relaxed: '5',
+        loose: '2',
+      },
       fontFamily: {
         custom: ["Poppins", "sans-serif"],
       },
@@ -43,7 +51,6 @@ export default {
       },
       colors: {
         border: "rgb(var(--border))",
-        "bg-facebook": "var(--facebook-color)",
         "bg-google": "var(--google-color)",
         "border-input-dark": "rgb(var(--border-input-dark))",
         "border-input-light": "var(--border-input-light)",
@@ -59,9 +66,10 @@ export default {
         success: "rgb(var(--success))",
         "border-grey-light": "var(--border-grey-light)",
         "background-grey-light": "var(--background-grey-light)",
-        "light-blue": "var(--light-blue)",
         black: "rgb(var(--black))",
         white: "rgb(var(--white))",
+        "dark-blue": "rgb(var(--dark-blue))",
+        "light-blue": "var(--light-blue)",
         "light-grey": "rgb(var(--light-grey))",
         "dark-grey": "var(--dark-grey)",
         "text-light": "var(--text-light)",
