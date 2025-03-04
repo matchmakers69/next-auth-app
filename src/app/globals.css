@@ -101,7 +101,6 @@ h1 {
 /* h2 */
 h2 {
   font-size: 1.875rem; /* Default size for small screens (16px * 1.875) */
-  font-weight: 600; /* Semi-bold */
 }
 
 @media (min-width: 640px) {

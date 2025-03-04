@@ -21,14 +21,14 @@ function TopicsPage() {
 
       <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_minmax(25rem,30rem)] xl:grid-cols-[1fr_minmax(30rem,35rem)]">
         <div className="order-2 p-4 md:order-none">
-          <h2 className="mb-8 text-[2.0rem] font-semibold md:text-[2.4rem]">
+          <h2 className="mb-8 text-[2.4rem] font-semibold md:text-[2.8rem]">
             Top posts
           </h2>
           <PostList fetchData={fetchTopArticles} />
         </div>
 
         <aside className="order-1 p-4 md:order-none">
-          <h2 className="mb-8 text-[2.0rem] font-semibold md:text-[2.4rem]">
+          <h2 className="mb-8 text-[2.4rem] font-semibold md:text-[2.8rem]">
             Recently added topics
           </h2>
           <TopicsList />

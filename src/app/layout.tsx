@@ -20,7 +20,7 @@ const IbmFont = IBM_Plex_Sans_Condensed({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-ibm",
-  weight: ["300", "400", "600"],
+  weight: ["300", "400", "500", "600"],
 });
 
 const OswaldFont = Oswald({
