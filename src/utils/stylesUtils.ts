@@ -1,5 +1,5 @@
 import { SxProps, Theme } from "@mui/material";
-import { fontDefault } from "../constants/fonts";
+
 
 export const InputSx: SxProps<Theme> = {
   "& .MuiInputLabel-outlined": {
@@ -214,7 +214,7 @@ export const dateTimeTextFieldStyling = (
     },
     "& .MuiOutlinedInput-root": {
       fontSize: "1.5rem",
-      fontFamily: fontDefault,
+      fontFamily: "var(--font-ibm)",
       borderRadius: "10px",
       "& fieldset": {
         border: disabled ? "none" : border,

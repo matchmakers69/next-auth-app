@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import { Bebas_Neue, Oswald, IBM_Plex_Sans_Condensed } from "next/font/google";
 import "remixicon/fonts/remixicon.css";
 import "./globals.css";
 import { auth } from "@/auth";
@@ -9,12 +9,29 @@ import ProgressBarProvider from "@/components/providers/ProgressBarProvider";
 import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
 import { LocalizationProvider } from "@/components/providers/LocalizationProvider";
 
-const PoppinsFont = Poppins({
+const BebasFont = Bebas_Neue({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-poppins",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-bebas",
+  weight: ["400"],
 });
+
+const IbmFont = IBM_Plex_Sans_Condensed({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-ibm",
+  weight: ["300", "400", "600"],
+});
+
+const OswaldFont = Oswald({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-oswald",
+  weight: ["600", "700"],
+});
+
+const fonts = [BebasFont, IbmFont, OswaldFont];
+const fontsClassName = fonts.map((font) => font.variable).join(" ");
 
 export const metadata: Metadata = {
   keywords: [
@@ -45,7 +62,7 @@ export default async function RootLayout({
   const sessionKey = new Date().valueOf(); // Workaround to force re-render on session change
   return (
     <html lang="en">
-      <body className={`${PoppinsFont.className} body-app scroll-touch`}>
+      <body className={`${fontsClassName} body-app scroll-touch`}>
         <ToasterProvider />
         <ProgressBarProvider>
           <SessionProvider session={session} sessionKey={sessionKey}>

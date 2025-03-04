@@ -24,9 +24,6 @@ export default {
         relaxed: '5',
         loose: '2',
       },
-      fontFamily: {
-        custom: ["Poppins", "sans-serif"],
-      },
       backdropBlur: {
         'custom': '25px',
       },

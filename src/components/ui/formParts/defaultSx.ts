@@ -1,10 +1,9 @@
-import { fontDefault } from "@/constants/fonts";
 import { SxProps, Theme } from "@mui/material";
 
 export const dropDownOptionsSx = {
   fontSize: "1.5rem",
   color: "var(--text-light)",
-  fontFamily: fontDefault,
+  fontFamily: "var(--font-ibm)",
 };
 
 export const dropDownPaperOptionsSx = {
@@ -12,7 +11,7 @@ export const dropDownPaperOptionsSx = {
   backgroundColor: "hsl(var(--background))",
   border: "1px solid hsla(0,0%,100%,0.15)",
   fontSize: "1.5rem",
-  fontFamily: fontDefault,
+  fontFamily: "var(--font-ibm)",
   color: "var(--text-light)",
   "& .MuiMenuItem-root": {
     fontSize: "1.4rem",

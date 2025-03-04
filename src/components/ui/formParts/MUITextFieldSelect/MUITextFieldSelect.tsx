@@ -2,7 +2,6 @@ import { forwardRef } from "react";
 import { TextField, MenuItem, SxProps, Theme, Box } from "@mui/material";
 import { dropDownOptionsSx, getDefaultSx } from "../defaultSx";
 import { MUITextFieldSelectProps } from "./defs";
-import { fontDefault } from "@/constants/fonts";
 
 const MUITextFieldSelect = forwardRef<
   HTMLInputElement,
@@ -40,7 +39,7 @@ const MUITextFieldSelect = forwardRef<
       },
       "& .MuiInputBase-input": {
         fontSize: "1.5rem",
-        fontFamily: fontDefault,
+        fontFamily: "var(--font-ibm)",
         ...(displayValue && {
           display: "flex",
           justifyContent: "space-between",
@@ -53,7 +52,7 @@ const MUITextFieldSelect = forwardRef<
       },
       "& .MuiOutlinedInput-root": {
         fontSize: "1.5rem",
-        fontFamily: fontDefault,
+        fontFamily: "var(--font-ibm)",
         borderRadius: "10px",
         color: "var(--text-light)",
 
@@ -101,7 +100,7 @@ const MUITextFieldSelect = forwardRef<
                   backgroundColor: "hsl(var(--background))",
                   border: "1px solid hsla(0,0%,100%,0.15)",
                   fontSize: "1.5rem",
-                  fontFamily: fontDefault,
+                  fontFamily: "var(--font-ibm)",
                   color: "var(--text-light)",
                   borderRadius: "10px",
                 },

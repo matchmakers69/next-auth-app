@@ -9,19 +9,19 @@ const StarsIcon = () => {
     >
       <path
         d="M25 5L45 40H5L25 5Z"
-        stroke="#afafaf"
+        stroke="rgb(var(--dark-blue))"
         strokeWidth="2"
         strokeLinejoin="round"
       />
 
       <path
         d="M25 15L37 35H13L25 15Z"
-        stroke="#afafaf"
+        stroke="rgb(var(--dark-blue))"
         strokeWidth="1.5"
         strokeLinejoin="round"
       />
 
-      <path d="M25 20L33 33H17L25 20Z" fill="#afafaf" />
+      <path d="M25 20L33 33H17L25 20Z" fill="rgb(var(--dark-blue))" />
     </svg>
   );
 };

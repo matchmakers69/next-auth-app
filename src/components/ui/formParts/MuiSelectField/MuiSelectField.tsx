@@ -8,12 +8,11 @@ import {
   Theme,
 } from "@mui/material";
 import { FormLabel } from "../FormLabel";
-import { fontDefault } from "@/constants/fonts";
 import { dropDownOptionsSx, dropDownPaperOptionsSx } from "../defaultSx";
 
 const defaultSx: SxProps<Theme> = {
   fontSize: "1.5rem",
-  fontFamily: fontDefault,
+  fontFamily: "var(--font-ibm)",
   borderRadius: "10px",
   color: "var(--text-light)",
   border: "1px solid",

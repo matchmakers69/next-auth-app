@@ -25,6 +25,7 @@ body {
   margin: 0;
   line-height: 1.8;
   font-size: 1.6rem;
+  font-family: var(--font-ibm);
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -60,18 +61,13 @@ h5,
 h6 {
   line-height: 1.3;
   color: rgb(var(--text-light));
-  font-family: "IBM_Plex_Sans", sans-serif;
-}
-
-p,
-a {
-  font-family: "Poppins", sans-serif;
 }
 
 /* h1 */
 h1 {
   font-size: 2.25rem;
   font-weight: 700;
+  font-family: var(--font-bebas);
 }
 
 @media (min-width: 640px) {
@@ -272,11 +268,6 @@ h6 {
   }
 }
 
-p,
-a {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
 p {
   line-height: 1.6;
 }
@@ -363,6 +354,18 @@ textarea {
   body {
     @apply bg-body text-text-light;
   }
+}
+
+.font-oswald {
+  font-family: var(--font-oswald);
+}
+
+.font-bebas {
+  font-family: var(--font-bebas);
+}
+
+.font-ibm {
+  font-family: var(--font-ibm);
 }
 
 .fullscreen {

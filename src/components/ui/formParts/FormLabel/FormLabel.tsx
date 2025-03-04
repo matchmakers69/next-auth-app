@@ -1,4 +1,3 @@
-import { fontDefault } from "@/constants/fonts";
 import { styled } from "@mui/material";
 
 const StyledWrapper = styled("div")({
@@ -9,7 +8,7 @@ const StyledWrapper = styled("div")({
 const StyledLabel = styled("label")({
   fontWeight: 600,
   fontSize: "1.5rem",
-  fontFamily: fontDefault,
+  fontFamily: "var(--font-ibm)",
 });
 
 const StyledRequired = styled("span")({

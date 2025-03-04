@@ -3,7 +3,6 @@ import Link from "next/link";
 import { SxProps, Theme } from "@mui/system";
 import { FC } from "react";
 import { CustomChipProps } from "./defs";
-import { fontDefault } from "@/constants/fonts";
 
 const Chip: FC<CustomChipProps> = ({
   href,
@@ -18,7 +17,7 @@ const Chip: FC<CustomChipProps> = ({
     fontSize: textSize,
     backgroundColor,
     border: "none",
-    fontFamily: fontDefault,
+    fontFamily: "var(--font-ibm)",
     transition: "all 0.3s ease",
     "&:hover": {
       backgroundColor: "#ffffff29",
