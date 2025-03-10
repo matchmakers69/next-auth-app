@@ -1,4 +1,4 @@
-import { db } from "@/libs/db";
+import { db } from "@/lib/db";
 import { Comment } from "@prisma/client";
 import { cache } from "react";
 

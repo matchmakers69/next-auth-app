@@ -1,5 +1,5 @@
 import PostList from "@/components/articles/CreatePostContainer/PostList";
-import { fetchArticlesBySearchTerm } from "@/libs/articlesAPI";
+import { fetchArticlesBySearchTerm } from "@/lib/articlesAPI";
 
 interface SearchPageProps {
   searchParams: Promise<{

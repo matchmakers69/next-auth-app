@@ -1,5 +1,5 @@
 import { BaseProps } from "@/components/ui/types/defs";
-import { getPostsData } from "@/libs/get-blog-postAPI";
+import { getPostsData } from "@/lib/get-blog-postAPI";
 import { Button } from "@/components/ui/Button";
 import paths from "@/utils/paths";
 import { ArrowLeft } from "lucide-react";
@@ -40,7 +40,7 @@ const PostLayout = async ({ children, params }: PostLayoutProps) => {
       <article>
         <h1 className="title">{title}</h1>
       </article>
-      {children}
+      <div className="blog-post-content">{children}</div>
     </>
   );
 };

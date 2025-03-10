@@ -1,4 +1,4 @@
-import { db } from "@/libs/db";
+import { db } from "@/lib/db";
 
 export async function getPostByPostId(postId: string) {
   try {

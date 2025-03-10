@@ -1,7 +1,7 @@
 import CreatePostContainer from "@/components/articles/CreatePostContainer";
 import PostList from "@/components/articles/CreatePostContainer/PostList";
 import PageTitle from "@/components/ui/PageTitle";
-import { fetchArticlesByTopicSlug } from "@/libs/articlesAPI";
+import { fetchArticlesByTopicSlug } from "@/lib/articlesAPI";
 
 interface TopicShowPageProps {
   params: Promise<{

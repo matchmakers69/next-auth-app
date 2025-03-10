@@ -8,7 +8,7 @@ import {
   newPasswordSchema,
 } from "@/components/authentication/schemas/newPasswordSchema";
 import { getUserByEmail } from "@/data/user";
-import { db } from "@/libs/db";
+import { db } from "@/lib/db";
 
 export const newPassword = async (
   values: NewPasswordFormValues,

@@ -1,4 +1,4 @@
-import { adminSidebarNavigation } from "@/libs/constants";
+import { adminSidebarNavigation } from "@/lib/constants";
 import paths from "@/utils/paths";
 
 export const adminNavLinks = adminSidebarNavigation.map((item) => {

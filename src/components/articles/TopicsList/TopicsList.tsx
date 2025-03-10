@@ -1,4 +1,4 @@
-import { getTopicsList } from "@/libs/get-topics-listAPI";
+import { getTopicsList } from "@/lib/get-topics-listAPI";
 import Chip from "@/components/ui/Chip";
 import paths from "@/utils/paths";
 import Alert from "@/components/ui/Alert/Alert";

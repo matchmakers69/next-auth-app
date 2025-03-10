@@ -12,7 +12,7 @@
 html,
 body,
 :root {
-  scroll-behavior: smooth;
+  scroll-behavior: none;
 }
 
 html {
@@ -20,11 +20,19 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overscroll-behavior: none;
+  scroll-behavior: auto;
+}
+
 body {
   padding: 0;
   margin: 0;
-  line-height: 1.8;
   font-size: 1.6rem;
+  line-height: 1.5;
   font-family: var(--font-ibm);
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -268,7 +276,8 @@ h6 {
 }
 
 p {
-  line-height: 1.6;
+  font-size: max(18px, 1.25rem);
+  line-height: 1.5;
 }
 
 fieldset {
@@ -451,4 +460,28 @@ textarea {
 
 .pt-res {
   padding-top: clamp(1.1rem, 0.7153rem + 1.6368vw, 1.5rem);
+}
+
+/* Blog Post section */
+.blog-post-content p {
+  line-height: 1.8;
+  font-size: 1.8rem;
+}
+
+.blog-post-content h2,
+h3,
+h4 {
+  font-family: var(--font-oswald);
+  line-height: 1.2;
+  margin-bottom: 1.4rem;
+}
+
+.blog-post-content ul {
+  list-style-type: disc;
+  padding-left: 2rem;
+}
+
+.blog-post-content ul li {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
 }

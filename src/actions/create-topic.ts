@@ -1,13 +1,13 @@
 "use server";
 
 import { createTopicSchema } from "@/components/articles/CreateTopicContainer/CreateTopicForm/validation/createTopicValidationSchema";
-import { currentUser } from "@/libs/currentUserAPI";
+import { currentUser } from "@/lib/currentUserAPI";
 import type { Topic } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import paths from "@/utils/paths";
 import { Prisma } from "@prisma/client";
-import { db } from "@/libs/db";
+import { db } from "@/lib/db";
 
 type CreateTopicFormState = {
   errors?: {

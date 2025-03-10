@@ -3,9 +3,9 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import paths from "@/utils/paths";
-import { db } from "@/libs/db";
+import { db } from "@/lib/db";
 import { createPostSchema } from "@/components/articles/CreatePostContainer/CreatePostForm/validation/createPostValidationSchema";
-import { currentUser } from "@/libs/currentUserAPI";
+import { currentUser } from "@/lib/currentUserAPI";
 import { Article } from "@prisma/client";
 
 interface CreatePostFormState {

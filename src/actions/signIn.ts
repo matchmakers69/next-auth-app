@@ -17,9 +17,9 @@ import { DEFAULT_LOGIN_REDIRECT } from "../../routes";
 import {
   generateTwoFactorToken,
   generateVerificationToken,
-} from "@/libs/tokens";
-import { sendTwoFactorTokenEmail, sendVerificationEmail } from "@/libs/mail";
-import { db } from "@/libs/db";
+} from "@/lib/tokens";
+import { sendTwoFactorTokenEmail, sendVerificationEmail } from "@/lib/mail";
+import { db } from "@/lib/db";
 
 export const signIn = async (
   values: LoginFormValues,

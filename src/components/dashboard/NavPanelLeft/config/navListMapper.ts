@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { sidebarNavigation } from "@/libs/constants";
+import { sidebarNavigation } from "@/lib/constants";
 import paths from "@/utils/paths";
 
 export const navigationLinks = sidebarNavigation.map((item) => {

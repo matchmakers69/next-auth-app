@@ -50,6 +50,12 @@
 
 ### https://egghead.io/fetch-and-render-paginated-data-with-react-19-use~b42bd?utm_campaign=Fetch%20and%20render%20paginated%20data%20with%20React%2019%20use&utm_content=screenshot&utm_content=Fetch%20and%20render%20paginated%20data%20with%20React%2019%20use&utm_medium=email_action&utm_source=customer.io - fetch paginated data in react-19
 
+### https://medium.com/@p.thuvarakan1997/differnce-between-next-js-14-to-next-js-15-89fdc4ea0946 - Next14 vs Next15
+
+###
+
+### https://medium.com/@ctrlaltmonique/how-to-use-react-hook-form-zod-with-next-js-server-actions-437aaca3d72d - RHF with server actions
+
 ## Prisma
 
 #### After changes in models

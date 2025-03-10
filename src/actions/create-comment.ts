@@ -1,10 +1,10 @@
 "use server";
 
 import { createCommentSchema } from "@/components/articles/CommentsContainer/CreateCommentForm/validation/createCommentValidationSchema";
-import { currentUser } from "@/libs/currentUserAPI";
+import { currentUser } from "@/lib/currentUserAPI";
 import { revalidatePath } from "next/cache";
 import paths from "@/utils/paths";
-import { db } from "@/libs/db";
+import { db } from "@/lib/db";
 
 interface CreateCommentFormState {
   errors: {

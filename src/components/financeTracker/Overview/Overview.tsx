@@ -3,12 +3,19 @@
 import { Button } from "@/components/ui/Button";
 import { CreateTransactionForm } from "../CreateTransactionForm";
 import { useState } from "react";
+import { differenceInDays, startOfMonth } from "date-fns";
 import { TransactionType } from "../types";
+import { OverviewProps } from "./defs";
+import { StatsCards } from "../StatsCards";
 
-export default function Overview() {
+export default function Overview({ userId }: OverviewProps) {
   const [transactionType, setTransactionType] =
     useState<TransactionType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dateRange, setDateRange] = useState<{ from: Date; to: Date }>({
+    from: startOfMonth(new Date()),
+    to: new Date(),
+  });
 
   const openModal = (type: TransactionType) => {
     setTransactionType(type);
@@ -35,6 +42,9 @@ export default function Overview() {
         <Button onClick={() => openModal("expense")} type="button" size="sm">
           New expense
         </Button>
+      </div>
+      <div className="stats-card-containet flex w-full flex-col gap-2">
+        <StatsCards userId={userId} from={dateRange.from} to={dateRange.to} />
       </div>
 
       {isModalOpen && transactionType === "income" && (

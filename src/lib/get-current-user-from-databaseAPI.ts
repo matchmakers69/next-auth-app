@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { db } from "@/libs/db";
+import { db } from "@/lib/db";
 
 export const getCurrentUserFromDatabase = async () => {
   try {

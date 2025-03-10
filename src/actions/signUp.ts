@@ -6,9 +6,9 @@ import {
   registerSchema,
 } from "@/components/authentication/schemas/registrationSchema";
 import { getUserByEmail } from "@/data/user";
-import { db } from "@/libs/db";
-import { generateVerificationToken } from "@/libs/tokens";
-import { sendVerificationEmail } from "@/libs/mail";
+import { db } from "@/lib/db";
+import { generateVerificationToken } from "@/lib/tokens";
+import { sendVerificationEmail } from "@/lib/mail";
 
 export const signUp = async (data: RegisterFormValues) => {
   // server site validation

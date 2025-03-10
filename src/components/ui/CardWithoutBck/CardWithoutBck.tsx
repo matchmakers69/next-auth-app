@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import Card from "../Card";
 import { CardWithoutBckProps } from "./defs";
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
 
 const CardWithoutBck = forwardRef<HTMLDivElement, CardWithoutBckProps>(
   ({ children, className, ...rest }, ref) => {

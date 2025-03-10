@@ -1,4 +1,4 @@
-import { db } from "@/libs/db";
+import { db } from "@/lib/db";
 
 // export type Article = Post & {
 //   topic: {

@@ -1,8 +1,8 @@
 "use server";
 
-import { db } from "@/libs/db";
+import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
-import { currentUser } from "@/libs/currentUserAPI";
+import { currentUser } from "@/lib/currentUserAPI";
 import { SubscriptionSchema } from "@/components/subscriptions/CreateSubscriptionContainer/CreateSubscriptionWizard/schemas/subscriptionSchema";
 import { SUBSCRIPTION_CURRENCY } from "@prisma/client";
 

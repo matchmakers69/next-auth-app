@@ -1,6 +1,6 @@
 import { forwardRef, type ForwardedRef } from "react";
 import { type ButtonProps, buttonVariants } from "./defs";
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
 import { Slot } from "../Slots";
 
 export const Button = forwardRef(

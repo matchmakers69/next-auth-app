@@ -5,7 +5,7 @@ import { getUserById } from "./data/user";
 import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmation";
 import { getAccountByUserId } from "./data/account";
 import authConfig from "@/auth.config";
-import { db } from "./libs/db";
+import { db } from "./lib/db";
 import paths from "./utils/paths";
 
 export type ExtendedUser = DefaultSession["user"] & {

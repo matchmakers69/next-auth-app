@@ -1,8 +1,9 @@
 "use server";
-import { db } from "@/libs/db";
+
+import { db } from "@/lib/db";
 import paths from "@/utils/paths";
 import { redirect } from "next/navigation";
-import { currentUser } from "@/libs/currentUserAPI";
+import { currentUser } from "@/lib/currentUserAPI";
 import {
   TransactionSchemaType,
   TransactionSchema,

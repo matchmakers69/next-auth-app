@@ -1,0 +1,35 @@
+---
+title: Branching & Deployment Workflow
+description: A guide on how to set up a CI/CD workflow using Jenkins, AWS CodeCommit, and automated testing.
+slug: branching-and-deployment-workflow
+date: Mar 7, 2025
+---
+
+#### Concept of a **CI/CD** workflow using Jenkins, AWS CodeCommit, and automated testing.
+
+<br />
+
+**Branching Strategy**
+
+- **Master** - Production-ready code. No direct merges allowed.
+- **Feature** - Code that is being developed. **Feature branches** are deployed to
+  staging environments where testers validate the new features and run tests.
+
+<br />
+
+**Feature branches**
+
+- Code reviews happens before merging to ensure quality.
+- Jenkins is used to run CRUD operations on feature branches.
+- **Automate CI/CD Validation** - AWS CodePipeline is used to automate the CI/CD process.
+  AWS CodePipeline runs Sonar Cloud, VRTs on feature branches. If issues are found, the branch can be fixed before merging.
+
+  <br />
+  **AWS CodePipeline flow in project**
+
+- **Push to feature branch** - AWS CodePipeline is triggered.
+- **Sonar Cloud** - Code quality is checked.
+- **VRTs** - Visual Regression Tests are run.
+- **Deploy to Staging** - If all checks pass, the feature branch is deployed to staging.
+- **Manual Testing** - Testers validate the new features.
+- **Merge to Master** - Once the feature branch is validated, it is merged to master.

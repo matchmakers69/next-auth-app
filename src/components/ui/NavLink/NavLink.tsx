@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type NavLinkProps } from "./defs";
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
 
 export const NavLink = ({
   href,

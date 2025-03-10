@@ -1,0 +1,23 @@
+---
+title: Next.js vs React
+description: Comparing the two popular React frameworks
+slug: next-vs-react
+date: March 7, 2025
+---
+
+## Framework vs. Library
+
+- _React.js: A JavaScript library for building UI components. It provides the core tools to create component-based applications but does not include routing, data fetching, or SSR out of the box._
+- _Next.js: A framework built on top of React.js. It includes routing, data fetching, and SSR out of the box, and provides a file-based routing system._
+
+<br />
+## Next 13, 14, 15
+
+- **No need for a separate API server**: Next.js 13 introduced API routes, allowing you to create serverless functions in the same project as your frontend code.
+- **Improved image optimization**: Next.js 14 introduced a new image component that automatically optimizes images for performance.
+- **No need for `getServerSideProps` or `getStaticProps`** -> Fetch data directly in Server Components.
+- **Persistent Layouts**: Next.js 14 introduced a new `Layout` component that allows you to persist layout across pages -> No unnecessary re-renders.
+- **Before:** everything was a **Client Component**. unless explicity marked as SSR (`getServerSideProps`) **Now:** you can choose between **Client Components** and **Server Components**.
+- **Server Components** are rendered on the server and sent to the client, while **Client Components** are rendered on the client.
+- **Server Components** are useful for SEO, performance, and security, while **Client Components** are useful for interactivity and dynamic content.
+- **Server Actions (Next.js 14) - no need for API routes**: Next.js 14 Server Actions allow forms to be submitted directly to the server without the need for API routes.

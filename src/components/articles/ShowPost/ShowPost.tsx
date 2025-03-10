@@ -1,6 +1,6 @@
 import { ShowPostProps } from "./defs";
 import { notFound } from "next/navigation";
-import { getPostByPostId } from "@/libs/get-topics-by-idAPI";
+import { getPostByPostId } from "@/lib/get-topics-by-idAPI";
 import CreateCommentForm from "../CommentsContainer/CreateCommentForm";
 import CommentsList from "../CommentsContainer/CommentsList";
 

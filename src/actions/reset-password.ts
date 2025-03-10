@@ -5,9 +5,9 @@ import {
   resetPasswordSchema,
 } from "@/components/authentication/schemas/resetPasswordSchema";
 import { getUserByEmail } from "@/data/user";
-import { sendPasswordResetEmail } from "@/libs/mail";
+import { sendPasswordResetEmail } from "@/lib/mail";
 
-import { generatePasswordResetToken } from "@/libs/tokens";
+import { generatePasswordResetToken } from "@/lib/tokens";
 
 export const resetPassword = async (values: ResetPasswordFormValues) => {
   const validatedFields = resetPasswordSchema.safeParse(values);

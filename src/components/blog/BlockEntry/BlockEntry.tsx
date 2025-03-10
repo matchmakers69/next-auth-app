@@ -24,14 +24,16 @@ function BlockEntry({
       >
         <div className="blog-card-inner flex h-full flex-col justify-between gap-0 p-[3.25em]">
           <header className="mb-4">
-            <h3 className="text-lg font-bold text-text-light">{title}</h3>
+            <h3 className="font-oswald text-lg font-bold text-text-light">
+              {title}
+            </h3>
           </header>
           {description && <p className="mb-4 text-text-grey">{description}</p>}
           {(type || date) && (
             <div className="flex flex-none flex-shrink flex-grow-0 items-center">
               {date && (
                 <>
-                  <span className="line mr-3 h-5 w-[0.18em] bg-background-grey-light" />
+                  <span className="line mr-3 h-5 w-[0.18em] bg-dark-blue" />
                   <div className="flex items-center space-x-2">
                     <span className="text-sm text-text-grey">{date}</span>
                     {views && (

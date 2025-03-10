@@ -2,8 +2,8 @@ import CreateSubscriptionContainer from "@/components/subscriptions/CreateSubscr
 import Alert from "@/components/ui/Alert/Alert";
 import PageTitle from "@/components/ui/PageTitle";
 import { SubscriptionsProvider } from "@/contexts/SubscriptionsProvider";
-import { getSubscriptionsList } from "@/libs/get-subscriptions-listAPI";
-import { getCurrentUserFromDatabase } from "@/libs/get-current-user-from-databaseAPI";
+import { getSubscriptionsList } from "@/lib/get-subscriptions-listAPI";
+import { getCurrentUserFromDatabase } from "@/lib/get-current-user-from-databaseAPI";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

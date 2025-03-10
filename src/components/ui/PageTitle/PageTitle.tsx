@@ -1,6 +1,6 @@
 import React from "react";
 import { PageTitleProps } from "./defs";
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
 import StarsIcon from "../StarsIcon";
 
 const PageTitle = ({ title, subtitle, slogan, className }: PageTitleProps) => {
