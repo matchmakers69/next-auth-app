@@ -1,3 +1,4 @@
+import { getBalanceStats } from "@/lib/getBalanceStatsAPI";
 import { SUBSCRIPTION_CATEGORY_LABEL } from "@prisma/client";
 
 export type SubscriptionCategories = {
@@ -24,35 +25,4 @@ export type Post = Base & {
   type: "post";
 };
 
-export interface Budget {
-  id: number;
-  attributes: {
-    category: string;
-    amount: number;
-    createdAt?: string;
-    updatedAt?: string;
-    publishedAt?: string;
-  };
-}
-
-export interface Income {
-  id: number;
-  attributes: {
-    description: string;
-    amount: number;
-    createdAt?: string;
-    updatedAt?: string;
-    publishedAt?: string;
-  };
-}
-
-export interface Expense {
-  id: number;
-  attributes: {
-    description: string;
-    amount: number;
-    createdAt?: string;
-    updatedAt?: string;
-    publishedAt?: string;
-  };
-}
+export type BalanceStatsType = Awaited<ReturnType<typeof getBalanceStats>>;

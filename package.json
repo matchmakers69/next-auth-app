@@ -46,6 +46,7 @@
     "next-mdx-remote": "^5.0.0",
     "next-nprogress-bar": "^2.4.3",
     "react": "^19.0.0",
+    "react-countup": "^6.5.3",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.0",
     "react-hot-toast": "^2.5.1",

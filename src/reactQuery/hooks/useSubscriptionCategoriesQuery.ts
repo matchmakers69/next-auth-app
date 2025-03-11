@@ -2,10 +2,9 @@ import { ApiClient } from "@/services/ApiClient";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
 const getSubscriptionCategories = async () => {
-  const response = await ApiClient(
+  return await ApiClient(
     "/subscription-categories",
   ).getSubscriptionCategories();
-  return response;
 };
 
 export const subscriptionCategoriesQuery = queryOptions({

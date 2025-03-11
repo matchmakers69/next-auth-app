@@ -1,9 +1,8 @@
-
 import { currentUser } from "@/lib/currentUserAPI";
 import { redirect } from "next/navigation";
 import paths from "@/utils/paths";
-import { OverviewQuerySchema } from "@/components/financeTracker/Overview/validation/overViewQuerySchema";
 import { getBalanceStats } from "@/lib/getBalanceStatsAPI";
+import { OverviewQuerySchema } from "@/components/financeTracker/Overview/validation/overviewQuerySchema";
 
 export async function GET(request: Request) {
   const user = await currentUser();
@@ -20,6 +19,7 @@ export async function GET(request: Request) {
       status: 400,
     });
   }
+
   const stats = await getBalanceStats(
     user.id,
     queryParams.data.from,
@@ -27,5 +27,3 @@ export async function GET(request: Request) {
   );
   return Response.json(stats);
 }
-
-export type BalanceStatsType = Awaited<ReturnType<typeof getBalanceStats>>;

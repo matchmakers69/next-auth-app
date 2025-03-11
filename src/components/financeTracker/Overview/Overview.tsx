@@ -7,6 +7,7 @@ import { differenceInDays, startOfMonth } from "date-fns";
 import { TransactionType } from "../types";
 import { OverviewProps } from "./defs";
 import { StatsCards } from "../StatsCards";
+import { CategoriesStats } from "../CategoriesStats";
 
 export default function Overview({ userId }: OverviewProps) {
   const [transactionType, setTransactionType] =
@@ -43,8 +44,12 @@ export default function Overview({ userId }: OverviewProps) {
           New expense
         </Button>
       </div>
-      <div className="stats-card-containet flex w-full flex-col gap-2">
-        <StatsCards userId={userId} from={dateRange.from} to={dateRange.to} />
+      <div className="stats-card-container mb-[4rem]">
+        <StatsCards from={dateRange.from} to={dateRange.to} />
+      </div>
+
+      <div className="categories-container flex w-full flex-col gap-2">
+        <CategoriesStats from={dateRange.from} to={dateRange.to} />
       </div>
 
       {isModalOpen && transactionType === "income" && (
