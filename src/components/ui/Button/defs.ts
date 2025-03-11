@@ -11,12 +11,11 @@ export const buttonVariants = cva(
         outline:
           "border border-solid rounded-lg bg-transparent hover:opacity-60",
         destructive:
-          "bg-destructive rounded-lg text-destructive-foreground shadow-sm hover:bg-destructive/90",
+          "bg-destructive rounded-lg text-text-light shadow-sm hover:bg-destructive/90",
           primary:
           "bg-text-light text-black rounded-lg items-center justify-center flex flex-col hover:bg-dark-blue hover:text-black",
         secondary:
           "bg-dark-blue text-black rounded-lg items-center justify-center flex flex-col",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-text-light",
         social:
           "flex text-text-light items-center rounded-lg shadow-md px-6 py-2 text-sm focus:ring-2 focus:outline-none font-medium",

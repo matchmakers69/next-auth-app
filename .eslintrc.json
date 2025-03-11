@@ -1,12 +1,21 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"],
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:storybook/recommended"
+  ],
   "rules": {
     "prefer-const": "error",
     "no-var": "error",
     "prefer-arrow-callback": "error",
     "prefer-template": "error",
     "no-useless-concat": "error",
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "no-else-return": "error",
     "no-empty-function": "error",
     "no-empty-pattern": "error",
@@ -16,15 +25,23 @@
     "no-unneeded-ternary": "error",
     "no-useless-return": "error",
     "no-whitespace-before-property": "error",
-    "object-shorthand": ["error", "always"],
+    "object-shorthand": [
+      "error",
+      "always"
+    ],
     "no-unsafe-optional-chaining": "error",
     "no-unused-expressions": [
       "error",
-      { "allowShortCircuit": true, "allowTernary": true }
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
     ],
     "@typescript-eslint/no-unused-vars": [
       "warn",
-      { "argsIgnorePattern": "^_" }
+      {
+        "argsIgnorePattern": "^_"
+      }
     ],
     "@typescript-eslint/no-explicit-any": "warn"
   },
