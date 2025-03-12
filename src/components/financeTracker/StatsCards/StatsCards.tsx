@@ -4,7 +4,7 @@ import { useFetchBalanceStatsQuery } from "@/reactQuery/hooks/useFetchBalanceSta
 import { StatsCardsProps } from "./defs";
 import { SkeletonWrapper } from "@/components/ui/Skeleton/SkeletonWrapper";
 import { TrendingDown, TrendingUp, Wallet } from "lucide-react";
-import { StatCard } from "../StatCard";
+import { StatCard } from "./StatCard";
 
 const StatsCards = ({ from, to }: StatsCardsProps) => {
   const statsQuery = useFetchBalanceStatsQuery(

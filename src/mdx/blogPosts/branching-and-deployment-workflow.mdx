@@ -25,11 +25,23 @@ date: Mar 7, 2025
   AWS CodePipeline runs Sonar Cloud, VRTs on feature branches. If issues are found, the branch can be fixed before merging.
 
   <br />
-  **AWS CodePipeline flow in project**
 
-- **Push to feature branch** - AWS CodePipeline is triggered.
-- **Sonar Cloud** - Code quality is checked.
+  **CI/CD (Continuous Integration / Continuous Deployment)**
+
+  - **Continuous Integration** - Developers push code to feature branches. AWS CodePipeline runs tests and deploys the code to staging.
+  - **Continuous Deployment** - Once the feature branch is validated, it is merged to master. AWS CodePipeline deploys the code to production.
+
+<br />
+
+**CI process**
+
+- **Push to feature branch** - AWS CodePipeline starts to automate the **CI/CD** process.
 - **VRTs** - Visual Regression Tests are run.
-- **Deploy to Staging** - If all checks pass, the feature branch is deployed to staging.
+
+<br />
+
+**CD process**
+
+- **Deploy to Staging** - If all checks pass, AWS CodePipeline automatically deploys the application to staging or production environments.
 - **Manual Testing** - Testers validate the new features.
 - **Merge to Master** - Once the feature branch is validated, it is merged to master.

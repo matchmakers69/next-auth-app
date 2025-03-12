@@ -10,7 +10,7 @@ const fetchBudgetStats = async (from: Date, to: Date) => {
 
 export const budgetStatsQuery = (from: Date, to: Date) =>
   queryOptions({
-    queryKey: ["budget-stats"],
+    queryKey: ["budget-stats", "stats", from, to],
     queryFn: () => fetchBudgetStats(from, to),
     staleTime: 1000 * 15,
   });

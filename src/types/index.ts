@@ -1,4 +1,5 @@
 import { getBalanceStats } from "@/lib/getBalanceStatsAPI";
+import { getCategoriesStats } from "@/lib/getCategoriesStatsAPI";
 import { SUBSCRIPTION_CATEGORY_LABEL } from "@prisma/client";
 
 export type SubscriptionCategories = {
@@ -26,3 +27,4 @@ export type Post = Base & {
 };
 
 export type BalanceStatsType = Awaited<ReturnType<typeof getBalanceStats>>;
+export type CategoriesStatsType = Awaited<ReturnType<typeof getCategoriesStats>>;

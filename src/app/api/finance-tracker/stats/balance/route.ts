@@ -17,6 +17,7 @@ export async function GET(request: Request) {
   if (!queryParams.success) {
     return Response.json(queryParams.error.message, {
       status: 400,
+      statusText: "Bad Request",
     });
   }
 

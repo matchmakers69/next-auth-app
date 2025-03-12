@@ -63,7 +63,7 @@ export default {
         "success-foreground": "rgb(var(--success-foreground))",
         success: "rgb(var(--success))",
         "border-grey-light": "var(--border-grey-light)",
-        "background-grey-light": "var(--background-grey-light)",
+        "grey-light": "var(--grey-light)",
         black: "rgb(var(--black))",
         white: "rgb(var(--white))",
         "dark-blue": "rgb(var(--dark-blue))",
