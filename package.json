@@ -9,7 +9,8 @@
     "test": "vitest",
     "lint": "next lint && prettier --write './{src,app,components,pages}/**/*.{js,ts,tsx}' --loglevel warn",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test-storybook": "storybook test-runner"
   },
   "prisma": {
     "seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
@@ -78,6 +79,7 @@
     "@storybook/experimental-nextjs-vite": "^8.6.4",
     "@storybook/react": "^8.6.4",
     "@storybook/test": "^8.6.4",
+    "@storybook/test-runner": "^0.22.0",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
