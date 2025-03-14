@@ -73,3 +73,5 @@ ANALYZE=true next build
 ### https://www.youtube.com/watch?v=nANLXwxZxks - finance tracker
 
 ### https://dev.to/strapi/build-a-finance-tracker-with-nextjs-strapi-and-chartjs-part-2-1m9k - chart.js
+
+### https://github.com/WebAmigos/mewa-workshop?ck_subscriber_id=2463107186&utm_source=convertkit&utm_medium=email&utm_campaign=MEWA%20-%20repozytorium%20git%20-%2016872173

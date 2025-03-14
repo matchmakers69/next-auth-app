@@ -38,7 +38,7 @@ export const sidebarNavigation = [
     label: "Finance tracker",
     children: [
       { id: uuidv4(), label: "Overview" },
-      { id: uuidv4(), label: "Budget" },
+      { id: uuidv4(), label: "Transactions" },
       { id: uuidv4(), label: "Cashflow" },
     ],
   },

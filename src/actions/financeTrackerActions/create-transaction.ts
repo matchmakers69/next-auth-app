@@ -34,11 +34,11 @@ export async function CreateTransaction(formValues: TransactionSchemaType) {
       data: {
         userId: user.id,
         amount,
+        currency: "GBP",
         date,
         description: description || "",
         type,
         category,
-        categoryIcon: "", //TODO possibly remove from schema
       },
     }),
 

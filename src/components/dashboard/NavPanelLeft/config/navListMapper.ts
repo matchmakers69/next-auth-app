@@ -38,9 +38,9 @@ export const navigationLinks = sidebarNavigation.map((item) => {
         },
         {
           id: uuidv4(),
-          label: "Budget",
+          label: "Transactions",
           icon: "money-cny-box",
-          href: paths.financeTrackerBudget(),
+          href: paths.financeTrackerTransactions(),
         },
         {
           id: uuidv4(),

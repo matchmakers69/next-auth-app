@@ -12,7 +12,11 @@ import { Modal } from "@/components/ui/Modal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NumberField from "@/components/ui/formParts/NumberField/NumberField";
 import MuiSelectField from "@/components/ui/formParts/MuiSelectField";
-import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from "@/constants/mocks";
+import {
+  INCOME_CATEGORIES,
+  EXPENSE_CATEGORIES,
+  CURRENCIES,
+} from "@/constants/mocks";
 import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
 import { isValidDate, DATE_GLOBAL_FORMAT, DateToUTCDate } from "@/utils/dates";
 import { CreateTransactionFormProps } from "./defs";
@@ -20,6 +24,8 @@ import { useCreateTransactionMutation } from "@/reactQuery/hooks/useCreateTransa
 import { useCallback, useEffect } from "react";
 import { Loader } from "lucide-react";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
+import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
+import { SUBSCRIPTION_CURRENCY } from "@prisma/client";
 
 const CreateTransactionForm = ({
   open,
@@ -38,6 +44,7 @@ const CreateTransactionForm = ({
       description: "",
       type,
       amount: 0,
+      currency: "GBP",
       category: "",
       date: undefined,
     },
@@ -48,6 +55,7 @@ const CreateTransactionForm = ({
       type,
       description: "",
       amount: 0,
+      currency: "GBP",
       category: "",
       date: undefined,
     });
@@ -124,34 +132,69 @@ const CreateTransactionForm = ({
             <FormHelperText>{errors.description.message}</FormHelperText>
           )}
         </div>
-        <div className="mb-12">
-          <Controller
-            name="amount"
-            control={control}
-            render={({ field }) => (
-              <NumberField
-                id="income-amount"
-                placeholder="Transaction amount (required)"
-                name="amount"
-                fullWidth
-                label="Amount"
-                data-testid="amountValue"
-                aria-label="Enter amount"
-                onChange={field.onChange}
-                margin="none"
-                value={field.value}
-                type="number"
-                isCurrency
-                step="1"
-                min="0"
-                error={!!errors.amount}
-              />
-            )}
-          />
+        <div className="currencies-row flex items-start gap-10">
+          <div className="currency-field-wrapper flex w-full flex-col md:w-[50%]">
+            <Controller
+              name="amount"
+              control={control}
+              render={({ field }) => (
+                <NumberField
+                  id="income-amount"
+                  placeholder="Transaction amount (required)"
+                  name="amount"
+                  fullWidth
+                  label="Amount"
+                  data-testid="amountValue"
+                  aria-label="Enter amount"
+                  onChange={field.onChange}
+                  margin="none"
+                  value={field.value}
+                  type="number"
+                  isCurrency
+                  step="1"
+                  min="0"
+                  error={!!errors.amount}
+                />
+              )}
+            />
 
-          {errors.amount && (
-            <FormHelperText>{errors.amount.message}</FormHelperText>
-          )}
+            {errors.amount && (
+              <FormHelperText>{errors.amount.message}</FormHelperText>
+            )}
+          </div>
+          <div className="currency-selector-wrapper flex w-full flex-col md:w-[50%]">
+            <Controller
+              control={control}
+              name="currency"
+              render={({ field }) => (
+                <MUITextFieldSelect
+                  id="currency-select"
+                  labelText="Select currency"
+                  displayValue
+                  name="currency"
+                  placeholder="i.e GBP"
+                  options={CURRENCIES}
+                  data-testid="currency-select-field-dropdown"
+                  aria-label="Enter your currency"
+                  onChange={(selected) => {
+                    const typedSelected = selected as {
+                      label: string;
+                      value: SUBSCRIPTION_CURRENCY;
+                    };
+                    field.onChange(typedSelected.value);
+                  }}
+                  value={field.value}
+                  displayEmpty
+                  emptyLabel="Select a currency"
+                  fullWidth
+                  error={!!errors.currency}
+                />
+              )}
+            />
+            {errors.currency && (
+              <FormHelperText>{errors.currency.message}</FormHelperText>
+            )}
+          </div>
         </div>
         <div className="transactions-row mb-10 flex items-start gap-10">
           <div className="categories-select-wrapper flex w-full flex-col md:w-[50%]">

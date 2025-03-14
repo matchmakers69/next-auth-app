@@ -48,8 +48,8 @@ const paths = {
   financeTrackerOverview() {
     return `/finance-tracker/overview`;
   },
-  financeTrackerBudget() {
-    return `/finance-tracker/budget`;
+  financeTrackerTransactions() {
+    return `/finance-tracker/transactions`;
   },
   financeTrackerCashflow() {
     return `/finance-tracker/cashflow`;

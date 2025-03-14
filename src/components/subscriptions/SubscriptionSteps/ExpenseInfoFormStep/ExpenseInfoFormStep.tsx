@@ -82,7 +82,6 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
     handleGoToNextStep();
   }, [handleGoToNextStep, state]);
 
-  console.log("error", state.errors);
   return (
     <>
       <h4 className="mb-10 text-sm font-semibold">{title}</h4>
@@ -136,7 +135,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                   labelText="Select currency"
                   displayValue
                   name="currency"
-                  placeholder="i.e USD"
+                  placeholder="i.e GBP"
                   options={CURRENCIES}
                   data-testid="currency-select-field-dropdown"
                   aria-label="Enter your currency"

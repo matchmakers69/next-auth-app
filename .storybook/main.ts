@@ -19,7 +19,8 @@ const config: StorybookConfig = {
     "@chromatic-com/storybook",
     "@storybook/experimental-addon-test",
     "@storybook/addon-styling-webpack",
-    "@storybook/addon-a11y"
+    "@storybook/addon-a11y",
+    '@storybook/addon-interactions',
   ],
 
   "framework": {
