@@ -1,4 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
+const EXCHANGE_RATES_API_KEY = process.env.NEXT_PUBLIC_EXCHANGE_RATES_API_KEY;
+export const EXCHANGE_API_URL = `https://api.exchangeratesapi.io/v1/latest?access_key=${EXCHANGE_RATES_API_KEY}`;
 
 export const adminSidebarNavigation = [
   {

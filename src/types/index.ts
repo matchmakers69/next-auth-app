@@ -28,3 +28,10 @@ export type Post = Base & {
 
 export type BalanceStatsType = Awaited<ReturnType<typeof getBalanceStats>>;
 export type CategoriesStatsType = Awaited<ReturnType<typeof getCategoriesStats>>;
+export type ExchangeRates = {
+  success: boolean,
+  timestamp: number,
+  base: string,
+  date: string,
+  rates: Record<string, number>;
+}

@@ -8,6 +8,7 @@ import { TransactionType } from "../types";
 import { OverviewProps } from "./defs";
 import { StatsCards } from "../StatsCards";
 import { CategoriesStats } from "../CategoriesStats";
+import { CurrencyConverter } from "@/components/ui/CurrencyConverter";
 
 export default function Overview({ userId }: OverviewProps) {
   const [transactionType, setTransactionType] =
@@ -30,6 +31,7 @@ export default function Overview({ userId }: OverviewProps) {
 
   return (
     <>
+      <CurrencyConverter />
       <div className="buttons-wrapper flex w-full items-center justify-end gap-6">
         <Button
           onClick={() => openModal("income")}

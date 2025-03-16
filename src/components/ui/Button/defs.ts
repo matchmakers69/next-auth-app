@@ -16,17 +16,17 @@ export const buttonVariants = cva(
           "bg-text-light text-black rounded-lg items-center justify-center flex flex-col hover:bg-dark-blue hover:text-black",
         secondary:
           "bg-dark-blue text-black rounded-lg items-center justify-center flex flex-col",
-        link: "text-text-light",
+        link: "text-text-light hover:text-dark-blue",
         social:
           "flex text-text-light items-center rounded-lg shadow-md px-6 py-2 text-sm focus:ring-2 focus:outline-none font-medium",
       },
       size: {
-        default: "h-20 text-sm min-w-[17rem]",
-        full: "h-20 px-6 py-2 text-sm w-full",
-        sm: "px-7 text-sm min-w-[10rem] h-[42px]",
-        lg: "h-[42px] px-8 text-md min-w-[18rem]",
-        xl: "h-[42px] px-8 text-md",
-        icon: "h-10 w-9",
+        default: "h-[44px] text-sm min-w-[17rem]",
+        full: "h-[44px] px-6 py-2 text-sm w-full",
+        sm: "px-7 text-sm min-w-[10rem] h-[44px]",
+        lg: "h-[44px] px-8 text-md min-w-[18rem]",
+        xl: "h-[44px] px-8 text-md",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {

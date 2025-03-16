@@ -1,5 +1,5 @@
 import { requests } from "@/config/axios";
-import { BalanceStatsType, CategoriesStatsType, SubscriptionCategories } from "../../types";
+import { BalanceStatsType, CategoriesStatsType, ExchangeRates, SubscriptionCategories } from "../../types";
 
 
 export const ApiClient = (url: string) => {
@@ -10,5 +10,6 @@ export const ApiClient = (url: string) => {
       requests.get(url),
     getFinanceTrackerStatsCategories: (): Promise<CategoriesStatsType> =>
       requests.get(url),
+    getCurrencies: (): Promise<ExchangeRates> => requests.get(url),
   };
 };

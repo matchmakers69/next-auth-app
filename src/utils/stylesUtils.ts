@@ -4,11 +4,11 @@ import { SxProps, Theme } from "@mui/material";
 export const InputSx: SxProps<Theme> = {
   "& .MuiInputLabel-outlined": {
     color: "var(--dark-grey)",
-    fontSize: "1.5rem",
+    fontSize: "1.4rem",
   },
   "& .MuiInputLabel-outlined.Mui-focused": {
     color: "var(--dark-grey)",
-    fontSize: "1.5rem",
+    fontSize: "1.4rem",
   },
   "& .MuiOutlinedInput-root": {
     fontSize: "1.5rem",
