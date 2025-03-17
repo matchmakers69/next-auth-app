@@ -1,6 +1,6 @@
 import NextAuth, { type DefaultSession } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { type UserRole } from "@prisma/client";
+import { CURRENCY, type UserRole } from "@prisma/client";
 import { getUserById } from "./data/user";
 import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmation";
 import { getAccountByUserId } from "./data/account";
@@ -11,6 +11,7 @@ import paths from "./utils/paths";
 export type ExtendedUser = DefaultSession["user"] & {
   id: string;
   role: UserRole;
+  currency: CURRENCY;
   isTwoFactorEnabled: boolean;
   is0Auth: boolean;
 };
@@ -88,6 +89,8 @@ export const {
         session.user.email = token.email ?? "";
         session.user.role = token?.role as UserRole;
         session.user.is0Auth = token.is0Auth as boolean;
+        session.user.currency = token.currency as CURRENCY;
+        session.user.id = token.id as string;
       }
 
       return session;
@@ -103,6 +106,8 @@ export const {
       token.email = existingUser.email;
       token.role = existingUser.role;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
+      token.currency = existingUser.currency;
+      token.id = existingUser.id;
 
       if (trigger === "update" && session) {
         token = { ...token, user: session };

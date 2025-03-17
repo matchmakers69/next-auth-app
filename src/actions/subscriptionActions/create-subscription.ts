@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { currentUser } from "@/lib/currentUserAPI";
 import { SubscriptionSchema } from "@/components/subscriptions/CreateSubscriptionContainer/CreateSubscriptionWizard/schemas/subscriptionSchema";
-import { SUBSCRIPTION_CURRENCY } from "@prisma/client";
+import { CURRENCY } from "@prisma/client";
 
 interface CreateSubscriptionFormState {
   errors?: {
@@ -30,8 +30,8 @@ export async function createSubscription(
     avatarUrl: formData.get("avatarUrl"),
     price: formData.get("price"),
     currency:
-      (formData.get("currency") as SUBSCRIPTION_CURRENCY) ||
-      SUBSCRIPTION_CURRENCY.USD,
+      (formData.get("currency") as CURRENCY) ||
+      CURRENCY.GBP,
     billing_period: formData.get("billing_period"),
     next_payment: formData.get("next_payment_date"),
   });
@@ -62,9 +62,6 @@ export async function createSubscription(
         category: result.data.category,
         avatar_url: result.data.avatarUrl ?? "",
         price: result.data.price,
-        currency:
-          (result.data.currency as SUBSCRIPTION_CURRENCY) ??
-          SUBSCRIPTION_CURRENCY.EUR,
         billing_period: result.data.billing_period,
         next_payment_date: result.data.next_payment,
         start_date: new Date(),

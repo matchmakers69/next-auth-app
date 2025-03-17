@@ -53,7 +53,7 @@ export const datePickerPaperStyling = (theme: Theme) => {
     },
     "& .MuiIconButton-root.Mui-disabled": {
       "& svg": {
-        opacity: "0.8",
+        opacity: "0.4",
       },
     },
     "& .MuiIconButton-root:hover": {
@@ -73,6 +73,7 @@ export const datePickerPaperStyling = (theme: Theme) => {
       color: theme.palette.text.secondary,
       "& .Mui-disabled": {
         color: theme.palette.grey[500],
+        opacity: 0.4,
       },
     },
     "& .MuiPickersYear-root": {
@@ -80,6 +81,7 @@ export const datePickerPaperStyling = (theme: Theme) => {
       fontSize: "1.25rem", // Increase font size for year selection
       "& .Mui-disabled": {
         color: theme.palette.grey[500],
+        opacity: 0.4,
       },
     },
     "& .MuiPickersMonth-root": {
@@ -87,6 +89,7 @@ export const datePickerPaperStyling = (theme: Theme) => {
       fontSize: "1.25rem", // Increase font size for month selection
       "& .Mui-disabled": {
         color: theme.palette.grey[500],
+        opacity: 0.4,
       },
     },
     "& .MuiButtonBase-root": {

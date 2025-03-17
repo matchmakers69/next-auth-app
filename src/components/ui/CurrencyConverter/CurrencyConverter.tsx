@@ -2,7 +2,7 @@
 
 import { useFetchCurrenciesQuery } from "@/reactQuery/hooks/useFetchCurrencies";
 import { convertCurrency } from "@/utils/convertCurrency";
-import { SUBSCRIPTION_CURRENCY } from "@prisma/client";
+import { CURRENCY } from "@prisma/client";
 import { Loader2 } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -14,13 +14,14 @@ import { Controller, useForm } from "react-hook-form";
 import { MUITextFieldSelect } from "../formParts/MUITextFieldSelect";
 import FormHelperText from "../formParts/FormHelperText";
 import { Button } from "../Button";
-import { CURRENCY_SYMBOLS } from "@/constants/currencySymbols";
 import NumberField from "../formParts/NumberField/NumberField";
+import { useCurrencyStore } from "@/hooks/useCurrencyStore";
+import { useCurrencyOptions } from "@/hooks/useCurrencyOptions";
 
 const CurrencyConverter = () => {
-  const [baseCurrency, setBaseCurrency] =
-    useState<SUBSCRIPTION_CURRENCY>("GBP");
+  const { baseCurrency, setBaseCurrency } = useCurrencyStore();
   const [amount, setAmount] = useState<number>(1);
+  const CURRENCY_OPTIONS = useCurrencyOptions();
   const { data: rates, isLoading, error } = useFetchCurrenciesQuery();
   const {
     control,
@@ -34,19 +35,7 @@ const CurrencyConverter = () => {
     },
   });
 
-  const targetCurrencies: SUBSCRIPTION_CURRENCY[] = [
-    "EUR",
-    "PLN",
-    "USD",
-    "GBP",
-  ];
-
-  const CURRENCY_OPTIONS = Object.entries(SUBSCRIPTION_CURRENCY).map(
-    ([key, value]) => ({
-      label: `${CURRENCY_SYMBOLS[key as SUBSCRIPTION_CURRENCY]}`,
-      value: value as SUBSCRIPTION_CURRENCY,
-    }),
-  );
+  const targetCurrencies: CURRENCY[] = ["EUR", "PLN", "USD", "GBP"];
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputVal = e.target.value;
@@ -60,7 +49,7 @@ const CurrencyConverter = () => {
   };
 
   const handleSaveCurrencySubmit = (data: CurrencySchemaType) => {
-    setBaseCurrency(data.currency as SUBSCRIPTION_CURRENCY);
+    setBaseCurrency(data.currency as CURRENCY);
     // TODO: Make sure base currency will be moved into either context or zustand store
   };
 
@@ -74,7 +63,7 @@ const CurrencyConverter = () => {
 
   return (
     <>
-      <div className="mb-16 flex w-full flex-col gap-2">
+      <div className="mb-12 flex w-full flex-col gap-2">
         <h3 className="mb-2 flex items-center gap-4 text-md text-text-light">
           <NumberField
             id="income-amount"
@@ -131,7 +120,7 @@ const CurrencyConverter = () => {
                     onChange={(selected) => {
                       const typedSelected = selected as {
                         label: string;
-                        value: SUBSCRIPTION_CURRENCY;
+                        value: CURRENCY;
                       };
                       field.onChange(typedSelected.value);
                     }}

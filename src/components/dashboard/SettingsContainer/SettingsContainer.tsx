@@ -8,6 +8,7 @@ import { useCurrentSession } from "@/hooks/useCurrentSession";
 const SettingsContainer = () => {
   const { session, status } = useCurrentSession();
   const user = session?.user;
+
   return (
     <>
       <CardWithoutBck className="border border-dark-border bg-[hsla(0,0%,100%,0.05)] p-14">

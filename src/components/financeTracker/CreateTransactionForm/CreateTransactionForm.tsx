@@ -25,7 +25,7 @@ import { useCallback, useEffect } from "react";
 import { Loader } from "lucide-react";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
-import { SUBSCRIPTION_CURRENCY } from "@prisma/client";
+import { CURRENCY } from "@prisma/client";
 
 const CreateTransactionForm = ({
   open,
@@ -179,7 +179,7 @@ const CreateTransactionForm = ({
                   onChange={(selected) => {
                     const typedSelected = selected as {
                       label: string;
-                      value: SUBSCRIPTION_CURRENCY;
+                      value: CURRENCY;
                     };
                     field.onChange(typedSelected.value);
                   }}

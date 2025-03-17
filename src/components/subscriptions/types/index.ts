@@ -1,6 +1,6 @@
 import {
   SUBSCRIPTION_BILLING_PERIOD,
-  SUBSCRIPTION_CURRENCY,
+  CURRENCY,
 } from "@prisma/client";
 
 export const SubscriptionsStepsMapper = {
@@ -23,7 +23,7 @@ export type SubscriptionGeneralInformation = {
 
 export type SubscriptionExpenseInformation = {
   price: number;
-  currency: SUBSCRIPTION_CURRENCY;
+  currency: CURRENCY;
   billingPeriod: SUBSCRIPTION_BILLING_PERIOD;
   next_payment: string;
   start_date: string;

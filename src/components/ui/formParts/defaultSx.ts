@@ -35,6 +35,7 @@ export const getDefaultSx = (sx: SxProps<Theme> = {}) =>
     "& .MuiInputLabel-outlined.Mui-disabled": {
       color: "var(--text-light)",
       fontSize: "1.4rem",
+      opacity: 0.4,
     },
     "& .MuiInputLabel-outlined.Mui-focused": {
       color: "var(--text-light)",

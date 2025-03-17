@@ -15,6 +15,7 @@ export const updateUserSettingsSchema = z
       .nullish()
       .transform((val) => (val === "" ? undefined : val))
       .optional(),
+    currency: z.string().min(1, "Currency is required").optional(),
     password: z
       .string()
       .nullish()

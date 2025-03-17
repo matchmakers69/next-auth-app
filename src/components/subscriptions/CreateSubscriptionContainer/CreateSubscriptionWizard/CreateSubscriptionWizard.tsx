@@ -8,10 +8,7 @@ import { useSubscriptionsStepper } from "../../hooks/useSubscriptionsStepper";
 import { SubscriptionStepValues } from "../../types";
 import { Modal } from "@/components/ui/Modal";
 import { createSubscription } from "@/actions/subscriptionActions/create-subscription";
-import {
-  SUBSCRIPTION_BILLING_PERIOD,
-  SUBSCRIPTION_CURRENCY,
-} from "@prisma/client";
+import { SUBSCRIPTION_BILLING_PERIOD, CURRENCY } from "@prisma/client";
 import { useSession } from "next-auth/react";
 
 // const schemas = {
@@ -76,7 +73,7 @@ const CreateSubscriptionWizard = ({
           nestedSubscriptionsData.subscriptionsGeneralInformation.avatarUrl,
         price: Number(nestedSubscriptionsData.expenseInformation.price),
         currency: nestedSubscriptionsData.expenseInformation
-          .currency as SUBSCRIPTION_CURRENCY,
+          .currency as CURRENCY,
         billing_period: nestedSubscriptionsData.expenseInformation
           .billingPeriod as SUBSCRIPTION_BILLING_PERIOD,
         next_payment_date: new Date(

@@ -5,10 +5,7 @@ import { ExpenseInfoFormProps } from "./defs";
 import NumberField from "@/components/ui/formParts/NumberField/NumberField";
 import MuiSelectField from "@/components/ui/formParts/MuiSelectField";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
-import {
-  SUBSCRIPTION_BILLING_PERIOD,
-  SUBSCRIPTION_CURRENCY,
-} from "@prisma/client";
+import { SUBSCRIPTION_BILLING_PERIOD, CURRENCY } from "@prisma/client";
 import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
 import { startOfToday } from "date-fns";
@@ -142,7 +139,7 @@ const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {
                   onChange={(selected) => {
                     const typedSelected = selected as {
                       label: string;
-                      value: SUBSCRIPTION_CURRENCY;
+                      value: CURRENCY;
                     };
                     field.onChange(typedSelected.value);
                   }}
