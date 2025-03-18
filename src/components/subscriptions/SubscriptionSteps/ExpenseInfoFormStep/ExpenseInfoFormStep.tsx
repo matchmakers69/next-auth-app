@@ -9,7 +9,8 @@ import { SUBSCRIPTION_BILLING_PERIOD, CURRENCY } from "@prisma/client";
 import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
 import { startOfToday } from "date-fns";
-import { CURRENCIES, SUBSCRIPTION_BILLING_OPTIONS } from "@/constants/mocks";
+import { CURRENCIES } from "@/constants/currencies";
+import { SUBSCRIPTION_BILLING_OPTIONS } from "@/constants/mocks";
 import { SubscriptionStepperFooter } from "../../SubscriptionStepperFooter";
 import {
   startTransition,

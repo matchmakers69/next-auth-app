@@ -19,7 +19,7 @@ export default async function OverviewPage() {
   return (
     <>
       <PageTitle className="mb-16" title="Overview" />
-      <Overview userId={user.id} />
+      <Overview userId={user.id} currency={user.currency} />
     </>
   );
 }

@@ -3,6 +3,6 @@ import { TransactionType } from "../../types";
 
 export type CategoriesStatsCardProps = {
   type: TransactionType;
-  formatter?: Intl.NumberFormat;
+  formatter: Intl.NumberFormat;
   data: CategoriesStatsType;
 };

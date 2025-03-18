@@ -5,12 +5,14 @@ import { StatsCardsProps } from "./defs";
 import { SkeletonWrapper } from "@/components/ui/Skeleton/SkeletonWrapper";
 import { TrendingDown, TrendingUp, Wallet } from "lucide-react";
 import { StatCard } from "./StatCard";
+import { useCurrencyFormatter } from "@/hooks/useCurrencyFormatter";
 
-const StatsCards = ({ from, to }: StatsCardsProps) => {
+const StatsCards = ({ from, to, currency }: StatsCardsProps) => {
   const statsQuery = useFetchBalanceStatsQuery(
     from || new Date(),
     to || new Date(),
   );
+  const { formatter } = useCurrencyFormatter(currency);
   const income = statsQuery.data?.income || 0;
   const expense = statsQuery.data?.expense || 0;
 
@@ -20,6 +22,7 @@ const StatsCards = ({ from, to }: StatsCardsProps) => {
       <SkeletonWrapper isLoading={statsQuery.isFetching}>
         <StatCard
           value={income}
+          formatter={formatter}
           title="Income"
           icon={
             <TrendingUp className="h-20 w-20 items-center rounded-lg bg-emerald-400/10 p-2 text-emerald-400" />
@@ -29,6 +32,7 @@ const StatsCards = ({ from, to }: StatsCardsProps) => {
       <SkeletonWrapper isLoading={statsQuery.isFetching}>
         <StatCard
           value={expense}
+          formatter={formatter}
           title="Expense"
           icon={
             <TrendingDown className="h-20 w-20 items-center rounded-lg bg-red-400/10 p-2 text-red-400" />
@@ -39,6 +43,7 @@ const StatsCards = ({ from, to }: StatsCardsProps) => {
         <StatCard
           value={balance}
           title="Balance"
+          formatter={formatter}
           icon={
             <Wallet className="h-20 w-20 items-center rounded-lg bg-violet-400/10 p-2 text-violet-400" />
           }

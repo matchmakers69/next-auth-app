@@ -1,4 +1,4 @@
-import { CURRENCY_SYMBOLS } from "@/constants/currencySymbols";
+import { CURRENCY_SYMBOLS } from "@/constants/currencies";
 import { CURRENCY } from "@prisma/client";
 
 export function useCurrencyOptions() {

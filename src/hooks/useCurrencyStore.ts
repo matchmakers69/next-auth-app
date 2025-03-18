@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { CURRENCY } from "@prisma/client";
-// import { CURRENCY } from '@/constants/currencies';
+
 
 type CurrencyState = {
     baseCurrency: CURRENCY;

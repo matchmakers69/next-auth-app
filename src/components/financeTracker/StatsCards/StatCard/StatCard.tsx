@@ -7,7 +7,7 @@ import { useCallback } from "react";
 const StatCard = ({ title, value, icon, formatter }: StatCardProps) => {
   const formatFn = useCallback(
     (value: number) => {
-      return formatter?.format(value) ?? `£${value.toFixed(2)}`;
+      return formatter.format(value);
     },
     [formatter],
   );

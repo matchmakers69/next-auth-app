@@ -50,15 +50,14 @@ const CurrencyConverter = () => {
 
   const handleSaveCurrencySubmit = (data: CurrencySchemaType) => {
     setBaseCurrency(data.currency as CURRENCY);
-    // TODO: Make sure base currency will be moved into either context or zustand store
   };
 
-  if (!rates || isLoading) {
+  if (isLoading) {
     return <Loader2 size={30} className="mx-auto my-10 animate-spin" />;
   }
 
   if (error) {
-    return <div>{error.message ?? "Cannot fetch rates"}</div>;
+    return <h4>{"Error occured, service is not available"}</h4>;
   }
 
   return (

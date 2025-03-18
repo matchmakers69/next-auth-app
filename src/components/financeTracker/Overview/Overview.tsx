@@ -10,7 +10,7 @@ import { StatsCards } from "../StatsCards";
 import { CategoriesStats } from "../CategoriesStats";
 import { CurrencyConverter } from "@/components/ui/CurrencyConverter";
 
-export default function Overview({ userId }: OverviewProps) {
+export default function Overview({ currency }: OverviewProps) {
   const [transactionType, setTransactionType] =
     useState<TransactionType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,11 +47,19 @@ export default function Overview({ userId }: OverviewProps) {
         </Button>
       </div>
       <div className="stats-card-container mb-[4rem]">
-        <StatsCards from={dateRange.from} to={dateRange.to} />
+        <StatsCards
+          currency={currency}
+          from={dateRange.from}
+          to={dateRange.to}
+        />
       </div>
 
       <div className="categories-container flex w-full flex-col gap-2">
-        <CategoriesStats from={dateRange.from} to={dateRange.to} />
+        <CategoriesStats
+          currency={currency}
+          from={dateRange.from}
+          to={dateRange.to}
+        />
       </div>
 
       {isModalOpen && transactionType === "income" && (

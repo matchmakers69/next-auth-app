@@ -12,11 +12,7 @@ import { Modal } from "@/components/ui/Modal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NumberField from "@/components/ui/formParts/NumberField/NumberField";
 import MuiSelectField from "@/components/ui/formParts/MuiSelectField";
-import {
-  INCOME_CATEGORIES,
-  EXPENSE_CATEGORIES,
-  CURRENCIES,
-} from "@/constants/mocks";
+import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from "@/constants/mocks";
 import { MUIDateTimePicker } from "@/components/ui/formParts/MUIDateTimePicker";
 import { isValidDate, DATE_GLOBAL_FORMAT, DateToUTCDate } from "@/utils/dates";
 import { CreateTransactionFormProps } from "./defs";
@@ -26,6 +22,7 @@ import { Loader } from "lucide-react";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
 import { CURRENCY } from "@prisma/client";
+import { CURRENCIES } from "@/constants/currencies";
 
 const CreateTransactionForm = ({
   open,

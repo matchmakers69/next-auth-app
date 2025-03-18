@@ -11,7 +11,7 @@ const CategoriesStatsCard = ({
 }: CategoriesStatsCardProps) => {
   const formatFn = useCallback(
     (value: number) => {
-      return formatter?.format(value) ?? `£${value.toFixed(2)}`;
+      return formatter?.format(value);
     },
     [formatter],
   );
@@ -47,14 +47,14 @@ const CategoriesStatsCard = ({
                 return (
                   <div key={item.category} className="mb-6 flex flex-col gap-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-grey-light flex items-center">
+                      <span className="flex items-center text-grey-light">
                         {item.category}
                         <span className="text-muted-foreground ml-2 text-xs">
                           ({percentage.toFixed(0)}%)
                         </span>
                       </span>
 
-                      <span className="text-grey-light text-sm">
+                      <span className="text-sm text-grey-light">
                         {formatFn(amount)}
                       </span>
                     </div>

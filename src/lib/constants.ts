@@ -1,7 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 const EXCHANGE_RATES_API_KEY = process.env.NEXT_PUBLIC_EXCHANGE_RATES_API_KEY;
-export const EXCHANGE_API_URL = `https://api.exchangeratesapi.io/v1/latest?access_key=${EXCHANGE_RATES_API_KEY}`;
+const BASE_CURRENCY = "GBP";
+export const SELECTED_CURRENCIES = "USD,EUR,GBP,PLN";
 
+export const EXCHANGE_API_URL = `https://api.freecurrencyapi.com/v1/latest?apikey=${EXCHANGE_RATES_API_KEY}&base_currency=${BASE_CURRENCY}`;
 export const adminSidebarNavigation = [
   {
     id: uuidv4(),

@@ -1,3 +1,6 @@
+import { CURRENCY } from "@prisma/client"
+
 export type OverviewProps = {
-    userId: string
+    userId?: string
+    currency: CURRENCY
 }

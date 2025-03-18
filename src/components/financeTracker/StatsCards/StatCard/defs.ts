@@ -3,5 +3,5 @@ export type StatCardProps = {
     value: number;
     type?: "expense" | "income";
     icon: React.ReactNode;
-    formatter?: Intl.NumberFormat;
+    formatter: Intl.NumberFormat;
 };
