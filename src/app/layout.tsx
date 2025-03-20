@@ -8,6 +8,7 @@ import ToasterProvider from "@/components/providers/ToasterProvider";
 import ProgressBarProvider from "@/components/providers/ProgressBarProvider";
 import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
 import { LocalizationProvider } from "@/components/providers/LocalizationProvider";
+import ThemeRegistry from "@/components/providers/MUICacheProvider/MUICacheProvider";
 
 const BebasFont = Bebas_Neue({
   subsets: ["latin"],
@@ -61,16 +62,18 @@ export default async function RootLayout({
   const session = await auth();
   const sessionKey = new Date().valueOf(); // Workaround to force re-render on session change
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${fontsClassName} body-app scroll-touch`}>
-        <ToasterProvider />
-        <ProgressBarProvider>
-          <SessionProvider session={session} sessionKey={sessionKey}>
-            <ReactQueryProvider>
-              <LocalizationProvider>{children}</LocalizationProvider>
-            </ReactQueryProvider>
-          </SessionProvider>
-        </ProgressBarProvider>
+        <ThemeRegistry>
+          <ToasterProvider />
+          <ProgressBarProvider>
+            <SessionProvider session={session} sessionKey={sessionKey}>
+              <ReactQueryProvider>
+                <LocalizationProvider>{children}</LocalizationProvider>
+              </ReactQueryProvider>
+            </SessionProvider>
+          </ProgressBarProvider>
+        </ThemeRegistry>
       </body>
     </html>
   );

@@ -12,12 +12,11 @@ export async function GET(_request: Request) {
   }
 
   try {
-    const userCurrency = await db.userCurrency.findUnique({
+    const userCurrencySettings = await db.userCurrency.findUnique({
       where: { userId: user.id },
     });
 
-    if (!userCurrency) {
-      // Return a default currency if not found
+    if (!userCurrencySettings) {
       return Response.json({ currency: "GBP" });
     }
 
@@ -25,7 +24,7 @@ export async function GET(_request: Request) {
     //   return Response.json({ message: "Currency not found", status: 404 });
     // }
 
-    return Response.json({ currency: userCurrency.currency });
+    return Response.json({ currency: userCurrencySettings.currency });
   } catch (err) {
     console.error("Error fetching currency:", err);
     return Response.json(

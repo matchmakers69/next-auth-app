@@ -7,12 +7,13 @@ import { TrendingDown, TrendingUp, Wallet } from "lucide-react";
 import { StatCard } from "./StatCard";
 import { useCurrencyFormatter } from "@/hooks/useCurrencyFormatter";
 
-const StatsCards = ({ from, to, currency }: StatsCardsProps) => {
+const StatsCards = ({ from, to, selectedCurrency }: StatsCardsProps) => {
   const statsQuery = useFetchBalanceStatsQuery(
     from || new Date(),
     to || new Date(),
   );
-  const { formatter } = useCurrencyFormatter(currency);
+
+  const { formatter } = useCurrencyFormatter(selectedCurrency);
   const income = statsQuery.data?.income || 0;
   const expense = statsQuery.data?.expense || 0;
 

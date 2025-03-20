@@ -71,7 +71,7 @@ export default function Overview({ currency }: OverviewProps) {
       </div>
       <div className="stats-card-container mb-[4rem]">
         <StatsCards
-          currency={currency}
+          selectedCurrency={currency}
           from={dateRange.from}
           to={dateRange.to}
         />
@@ -79,7 +79,7 @@ export default function Overview({ currency }: OverviewProps) {
 
       <div className="categories-container flex w-full flex-col gap-2">
         <CategoriesStats
-          currency={currency}
+          selectedCurrency={currency}
           from={dateRange.from}
           to={dateRange.to}
         />
@@ -90,7 +90,7 @@ export default function Overview({ currency }: OverviewProps) {
           type="income"
           open={isModalOpen}
           onClose={closeModal}
-          userCurrency={currency}
+          selectedCurrency={currency}
           rates={exchangeRates}
           isUsingFallbackRates={isUsingFallbackRates}
         />
@@ -101,7 +101,7 @@ export default function Overview({ currency }: OverviewProps) {
           type="expense"
           open={isModalOpen}
           onClose={closeModal}
-          userCurrency={currency}
+          selectedCurrency={currency}
           rates={exchangeRates}
           isUsingFallbackRates={isUsingFallbackRates}
         />

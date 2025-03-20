@@ -1,6 +1,6 @@
 import { getBalanceStats } from "@/lib/getBalanceStatsAPI";
 import { getCategoriesStats } from "@/lib/getCategoriesStatsAPI";
-import { SUBSCRIPTION_CATEGORY_LABEL } from "@prisma/client";
+import { CURRENCY, SUBSCRIPTION_CATEGORY_LABEL } from "@prisma/client";
 
 export type SubscriptionCategories = {
   id: string;
@@ -33,3 +33,7 @@ export type CategoriesStatsType = Awaited<
 export type ExchangeRates = {
   data: Record<string, number>;
 };
+
+export type UserCurrency = {
+  currency: CURRENCY
+}

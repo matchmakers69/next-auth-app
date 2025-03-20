@@ -23,17 +23,18 @@ const TransactionsCurrencyContainer = ({
   if (error) {
     return <div>{error.message ?? "Cannot fetch user's currencies"}</div>;
   }
+
   return (
     <>
       <CardWithoutBck className="border border-dark-border bg-[hsla(0,0%,100%,0.05)] p-14">
         <CardTitle
-          text="If not set, the default currency will be GBP."
+          text="The default currency is set to GBP. You can change it using the currency selector below."
           className="text-[2.2rem]"
         >
-          Set your default currency for transactions
+          Currency for transactions
         </CardTitle>
         <FormTransactionsCurrency
-          selectedUserCurrency={selectedUserCurrency.currency}
+          selectedUserCurrency={selectedUserCurrency?.currency ?? "GBP"}
           userId={userId}
         />
       </CardWithoutBck>

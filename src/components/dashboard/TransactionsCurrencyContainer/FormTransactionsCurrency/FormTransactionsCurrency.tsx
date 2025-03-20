@@ -19,8 +19,6 @@ const FormTransactionsCurrency = ({
 }: FormTransactionsCurrencyProps) => {
   const CURRENCY_OPTIONS = useCurrencyOptions();
 
-  // const selectedCurrency = typeof currency === "string" ? currency : "GBP";
-
   const mutation = useUpdateUserCurrency(userId);
 
   const {
@@ -31,11 +29,10 @@ const FormTransactionsCurrency = ({
   } = useForm<TransactionCurrencyValues>({
     mode: "onTouched",
     defaultValues: { currency: selectedUserCurrency ?? "GBP" },
-    //values: { currency: selectedCurrency ?? "GBP" },
   });
 
   const handleUpdateUserCurrencySubmit = (data: TransactionCurrencyValues) => {
-    mutation.mutate(data.currency ?? "GBP", {
+    mutation.mutate(data?.currency || "", {
       onSuccess: () => {
         toast.success("Currency updated successfully!");
         reset({ currency: data.currency ?? "GBP" });
