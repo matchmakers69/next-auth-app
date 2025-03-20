@@ -1,9 +1,7 @@
 "use client";
 
-import { useFetchCurrenciesQuery } from "@/reactQuery/hooks/useFetchCurrencies";
 import { convertCurrency } from "@/utils/convertCurrency";
 import { CURRENCY } from "@prisma/client";
-import { Loader2 } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import {
@@ -17,12 +15,13 @@ import { Button } from "../Button";
 import NumberField from "../formParts/NumberField/NumberField";
 import { useCurrencyStore } from "@/hooks/useCurrencyStore";
 import { useCurrencyOptions } from "@/hooks/useCurrencyOptions";
+import { CurrencyConverterProps } from "./defs";
 
-const CurrencyConverter = () => {
+const CurrencyConverter = ({ rates }: CurrencyConverterProps) => {
   const { baseCurrency, setBaseCurrency } = useCurrencyStore();
   const [amount, setAmount] = useState<number>(1);
   const CURRENCY_OPTIONS = useCurrencyOptions();
-  const { data: rates, isLoading, error } = useFetchCurrenciesQuery();
+
   const {
     control,
     handleSubmit,
@@ -51,14 +50,6 @@ const CurrencyConverter = () => {
   const handleSaveCurrencySubmit = (data: CurrencySchemaType) => {
     setBaseCurrency(data.currency as CURRENCY);
   };
-
-  if (isLoading) {
-    return <Loader2 size={30} className="mx-auto my-10 animate-spin" />;
-  }
-
-  if (error) {
-    return <h4>{"Error occured, service is not available"}</h4>;
-  }
 
   return (
     <>

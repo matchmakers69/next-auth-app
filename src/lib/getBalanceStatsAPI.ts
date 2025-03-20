@@ -4,7 +4,7 @@ export async function getBalanceStats(userId: string, from: Date, to: Date) {
   const totals = await db.financeTransaction.groupBy({
     by: ["type"],
     where: {
-      userId,
+      ownerId: userId,
       date: {
         gte: from,
         lte: to,

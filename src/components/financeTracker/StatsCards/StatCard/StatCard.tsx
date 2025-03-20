@@ -16,7 +16,7 @@ const StatCard = ({ title, value, icon, formatter }: StatCardProps) => {
       <div className="flex items-center gap-6">
         <div className="icon-wrapper">{icon}</div>
         <div className="stats-wrapper flex flex-col">
-          <CardTitle className="mb-0 text-[2rem]">{title}</CardTitle>
+          <CardTitle className="text-[2.2rem]">{title}</CardTitle>
 
           <CountUp
             preserveValue

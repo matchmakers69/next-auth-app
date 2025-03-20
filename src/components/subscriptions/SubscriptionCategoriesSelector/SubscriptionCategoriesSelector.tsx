@@ -14,7 +14,7 @@ const SubscriptionCategoriesSelector = ({
     error,
   } = useGetSubscriptionCategoriesQuery();
 
-  if (!subscriptionCategories || isLoading) {
+  if (isLoading) {
     return <Loader2 size={30} className="mx-auto my-10 animate-spin" />;
   }
 
@@ -22,7 +22,7 @@ const SubscriptionCategoriesSelector = ({
     return <div>{error.message ?? "Cannot fetch subscription categories"}</div>;
   }
 
-  const mappedOptions = subscriptionCategories.map((category) => ({
+  const mappedOptions = subscriptionCategories?.map((category) => ({
     label: category.label || "Uncategorized",
     value: category.label as SUBSCRIPTION_CATEGORY_LABEL,
   }));
@@ -40,7 +40,7 @@ const SubscriptionCategoriesSelector = ({
       name="category"
       displayEmpty
       emptyLabel="Select category"
-      options={mappedOptions}
+      options={mappedOptions ?? []}
     />
   );
 };

@@ -2,7 +2,8 @@ export const subscriptionsCategories = [
   { label: "ENTERTAINMENT" },
   { label: "FITNESS" },
   { label: "HOUSE" },
-  { label: "CAR" },
+  { label: "TRANSPORT" },
+  { label: "PLEASURE" },
   { label: "EDUCATION" },
   { label: "HOBBY" },
   { label: "OTHER" },
@@ -12,6 +13,9 @@ export const incomeCategories = [
   { label: "SALARY" },
   { label: "BONUS" },
   { label: "REFUNDS" },
+  { label: "GIFTS" },
+  { label: "INVESTMENTS" },
+  { label: "LOTTERY" },
   { label: "OTHER" },
 ] as const;
 
@@ -23,5 +27,10 @@ export const expenseCategories = [
   { label: "INSURANCES" },
   { label: "FITNESS" },
   { label: "EDUCATION" },
+  { label: "TRANSPORT" },
+  { label: "ENTERTAINMENT" },
   { label: "OTHER" },
 ] as const;
+
+
+

@@ -1,18 +1,21 @@
 import { cn } from "@/lib/utils";
-import { forwardRef, HTMLAttributes } from "react";
+import { forwardRef } from "react";
+import { CardTitleProps } from "./defs";
 
-const CardTitle = forwardRef<
-  HTMLParagraphElement,
-  HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h2
-    ref={ref}
-    className={cn("mb-12 font-medium leading-none tracking-tight", className)}
-    {...props}
-  >
-    {props.children}
-  </h2>
-));
+const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
+  ({ className, text, ...props }, ref) => (
+    <header className="page-title-header mb-24">
+      <h2
+        ref={ref}
+        className={cn("font-semibold leading-none tracking-tight", className)}
+        {...props}
+      >
+        {props.children}
+      </h2>
+      {text && <p className="text-sm text-text-grey">{text}</p>}
+    </header>
+  ),
+);
 CardTitle.displayName = "CardTitle";
 
 export default CardTitle;

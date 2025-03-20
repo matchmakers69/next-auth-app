@@ -9,8 +9,18 @@ import { OverviewProps } from "./defs";
 import { StatsCards } from "../StatsCards";
 import { CategoriesStats } from "../CategoriesStats";
 import { CurrencyConverter } from "@/components/ui/CurrencyConverter";
+import { useFetchCurrencyExchangeRatesQuery } from "@/reactQuery/hooks/useFetchCurrencyExchangeRates";
+import { Loader2 } from "lucide-react";
+import { defaultRates } from "@/lib/constants";
 
 export default function Overview({ currency }: OverviewProps) {
+  const {
+    data: rates,
+    error,
+    isPending,
+    isFetching,
+  } = useFetchCurrencyExchangeRatesQuery();
+
   const [transactionType, setTransactionType] =
     useState<TransactionType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,9 +39,22 @@ export default function Overview({ currency }: OverviewProps) {
     setIsModalOpen(false);
   };
 
+  const exchangeRates = rates || defaultRates;
+  const isUsingFallbackRates = !!error;
+
   return (
     <>
-      <CurrencyConverter />
+      {isFetching && (
+        <Loader2 size={30} className="mx-auto my-10 animate-spin" />
+      )}
+      {isPending ? (
+        <h4>{"No rates to display yet"}</h4>
+      ) : error ? (
+        <h4>{"Error occured, service is not available"}</h4>
+      ) : (
+        <CurrencyConverter rates={rates} />
+      )}
+
       <div className="buttons-wrapper flex w-full items-center justify-end gap-6">
         <Button
           onClick={() => openModal("income")}
@@ -67,6 +90,9 @@ export default function Overview({ currency }: OverviewProps) {
           type="income"
           open={isModalOpen}
           onClose={closeModal}
+          userCurrency={currency}
+          rates={exchangeRates}
+          isUsingFallbackRates={isUsingFallbackRates}
         />
       )}
 
@@ -75,6 +101,9 @@ export default function Overview({ currency }: OverviewProps) {
           type="expense"
           open={isModalOpen}
           onClose={closeModal}
+          userCurrency={currency}
+          rates={exchangeRates}
+          isUsingFallbackRates={isUsingFallbackRates}
         />
       )}
     </>

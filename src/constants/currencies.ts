@@ -8,10 +8,10 @@ export const CURRENCIES = [
 ];
 
 export const CURRENCY_SYMBOLS: Record<CURRENCY, string> = {
-    PLN: "🇵🇱 (zł)",
-    EUR: "🇪🇺 (€)",
-    GBP: "🇬🇧 (£)",
-    USD: "🇺🇸 ($)",
-  };
+  PLN: "🇵🇱 (zł)",
+  EUR: "🇪🇺 (€)",
+  GBP: "🇬🇧 (£)",
+  USD: "🇺🇸 ($)",
+};
 
 export type CurrenciesType = (typeof CURRENCIES)[number];

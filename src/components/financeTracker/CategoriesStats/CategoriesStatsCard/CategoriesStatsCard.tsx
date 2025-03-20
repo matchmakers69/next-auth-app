@@ -18,12 +18,12 @@ const CategoriesStatsCard = ({
   const filteredData = data.filter((item) => item.type === type);
 
   const total = filteredData.reduce(
-    (acc, item) => acc + (item._sum.amount ?? 0),
+    (acc, item) => acc + (item._sum?.amount ?? 0),
     0,
   );
   return (
     <CardWithoutBck className="border border-dark-border bg-[hsla(0,0%,100%,0.05)] p-10">
-      <CardTitle className="mb-4 text-[2rem]">
+      <CardTitle className="text-[2.2rem]">
         {type === "income" ? "Incomes" : "Expenses"} by category
       </CardTitle>
       <div className="flex items-center justify-between gap-2">
@@ -41,7 +41,7 @@ const CategoriesStatsCard = ({
           <div className="flex h-60 w-full flex-1 flex-col overflow-y-auto">
             <div className="flex w-full flex-col gap-4 p-4">
               {filteredData.map((item) => {
-                const amount = item._sum.amount || 0;
+                const amount = item._sum?.amount || 0;
                 const percentage = (amount * 100) / (total || amount);
 
                 return (

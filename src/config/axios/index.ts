@@ -38,6 +38,10 @@ export const requests = {
     const response = await instance.put<TResponse>(url, body);
     return responseBody(response);
   },
+  patch: async <TRequest, TResponse>(url: string, body: TRequest) => {
+    const response = await instance.patch<TResponse>(url, body);
+    return responseBody(response);
+  },
   delete: async <TResponse>(url: string) => {
     const response = await instance.delete<TResponse>(url);
     return responseBody(response);

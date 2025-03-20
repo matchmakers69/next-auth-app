@@ -18,13 +18,9 @@ import { FormUpdateUserProps } from "./defs";
 import Checkbox from "@/components/ui/formParts/Checkbox";
 import { Button } from "@/components/ui/Button";
 import { Loader } from "lucide-react";
-import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
-import { useCurrencyOptions } from "@/hooks/useCurrencyOptions";
-import { CURRENCY } from "@prisma/client";
 
 const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
   const [enablePasswordUpdate, setEnablePasswordsUpdate] = useState(false);
-  const CURRENCY_OPTIONS = useCurrencyOptions();
   const [state, formAction, isPending] = useActionState(updateUserSettings, {
     errors: {},
     success: "",
@@ -34,7 +30,6 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
     defaultValues: {
       name: user?.name || undefined,
       email: user?.email || undefined,
-      currency: user?.currency || undefined,
       password: "",
       newPassword: "",
     },
@@ -49,7 +44,6 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
         newPassword: "",
         name: state.updatedUser?.name || user.name || undefined,
         email: state.updatedUser?.email || user.email || undefined,
-        currency: state.updatedUser?.currency || undefined,
       });
     }
   }, [reset, state, user]);
@@ -97,38 +91,7 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
           <FormHelperText>{state.errors.name.join(", ")}</FormHelperText>
         )}
       </div>
-      <div className="input-select-currency-wrapper mb-12">
-        <Controller
-          control={control}
-          name="currency"
-          render={({ field }) => (
-            <MUITextFieldSelect
-              id="currency-select"
-              labelText="Set your default currency for transactions"
-              displayValue
-              name="currency"
-              placeholder="i.e GBP"
-              options={CURRENCY_OPTIONS}
-              data-testid="currency-select-field-dropdown"
-              aria-label="Enter your currency"
-              onChange={(selected) => {
-                const typedSelected = selected as {
-                  label: string;
-                  value: CURRENCY;
-                };
-                field.onChange(typedSelected.value);
-              }}
-              value={field.value ?? ""}
-              displayEmpty
-              emptyLabel="Select a currency"
-              fullWidth
-            />
-          )}
-        />
-        {state?.errors?.currency && (
-          <FormHelperText>{state.errors.currency.join(", ")}</FormHelperText>
-        )}
-      </div>
+
       {!user.is0Auth && (
         <>
           <div className="mb-12">

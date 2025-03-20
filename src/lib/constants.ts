@@ -4,6 +4,14 @@ const BASE_CURRENCY = "GBP";
 export const SELECTED_CURRENCIES = "USD,EUR,GBP,PLN";
 
 export const EXCHANGE_API_URL = `https://api.freecurrencyapi.com/v1/latest?apikey=${EXCHANGE_RATES_API_KEY}&base_currency=${BASE_CURRENCY}`;
+
+export const defaultRates = {
+  USD: 1.2987010477,
+  EUR: 1.1888570553,
+  GBP: 1,
+  PLN: 4.9747138602,
+};
+
 export const adminSidebarNavigation = [
   {
     id: uuidv4(),

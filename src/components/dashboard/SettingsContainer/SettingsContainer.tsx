@@ -1,25 +1,14 @@
-"use client";
-
 import { CardWithoutBck } from "@/components/ui/CardWithoutBck";
 import FormUpdateUser from "./FormUpdateUser";
 import CardTitle from "@/components/ui/Card/CardTitle";
-import { useCurrentSession } from "@/hooks/useCurrentSession";
+import { SettingsContainerProps } from "./defs";
 
-const SettingsContainer = () => {
-  const { session, status } = useCurrentSession();
-  const user = session?.user;
-
+const SettingsContainer = ({ user }: SettingsContainerProps) => {
   return (
     <>
       <CardWithoutBck className="border border-dark-border bg-[hsla(0,0%,100%,0.05)] p-14">
-        <CardTitle className="mb-14 text-[2rem]">User profile</CardTitle>
-        {!user || status === "loading" ? (
-          <p>Please wait for user...</p>
-        ) : (
-          <>
-            <FormUpdateUser user={user} />
-          </>
-        )}
+        <CardTitle className="text-[2.2rem]">User profile</CardTitle>
+        <FormUpdateUser user={user} />
       </CardWithoutBck>
     </>
   );

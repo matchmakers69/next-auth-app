@@ -10,6 +10,8 @@ export const ApiClient = (url: string) => {
       requests.get(url),
     getFinanceTrackerStatsCategories: (): Promise<CategoriesStatsType> =>
       requests.get(url),
-    getCurrencies: (): Promise<ExchangeRates> => requests.get(url),
+    getCurrencyExchangeRates: (): Promise<ExchangeRates> => requests.get(url),
+    getUserCurrencies: (): Promise<any> => requests.get(url),
+    updateUserCurrency: (data: {userId: string, currency: string}): Promise<any> => requests.patch(url, data)
   };
 };

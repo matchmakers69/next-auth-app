@@ -9,15 +9,24 @@ export const SUBSCRIPTION_BILLING_OPTIONS: SUBSCRIPTION_BILLING_PERIOD[] = [
 
 export const SUBSCRIPTION_CATEGORIES = [
   "ENTERTAINMENT",
-  "HOUSE",
-  "CAR",
   "FITNESS",
+  "HOUSE",
+  "TRANSPORT",
   "EDUCATION",
   "HOBBY",
+  "PLEASURE",
   "OTHER",
 ];
 
-export const INCOME_CATEGORIES = ["SALARY", "BONUS", "REFUNDS", "OTHER"];
+export const INCOME_CATEGORIES = [
+  "SALARY",
+  "BONUS",
+  "REFUNDS",
+  "GIFTS",
+  "INVESTMENTS",
+  "LOTTERY",
+  "OTHER"
+];
 export const EXPENSE_CATEGORIES = [
   "HOUSING",
   "HOBBY",
@@ -26,7 +35,9 @@ export const EXPENSE_CATEGORIES = [
   "INSURANCES",
   "FITNESS",
   "EDUCATION",
-  "OTHER",
+  "TRANSPORT",
+  "ENTERTAINMENT",
+  "OTHER"
 ];
 
 export const MOCKED_POSTS: Post[] = [

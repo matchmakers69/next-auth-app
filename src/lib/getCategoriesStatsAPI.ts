@@ -4,7 +4,7 @@ export async function getCategoriesStats(userId: string, from: Date, to: Date) {
   const stats = await db.financeTransaction.groupBy({
     by: ["type", "category"],
     where: {
-      userId,
+      ownerId: userId,
       date: {
         gte: from,
         lte: to,

@@ -3,7 +3,7 @@ import { ApiClient } from "@/services/ApiClient";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
 const fetchExchangeRates = async () => {
-  return await ApiClient(`${EXCHANGE_API_URL}&currencies=${SELECTED_CURRENCIES}`).getCurrencies();
+  return await ApiClient(`${EXCHANGE_API_URL}&currencies=${SELECTED_CURRENCIES}`).getCurrencyExchangeRates();
 }
 
 export const currenciesExchange = () =>
@@ -16,6 +16,6 @@ export const currenciesExchange = () =>
     staleTime: 900000,
   });
 
-export const useFetchCurrenciesQuery = () => {
+export const useFetchCurrencyExchangeRatesQuery = () => {
   return useQuery(currenciesExchange());
 };

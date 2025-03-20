@@ -32,7 +32,7 @@ export async function CreateTransaction(formValues: TransactionSchemaType) {
   await db.$transaction([
     db.financeTransaction.create({
       data: {
-        userId: user.id,
+        ownerId: user.id,
         amount,
         currency: "GBP",
         date,

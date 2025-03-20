@@ -28,6 +28,8 @@ const CreateTransactionForm = ({
   open,
   onClose,
   type,
+  userCurrency,
+  rates,
 }: CreateTransactionFormProps) => {
   const {
     control,
@@ -70,12 +72,20 @@ const CreateTransactionForm = ({
         id: "create-transaction",
       });
 
+      const { currency, amount } = values;
+
+      const convertedAmount =
+        currency !== userCurrency && rates
+          ? (amount / rates[currency]) * rates[userCurrency] // Convert to base currency
+          : amount;
+
       mutate({
         ...values,
+        amount: convertedAmount,
         date: DateToUTCDate(values.date),
       });
     },
-    [mutate],
+    [mutate, rates, userCurrency],
   );
 
   const CATEGORY_OPTIONS =
