@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, forwardRef } from "react";
 import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker";
 import { FormLabel } from "../FormLabel";

@@ -1,3 +1,4 @@
+"use client";
 import { styled } from "@mui/material";
 
 const StyledWrapper = styled("div")({

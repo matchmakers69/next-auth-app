@@ -1,16 +1,17 @@
-export const convertCurrency = (
-  amount: number,
-  from: string,
-  to: string,
-  rates: Record<string, number>,
-): string => {
-  if (!rates || !rates[from] || !rates[to]) return "0.00";
+import { CurrencyConvertor } from "@/types";
 
-  if (from === to) return amount.toFixed(2);
+export const convertCurrency = ({
+  amount,
+  from,
+  to,
+  rates,
+  defaultCurrency = "GBP",
+}: CurrencyConvertor): string => {
+  const sourceCurrency = from || defaultCurrency;
 
-  if (from === "GBP") return (amount * rates[to]).toFixed(2);
+  if (!rates || !rates[sourceCurrency] || !rates[to]) return "0.00";
 
-  if (to === "GBP") return (amount / rates[from]).toFixed(2);
+  if (sourceCurrency === to) return amount.toFixed(2);
 
-  return ((amount / rates[from]) * rates[to]).toFixed(2);
+  return ((amount / rates[sourceCurrency]) * rates[to]).toFixed(2);
 };

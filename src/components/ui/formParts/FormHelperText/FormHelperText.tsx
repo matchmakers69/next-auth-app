@@ -1,3 +1,5 @@
+"use client";
+
 import { FormHelperText as MUIFormHelperText } from "@mui/material";
 import { BaseProps } from "../../types/defs";
 

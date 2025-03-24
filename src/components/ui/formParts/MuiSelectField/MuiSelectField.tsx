@@ -1,3 +1,5 @@
+"use client";
+
 import { MuiSelectFieldProps, OptionType } from "./defs";
 import {
   FormControl,

@@ -28,12 +28,20 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
   const { control, handleSubmit, reset } = useForm<UpdateUserSettingsValues>({
     mode: "onTouched",
     defaultValues: {
-      name: user?.name || undefined,
-      email: user?.email || undefined,
+      name: "",
+      email: "",
       password: "",
       newPassword: "",
     },
   });
+  // Autopppulate values
+  useEffect(() => {
+    reset({
+      name: user?.name || "",
+      email: user?.email || "",
+    });
+  }, [user, reset]);
+
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {

@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef } from "react";
 import { InputAdornment, TextField } from "@mui/material";
 import { NumberFieldProps } from "./defs";

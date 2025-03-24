@@ -62,7 +62,7 @@ export default async function RootLayout({
   const session = await auth();
   const sessionKey = new Date().valueOf(); // Workaround to force re-render on session change
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressContentEditableWarning={true}>
       <body className={`${fontsClassName} body-app scroll-touch`}>
         <ThemeRegistry>
           <ToasterProvider />

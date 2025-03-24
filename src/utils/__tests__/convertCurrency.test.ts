@@ -9,21 +9,123 @@ describe("convertCurrency", () => {
     GBP: 1,
   };
   test("should convert GBP to PLN correctly", () => {
-    expect(convertCurrency(10, "GBP", "PLN", mockedRates)).toBe("50.00");
+    expect(
+      convertCurrency({
+        amount: 10,
+        from: "GBP",
+        to: "PLN",
+        rates: mockedRates,
+      }),
+    ).toBe("50.00");
   });
   test("should convert PLN to GBP correctly", () => {
-    expect(convertCurrency(10, "PLN", "GBP", mockedRates)).toBe("2.00");
+    expect(convertCurrency({
+      amount: 10,
+      from: "PLN",
+      to: "GBP",
+      rates: mockedRates,
+    })).toBe("2.00");
   });
   test("should convert GBP to EUR correctly", () => {
-    expect(convertCurrency(10, "GBP", "EUR", mockedRates)).toBe("12.00");
+    expect(convertCurrency({
+      amount: 10,
+      from: "GBP",
+      to: "EUR",
+      rates: mockedRates,
+    })).toBe("12.00");
   });
   test("should convert PLN to GBP correctly", () => {
-    expect(convertCurrency(10, "EUR", "GBP", mockedRates)).toBe("8.33");
+    expect(convertCurrency({
+      amount: 10,
+      from: "EUR",
+      to: "GBP",
+      rates: mockedRates,
+    })).toBe("8.33");
   });
   test("should convert GBP to USD correctly", () => {
-    expect(convertCurrency(10, "GBP", "USD", mockedRates)).toBe("13.00");
+    expect(convertCurrency({
+      amount: 10,
+      from: "GBP",
+      to: "USD",
+      rates: mockedRates,
+    })).toBe("13.00");
   });
   test("should convert USD to GBP correctly", () => {
-    expect(convertCurrency(10, "USD", "GBP", mockedRates)).toBe("7.69");
+    expect(convertCurrency({
+      amount: 10,
+      from: "USD",
+      to: "GBP",
+      rates: mockedRates,
+    })).toBe("7.69");
+  });
+
+  test("should convert to PLN as selected currency", () => {
+    const selectedCurrency = "PLN";
+    expect(convertCurrency({
+      amount: 10,
+      from: "GBP",
+      to: "PLN",
+      rates: mockedRates,
+      defaultCurrency: selectedCurrency
+    })).toBe("50.00");
+  });
+  test("should return '0.00' if 'from' currency is missing in rates", () => {
+    expect(convertCurrency({
+      amount: 10,
+      from: "CAD",
+      to: "EUR",
+      rates: mockedRates,
+    })).toBe("0.00");
+  });
+  test("should return '0.00' if 'to' currency is missing in rates", () => {
+    expect(convertCurrency({
+      amount: 10,
+      from: "EUR",
+      to: "CAD",
+      rates: mockedRates,
+    })).toBe("0.00");
+  });
+
+  test("should return '0.00' for amount 0", () => {
+    expect(convertCurrency({
+      amount: 0,
+      from: "USD",
+      to: "EUR",
+      rates: mockedRates
+    })).toBe("0.00");
+  });
+
+  test("should use default currency if 'from' is not provided", () => {
+    expect(convertCurrency({
+      amount: 10,
+      to: "EUR",
+      rates: mockedRates,
+      defaultCurrency: "USD"
+    })).toBe("9.23"); // 10 USD -> EUR
+  });
+
+  test("should use GBP as default currency if 'from' is not provided and no defaultCurrency set", () => {
+    expect(convertCurrency({
+      amount: 10,
+      to: "EUR",
+      rates: mockedRates
+    })).toBe("12.00"); // GBP -> EUR
+  });
+  test("should handle large amounts", () => {
+    expect(convertCurrency({
+      amount: 1000000,
+      from: "GBP",
+      to: "USD",
+      rates: mockedRates
+    })).toBe("1300000.00");
+  });
+
+  test("should handle floating point precision issues", () => {
+    expect(convertCurrency({
+      amount: 10.5555,
+      from: "USD",
+      to: "EUR",
+      rates: mockedRates
+    })).toBe("9.74"); // 10.5555 USD -> EUR
   });
 });

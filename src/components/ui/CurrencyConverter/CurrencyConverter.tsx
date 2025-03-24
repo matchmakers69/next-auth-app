@@ -13,12 +13,15 @@ import { MUITextFieldSelect } from "../formParts/MUITextFieldSelect";
 import FormHelperText from "../formParts/FormHelperText";
 import { Button } from "../Button";
 import NumberField from "../formParts/NumberField/NumberField";
-import { useCurrencyStore } from "@/hooks/useCurrencyStore";
 import { useCurrencyOptions } from "@/hooks/useCurrencyOptions";
 import { CurrencyConverterProps } from "./defs";
+import { useCurrencyStore } from "@/hooks/useCurrencyStore";
 
 const CurrencyConverter = ({ rates }: CurrencyConverterProps) => {
-  const { baseCurrency, setBaseCurrency } = useCurrencyStore();
+  const storeCurrency = useCurrencyStore();
+  const [baseCurrency, setBaseCurrency] = useState<CURRENCY>(
+    storeCurrency.baseCurrency ? storeCurrency.baseCurrency : "GBP",
+  );
   const [amount, setAmount] = useState<number>(1);
   const CURRENCY_OPTIONS = useCurrencyOptions();
 
@@ -48,7 +51,7 @@ const CurrencyConverter = ({ rates }: CurrencyConverterProps) => {
   };
 
   const handleSaveCurrencySubmit = (data: CurrencySchemaType) => {
-    setBaseCurrency(data.currency as CURRENCY);
+    setBaseCurrency(data?.currency as CURRENCY);
   };
 
   return (
@@ -78,7 +81,12 @@ const CurrencyConverter = ({ rates }: CurrencyConverterProps) => {
               <span className="font-semibold">{`${currency}:`}</span>
               <span>
                 {rates
-                  ? convertCurrency(amount, baseCurrency, currency, rates)
+                  ? convertCurrency({
+                      amount,
+                      from: baseCurrency,
+                      to: currency,
+                      rates,
+                    })
                   : "N/A"}
               </span>
             </div>

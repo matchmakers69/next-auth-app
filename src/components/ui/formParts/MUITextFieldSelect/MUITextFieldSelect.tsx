@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef } from "react";
 import { TextField, MenuItem, SxProps, Theme, Box } from "@mui/material";
 import { dropDownOptionsSx, getDefaultSx } from "../defaultSx";

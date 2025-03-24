@@ -37,3 +37,11 @@ export type ExchangeRates = {
 export type UserCurrency = {
   currency: CURRENCY
 }
+
+export type CurrencyConvertor = {
+  amount: number;
+  from?: string;
+  to: string;
+  rates: Record<string, number>;
+  defaultCurrency?: string;
+}

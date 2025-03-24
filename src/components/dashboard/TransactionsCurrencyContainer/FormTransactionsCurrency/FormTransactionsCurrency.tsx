@@ -12,13 +12,14 @@ import { useCurrencyOptions } from "@/hooks/useCurrencyOptions";
 import { CURRENCY } from "@prisma/client";
 import { FormTransactionsCurrencyProps } from "./defs";
 import { useUpdateUserCurrency } from "@/reactQuery/hooks/useUserCurrenciesQuery";
+import { useCurrencyStore } from "@/hooks/useCurrencyStore";
 
 const FormTransactionsCurrency = ({
   userId,
   selectedUserCurrency,
 }: FormTransactionsCurrencyProps) => {
   const CURRENCY_OPTIONS = useCurrencyOptions();
-
+  const { setBaseCurrency } = useCurrencyStore();
   const mutation = useUpdateUserCurrency(userId);
 
   const {
@@ -35,6 +36,7 @@ const FormTransactionsCurrency = ({
     mutation.mutate(data?.currency || "", {
       onSuccess: () => {
         toast.success("Currency updated successfully!");
+        setBaseCurrency(data.currency as CURRENCY);
         reset({ currency: data.currency ?? "GBP" });
       },
       onError: () => {
