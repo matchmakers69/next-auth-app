@@ -1,0 +1,46 @@
+---
+title: Next.js hydration
+description: Hydration well explained
+slug: next-hydration
+date: Mar 25, 2025
+published: true
+---
+
+## 1. What is Hydration in Next.js
+
+<br />
+
+### Hydration process steps in Next.js
+
+<br />
+
+- **Initially page is rendered on server - SSR**
+- **Fully rendered HTML is sent to the browser**
+- **React takes over** - attaching event listeners and making page interactive.
+
+### Step-by-Step Hydration Process
+
+<br />
+
+### Server-Side Rendering (SSR) - Initial Render
+
+<br />- **Serves fetches data, generates HTML and sends it to the browser** -{" "}
+
+```js
+export const TIMEOUT_TIME = 1000000;
+```
+
+or this?
+
+```js
+export const TIMEOUT_TIME = 100_000;
+```
+
+Could you tell there was a missing zero in the second example?
+
+## 3. Comments
+
+Your code can be the most beautiful thing in the world. I still don't want to have to read it all
+character by character to understand what it does or _why_ it does it.
+
+I like to leave comments at the top of my files (which are often named after the feature they're implementing) explaining the high-level overview of the file.

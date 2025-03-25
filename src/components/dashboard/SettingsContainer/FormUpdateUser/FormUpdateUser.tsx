@@ -17,9 +17,10 @@ import toast from "react-hot-toast";
 import { FormUpdateUserProps } from "./defs";
 import Checkbox from "@/components/ui/formParts/Checkbox";
 import { Button } from "@/components/ui/Button";
-import { Loader } from "lucide-react";
+import { Loader, Loader2 } from "lucide-react";
 
 const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
+  const [clientReady, setClientReady] = useState(false);
   const [enablePasswordUpdate, setEnablePasswordsUpdate] = useState(false);
   const [state, formAction, isPending] = useActionState(updateUserSettings, {
     errors: {},
@@ -34,6 +35,10 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
       newPassword: "",
     },
   });
+  useEffect(() => {
+    setClientReady(true);
+  }, []);
+
   // Autopppulate values
   useEffect(() => {
     reset({
@@ -64,6 +69,10 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
     }
     startTransition(() => formAction(formData));
   };
+
+  if (!clientReady) {
+    return <Loader2 size={30} className="mx-auto my-10 animate-spin" />;
+  }
 
   return (
     <form
