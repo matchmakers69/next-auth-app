@@ -195,7 +195,7 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
           </div>
         </>
       )}
-      <div className="mb-8">
+      <div>
         <Button type="submit" variant="default" size="sm" disabled={isPending}>
           {isPending && <Loader className="size-6 animate-spin" />}
           <span className="inline-block">
