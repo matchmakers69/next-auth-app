@@ -19,7 +19,7 @@ const DashboardContainer = ({ children }: DashboardContainerProps) => {
       <main className="flex flex-1 flex-col lg:min-w-0 lg:pl-[32rem]">
         <DashboardHeader onOpenSidebar={handleOpenSidebar} />
         <div className="dashboard-content grow">
-          <div className="dashboard-content-inner px-14 py-8 lg:px-16 lg:py-10">
+          <div className="dashboard-content-inner px-14 py-20 md:px-16">
             <div className="mx-auto">{children}</div>
           </div>
         </div>

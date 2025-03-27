@@ -15,7 +15,7 @@ const DashboardHeader = ({ onOpenSidebar }: DashboardHeaderProps) => {
   const user = useCurrentUser();
   const username = user?.name ?? "Username";
   return (
-    <header className="dashboard-header mb-6 border-b border-dark-border bg-sidebar-grey">
+    <header className="dashboard-header border-b border-dark-border bg-sidebar-grey">
       <div className="header-dashboard-inner flex w-full items-center justify-between px-8 py-4 lg:items-start lg:justify-start lg:py-6">
         <h2
           className={`${IbmPlex.className} text-[1.2rem] font-medium leading-[1.2] text-text-light sm:text-[1.4rem]`}

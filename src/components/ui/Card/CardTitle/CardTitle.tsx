@@ -4,7 +4,7 @@ import { CardTitleProps } from "./defs";
 
 const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ className, text, ...props }, ref) => (
-    <header className="page-title-header mb-24">
+    <header className={cn("card-title-header mb-24", className)}>
       <h2
         ref={ref}
         className={cn("font-semibold leading-none tracking-tight", className)}

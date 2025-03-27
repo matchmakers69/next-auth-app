@@ -1,4 +1,5 @@
 import { Overview } from "@/components/financeTracker/Overview";
+import { History } from "@/components/financeTracker/History";
 import PageTitle from "@/components/ui/PageTitle";
 import { redirect } from "next/navigation";
 import { currentUser } from "@/lib/currentUserAPI";
@@ -40,7 +41,12 @@ export default async function OverviewPage() {
           </Button>
         </div>
       )}
-      <Overview userId={user.id} currency={currency} />
+      <section className="mb-16" id="overview-section">
+        <Overview userId={user.id} currency={currency} />
+      </section>
+      <section id="history-section">
+        <History currency={currency} />
+      </section>
     </>
   );
 }

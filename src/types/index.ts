@@ -45,3 +45,11 @@ export type CurrencyConvertor = {
   rates: Record<string, number>;
   defaultCurrency?: string;
 }
+
+export type HistoryData = {
+  expense: number;
+  income: number;
+  year: number;
+  month: number;
+  day?: number;
+};

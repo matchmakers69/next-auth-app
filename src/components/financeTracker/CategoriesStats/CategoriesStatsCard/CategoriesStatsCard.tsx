@@ -23,7 +23,7 @@ const CategoriesStatsCard = ({
   );
   return (
     <CardWithoutBck className="border border-dark-border bg-[hsla(0,0%,100%,0.05)] p-10">
-      <CardTitle className="text-[2.2rem]">
+      <CardTitle className="mb-6 text-[2.2rem]">
         {type === "income" ? "Incomes" : "Expenses"} by category
       </CardTitle>
       <div className="flex items-center justify-between gap-2">
@@ -39,7 +39,7 @@ const CategoriesStatsCard = ({
 
         {filteredData.length > 0 && (
           <div className="flex h-60 w-full flex-1 flex-col overflow-y-auto">
-            <div className="flex w-full flex-col gap-4 p-4">
+            <div className="flex w-full flex-col gap-4 py-4">
               {filteredData.map((item) => {
                 const amount = item._sum?.amount || 0;
                 const percentage = (amount * 100) / (total || amount);
