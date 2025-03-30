@@ -23,7 +23,9 @@ const nextConfig = {
   },
 };
 
-export default withMDX()(
+export default withMDX({
+  extension: /\.mdx$/,
+})(
   withBundleAnalyzer({
     enabled: process.env.ANALYZE === "true",
   })(nextConfig),

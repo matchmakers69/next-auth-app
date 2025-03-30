@@ -1,0 +1,70 @@
+---
+title: Fetching inside server components vs Next API routes
+description: Fetching data in Next.js
+slug: fetching-data-server-component-vs-next-api-routes
+date: Mar 27, 2025
+published: true
+---
+
+<br />
+<br />
+## Fetch Inside Server Components When:
+
+<br />
+
+### 1. Data does not change Frequently (or changes per deployment)
+
+- **Ideal for static or semi-static content such as**: Product pages, Blog posts, documentation
+
+<br />
+
+```js
+export default async function ProductPage() {
+  const products = await db.product.findMany();
+  return <ProductList products={products} />;
+}
+```
+
+<br />
+
+### 2. SEO Benefits (SSR/SSG) & Faster Load
+
+### 3. Better performance - Client API calls reduced
+
+### 4. Data can be cached - server components can cache requests automatically
+
+<br />
+<br />
+
+## Use API routes when:
+
+<br />
+
+### 1. Data changes very often
+
+### 2. Data changes very often
+
+### 3. Need authentication (protected API requests)
+
+### 4. Need to handle business logic before returning data i.e data transformation before data is sent to the front expanded
+
+### 5. Use API routes for creating, updating or deleting resources
+
+<br />
+
+- **If the data depends on authentication, it's better to use API route**.
+
+  <br />
+  **Example:**
+  <br />
+
+- A personalized dashboard
+- A user's order history
+
+<br />
+
+Fetching in Server Component would not work well because:
+
+<br />
+
+**Next.js Server Components run before knowing the user's session (unless using middleware)**

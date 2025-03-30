@@ -1,0 +1,44 @@
+---
+title: Client site fetching vs server actions
+description: When to Use Client-Side Fetching (React Query) vs Server Actions
+slug: client-side-fetching-vs-server-actions
+date: Mar 28, 2025
+published: true
+---
+
+<br />
+<br />
+## Client-Side Fetching (React Query) vs Server Actions
+
+<br />
+
+### When to Use Client-Side Fetching (React Query)
+
+<br />
+
+- **Data that updates frequently (e.g., user currency settings, notifications, chat messages).**
+- **Data that does not need to be available at first render (can be loaded after the page is displayed).**
+- **When a user interacts with UI elements and expects instant feedback (e.g., changing a setting, filtering a list).**
+- **Data that does not need to be available at first render (can be loaded after the page is displayed).**
+
+<br />
+
+### When to Use Server Actions
+
+- **Operations that modify server state (e.g., creating/updating/deleting data).**
+- **When you want to avoid exposing API routes (Server Actions run on the server, so they are more secure).**
+- **When the data is needed before rendering the page (e.g., fetching initial form data).**
+- **Reducing client-side JavaScript bundle size (Server Actions remove the need for API fetches).**
+- **SEO-sensitive pages where data should be fetched at build time or request time (Server Components).**
+
+### Benefits of Server Actions
+
+- **Security:** Since actions run exlusively on server, sensitive data such as data such as database credentials or API keys are never exposed to the client.
+- **Simplified architecture** - do not need to manage separate API routes for simple tasks like handling form submissions or querying databases.
+- **Performance optimization** - Server Actions reduce client-side JavaScript by handling data processing on the server, allowing for faster page loads and and better performance.
+
+### Do not use server actions Server Actions
+
+- **High frequency requests** - for very frequent operations like real-time updates (e.g, live chat) Server actions may increase server load and decrease performance. API routes better solutionn here.
+- **Client side interactions** - when handling interactions that do not require server-logic (simple-client side) validation.
+- **Lack of caching** - Unlike traditional API routes where we can cache explicity cace responses, Server Actions dont have simple mechanism for cacing.

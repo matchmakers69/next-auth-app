@@ -10,13 +10,12 @@ import { sendVerificationEmail } from "@/lib/mail";
 import { db } from "@/lib/db";
 import { updateUserSettingsSchema } from "@/components/dashboard/SettingsContainer/FormUpdateUser/validation/updateUserSettingsSchema";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { CURRENCY, Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 type UpdateUserSettingsFormState = {
   errors?: {
     name?: string[];
     email?: string[];
-    currency?: string[];
     password?: string[];
     newPassword?: string[];
     _form?: string[];
@@ -25,7 +24,6 @@ type UpdateUserSettingsFormState = {
   updatedUser?: {
     name: string | null;
     email: string | null;
-    currency: string | null;
   };
 };
 
@@ -36,7 +34,6 @@ export async function updateUserSettings(
   const result = updateUserSettingsSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
-    currency: formData.get("currency"),
     password: formData.get("password"),
     newPassword: formData.get("newPassword"),
   });
@@ -121,10 +118,6 @@ export async function updateUserSettings(
     updateData.password = result.data.password;
   }
 
-  if (result.data.currency !== undefined && result.data.currency !== null) {
-    updateData.currency = result.data.currency as CURRENCY;
-  }
-
   // Check if any data to update
   if (Object.keys(updateData).length === 0) {
     return {
@@ -146,7 +139,6 @@ export async function updateUserSettings(
       updatedUser: {
         name: updatedUser.name,
         email: updatedUser.email,
-        currency: updatedUser.currency,
       },
     };
   } catch (err) {

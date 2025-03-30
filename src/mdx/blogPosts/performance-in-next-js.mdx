@@ -1,0 +1,88 @@
+---
+title: Performance improvements in Next.js
+description: Tips and tricks to improve performance in Next.js
+slug: next-performance
+date: Mar 30, 2025
+---
+
+<br />
+
+## How to improve performance of Next.js
+
+<br />
+
+- **Reduce Hydration Time with Partial Preloading** - split into Server and Client component
+
+```js
+// Server Component
+export default async function Page() {
+  const data = await fetchData(); // Runs on the server
+  return <ClientComponent data={data} />;
+}
+
+// Client Component (Hydrates only this part)
+("use client");
+function ClientComponent({ data }) {
+  return <div>{data.message}</div>;
+}
+```
+
+<br />
+
+**Optimize Page Rendering** - use SSG - if page does not change often, generate it at build time.
+
+```js
+export default async function Page() {
+  const res = await fetch("https://api.example.com/posts", {
+    cache: "force-cache",
+  });
+  const posts = await res.json();
+
+  return (
+    <div>
+      {posts.map((p) => (
+        <p key={p.id}>{p.title}</p>
+      ))}
+    </div>
+  );
+}
+```
+
+- **Reduce JavaScript bundle size** - use dynamic imports for large components
+  **Load component when needed**
+
+```js
+import dynamic from "next/dynamic";
+
+const Chart = dynamic(() => import("@/components/Chart"), { ssr: false });
+
+export default function Dashboard() {
+  return <Chart />;
+}
+```
+
+**Optimaize data fetching** - use Server Components for Static data
+
+```js
+export default async function Page() {
+  const res = await fetch("https://api.example.com/data", {
+    cache: "force-cache",
+  });
+  const data = await res.json();
+
+  return <div>{data.message}</div>;
+}
+```
+
+**cache: "force-cache" tells Next.js to cache the response and reuse it.**
+
+<br />
+**Optimize Third-Party Scripts and Fonts** **Use `next/script` for Lazy Loading
+External Script - Instead of blocking the main thread, load external scripts
+asynchronously.**
+
+```js
+import Script from "next/script";
+
+<Script src="https://analytics.example.com/script.js" strategy="lazyOnload" />;
+```

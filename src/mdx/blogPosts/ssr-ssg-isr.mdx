@@ -1,0 +1,162 @@
+---
+title: SSR, SSG, ISR
+description: SSR vs SSG vs ISR in Next.js - key differences
+slug: next-ssr-ssg-isr
+date: Mar 27, 2025
+published: true
+---
+
+<br />
+<br />
+## Key Differences: SSR vs SSG vs ISR in Next.js
+
+| Feature    | Next.js ≤ 12                       | Next.js 13+                                                 |
+| ---------- | ---------------------------------- | ----------------------------------------------------------- |
+| SSG        | `getStaticProps`                   | **Server Components** (`fetch()` with `cache: force-cache`) |
+| ISR        | `getStaticProps` with `revalidate` | **same as SSG**                                             |
+| SSR        | `getServerSideProps`               | **Server Components** (`fetch()` with `cache: "no-store"`)  |
+| Dynamic r. | `getStaticPaths`                   | `generateStaticParams()`                                    |
+
+<br />
+
+**SSR (Server-Side Rendering): Fetches data on each request.**
+
+**SSG (Static Site Generation): Pre-builds pages at build time.**
+
+**ISR (Incremental Static Regeneration) Like SSG, but rebuilds pages in the background**
+
+<br />
+<br />
+
+### 1. SSR (Server-Side Rendering) – getServerSideProps (Pre-Next.js 13)
+
+```js
+export async function getServerSideProps() {
+  const res = await fetch("https://api.example.com/products");
+  const data = await res.json();
+
+  return { props: { products: data } };
+}
+
+export default function ProductsPage({ products }) {
+  return (
+    <ul>
+      {products.map((p) => (
+        <li key={p.id}>{p.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+<br />
+
+- **How is SSR Handled in Next.js 13+ (App Router)?**
+
+<br />
+
+**Instead of getServerSideProps, just fetch inside the component!**
+
+```js
+export default async function ProductsPage() {
+  const res = await fetch("https://api.example.com/products", {
+    cache: "no-store",
+  }); // SSR
+  const products = await res.json();
+
+  return (
+    <ul>
+      {products.map((p) => (
+        <li key={p.id}>{p.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+<br />
+
+`cache: "no-store"` **forces SSR (fresh data on every request).**
+
+<br />
+
+### 2. SSG (Static Site Generation) – getStaticProps (Pre-Next.js 13)
+
+SSG is a technique which allows to generate static sites from our app. Pre-builds pages at build time (fast but static)
+
+<br />
+**Used when data rarely changes (e.g., blogs, documentation).**
+
+The main problem with SSG is when page needs to be updated at some point. To update page we need to rebuild an app in full and swap statically generated files.
+
+<br />
+
+**Example (Before Next.js 13 – Pages Router)**
+
+```js
+export async function getStaticProps() {
+  const res = await fetch("https://api.example.com/blogs");
+  const data = await res.json();
+
+  return { props: { blogs: data } };
+}
+
+export default function BlogsPage({ blogs }) {
+  return (
+    <ul>
+      {blogs.map((b) => (
+        <li key={b.id}>{b.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+**In Next.js v13 SSG is now handled by default in Server Components (unless cache disabled).**
+
+<br />
+**SSG runs at build time, so it doesn't need an API route. You should fetch
+directly from the data source.**
+<br />- **Just fetch without cache: "no-store", and Next.js will statically
+generate it.**
+
+```js
+export default async function BlogsPage() {
+  const res = await fetch("https://api.example.com/blogs", {
+    cache: "force-cache",
+  }); // SSG (default)
+  const blogs = await res.json();
+
+  return (
+    <ul>
+      {blogs.map((b) => {
+        return <li key={b.id}>{b.title}</li>;
+      })}
+    </ul>
+  );
+}
+```
+
+### 3. ISR (Incremenstal Site Regeneration)
+
+<br />
+**Data is updated periodically (without full rebuilds).
+<br />
+**It's an option in Next which allows to re-render again but only chosen
+subpages - NOT everything, and on demand. Function `revalidate()`, which allows
+to precisely indicate which subpage and when should be regenerated**
+<br />
+
+```js
+export async function getStaticProps() {
+  const res = await fetch("https://api.example.com/news");
+  const data = await res.json();
+
+  return {
+    props: { news: data },
+    revalidate: 60, // Regenerates page every 60 seconds
+  };
+}
+```
+
+**Users may see stale data for a short period.**
