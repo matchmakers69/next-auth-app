@@ -1,1 +1,0 @@
-export { default as FormTransactionsCurrency } from "./FormTransactionsCurrency"

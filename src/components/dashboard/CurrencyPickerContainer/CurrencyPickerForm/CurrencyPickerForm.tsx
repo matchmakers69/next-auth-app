@@ -1,26 +1,29 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
-
-import { TransactionCurrencyValues } from "./validation/transactionsCurrencySchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  TransactionCurrencyValues,
+  transactionsCurrencySchema,
+} from "./validation/transactionsCurrencySchema";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/Button";
-import { Loader } from "lucide-react";
+import { Loader, Loader2 } from "lucide-react";
 import { MUITextFieldSelect } from "@/components/ui/formParts/MUITextFieldSelect";
 import { useCurrencyOptions } from "@/hooks/useCurrencyOptions";
 import { CURRENCY } from "@prisma/client";
-import { FormTransactionsCurrencyProps } from "./defs";
-import { useUpdateUserCurrency } from "@/reactQuery/hooks/useUserCurrenciesQuery";
+import { CurrencyPickerFormProps } from "./defs";
 import { useCurrencyStore } from "@/hooks/useCurrencyStore";
+import { useUpdateCurrencyMutation } from "@/reactQuery/hooks/useUpdateCurrencyMutation";
 
-const FormTransactionsCurrency = ({
-  userId,
+const CurrencyPickerForm = ({
   selectedUserCurrency,
-}: FormTransactionsCurrencyProps) => {
+}: CurrencyPickerFormProps) => {
   const CURRENCY_OPTIONS = useCurrencyOptions();
   const { setBaseCurrency } = useCurrencyStore();
-  const mutation = useUpdateUserCurrency(userId);
+  const [clientReady, setClientReady] = useState(false);
 
   const {
     control,
@@ -29,21 +32,46 @@ const FormTransactionsCurrency = ({
     reset,
   } = useForm<TransactionCurrencyValues>({
     mode: "onTouched",
+    resolver: zodResolver(transactionsCurrencySchema),
     defaultValues: { currency: selectedUserCurrency ?? "GBP" },
   });
 
-  const handleUpdateUserCurrencySubmit = (data: TransactionCurrencyValues) => {
-    mutation.mutate(data?.currency || "", {
-      onSuccess: () => {
-        toast.success("Currency updated successfully!");
-        setBaseCurrency(data.currency as CURRENCY);
-        reset({ currency: data.currency ?? "GBP" });
-      },
-      onError: () => {
-        toast.error("Failed to update currency. Please try again.");
-      },
-    });
-  };
+  const { mutate, isPending } = useUpdateCurrencyMutation();
+
+  useEffect(() => {
+    setClientReady(true);
+  }, []);
+
+  const handleUpdateUserCurrencySubmit = useCallback(
+    (values: TransactionCurrencyValues) => {
+      toast.loading("Updating currency...", {
+        id: "update-currency",
+      });
+
+      const formData = new FormData();
+      formData.append("currency", values.currency || "GBP");
+
+      mutate(formData, {
+        onSuccess: () => {
+          toast.success("Currency updated successfully!", {
+            id: "update-currency",
+          });
+          setBaseCurrency(values.currency as CURRENCY);
+          reset({ currency: values.currency ?? "GBP" });
+        },
+        onError: () => {
+          toast.error("Failed to update currency. Please try again.", {
+            id: "update-currency",
+          });
+        },
+      });
+    },
+    [mutate, setBaseCurrency, reset],
+  );
+
+  if (!clientReady) {
+    return <Loader2 size={30} className="mx-auto my-10 animate-spin" />;
+  }
 
   return (
     <form
@@ -90,11 +118,11 @@ const FormTransactionsCurrency = ({
           type="submit"
           variant="default"
           size="sm"
-          disabled={!isDirty || isSubmitting || mutation.isPending}
+          disabled={!isDirty || isSubmitting || isPending}
         >
-          {mutation.isPending && <Loader className="size-6 animate-spin" />}
+          {isPending && <Loader className="size-6 animate-spin" />}
           <span className="inline-block">
-            {mutation.isPending ? "Updating now..." : "Update currency"}
+            {isPending ? "Updating now..." : "Update currency"}
           </span>
         </Button>
       </div>
@@ -102,4 +130,4 @@ const FormTransactionsCurrency = ({
   );
 };
 
-export default FormTransactionsCurrency;
+export default CurrencyPickerForm;

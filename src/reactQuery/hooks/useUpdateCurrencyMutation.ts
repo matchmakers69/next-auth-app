@@ -1,16 +1,17 @@
-import { createTransaction } from "@/actions/financeTrackerActions/create-transaction";
+
+import { updateUserCurrency } from "@/actions/user-currency";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-export const useCreateTransactionMutation = (
+export const useUpdateCurrencyMutation = (
   onSuccessCallback?: () => void,
 ) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: createTransaction,
+    mutationFn: updateUserCurrency,
     onSuccess: async () => {
-      toast.success("Transaction created successfully 🎉", {
-        id: "create-transaction",
+      toast.success("Updated currency successfully 🎉", {
+        id: "update-currency",
       });
       await queryClient.invalidateQueries({ queryKey: ["overview"] });
       if (onSuccessCallback) onSuccessCallback();
@@ -18,8 +19,8 @@ export const useCreateTransactionMutation = (
     onError: (error) => {
       console.error(error);
       if (error) {
-        toast.error("Error, something went wrong with your transaction", {
-            id: "create-transaction",
+        toast.error("Error, something went wrong with updating currency", {
+            id: "update-currency",
           });
       }
     },

@@ -1,10 +1,11 @@
 import SettingsContainer from "@/components/dashboard/SettingsContainer";
-import { TransactionsCurrencyContainer } from "@/components/dashboard/TransactionsCurrencyContainer";
+import { CurrencyPickerContainer } from "@/components/dashboard/CurrencyPickerContainer";
 import PageTitle from "@/components/ui/PageTitle";
 import { redirect } from "next/navigation";
 import { currentUser } from "@/lib/currentUserAPI";
 import { Metadata } from "next";
 import paths from "@/utils/paths";
+import { getUserCurrency } from "@/actions/user-currency";
 
 export const metadata: Metadata = {
   title: "Account Settings | Lifecraft",
@@ -17,12 +18,15 @@ export default async function SettingsPage() {
   if (!user) {
     redirect(paths.login());
   }
+
+  const currency = await getUserCurrency();
+
   return (
     <>
       <PageTitle className="mb-16" title="Account Settings" />
       <div className="relative mt-[4rem] grid grid-cols-1 grid-rows-1 gap-[3.06rem] gap-y-[2.5rem] rounded-[7px] sm:grid-cols-2 sm:gap-[2.6rem] md:grid-cols-2 md:gap-[3.06rem]">
         <SettingsContainer user={user} />
-        <TransactionsCurrencyContainer userId={user.id} />
+        <CurrencyPickerContainer userId={user.id} currency={currency} />
       </div>
     </>
   );

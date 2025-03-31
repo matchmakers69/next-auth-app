@@ -9,7 +9,7 @@ import {
   TransactionSchema,
 } from "@/components/financeTracker/CreateTransactionForm/validation/createTransactionSchema";
 
-export async function CreateTransaction(formValues: TransactionSchemaType) {
+export async function createTransaction(formValues: TransactionSchemaType) {
   const formattedValues = {
     ...formValues,
     amount: `${formValues.amount}`,
