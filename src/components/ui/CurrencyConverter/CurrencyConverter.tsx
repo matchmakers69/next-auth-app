@@ -78,8 +78,8 @@ const CurrencyConverter = ({ rates }: CurrencyConverterProps) => {
         <div className="flex items-center gap-4">
           {targetCurrencies.map((currency) => (
             <div key={currency} className="align-center flex gap-4">
-              <span className="font-semibold">{`${currency}:`}</span>
-              <span>
+              <span className="font-semibold text-text-light">{`${currency}:`}</span>
+              <span className="text-text-light">
                 {rates
                   ? convertCurrency({
                       amount,

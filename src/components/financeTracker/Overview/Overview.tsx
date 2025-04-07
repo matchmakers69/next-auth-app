@@ -8,56 +8,38 @@ import { TransactionType } from "../types";
 import { OverviewProps } from "./defs";
 import { StatsCards } from "../StatsCards";
 import { CategoriesStats } from "../CategoriesStats";
-import { CurrencyConverter } from "@/components/ui/CurrencyConverter";
-import { useFetchCurrencyExchangeRatesQuery } from "@/reactQuery/hooks/useFetchCurrencyExchangeRates";
-import { Loader2 } from "lucide-react";
-import { defaultRates } from "@/lib/constants";
+import { useFeatureSwitcher } from "@/hooks/useFeatureSwitcher";
+import { useCurrencyExchangeRates } from "@/hooks/useCurrencyExchangeRates";
 
 export default function Overview({ currency }: OverviewProps) {
-  const {
-    data: rates,
-    error,
-    isPending,
-    isFetching,
-  } = useFetchCurrencyExchangeRatesQuery();
+  const { rates, isUsingFallbackRates } = useCurrencyExchangeRates();
 
   const [transactionType, setTransactionType] =
     useState<TransactionType | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalFeature = useFeatureSwitcher();
+
   const [dateRange, setDateRange] = useState<{ from: Date; to: Date }>({
     from: startOfMonth(new Date()),
     to: new Date(),
   });
 
-  const openModal = (type: TransactionType) => {
+  const handleOpenTransactionModal = (type: TransactionType) => {
     setTransactionType(type);
-    setIsModalOpen(true);
+    modalFeature.on();
   };
 
-  const closeModal = () => {
+  const handleCloseTransactionModal = () => {
     setTransactionType(null);
-    setIsModalOpen(false);
+    modalFeature.off();
   };
 
-  const exchangeRates = rates || defaultRates;
-  const isUsingFallbackRates = !!error;
+  const exchangeRates = rates;
 
   return (
     <>
-      {isFetching && (
-        <Loader2 size={30} className="mx-auto my-10 animate-spin" />
-      )}
-      {isPending ? (
-        <h4>{"No rates to display yet"}</h4>
-      ) : error ? (
-        <h4>{"Error occured, service is not available"}</h4>
-      ) : (
-        <CurrencyConverter rates={rates} />
-      )}
-
       <div className="buttons-wrapper flex w-full items-center justify-end gap-6">
         <Button
-          onClick={() => openModal("income")}
+          onClick={() => handleOpenTransactionModal("income")}
           variant="primary"
           type="button"
           size="sm"
@@ -65,7 +47,11 @@ export default function Overview({ currency }: OverviewProps) {
           New income
         </Button>
 
-        <Button onClick={() => openModal("expense")} type="button" size="sm">
+        <Button
+          onClick={() => handleOpenTransactionModal("expense")}
+          type="button"
+          size="sm"
+        >
           New expense
         </Button>
       </div>
@@ -85,22 +71,22 @@ export default function Overview({ currency }: OverviewProps) {
         />
       </div>
 
-      {isModalOpen && transactionType === "income" && (
+      {modalFeature.isOn && transactionType === "income" && (
         <CreateTransactionForm
           type="income"
-          open={isModalOpen}
-          onClose={closeModal}
+          open={modalFeature.isOn}
+          onClose={handleCloseTransactionModal}
           selectedCurrency={currency}
           rates={exchangeRates}
           isUsingFallbackRates={isUsingFallbackRates}
         />
       )}
 
-      {isModalOpen && transactionType === "expense" && (
+      {modalFeature.isOn && transactionType === "expense" && (
         <CreateTransactionForm
           type="expense"
-          open={isModalOpen}
-          onClose={closeModal}
+          open={modalFeature.isOn}
+          onClose={handleCloseTransactionModal}
           selectedCurrency={currency}
           rates={exchangeRates}
           isUsingFallbackRates={isUsingFallbackRates}

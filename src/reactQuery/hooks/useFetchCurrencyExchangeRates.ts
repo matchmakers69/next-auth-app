@@ -8,12 +8,11 @@ const fetchExchangeRates = async () => {
 
 export const currenciesExchange = () =>
   queryOptions({
-    queryKey: ["currency-exchange"],
+    queryKey: ["currency-exchange-rates"],
     queryFn: fetchExchangeRates,
     select: (response) => response?.data ?? null,
-    refetchInterval: 900000,
-    refetchOnWindowFocus: false,
-    staleTime: 900000,
+    staleTime: 1000 * 60 * 10,
+    refetchOnWindowFocus: false
   });
 
 export const useFetchCurrencyExchangeRatesQuery = () => {

@@ -1,13 +1,13 @@
-import { Overview } from "@/components/financeTracker/Overview";
-import { History } from "@/components/financeTracker/History";
-import PageTitle from "@/components/ui/PageTitle";
-import { redirect } from "next/navigation";
-import { currentUser } from "@/lib/currentUserAPI";
 import { Metadata } from "next";
-import { Button } from "@/components/ui/Button";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import paths from "@/utils/paths";
+import { currentUser } from "@/lib/currentUserAPI";
+import PageTitle from "@/components/ui/PageTitle";
 import { getUserSettings } from "@/lib/get-user-currencyAPI";
+import { FinanceTrackerWrapper } from "@/components/financeTracker/FinanceTrackerWrapper";
+import { OverviewCurrencyActionsHeader } from "@/components/financeTracker/OverviewCurrencyActionsHeader";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Finance tracker overview page",
@@ -26,6 +26,15 @@ export default async function OverviewPage() {
   return (
     <>
       <PageTitle className="mb-16" title="Overview" />
+      <OverviewCurrencyActionsHeader>
+        <div className="w-full">
+          <p className="mb-4 text-[12px] text-text-grey">
+            Stay up to date with live exchange rates. Click the button below to
+            see the current rates in real time.
+          </p>
+        </div>
+      </OverviewCurrencyActionsHeader>
+
       {!userCurrencyData && (
         <div className="mb-20 border border-solid border-[hsla(0,0%,100%,0.1)] bg-transparent p-6">
           <p className="mb-4 text-[12px] text-text-grey">
@@ -41,12 +50,7 @@ export default async function OverviewPage() {
           </Button>
         </div>
       )}
-      <section className="mb-16" id="overview-section">
-        <Overview userId={user.id} currency={currency} />
-      </section>
-      <section id="history-section">
-        <History currency={currency} />
-      </section>
+      <FinanceTrackerWrapper userId={user.id} currency={currency} />
     </>
   );
 }
