@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { resetPassword } from "@/actions/reset-password";
+import { resetPassword } from "@/app/(root)/(authentication)/auth/_actions/reset-password";
 import {
   ResetPasswordFormValues,
   resetPasswordSchema,

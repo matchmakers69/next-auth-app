@@ -6,7 +6,7 @@ import {
   NewPasswordFormValues,
   newPasswordSchema,
 } from "../schemas/newPasswordSchema";
-import { newPassword } from "@/actions/new-password";
+import { newPassword } from "@/app/(root)/(authentication)/auth/_actions/new-password";
 
 export const useNewPassword = () => {
   const searchParams = useSearchParams();

@@ -5,7 +5,7 @@ import {
   RegisterFormValues,
   registerSchema,
 } from "../schemas/registrationSchema";
-import { signUp } from "@/actions/signUp";
+import { signUp } from "@/app/(root)/(authentication)/auth/_actions/signUp";
 
 export const useRegisterUser = () => {
   const [isPending, startTransition] = useTransition();

@@ -4,7 +4,7 @@ import { BeatLoader } from "react-spinners";
 
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { newVerification } from "@/actions/new-verification";
+import { newVerification } from "@/app/(root)/(authentication)/auth/_actions/new-verification";
 import { FormError } from "@/components/ui/formParts/FormError";
 import { FormSuccess } from "@/components/ui/formParts/FormSuccess";
 import { Button } from "@/components/ui/Button";
