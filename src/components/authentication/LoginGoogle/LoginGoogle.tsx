@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { SocialButtonsText, SocialProviders } from "../types/defs";
-import { login } from "@/actions/auth";
+import { login } from "@/app/(root)/(authentication)/auth/_actions/auth";
 
 const LoginGoogle = ({ text = "Login with Google" }: SocialButtonsText) => {
   const handleLogin = (provider: SocialProviders) => {

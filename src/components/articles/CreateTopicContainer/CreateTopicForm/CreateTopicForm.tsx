@@ -6,7 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import { CreateTopicValues } from "./validation/createTopicValidationSchema";
 import { CreateTopicFormProps } from "./defs";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
-import { createTopic } from "@/actions/create-topic";
+import { createTopic } from "@/components/articles/_actions/create-topic";
 import { startTransition, useActionState, useRef } from "react";
 import { Loader } from "lucide-react";
 import { FormError } from "@/components/ui/formParts/FormError";

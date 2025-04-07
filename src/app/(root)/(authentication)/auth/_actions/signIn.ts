@@ -13,7 +13,7 @@ import {
   LoginFormValues,
   loginSchema,
 } from "@/components/authentication/schemas/loginSchema";
-import { DEFAULT_LOGIN_REDIRECT } from "../../routes";
+import { DEFAULT_LOGIN_REDIRECT } from "../../../../../../routes";
 import {
   generateTwoFactorToken,
   generateVerificationToken,

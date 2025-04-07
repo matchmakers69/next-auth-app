@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { currentUser } from "@/lib/currentUserAPI";
 import { Metadata } from "next";
 import paths from "@/utils/paths";
-import { getUserCurrency } from "@/actions/user-currency";
+import { getUserCurrency } from "@/app/(root)/(dashboard)/settings/user-currency";
 
 export const metadata: Metadata = {
   title: "Account Settings | Lifecraft",

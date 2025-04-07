@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoginFormValues, loginSchema } from "../schemas/loginSchema";
-import { signIn } from "@/actions/signIn";
+import { signIn } from "@/app/(root)/(authentication)/auth/_actions/signIn";
 import { useRouter } from "next/navigation";
 import { DEFAULT_LOGIN_REDIRECT } from "../../../../routes";
 

@@ -8,7 +8,7 @@ import { FormEvent, startTransition, useActionState, useRef } from "react";
 import { Loader } from "lucide-react";
 import { CreatePostValues } from "./validation/createPostValidationSchema";
 import { CreatePostFormProps } from "./defs";
-import { createPost } from "@/actions/create-post";
+import { createPost } from "@/components/articles/_actions/create-post";
 import { FormError } from "@/components/ui/formParts/FormError";
 import { Modal } from "@/components/ui/Modal";
 

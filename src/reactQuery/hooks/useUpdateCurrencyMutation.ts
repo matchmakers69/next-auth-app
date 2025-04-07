@@ -1,5 +1,5 @@
 
-import { updateUserCurrency } from "@/actions/user-currency";
+import { updateUserCurrency } from "@/app/(root)/(dashboard)/settings/user-currency";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 

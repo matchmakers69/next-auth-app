@@ -14,7 +14,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { createComment } from "@/actions/create-comment";
+import { createComment } from "@/components/articles/_actions/create-comment";
 import { FormError } from "@/components/ui/formParts/FormError";
 import { Loader, Reply } from "lucide-react";
 
@@ -114,7 +114,7 @@ const CreateCommentForm = ({
     <>
       <div className="reply-button-wrapper flex w-full items-start justify-end">
         <Button
-          className="text-dark-blue min-w-0 font-medium"
+          className="min-w-0 font-medium text-dark-blue"
           size="sm"
           variant="link"
           onClick={() => setOpen(!open)}

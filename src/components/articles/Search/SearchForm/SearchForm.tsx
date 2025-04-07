@@ -6,7 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import { MuiTextField } from "@/components/ui/formParts/MuiTextField";
 import { Search } from "lucide-react";
 import { SearchPostsValues } from "./validation/searchValidationSchema";
-import { searchPosts } from "@/actions/search-posts";
+import { searchPosts } from "@/components/articles/_actions/search-posts";
 import { FormEvent, startTransition, useRef } from "react";
 
 const SearchForm = () => {
