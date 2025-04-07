@@ -1,6 +1,6 @@
 "use server";
 
-import { transactionsCurrencySchema } from "@/components/dashboard/CurrencyPickerContainer/CurrencyPickerForm/validation/transactionsCurrencySchema";
+import { transactionsCurrencySchema } from "@/app/(root)/(dashboard)/settings/_components/CurrencyPickerContainer/CurrencyPickerForm/validation/transactionsCurrencySchema";
 import { currentUser } from "@/lib/currentUserAPI";
 import { db } from "@/lib/db";
 import { CURRENCY } from "@prisma/client";

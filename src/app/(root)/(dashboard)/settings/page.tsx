@@ -1,5 +1,5 @@
-import SettingsContainer from "@/components/dashboard/SettingsContainer";
-import { CurrencyPickerContainer } from "@/components/dashboard/CurrencyPickerContainer";
+import SettingsContainer from "@/app/(root)/(dashboard)/settings/_components/SettingsContainer";
+import { CurrencyPickerContainer } from "@/app/(root)/(dashboard)/settings/_components/CurrencyPickerContainer";
 import PageTitle from "@/components/ui/PageTitle";
 import { redirect } from "next/navigation";
 import { currentUser } from "@/lib/currentUserAPI";

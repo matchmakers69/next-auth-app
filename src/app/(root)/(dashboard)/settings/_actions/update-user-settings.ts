@@ -8,7 +8,7 @@ import { currentUser } from "@/lib/currentUserAPI";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
 import { db } from "@/lib/db";
-import { updateUserSettingsSchema } from "@/components/dashboard/SettingsContainer/FormUpdateUser/validation/updateUserSettingsSchema";
+import { updateUserSettingsSchema } from "@/app/(root)/(dashboard)/settings/_components/SettingsContainer/FormUpdateUser/validation/updateUserSettingsSchema";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { Prisma } from "@prisma/client";
 

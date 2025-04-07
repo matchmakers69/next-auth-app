@@ -1,4 +1,4 @@
-import { createTransaction } from "@/actions/financeTrackerActions/create-transaction";
+import { createTransaction } from "@/app/(root)/(dashboard)/finance-tracker/_actions/create-transaction";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 

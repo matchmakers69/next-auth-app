@@ -1,6 +1,6 @@
 "use client";
 
-import { updateUserSettings } from "@/actions/update-user-settings";
+import { updateUserSettings } from "@/app/(root)/(dashboard)/settings/_actions/update-user-settings";
 import FormHelperText from "@/components/ui/formParts/FormHelperText";
 
 import {

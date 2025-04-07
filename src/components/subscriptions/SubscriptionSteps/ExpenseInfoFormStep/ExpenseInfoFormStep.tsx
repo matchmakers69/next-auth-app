@@ -19,7 +19,7 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { runExpensesInfoValidation } from "@/actions/subscriptionActions/run-expenses-info-validation";
+import { runExpensesInfoValidation } from "@/app/(root)/(dashboard)/subscriptions/_actions/run-expenses-info-validation";
 import { DATE_GLOBAL_FORMAT, isValidDate } from "@/utils/dates";
 
 const ExpenseInfoForm = ({ title, onSubmit, onPrev }: ExpenseInfoFormProps) => {

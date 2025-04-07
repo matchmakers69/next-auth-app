@@ -7,7 +7,7 @@ import { useSubscriptionsContext } from "@/contexts/SubscriptionsProvider/Subscr
 import { useSubscriptionsStepper } from "../../hooks/useSubscriptionsStepper";
 import { SubscriptionStepValues } from "../../types";
 import { Modal } from "@/components/ui/Modal";
-import { createSubscription } from "@/actions/subscriptionActions/create-subscription";
+import { createSubscription } from "@/app/(root)/(dashboard)/subscriptions/_actions/create-subscription";
 import { SUBSCRIPTION_BILLING_PERIOD, CURRENCY } from "@prisma/client";
 import { useSession } from "next-auth/react";
 
@@ -102,8 +102,8 @@ const CreateSubscriptionWizard = ({
           // Handle validation errors here, e.g., displaying error messages in the UI
         } else {
           console.log("Subscription created successfully!");
-          onClose(); // Close the modal
-          methods.reset(); // Reset the form
+          onClose();
+          methods.reset();
           // You might want to show a success message or redirect the user
         }
       } catch (error) {
