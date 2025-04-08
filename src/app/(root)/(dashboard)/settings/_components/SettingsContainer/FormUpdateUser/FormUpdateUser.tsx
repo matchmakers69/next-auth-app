@@ -149,35 +149,34 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
         )}
       </div>
 
-      <div className="mb-12">
-        <Controller
-          name="image"
-          control={control}
-          render={({ field: { onChange, onBlur, ref, name } }) => (
-            <MuiFileInput
-              accept="image/*"
-              id="image"
-              name={name}
-              label="Avatar"
-              variant="outlined"
-              onBlur={onBlur}
-              ref={ref}
-              fullWidth
-              margin="none"
-              onFileChange={(file) => {
-                onChange(file ?? imagePreview);
-                if (file) {
-                  const imageUrl = URL.createObjectURL(file);
-                  setImagePreview(imageUrl);
-                }
-              }}
-            />
-          )}
-        />
-      </div>
-
       {!user.is0Auth && (
         <>
+          <div className="mb-12">
+            <Controller
+              name="image"
+              control={control}
+              render={({ field: { onChange, onBlur, ref, name } }) => (
+                <MuiFileInput
+                  accept="image/*"
+                  id="image"
+                  name={name}
+                  label="Avatar"
+                  variant="outlined"
+                  onBlur={onBlur}
+                  ref={ref}
+                  fullWidth
+                  margin="none"
+                  onFileChange={(file) => {
+                    onChange(file ?? imagePreview);
+                    if (file) {
+                      const imageUrl = URL.createObjectURL(file);
+                      setImagePreview(imageUrl);
+                    }
+                  }}
+                />
+              )}
+            />
+          </div>
           <div className="mb-12">
             <Controller
               name="email"
