@@ -5,6 +5,12 @@ import withMDX from "@next/mdx";
 const nextConfig = {
   // swcMinify: true,
   images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
     formats: ["image/avif", "image/webp"],
     domains: ["i.ytimg.com"],
   },

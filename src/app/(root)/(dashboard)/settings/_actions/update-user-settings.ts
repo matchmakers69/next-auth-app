@@ -24,6 +24,7 @@ type UpdateUserSettingsFormState = {
   updatedUser?: {
     name: string | null;
     email: string | null;
+    image: string | null;
   };
 };
 
@@ -36,6 +37,7 @@ export async function updateUserSettings(
     email: formData.get("email"),
     password: formData.get("password"),
     newPassword: formData.get("newPassword"),
+    image: formData.get("image"),
   });
 
   if (!result.success) {
@@ -65,6 +67,7 @@ export async function updateUserSettings(
     result.data.email = undefined;
     result.data.password = undefined;
     result.data.newPassword = undefined;
+    result.data.image = undefined;
   }
 
   if (result.data.email && result.data.email !== user.email) {
@@ -139,6 +142,7 @@ export async function updateUserSettings(
       updatedUser: {
         name: updatedUser.name,
         email: updatedUser.email,
+        image: updatedUser.image,
       },
     };
   } catch (err) {

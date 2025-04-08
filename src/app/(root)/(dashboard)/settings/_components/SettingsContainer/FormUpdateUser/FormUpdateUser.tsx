@@ -19,6 +19,7 @@ import Checkbox from "@/components/ui/formParts/Checkbox";
 import { Button } from "@/components/ui/Button";
 import { Loader, Loader2 } from "lucide-react";
 import { MuiFileInput } from "@/components/ui/formParts/MuiFileInput";
+import { handleUploadImageToCloudinary } from "../../../_actions/uploadAvatarToCloudinaryAction";
 
 const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
   const [clientReady, setClientReady] = useState(false);
@@ -28,7 +29,7 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
     errors: {},
     success: "",
   });
-  const { control, handleSubmit, reset, watch } =
+  const { control, handleSubmit, reset, watch, setValue } =
     useForm<UpdateUserSettingsValues>({
       mode: "onTouched",
       defaultValues: {
@@ -36,7 +37,7 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
         email: "",
         password: "",
         newPassword: "",
-        avatar: "",
+        image: "",
       },
     });
   useEffect(() => {
@@ -48,7 +49,7 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
     reset({
       name: user?.name || "",
       email: user?.email || "",
-      //avatar: undefined,
+      image: user?.image || "",
     });
   }, [user, reset]);
 
@@ -62,7 +63,7 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
         newPassword: "",
         name: state.updatedUser?.name || user.name || undefined,
         email: state.updatedUser?.email || user.email || undefined,
-        // avatar: undefined,
+        image: state.updatedUser?.image || user.image || undefined,
       });
     }
   }, [reset, state, user]);
@@ -74,14 +75,33 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
       formData.delete("newPassword");
     }
 
-    const avatar = watch("avatar") as File | undefined;
-    if (!avatar) {
-      formData.delete("avatar");
+    const avatarFile = watch("image") as File | undefined;
+
+    if (avatarFile instanceof File) {
+      const reader = new FileReader();
+
+      reader.onloadend = async () => {
+        const base64Image = reader.result as string;
+
+        try {
+          const imageUrl = await handleUploadImageToCloudinary(base64Image);
+
+          if (!imageUrl) throw new Error("Image upload failed");
+
+          // Set the image URL in the form state
+          setValue("image", imageUrl);
+          formData.set("image", imageUrl);
+          startTransition(() => formAction(formData));
+        } catch (_err) {
+          toast.error("Avatar upload failed!");
+        }
+      };
+
+      reader.readAsDataURL(avatarFile);
     } else {
-      formData.set("avatar", avatar);
+      formData.delete("image");
+      startTransition(() => formAction(formData));
     }
-    console.log("avatar", avatar);
-    //startTransition(() => formAction(formData));
   };
 
   if (!clientReady) {
@@ -125,19 +145,21 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
 
       <div className="mb-12">
         <Controller
-          name="avatar"
+          name="image"
           control={control}
           render={({ field: { onChange, onBlur, ref, name } }) => (
             <MuiFileInput
               accept="image/*"
-              id="avatar"
+              id="image"
               name={name}
               label="Avatar"
               variant="outlined"
               onBlur={onBlur}
               ref={ref}
+              fullWidth
+              margin="none"
               onFileChange={(file) => {
-                onChange(file ?? imagePreview); // keep existing preview if no new file
+                onChange(file ?? imagePreview);
                 if (file) {
                   const imageUrl = URL.createObjectURL(file);
                   setImagePreview(imageUrl);
@@ -146,48 +168,6 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
             />
           )}
         />
-        {/* <Controller
-          name="avatar"
-          control={control}
-          render={({ field: { onChange, ref, name, onBlur, ...rest } }) => (
-            <input
-              type="file"
-              ref={ref}
-              name={name}
-              onBlur={onBlur}
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                onChange(file ? file : imagePreview); // Keep the existing image in edit mode
-                setImagePreview(file ? URL.createObjectURL(file) : null);
-              }}
-            />
-            // <MuiTextField
-            //   {...rest}
-            //   id="avatar"
-            //   placeholder="Add your avatar"
-            //   label="Avatar"
-            //   variant="outlined"
-            //   // error={!!state?.errors?.name}
-            //   fullWidth
-            //   margin="none"
-            //   type="file"
-            //   onBlur={onBlur}
-            //   slotProps={{
-            //     htmlInput: {
-            //       accept: "image/*",
-            //       onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-            //         const file = e.target.files?.[0];
-            //         if (file) {
-            //           onChange(file); // ✅ Pass file to React Hook Form
-            //         } else {
-            //           onChange(undefined); // ✅ Reset if no file is selected
-            //         }
-            //       },
-            //     },
-            //   }}
-            // />
-          )}
-        /> */}
       </div>
 
       {!user.is0Auth && (

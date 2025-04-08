@@ -25,6 +25,7 @@ export const updateUserSettingsSchema = z
       .nullish()
       .transform((val) => (val === "" ? undefined : val))
       .optional(),
+      image: z.string().nullish().optional(),
       avatar: z.union([
         z.instanceof(File, {message: "Image is required"})
          .refine(file => !file || file.size !== 0 || file.size <= 5000000, {message:"Max size exceeded"}),
