@@ -18,23 +18,27 @@ import { FormUpdateUserProps } from "./defs";
 import Checkbox from "@/components/ui/formParts/Checkbox";
 import { Button } from "@/components/ui/Button";
 import { Loader, Loader2 } from "lucide-react";
+import { MuiFileInput } from "@/components/ui/formParts/MuiFileInput";
 
 const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
   const [clientReady, setClientReady] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [enablePasswordUpdate, setEnablePasswordsUpdate] = useState(false);
   const [state, formAction, isPending] = useActionState(updateUserSettings, {
     errors: {},
     success: "",
   });
-  const { control, handleSubmit, reset } = useForm<UpdateUserSettingsValues>({
-    mode: "onTouched",
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-      newPassword: "",
-    },
-  });
+  const { control, handleSubmit, reset, watch } =
+    useForm<UpdateUserSettingsValues>({
+      mode: "onTouched",
+      defaultValues: {
+        name: "",
+        email: "",
+        password: "",
+        newPassword: "",
+        avatar: "",
+      },
+    });
   useEffect(() => {
     setClientReady(true);
   }, []);
@@ -44,6 +48,7 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
     reset({
       name: user?.name || "",
       email: user?.email || "",
+      //avatar: undefined,
     });
   }, [user, reset]);
 
@@ -57,17 +62,26 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
         newPassword: "",
         name: state.updatedUser?.name || user.name || undefined,
         email: state.updatedUser?.email || user.email || undefined,
+        // avatar: undefined,
       });
     }
   }, [reset, state, user]);
 
-  const onSubmit = () => {
+  const handleUpdateUserSettingsSubmit = () => {
     const formData = new FormData(formRef.current!);
     if (!enablePasswordUpdate) {
       formData.delete("password");
       formData.delete("newPassword");
     }
-    startTransition(() => formAction(formData));
+
+    const avatar = watch("avatar") as File | undefined;
+    if (!avatar) {
+      formData.delete("avatar");
+    } else {
+      formData.set("avatar", avatar);
+    }
+    console.log("avatar", avatar);
+    //startTransition(() => formAction(formData));
   };
 
   if (!clientReady) {
@@ -83,7 +97,7 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
       action={formAction}
       onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        handleSubmit(onSubmit)(event);
+        handleSubmit(handleUpdateUserSettingsSubmit)(event);
       }}
     >
       <div className="mb-12">
@@ -107,6 +121,73 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
         {state?.errors?.name && (
           <FormHelperText>{state.errors.name.join(", ")}</FormHelperText>
         )}
+      </div>
+
+      <div className="mb-12">
+        <Controller
+          name="avatar"
+          control={control}
+          render={({ field: { onChange, onBlur, ref, name } }) => (
+            <MuiFileInput
+              accept="image/*"
+              id="avatar"
+              name={name}
+              label="Avatar"
+              variant="outlined"
+              onBlur={onBlur}
+              ref={ref}
+              onFileChange={(file) => {
+                onChange(file ?? imagePreview); // keep existing preview if no new file
+                if (file) {
+                  const imageUrl = URL.createObjectURL(file);
+                  setImagePreview(imageUrl);
+                }
+              }}
+            />
+          )}
+        />
+        {/* <Controller
+          name="avatar"
+          control={control}
+          render={({ field: { onChange, ref, name, onBlur, ...rest } }) => (
+            <input
+              type="file"
+              ref={ref}
+              name={name}
+              onBlur={onBlur}
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                onChange(file ? file : imagePreview); // Keep the existing image in edit mode
+                setImagePreview(file ? URL.createObjectURL(file) : null);
+              }}
+            />
+            // <MuiTextField
+            //   {...rest}
+            //   id="avatar"
+            //   placeholder="Add your avatar"
+            //   label="Avatar"
+            //   variant="outlined"
+            //   // error={!!state?.errors?.name}
+            //   fullWidth
+            //   margin="none"
+            //   type="file"
+            //   onBlur={onBlur}
+            //   slotProps={{
+            //     htmlInput: {
+            //       accept: "image/*",
+            //       onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+            //         const file = e.target.files?.[0];
+            //         if (file) {
+            //           onChange(file); // ✅ Pass file to React Hook Form
+            //         } else {
+            //           onChange(undefined); // ✅ Reset if no file is selected
+            //         }
+            //       },
+            //     },
+            //   }}
+            // />
+          )}
+        /> */}
       </div>
 
       {!user.is0Auth && (
