@@ -121,6 +121,10 @@ export async function updateUserSettings(
     updateData.password = result.data.password;
   }
 
+  if (result.data.image !== undefined && result.data.image !== null) {
+    updateData.image = result.data.image;
+  }
+
   // Check if any data to update
   if (Object.keys(updateData).length === 0) {
     return {

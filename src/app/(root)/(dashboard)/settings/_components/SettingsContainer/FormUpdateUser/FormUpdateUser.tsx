@@ -23,6 +23,7 @@ import { handleUploadImageToCloudinary } from "../../../_actions/uploadAvatarToC
 
 const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
   const [clientReady, setClientReady] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [enablePasswordUpdate, setEnablePasswordsUpdate] = useState(false);
   const [state, formAction, isPending] = useActionState(updateUserSettings, {
@@ -82,11 +83,16 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
 
       reader.onloadend = async () => {
         const base64Image = reader.result as string;
+        setIsUploading(true);
 
         try {
           const imageUrl = await handleUploadImageToCloudinary(base64Image);
 
-          if (!imageUrl) throw new Error("Image upload failed");
+          if (!imageUrl) {
+            throw new Error("Image upload failed");
+          } else {
+            toast.success("Image upload success!");
+          }
 
           // Set the image URL in the form state
           setValue("image", imageUrl);
@@ -257,8 +263,14 @@ const FormUpdateUser = ({ user }: FormUpdateUserProps) => {
         </>
       )}
       <div>
-        <Button type="submit" variant="default" size="sm" disabled={isPending}>
-          {isPending && <Loader className="size-6 animate-spin" />}
+        <Button
+          type="submit"
+          variant="default"
+          size="sm"
+          disabled={isPending || isUploading}
+        >
+          {isPending ||
+            (isUploading && <Loader className="size-6 animate-spin" />)}
           <span className="inline-block">
             {isPending ? "Updating now..." : "Update user settings"}
           </span>
